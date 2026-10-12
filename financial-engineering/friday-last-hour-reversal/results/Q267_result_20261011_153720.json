@@ -1,0 +1,155 @@
+{
+ "qid": "Q267",
+ "smoke": false,
+ "generated": "20261011_153720",
+ "question": "金曜 NY 15 時台（週の最終 1 時間）のリターンは、その週のリターンと逆符号か",
+ "settings": {
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "kind": "H1_dukascopy",
+  "ny_hour": 15,
+  "tz": "America/New_York",
+  "week": "UTC 月曜 0 時区切り",
+  "r_W": "週の最初の足の始値 → 金曜 NY 15 時台の足の始値",
+  "r_F": "その足の close/open−1 [bp]",
+  "y": "sign(r_W)·r_F",
+  "control": "金曜以外の NY 15 時台で同じ y",
+  "split_year": 2017,
+  "B": 2000,
+  "null": "sign(r_W) を週で無作為に付け替え（銘柄ごと）→ all15 の年単位平均"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "n_years": 19,
+    "n_weeks": 12749,
+    "y_bp": -0.5456,
+    "t": -0.9976,
+    "z": -2.1203,
+    "pct": 0.0145,
+    "ctrl_y_bp": -0.2169,
+    "ctrl_t": -0.5296,
+    "diff_vs_ctrl_bp": -0.3287,
+    "mean_rF_bp": 1.0109
+   },
+   "pre": {
+    "n_years": 9,
+    "n_weeks": 5544,
+    "y_bp": -0.6716,
+    "t": -0.997,
+    "z": -1.986,
+    "pct": 0.022,
+    "ctrl_y_bp": -0.8264,
+    "ctrl_t": -1.1743,
+    "diff_vs_ctrl_bp": 0.1548,
+    "mean_rF_bp": 1.3875
+   },
+   "post": {
+    "n_years": 10,
+    "n_weeks": 7205,
+    "y_bp": -0.4323,
+    "t": -0.4924,
+    "z": -1.1436,
+    "pct": 0.117,
+    "ctrl_y_bp": 0.3316,
+    "ctrl_t": 0.8023,
+    "diff_vs_ctrl_bp": -0.7639,
+    "mean_rF_bp": 0.7211
+   }
+  },
+  "fx8": {
+   "all": {
+    "n_years": 19,
+    "n_weeks": 7610,
+    "y_bp": -0.5784,
+    "t": -2.9465,
+    "z": null,
+    "pct": null,
+    "ctrl_y_bp": -0.2883,
+    "ctrl_t": -2.0494,
+    "diff_vs_ctrl_bp": -0.2901,
+    "mean_rF_bp": 0.3143
+   },
+   "pre": {
+    "n_years": 9,
+    "n_weeks": 3680,
+    "y_bp": -0.8336,
+    "t": -2.2468,
+    "z": null,
+    "pct": null,
+    "ctrl_y_bp": -0.2298,
+    "ctrl_t": -0.8697,
+    "diff_vs_ctrl_bp": -0.6039,
+    "mean_rF_bp": 0.2584
+   },
+   "post": {
+    "n_years": 10,
+    "n_weeks": 3930,
+    "y_bp": -0.3487,
+    "t": -2.2547,
+    "z": null,
+    "pct": null,
+    "ctrl_y_bp": -0.341,
+    "ctrl_t": -2.4928,
+    "diff_vs_ctrl_bp": -0.0077,
+    "mean_rF_bp": 0.3665
+   }
+  },
+  "trend7": {
+   "all": {
+    "n_years": 19,
+    "n_weeks": 5139,
+    "y_bp": -0.7505,
+    "t": -0.6179,
+    "z": null,
+    "pct": null,
+    "ctrl_y_bp": -0.1712,
+    "ctrl_t": -0.2012,
+    "diff_vs_ctrl_bp": -0.5794,
+    "mean_rF_bp": 2.0425
+   },
+   "pre": {
+    "n_years": 9,
+    "n_weeks": 1864,
+    "y_bp": -0.998,
+    "t": -0.583,
+    "z": null,
+    "pct": null,
+    "ctrl_y_bp": -1.5839,
+    "ctrl_t": -1.0718,
+    "diff_vs_ctrl_bp": 0.5859,
+    "mean_rF_bp": 3.6165
+   },
+   "post": {
+    "n_years": 10,
+    "n_weeks": 3275,
+    "y_bp": -0.5279,
+    "t": -0.2928,
+    "z": null,
+    "pct": null,
+    "ctrl_y_bp": 1.1002,
+    "ctrl_t": 1.3931,
+    "diff_vs_ctrl_bp": -1.6281,
+    "mean_rF_bp": 1.1466
+   }
+  }
+ },
+ "machine_verdict": "未確定",
+ "multiple_comparisons": "判定は all15 の前後半 2 本。群別・対照は記述。"
+}
