@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 131 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 133 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -120,6 +120,8 @@
 | [tsmom12m-ma200-cash-rule](./tsmom12m-ma200-cash-rule) | Q151 12か月リターン>0 かつ 200日線上で保有・外れたら現金の規則は、循環シフトの帰無より下落が浅いか（Korzan の規則を15銘柄で） | 確定 |
 | [turn-of-month-shift](./turn-of-month-shift) | Q181 月替わり効果の窓は2017年以降に前倒しされたか（QuanterLab 2026・US500/USTECH/SPX） | 棄却: 古典窓と前倒し窓の差は見えない |
 | [turn-of-month-shift-fx8-q284](./turn-of-month-shift-fx8-q284) | Q284 月末前4日の前倒し山は FX8 の日足に残っているか（Girgin 2026 ブログの FX 移植・Q283-C1） | 棄却: 前後半で上位5%オフセットが一致しない |
+| [turn-of-month-shift-nikkei-topix-q285](./turn-of-month-shift-nikkei-topix-q285) | Q285 日本株（Nikkei 225・TOPIX）の pre-TOM 4日効果は T+2 市場でも 2017 年以降に残るか（Q283-C2・Girgin 2026 の pre-TOM 前倒しを日本株に移植） | 棄却: 日本株の後半で S−C の z<2（前倒し窓は古典窓を上回らない） |
+| [turn-of-month-shift-xasset-q286](./turn-of-month-shift-xasset-q286) | Q286 商品・BTC・FX の pre-TOM 4日効果は残るか（15銘柄パネルの非米国株13本・Q283-C3） | 棄却（K=0 ≤ 1）: Girgin の pre-TOM は株固有の現象で、商品・BTC・FX には及ばない |
 | [two-month-live-vs-random](./two-month-live-vs-random) | Q144 2か月の成績はランダム売買の分布のどこに入るか、順位は次の2か月で入れ替わるか（15銘柄・TSMOM20） | — |
 | [usdjpy-london-open-vs-naive-momentum](./usdjpy-london-open-vs-naive-momentum) | USDJPY の日中順張りは、ロンドン開始30分の時刻条件つきシグナルでのみ効くか | README の「主な検証」表を参照 |
 | [ustech-btc-leadlag](./ustech-btc-leadlag) | Q213 USTECH の直前 1 時間のリターンは BTC の次の 1 時間を予測するか（リード・ラグ・2020 年以降・H1） | 棄却 |

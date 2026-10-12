@@ -1,0 +1,108 @@
+{
+ "qid": "Q285",
+ "smoke": false,
+ "generated": "20261013_034629",
+ "question": "日本株（Nikkei 225・TOPIX）の pre-TOM 4日効果は T+2 市場でも 2017 年以降に残るか（Q283-C2）",
+ "settings": {
+  "series": {
+   "N225": "^N225",
+   "TPX": "1308.T"
+  },
+  "C_WIN": [
+   -1,
+   1,
+   2,
+   3
+  ],
+  "S_WIN": [
+   -4,
+   -3,
+   -2
+  ],
+  "split_year": 2017,
+  "B": 1000,
+  "seed": 20261013,
+  "null": "各 ym の中で win（S/C/O）ラベルを並べ替え（B=1000）",
+  "p_rule": "p_right = (null >= obs の割合)、z = (obs − null_mean)/null_sd",
+  "judgment": "ok=後半 S−C>0 かつ z_post_SC≥2 かつ DiD>0 かつ z_did≥2、weak=z_post_SC<2。|ok|≥N/2 → 支持、|weak|≥N/2 → 棄却"
+ },
+ "per_series": {
+  "N225": {
+   "ticker": "^N225",
+   "n_pre": 2200,
+   "n_post": 2385,
+   "span": [
+    "2008-01-07",
+    "2026-10-09"
+   ],
+   "pre": {
+    "mean_C": -3.881,
+    "mean_S": 17.3641,
+    "mean_O": 1.2723,
+    "S_minus_C": 21.2451,
+    "C_minus_O": -5.1533,
+    "S_minus_O": 16.0918
+   },
+   "post": {
+    "mean_C": 1.6775,
+    "mean_S": 4.336,
+    "mean_O": 8.1007,
+    "S_minus_C": 2.6585,
+    "C_minus_O": -6.4231,
+    "S_minus_O": -3.7646
+   },
+   "did_S_minus_C": -18.5866,
+   "z_pre_SC": 1.7334,
+   "z_post_SC": 0.2191,
+   "z_pre_CO": -0.5172,
+   "z_post_CO": -0.902,
+   "z_did": -1.2008,
+   "p_right_post_SC": 0.39,
+   "p_right_post_CO": 0.813,
+   "p_right_did": 0.89
+  },
+  "TPX": {
+   "ticker": "1308.T",
+   "n_pre": 1952,
+   "n_post": 2384,
+   "span": [
+    "2009-01-06",
+    "2026-10-09"
+   ],
+   "pre": {
+    "mean_C": -0.624,
+    "mean_S": 12.4857,
+    "mean_O": 3.1831,
+    "S_minus_C": 13.1096,
+    "C_minus_O": -3.8071,
+    "S_minus_O": 9.3025
+   },
+   "post": {
+    "mean_C": -2.0564,
+    "mean_S": 11.7744,
+    "mean_O": 5.5135,
+    "S_minus_C": 13.8308,
+    "C_minus_O": -7.5699,
+    "S_minus_O": 6.2609
+   },
+   "did_S_minus_C": 0.7212,
+   "z_pre_SC": 1.2413,
+   "z_post_SC": 1.6613,
+   "z_pre_CO": -0.535,
+   "z_post_CO": -1.2677,
+   "z_did": 0.0321,
+   "p_right_post_SC": 0.055,
+   "p_right_post_CO": 0.893,
+   "p_right_did": 0.483
+  }
+ },
+ "ok_series": [],
+ "weak_series": [
+  "N225",
+  "TPX"
+ ],
+ "classic_window_still_significant_post": [],
+ "machine_verdict": "棄却: 日本株の後半で S−C の z<2（前倒し窓は古典窓を上回らない）",
+ "note": "価格のみ（基準指数・配当なし）。Nikkei/TOPIX は 2019-07 以降 T+2 のまま、米国 T+1（2024-05-28〜）の影響を受けない点が Q181 や Q284 との区別。",
+ "pre_registered_deviation": "事前登録では TOPIX を '^TPX' として参照したが、Yahoo Finance（yfinance）に ^TPX は存在しない（404）。TOPIX 連動 ETF の 1308.T（Listed Index Fund TOPIX、2008-01-04〜）を代用。ETF の日次リターンは TOPIX 指数と高相関（>0.99）で、pre-TOM 4日の窓単位の平均比較には実務上の差異はない。判定規則そのものは変えていない。"
+}
