@@ -39,7 +39,7 @@
 | [dollar-factor-momentum](./dollar-factor-momentum) | Q208 ドル因子（6 通貨の対ドル等加重）の順張りは個別ペアの順張りの平均より強いか（Verdelhan 2018 の型） | 棄却 |
 | [dow-structure-direction-vs-time](./dow-structure-direction-vs-time) | Q104 ダウ型の構造確定の後の24時間: 向きの情報か、時刻と地合いか | 棄却（向きの情報なし） |
 | [ecb-fix-vshape](./ecb-fix-vshape) | Q268 ECB 参照レート（14:15 CET）の前後にドルの V 字はあるか（Krohn 2024 のロンドン fix の移植・FX6 H1） | 未確定 |
-| [eia-release-followthrough](./eia-release-followthrough) | Q269 EIA 原油在庫発表（水曜 10:30 ET）直後 1 時間の向きは次の 2〜4 時間に続くか（WTI・UKOIL H1） | … |
+| [eia-release-followthrough](./eia-release-followthrough) | Q269 EIA 原油在庫発表（水曜 10:30 ET）直後 1 時間の向きは次の 2〜4 時間に続くか（WTI・UKOIL H1） | 要確認 |
 | [embargo-length-effect](./embargo-length-effect) | Q155 検証とテストの間のエンバーゴ日数で順張りの標本外成績はどれだけ変わるか | e=0 に楽観の方向はあるが、事前登録の第一指標が有意に届かなかった |
 | [equity-curve-trading](./equity-curve-trading) | Q210 エクイティカーブ・トレーディング（戦略の直近損益で規模を変える）は 15 銘柄の順張りの標本外成績を上げるか | 棄却 |
 | [execution-delay-effect](./execution-delay-effect) | Q156 約定を1〜2営業日遅らせると順張りの成績はどう変わるか（Korzan 2026 表5 では遅れで改善した） | 遅れで改善するのは Korzan のユニバース（二周期の株式ローテーション）に固有の性質。FX／商品／指数／BTC の… |
@@ -107,7 +107,7 @@
 | [signal-confirmation-filter](./signal-confirmation-filter) | Q221 合図の確認フィルタ（k 日連続同符号で入る）は 15 銘柄の順張りのホイップソーを減らし純損益を上げるか | 未確定 |
 | [signal-direction-compression](./signal-direction-compression) | Q145 戦略の日次ポジションを平均の向きに圧縮したとき、向きが離れたペアは履歴の相関も低いか（Nunes 2026 を 12 戦略 × 15銘柄で） | — |
 | [signal-strength-terciles](./signal-strength-terciles) | Q249 順張りの合図強度（／ret_L／/σ）の3分位で翌日の純損益は単調に増えるか（15銘柄・sign と強度の対比） | … |
-| [split-year-sensitivity](./split-year-sensitivity) | Q278 前後半の分割年を 2014〜2020 で動かすと「前後半とも同符号 t≥2」の判定は何割割れるか（基盤・簡単な規則群） | … |
+| [split-year-sensitivity](./split-year-sensitivity) | Q278 前後半の分割年を 2014〜2020 で動かすと「前後半とも同符号 t≥2」の判定は何割割れるか（基盤・簡単な規則群） | 未確定寄りのトリビアル支持 |
 | [spread-change-vol-forecast](./spread-change-vol-forecast) | Q234 XAUUSD の実測スプレッドの変化は、HAR に足すと翌時間の実現ボラの QLIKE を下げるか | … |
 | [streak-reversal](./streak-reversal) | Q240 k 日連続同符号（k=3・5）の翌日は反転するか（15 銘柄・年内並べ替え帰無） | … |
 | [time-stop-tsmom](./time-stop-tsmom) | Q251 時間ストップ（N 日で強制手仕舞い・再合図まで待つ）は順張りの純損益と最大下落を改善するか（15銘柄） | … |
