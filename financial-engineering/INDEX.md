@@ -86,7 +86,7 @@
 | [permutation-null-stability](./permutation-null-stability) | Q146 並べ替え帰無の z は何回で安定するか（B と seed のぶれ。検証基盤の既定 B を決めるため） | — |
 | [pooled-har-vs-individual](./pooled-har-vs-individual) | Q274 15銘柄をプールしたパネル HAR は銘柄別 HAR より翌日の QLIKE を下げるか | … |
 | [post-fix-conditional-sell](./post-fix-conditional-sell) | Q190 仲値後のドル円の売りは仲値前に上がった五十日だけ効くか（Bessho 2023-2・2008〜2026） | 棄却 |
-| [pre-fomc-drift](./pre-fomc-drift) | Q243 FOMC 前日ドリフトは US500 H1 で 2015 年以降も残るか（Lucca・Moench 2015／Kurov ほか 2021 の追試） | … |
+| [pre-fomc-drift](./pre-fomc-drift) | Q243 FOMC 前日ドリフトは US500 H1 で 2015 年以降も残るか（Lucca・Moench 2015／Kurov ほか 2021 の追試） | ノイズ（規則どおり）、ただし Kurov 2021 の「2015 以降は消えた」の文脈とは一致しない形 |
 | [pre-holiday-effect](./pre-holiday-effect) | Q239 休日前効果は SPX・NDX（2008〜2026）で残るか（祝日は欠損営業日から復元・Lakonishok・Smidt 1988 の型） | … |
 | [predictability-to-profit-conversion](./predictability-to-profit-conversion) | Q149 分散比で「予測できる」と出た組は、次の期間にコスト後で儲かるか（Alahmadi 2026 §3.4.1 の変換率） | 前後半とも (b) の t<2 で事前の規則どおり「変換されない」。点推定も前後半とも負で、予測できる組は予測できない… |
 | [profit-target-tsmom](./profit-target-tsmom) | Q252 利食い目標（k·ATR）は順張りの純損益を上げるか下げるか（15銘柄・Q204 の損切りの対） | … |

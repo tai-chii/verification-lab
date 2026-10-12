@@ -1,0 +1,56 @@
+{
+ "qid": "Q243",
+ "smoke": false,
+ "generated": "20261013_014328",
+ "question": "FOMC 前日ドリフトは US500 H1 で 2015 年以降も残るか",
+ "settings": {
+  "ann_hour_ny": 14,
+  "B": 2000,
+  "n_fomc_dates_listed": 115,
+  "n_fomc_matched_in_data": 115,
+  "note": "FOMC の日程は Fable の知識から。実行者は federalreserve.gov と照合すること"
+ },
+ "summary": {
+  "all": {
+   "n_fomc": 115,
+   "n_control": 5301,
+   "fomc_mean_bp": 18.3985,
+   "control_mean_bp": 3.0311,
+   "diff_bp": 15.3674,
+   "z": 1.9593,
+   "pct": 0.972,
+   "fomc_t": 3.2409,
+   "share_positive": 0.5739,
+   "post_1h_fomc_bp": 4.6006,
+   "post_1h_control_bp": 0.2721
+  },
+  "pre": {
+   "n_fomc": 40,
+   "n_control": 1908,
+   "fomc_mean_bp": 13.1572,
+   "control_mean_bp": 2.9268,
+   "diff_bp": 10.2305,
+   "z": 0.8805,
+   "pct": 0.8515,
+   "fomc_t": 1.6956,
+   "share_positive": 0.45,
+   "post_1h_fomc_bp": 10.6593,
+   "post_1h_control_bp": 0.174
+  },
+  "post": {
+   "n_fomc": 75,
+   "n_control": 3393,
+   "fomc_mean_bp": 21.1938,
+   "control_mean_bp": 3.0898,
+   "diff_bp": 18.1041,
+   "z": 1.7272,
+   "pct": 0.9665,
+   "fomc_t": 2.7616,
+   "share_positive": 0.64,
+   "post_1h_fomc_bp": 1.3692,
+   "post_1h_control_bp": 0.3273
+  }
+ },
+ "machine_verdict": "消えた: 後半の z < 2（前半も z < 2 で手元のデータでは元々見えない）",
+ "multiple_comparisons": "判定は後半の z 1 本。"
+}
