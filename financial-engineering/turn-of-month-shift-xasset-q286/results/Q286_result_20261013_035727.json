@@ -1,0 +1,566 @@
+{
+ "qid": "Q286",
+ "smoke": false,
+ "generated": "20261013_035727",
+ "question": "商品・BTC・FX の pre-TOM 4日効果は残るか（15銘柄パネルの非米国株13本・Q283-C3）",
+ "settings": {
+  "symbols": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "BTCUSD"
+  ],
+  "n_tests_m": 13,
+  "C_WIN": [
+   -1,
+   1,
+   2,
+   3
+  ],
+  "S_WIN": [
+   -4,
+   -3,
+   -2
+  ],
+  "split_year": 2017,
+  "B": 1000,
+  "seed": 20261013,
+  "alpha": 0.05,
+  "null": "各 ym の中で win（S/C/O）ラベルを並べ替え（B=1000）",
+  "p_rule": "p_right = (null >= obs の割合)、z = (obs − null_mean)/null_sd",
+  "multiple_correction": "Holm step-down（m=13、α=0.05）",
+  "judgment": "K = post Holm 有意 かつ pre S−C>0 の銘柄数（BTCUSD は前半不能なので除外）。K≥3 支持、K≤1 棄却、K=2 未確定"
+ },
+ "missing": [],
+ "excluded_from_K": [
+  "BTCUSD"
+ ],
+ "per_symbol": {
+  "EURUSD": {
+   "n_pre": 2347,
+   "n_post": 2476,
+   "span": [
+    "2008-01-02",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": -1.6265,
+    "mean_S": 0.8002,
+    "mean_O": -1.467,
+    "S_minus_C": 2.4267,
+    "C_minus_O": -0.1594,
+    "S_minus_O": 2.2672
+   },
+   "post": {
+    "mean_C": -1.1897,
+    "mean_S": 0.3068,
+    "mean_O": 0.8984,
+    "S_minus_C": 1.4965,
+    "C_minus_O": -2.0881,
+    "S_minus_O": -0.5916
+   },
+   "did_S_minus_C": -0.9302,
+   "z_pre_SC": 0.5146,
+   "z_post_SC": 0.4851,
+   "z_post_CO": -0.8487,
+   "z_did": -0.1573,
+   "p_right_post_SC": 0.316,
+   "p_right_pre_SC": 0.307,
+   "p_right_post_CO": 0.78,
+   "p_right_did": 0.554
+  },
+  "GBPUSD": {
+   "n_pre": 2347,
+   "n_post": 2476,
+   "span": [
+    "2008-01-02",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": -0.8722,
+    "mean_S": 2.861,
+    "mean_O": -3.0333,
+    "S_minus_C": 3.7332,
+    "C_minus_O": 2.1612,
+    "S_minus_O": 5.8944
+   },
+   "post": {
+    "mean_C": -0.6762,
+    "mean_S": 0.1807,
+    "mean_O": 0.7885,
+    "S_minus_C": 0.8569,
+    "C_minus_O": -1.4647,
+    "S_minus_O": -0.6078
+   },
+   "did_S_minus_C": -2.8763,
+   "z_pre_SC": 0.7971,
+   "z_post_SC": 0.2526,
+   "z_post_CO": -0.5203,
+   "z_did": -0.4419,
+   "p_right_post_SC": 0.399,
+   "p_right_pre_SC": 0.222,
+   "p_right_post_CO": 0.716,
+   "p_right_did": 0.67
+  },
+  "AUDUSD": {
+   "n_pre": 2345,
+   "n_post": 2476,
+   "span": [
+    "2008-01-03",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": 0.2278,
+    "mean_S": 5.7746,
+    "mean_O": -1.8888,
+    "S_minus_C": 5.5468,
+    "C_minus_O": 2.1166,
+    "S_minus_O": 7.6634
+   },
+   "post": {
+    "mean_C": 1.4744,
+    "mean_S": -0.3252,
+    "mean_O": -0.2991,
+    "S_minus_C": -1.7997,
+    "C_minus_O": 1.7735,
+    "S_minus_O": -0.0261
+   },
+   "did_S_minus_C": -7.3464,
+   "z_pre_SC": 0.8706,
+   "z_post_SC": -0.4234,
+   "z_post_CO": 0.5446,
+   "z_did": -0.9416,
+   "p_right_post_SC": 0.676,
+   "p_right_pre_SC": 0.193,
+   "p_right_post_CO": 0.286,
+   "p_right_did": 0.824
+  },
+  "USDJPY": {
+   "n_pre": 2324,
+   "n_post": 2476,
+   "span": [
+    "2008-02-04",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": 3.8239,
+    "mean_S": 0.2544,
+    "mean_O": -0.1357,
+    "S_minus_C": -3.5696,
+    "C_minus_O": 3.9597,
+    "S_minus_O": 0.3901
+   },
+   "post": {
+    "mean_C": -1.2646,
+    "mean_S": 2.641,
+    "mean_O": 1.9913,
+    "S_minus_C": 3.9056,
+    "C_minus_O": -3.256,
+    "S_minus_O": 0.6496
+   },
+   "did_S_minus_C": 7.4752,
+   "z_pre_SC": -0.7384,
+   "z_post_SC": 1.0513,
+   "z_post_CO": -1.2074,
+   "z_did": 1.2206,
+   "p_right_post_SC": 0.138,
+   "p_right_pre_SC": 0.766,
+   "p_right_post_CO": 0.882,
+   "p_right_did": 0.115
+  },
+  "USDCHF": {
+   "n_pre": 2347,
+   "n_post": 2476,
+   "span": [
+    "2008-01-02",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": 1.8937,
+    "mean_S": -2.1003,
+    "mean_O": -0.286,
+    "S_minus_C": -3.9941,
+    "C_minus_O": 2.1797,
+    "S_minus_O": -1.8144
+   },
+   "post": {
+    "mean_C": 0.054,
+    "mean_S": 0.0603,
+    "mean_O": -1.2367,
+    "S_minus_C": 0.0063,
+    "C_minus_O": 1.2906,
+    "S_minus_O": 1.297
+   },
+   "did_S_minus_C": 4.0004,
+   "z_pre_SC": -0.7567,
+   "z_post_SC": -0.0345,
+   "z_post_CO": 0.5071,
+   "z_did": 0.6492,
+   "p_right_post_SC": 0.523,
+   "p_right_pre_SC": 0.778,
+   "p_right_post_CO": 0.303,
+   "p_right_did": 0.258
+  },
+  "USDCAD": {
+   "n_pre": 2347,
+   "n_post": 2476,
+   "span": [
+    "2008-01-02",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": -2.4874,
+    "mean_S": -5.9989,
+    "mean_O": 4.0887,
+    "S_minus_C": -3.5115,
+    "C_minus_O": -6.5761,
+    "S_minus_O": -10.0876
+   },
+   "post": {
+    "mean_C": -1.5359,
+    "mean_S": 0.9124,
+    "mean_O": 0.6896,
+    "S_minus_C": 2.4483,
+    "C_minus_O": -2.2255,
+    "S_minus_O": 0.2228
+   },
+   "did_S_minus_C": 5.9597,
+   "z_pre_SC": -0.7975,
+   "z_post_SC": 0.8103,
+   "z_post_CO": -1.0626,
+   "z_did": 1.0879,
+   "p_right_post_SC": 0.204,
+   "p_right_pre_SC": 0.785,
+   "p_right_post_CO": 0.853,
+   "p_right_did": 0.145
+  },
+  "EURJPY": {
+   "n_pre": 2347,
+   "n_post": 2411,
+   "span": [
+    "2008-01-02",
+    "2026-03-31"
+   ],
+   "pre": {
+    "mean_C": 1.6244,
+    "mean_S": 0.7828,
+    "mean_O": -1.8091,
+    "S_minus_C": -0.8417,
+    "C_minus_O": 3.4335,
+    "S_minus_O": 2.5918
+   },
+   "post": {
+    "mean_C": -2.481,
+    "mean_S": 2.4957,
+    "mean_O": 2.8118,
+    "S_minus_C": 4.9767,
+    "C_minus_O": -5.2928,
+    "S_minus_O": -0.3161
+   },
+   "did_S_minus_C": 5.8184,
+   "z_pre_SC": -0.0983,
+   "z_post_SC": 1.3257,
+   "z_post_CO": -1.8894,
+   "z_did": 0.7881,
+   "p_right_post_SC": 0.086,
+   "p_right_pre_SC": 0.551,
+   "p_right_post_CO": 0.973,
+   "p_right_did": 0.206
+  },
+  "GBPJPY": {
+   "n_pre": 2347,
+   "n_post": 2476,
+   "span": [
+    "2008-01-02",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": 2.4954,
+    "mean_S": 2.8851,
+    "mean_O": -3.3013,
+    "S_minus_C": 0.3896,
+    "C_minus_O": 5.7967,
+    "S_minus_O": 6.1864
+   },
+   "post": {
+    "mean_C": -2.0006,
+    "mean_S": 2.6713,
+    "mean_O": 2.6625,
+    "S_minus_C": 4.6719,
+    "C_minus_O": -4.6631,
+    "S_minus_O": 0.0088
+   },
+   "did_S_minus_C": 4.2823,
+   "z_pre_SC": 0.0346,
+   "z_post_SC": 1.0151,
+   "z_post_CO": -1.4621,
+   "z_did": 0.5196,
+   "p_right_post_SC": 0.15,
+   "p_right_pre_SC": 0.489,
+   "p_right_post_CO": 0.929,
+   "p_right_did": 0.302
+  },
+  "XAUUSD": {
+   "n_pre": 2254,
+   "n_post": 2464,
+   "span": [
+    "2008-05-02",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": 4.8095,
+    "mean_S": -2.233,
+    "mean_O": 2.1422,
+    "S_minus_C": -7.0425,
+    "C_minus_O": 2.6673,
+    "S_minus_O": -4.3752
+   },
+   "post": {
+    "mean_C": 10.4033,
+    "mean_S": -2.011,
+    "mean_O": 5.8075,
+    "S_minus_C": -12.4143,
+    "C_minus_O": 4.5958,
+    "S_minus_O": -7.8185
+   },
+   "did_S_minus_C": -5.3718,
+   "z_pre_SC": -0.7892,
+   "z_post_SC": -1.6411,
+   "z_post_CO": 0.8673,
+   "z_did": -0.5298,
+   "p_right_post_SC": 0.95,
+   "p_right_pre_SC": 0.777,
+   "p_right_post_CO": 0.206,
+   "p_right_did": 0.688
+  },
+  "XAGUSD": {
+   "n_pre": 2341,
+   "n_post": 2464,
+   "span": [
+    "2008-01-02",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": 9.0604,
+    "mean_S": 1.541,
+    "mean_O": 1.0025,
+    "S_minus_C": -7.5194,
+    "C_minus_O": 8.0579,
+    "S_minus_O": 0.5385
+   },
+   "post": {
+    "mean_C": 7.3837,
+    "mean_S": -5.9881,
+    "mean_O": 10.3514,
+    "S_minus_C": -13.3718,
+    "C_minus_O": -2.9677,
+    "S_minus_O": -16.3395
+   },
+   "did_S_minus_C": -5.8524,
+   "z_pre_SC": -0.4925,
+   "z_post_SC": -0.8502,
+   "z_post_CO": -0.2243,
+   "z_did": -0.2653,
+   "p_right_post_SC": 0.81,
+   "p_right_pre_SC": 0.692,
+   "p_right_post_CO": 0.575,
+   "p_right_did": 0.602
+  },
+  "WTI": {
+   "n_pre": 1323,
+   "n_post": 2463,
+   "span": [
+    "2011-11-10",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": 8.2226,
+    "mean_S": 7.4872,
+    "mean_O": -4.8066,
+    "S_minus_C": -0.7355,
+    "C_minus_O": 13.0292,
+    "S_minus_O": 12.2938
+   },
+   "post": {
+    "mean_C": 19.0998,
+    "mean_S": 9.3457,
+    "mean_O": 0.2571,
+    "S_minus_C": -9.7541,
+    "C_minus_O": 18.8427,
+    "S_minus_O": 9.0886
+   },
+   "did_S_minus_C": -9.0187,
+   "z_pre_SC": -0.0045,
+   "z_post_SC": -0.4591,
+   "z_post_CO": 1.2297,
+   "z_did": -0.3207,
+   "p_right_post_SC": 0.672,
+   "p_right_pre_SC": 0.501,
+   "p_right_post_CO": 0.104,
+   "p_right_did": 0.631
+  },
+  "UKOIL": {
+   "n_pre": 1495,
+   "n_post": 2450,
+   "span": [
+    "2010-12-03",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": -2.4754,
+    "mean_S": 17.3853,
+    "mean_O": -4.9183,
+    "S_minus_C": 19.8607,
+    "C_minus_O": 2.4428,
+    "S_minus_O": 22.3035
+   },
+   "post": {
+    "mean_C": 13.0768,
+    "mean_S": -5.7787,
+    "mean_O": 3.664,
+    "S_minus_C": -18.8555,
+    "C_minus_O": 9.4128,
+    "S_minus_O": -9.4427
+   },
+   "did_S_minus_C": -38.7162,
+   "z_pre_SC": 1.1532,
+   "z_post_SC": -1.0276,
+   "z_post_CO": 0.6914,
+   "z_did": -1.5584,
+   "p_right_post_SC": 0.85,
+   "p_right_pre_SC": 0.12,
+   "p_right_post_CO": 0.242,
+   "p_right_did": 0.934
+  },
+  "BTCUSD": {
+   "n_pre": 0,
+   "n_post": 3165,
+   "span": [
+    "2017-05-08",
+    "2026-06-30"
+   ],
+   "pre": {
+    "mean_C": null,
+    "mean_S": null,
+    "mean_O": null,
+    "S_minus_C": null,
+    "C_minus_O": null,
+    "S_minus_O": null
+   },
+   "post": {
+    "mean_C": 30.527,
+    "mean_S": 36.685,
+    "mean_O": 13.3606,
+    "S_minus_C": 6.158,
+    "C_minus_O": 17.1664,
+    "S_minus_O": 23.3244
+   },
+   "did_S_minus_C": null,
+   "z_pre_SC": null,
+   "z_post_SC": 0.2757,
+   "z_post_CO": 0.8995,
+   "z_did": null,
+   "p_right_post_SC": 0.391,
+   "p_right_pre_SC": null,
+   "p_right_post_CO": 0.185,
+   "p_right_did": null
+  }
+ },
+ "holm": {
+  "EURJPY": {
+   "rank": 1,
+   "p": 0.086,
+   "threshold": 0.0038461538461538464,
+   "reject": false
+  },
+  "USDJPY": {
+   "rank": 2,
+   "p": 0.138,
+   "threshold": 0.004166666666666667,
+   "reject": false
+  },
+  "GBPJPY": {
+   "rank": 3,
+   "p": 0.15,
+   "threshold": 0.004545454545454546,
+   "reject": false
+  },
+  "USDCAD": {
+   "rank": 4,
+   "p": 0.204,
+   "threshold": 0.005,
+   "reject": false
+  },
+  "EURUSD": {
+   "rank": 5,
+   "p": 0.316,
+   "threshold": 0.005555555555555556,
+   "reject": false
+  },
+  "BTCUSD": {
+   "rank": 6,
+   "p": 0.391,
+   "threshold": 0.00625,
+   "reject": false
+  },
+  "GBPUSD": {
+   "rank": 7,
+   "p": 0.399,
+   "threshold": 0.0071428571428571435,
+   "reject": false
+  },
+  "USDCHF": {
+   "rank": 8,
+   "p": 0.523,
+   "threshold": 0.008333333333333333,
+   "reject": false
+  },
+  "WTI": {
+   "rank": 9,
+   "p": 0.672,
+   "threshold": 0.01,
+   "reject": false
+  },
+  "AUDUSD": {
+   "rank": 10,
+   "p": 0.676,
+   "threshold": 0.0125,
+   "reject": false
+  },
+  "XAGUSD": {
+   "rank": 11,
+   "p": 0.81,
+   "threshold": 0.016666666666666666,
+   "reject": false
+  },
+  "UKOIL": {
+   "rank": 12,
+   "p": 0.85,
+   "threshold": 0.025,
+   "reject": false
+  },
+  "XAUUSD": {
+   "rank": 13,
+   "p": 0.95,
+   "threshold": 0.05,
+   "reject": false
+  }
+ },
+ "K_symbols": [],
+ "K": 0,
+ "pre_holm_significant": [],
+ "pre_holm_significant_with_pre_positive": [],
+ "classic_window_still_significant_post": [],
+ "machine_verdict": "棄却: K=0（≤1）→ Girgin の pre-TOM は株固有の現象で、商品・BTC・FX には及ばない",
+ "pre_registered_deviation": "BTCUSD は 2017-05 開始で前半（year<2017）に営業日が1件も無く、「前半 S−C>0」の判定が仕様上不能。判定規則を変えずに扱うため、BTCUSD を K の母集団から除外することを事前固定し、結果にその旨を明記。WTI（2011-09〜）・UKOIL（2010-12〜）は前半が5〜6年分あり、通常どおり判定に含める。",
+ "data_range_note": "EURJPY は 2026-03-31 まで、他は 2026-06-30 まで。BTCUSD は 2017-05-07〜。per_symbol の span/n_pre/n_post を参照。"
+}
