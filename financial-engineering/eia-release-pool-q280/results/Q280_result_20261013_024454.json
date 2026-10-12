@@ -1,0 +1,119 @@
+{
+ "qid": "Q280",
+ "smoke": false,
+ "generated": "20261013_024454",
+ "question": "EIA 原油在庫発表の実発表日に揃えた WTI・UKOIL の継続性再検証（2 銘柄プール）",
+ "settings": {
+  "syms": [
+   "WTI",
+   "UKOIL"
+  ],
+  "start": "2012-01-01",
+  "tz": "America/New_York",
+  "hour0_ny": 10,
+  "follow_hours_ny": [
+   11,
+   12,
+   13
+  ],
+  "split_year": 2017,
+  "event_rule": "eia_release_dates.csv (Wed default, Thu if Mon/Tue/Wed federal holiday)",
+  "eia_csv": "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/eia-release-pool-q280/eia_release_dates.csv",
+  "B": 2000,
+  "seed": 20261013,
+  "null": "sign(r0) を日で無作為に付け替え → 年×銘柄→年平均→全期間平均"
+ },
+ "pool": {
+  "all": {
+   "n_event": 1471,
+   "n_years": 15,
+   "mean_bp": 8.3535,
+   "t": 2.3075,
+   "z": 2.49,
+   "pct": 0.9945
+  },
+  "pre": {
+   "n_event": 486,
+   "n_years": 5,
+   "mean_bp": 12.7103,
+   "t": 2.5958,
+   "z": 2.4645,
+   "pct": 0.994
+  },
+  "post": {
+   "n_event": 985,
+   "n_years": 10,
+   "mean_bp": 6.1752,
+   "t": 1.2693,
+   "z": 1.3533,
+   "pct": 0.9005
+  }
+ },
+ "per_sym": {
+  "WTI": {
+   "all": {
+    "n_event": 737,
+    "n_years": 15,
+    "mean_bp": 12.4144,
+    "t": 2.6783,
+    "z": 2.4159,
+    "pct": 0.99
+   },
+   "pre": {
+    "n_event": 245,
+    "n_years": 5,
+    "mean_bp": 15.2257,
+    "t": 3.1971,
+    "z": 2.079,
+    "pct": 0.9835
+   },
+   "post": {
+    "n_event": 492,
+    "n_years": 10,
+    "mean_bp": 11.0087,
+    "t": 1.6515,
+    "z": 1.6552,
+    "pct": 0.9575
+   }
+  },
+  "UKOIL": {
+   "all": {
+    "n_event": 734,
+    "n_years": 15,
+    "mean_bp": 4.2927,
+    "t": 1.1486,
+    "z": 0.9417,
+    "pct": 0.8215
+   },
+   "pre": {
+    "n_event": 241,
+    "n_years": 5,
+    "mean_bp": 10.1948,
+    "t": 1.7139,
+    "z": 1.4733,
+    "pct": 0.93
+   },
+   "post": {
+    "n_event": 493,
+    "n_years": 10,
+    "mean_bp": 1.3416,
+    "t": 0.2872,
+    "z": 0.2598,
+    "pct": 0.6095
+   }
+  }
+ },
+ "summary": {
+  "n_release_dates_in_csv": 756,
+  "n_event_rows_matched": 1471,
+  "missing": [],
+  "event_rule": "eia_release_dates.csv (Wed default, Thu if Mon/Tue/Wed federal holiday)",
+  "syms_used": [
+   "WTI",
+   "UKOIL"
+  ]
+ },
+ "machine_verdict": "未確定: プール |z|=2.49（事前閾値 2）・前後半や銘柄別が揃わない。 Q269 と並べて解釈。EIA 原典との照合は近似（Mon/Tue/Wed 祝日の木曜ずれのみ）。",
+ "multiple_comparisons": "主判定はプールの全期間（1 本）。銘柄別・前後半は記述。",
+ "notes": "祝日の木曜ずれは USFederalHolidayCalendar（Mon/Tue/Wed に祝日 → Thu）で近似。EIA 原典のうち Monday 5pm シフト等の例外は反映しない。"
+}
