@@ -1,0 +1,194 @@
+{
+ "qid": "Q284",
+ "smoke": false,
+ "generated": "20261013_033736",
+ "question": "月末前4日の前倒し山は FX8 の日足（D1_fromH1、2008-01〜2026-06）に残っているか（Girgin 2026 ブログの FX 移植）",
+ "settings": {
+  "symbols": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY"
+  ],
+  "split_year": 2017,
+  "offsets": [
+   -6,
+   -5,
+   -4,
+   -3,
+   -2,
+   -1,
+   1,
+   2,
+   3
+  ],
+  "B": 1000,
+  "seed": 20261013,
+  "pooling": "FX8 の単純平均（pair 単位の等ウェイト）",
+  "null": "各 (pair, ym) の中で k ラベルを並べ替え",
+  "p_rule": "p_right < 0.05 を上位5%とみなす"
+ },
+ "missing": [],
+ "n_pre_per_pair": {
+  "EURUSD": 2347,
+  "GBPUSD": 2347,
+  "AUDUSD": 2345,
+  "USDJPY": 2324,
+  "USDCHF": 2347,
+  "USDCAD": 2347,
+  "EURJPY": 2347,
+  "GBPJPY": 2347
+ },
+ "n_post_per_pair": {
+  "EURUSD": 2476,
+  "GBPUSD": 2476,
+  "AUDUSD": 2476,
+  "USDJPY": 2476,
+  "USDCHF": 2476,
+  "USDCAD": 2476,
+  "EURJPY": 2411,
+  "GBPJPY": 2476
+ },
+ "per_offset": [
+  {
+   "k": -6,
+   "obs_pre_bp": -2.743,
+   "obs_post_bp": -2.829,
+   "null_mean_pre_bp": -0.358,
+   "null_mean_post_bp": 0.765,
+   "z_pre": -0.897,
+   "z_post": -2.103,
+   "p_right_pre": 0.811,
+   "p_right_post": 0.983,
+   "top5_pre": false,
+   "top5_post": false
+  },
+  {
+   "k": -5,
+   "obs_pre_bp": -0.562,
+   "obs_post_bp": 5.001,
+   "null_mean_pre_bp": -0.474,
+   "null_mean_post_bp": 0.674,
+   "z_pre": -0.033,
+   "z_post": 2.419,
+   "p_right_pre": 0.521,
+   "p_right_post": 0.008,
+   "top5_pre": false,
+   "top5_post": true
+  },
+  {
+   "k": -4,
+   "obs_pre_bp": 3.976,
+   "obs_post_bp": 2.115,
+   "null_mean_pre_bp": -0.484,
+   "null_mean_post_bp": 0.679,
+   "z_pre": 1.653,
+   "z_post": 0.842,
+   "p_right_pre": 0.054,
+   "p_right_post": 0.202,
+   "top5_pre": false,
+   "top5_post": false
+  },
+  {
+   "k": -3,
+   "obs_pre_bp": -0.329,
+   "obs_post_bp": 1.096,
+   "null_mean_pre_bp": -0.546,
+   "null_mean_post_bp": 0.828,
+   "z_pre": 0.085,
+   "z_post": 0.152,
+   "p_right_pre": 0.467,
+   "p_right_post": 0.423,
+   "top5_pre": false,
+   "top5_post": false
+  },
+  {
+   "k": -2,
+   "obs_pre_bp": -1.675,
+   "obs_post_bp": 0.143,
+   "null_mean_pre_bp": -0.402,
+   "null_mean_post_bp": 0.8,
+   "z_pre": -0.5,
+   "z_post": -0.386,
+   "p_right_pre": 0.691,
+   "p_right_post": 0.641,
+   "top5_pre": false,
+   "top5_post": false
+  },
+  {
+   "k": -1,
+   "obs_pre_bp": 1.041,
+   "obs_post_bp": -1.819,
+   "null_mean_pre_bp": -0.408,
+   "null_mean_post_bp": 0.645,
+   "z_pre": 0.562,
+   "z_post": -1.505,
+   "p_right_pre": 0.28,
+   "p_right_post": 0.936,
+   "top5_pre": false,
+   "top5_post": false
+  },
+  {
+   "k": 1,
+   "obs_pre_bp": -3.471,
+   "obs_post_bp": 0.376,
+   "null_mean_pre_bp": -0.481,
+   "null_mean_post_bp": 0.656,
+   "z_pre": -1.181,
+   "z_post": -0.164,
+   "p_right_pre": 0.885,
+   "p_right_post": 0.586,
+   "top5_pre": false,
+   "top5_post": false
+  },
+  {
+   "k": 2,
+   "obs_pre_bp": 5.474,
+   "obs_post_bp": -4.687,
+   "null_mean_pre_bp": -0.489,
+   "null_mean_post_bp": 0.656,
+   "z_pre": 2.244,
+   "z_post": -3.182,
+   "p_right_pre": 0.01,
+   "p_right_post": 0.999,
+   "top5_pre": true,
+   "top5_post": false
+  },
+  {
+   "k": 3,
+   "obs_pre_bp": -0.537,
+   "obs_post_bp": 2.321,
+   "null_mean_pre_bp": -0.39,
+   "null_mean_post_bp": 0.759,
+   "z_pre": -0.057,
+   "z_post": 0.921,
+   "p_right_pre": 0.515,
+   "p_right_post": 0.18,
+   "top5_pre": false,
+   "top5_post": false
+  }
+ ],
+ "top5_pre_offsets": [
+  2
+ ],
+ "top5_post_offsets": [
+  -5
+ ],
+ "overlap_offsets": [],
+ "machine_verdict": "棄却: 前後半で上位5%オフセットが一致しない",
+ "pre_tom_check": {
+  "pre_tom_window": [
+   -4,
+   -3,
+   -2
+  ],
+  "overlap_in_pre_tom_window": [],
+  "support_pre_tom": false
+ },
+ "pre_registered_deviation": "アイデア候補の「−6〜+3、計10点」は内部カウントの食い違い。営業日の k=0 は存在しないため 9 点（{−6..−1, +1..+3}）で実装。判定規則そのものは変えていない。",
+ "data_range_note": "EURJPY は 2026-03-31 までで他ペア（2026-06-30）より短い。pair ごとの n は n_pre_per_pair/n_post_per_pair を参照。"
+}
