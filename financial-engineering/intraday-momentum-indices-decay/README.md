@@ -1,0 +1,38 @@
+# Q297 US500 / USTECH H1 の日中モメンタム（初動 1 時間 → 終盤 1 時間）は 2016 以降に減衰したか
+
+事前登録: `検証/学問/金融工学/知識/文献/アイデア候補.md` の Q297 の行（Claude Opus 4.7・10案一括生成 ターミナル版 2026-10-14）。出典: [[GarciaArano2026-2_米国株の日中モメンタム戦略は2016年以降に大幅に減衰した]]
+
+- スクリプト: `kensho_intraday_momentum_indices_decay_q297.py`（`fe_core` 土台を直接使う型。事前登録の内容は docstring に固定）
+- データ: US500・USTECH H1_dukascopy、2011-09〜2026-06（`検証/学問/金融工学/作業/FX/システムトレード/data_*.csv`。無い銘柄は除いて JSON の `missing` に。欠損の点検は JSON の `data_health`）
+- 実行: `python3 kensho_intraday_momentum_indices_decay_q297.py`（B=1000・約 1 分。pandas/numpy のみ）
+- 試走: `--B 10`。経路の確認だけなら `--smoke`（合成データ・結果は `results/smoke_*`。**判定には使わない**）
+- 結果: `results/Q297_result_<日時>.json`（設定・集計・`data_health`・機械判定 `machine_verdict`）・`results/Q297_symbols_<日時>.csv`
+
+## 状態（2026-10-14）
+
+**設計とコードまで。実行と解釈は未**
+Sonnet／Opus が実行するときの手順:
+
+1. 標準手順H の 3「出口で検証するときの決まり」どおり、docstring（仮説・判定・捨てた案の数・知識の締め切り・委託の確かめ方）を読んでから走らせる（変更しない）。
+2. `python3 kensho_intraday_momentum_indices_decay_q297.py` を Mac で実行。
+3. JSON の `machine_verdict` は事前固定の規則で機械的に付けたもの。**確定／ノイズ／未確定** の解釈は実行者が書く。`data_health` に failed／gaps があれば除いた結果も見る。
+4. 記録先: 知見ノート、出典の主張カードの `自分の検証`、アイデア候補の状態、検証キュー Q297 を完了へ、`gen_fe_index.py` で一覧を更新。
+
+## 方法（要点）
+
+- 仮説: pre（2011-09〜2016-12）と post（2017-01〜2026-06）の初動→終盤の相関で、r_pre − r_post > 0 かつ両期間とも |z|≥1.5 → 支持。post で減衰を示唆。
+- 測るもの: r（全期間・前後半）、Δ=r_pre−r_post、符号並べ替え B=1000 の p、2 銘柄分で Holm m=2。
+- 帰無: 銘柄内で ret_close をシャッフル → 各並べ替えで Δ を再計算 → 観測との z・片側 p_right。
+- 多重比較: 判定は 2 銘柄 Δ の p_right を Holm（m=2）。前後半 r は記述。
+- 先行研究チェック: WebSearch 2026-10-14・英語・"intraday momentum first hour last hour SPY QQQ post-2016 decay index futures hourly"。Gao-Han-Li-Zhou (2018) JFE、Zarattini et al. (2024) SSRN。指数 H1 で 2016 境界の減衰を符号並べ替えで判定する実証は未確認（移植）。
+- 捨てた案の数: 約4: (i) FX（指数での議論が主）、(ii) H4 統合（情報が薄い）、(iii) クローズのみ（Zarattini は open-to-close）、(iv) 全銘柄 15（指数以外は別仮説）。
+- 知識の締め切り: Claude の知識はおよそ 2026-06。本データの終端も 2026-06。
+- 委託の確かめ方: 設計・コード・実行・解釈は Opus 本体の自動運転。委託なし。
+
+## 判定（事前固定）
+
+支持: 2 銘柄とも Δ>0 かつ Holm 補正後 p<0.05。棄却: 全銘柄で |z_Δ|<1。未確定: ほか。
+
+## 結果
+
+未実行。
