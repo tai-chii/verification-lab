@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PKG = os.path.join(HERE, "fe_core")
 STAGES = ["共通", "読み込み", "合図", "損益", "統計", "帰無", "判定", "保存"]
 FIELDS = ["使う場面", "入力", "返り値", "禁止", "段階"]
-MODULES = ["_paths", "data", "signals", "costs", "metrics", "multiple", "io", "runner"]
+MODULES = ["_paths", "data", "signals", "costs", "metrics", "multiple", "io", "runner", "readme"]
 
 
 def parse_doc(doc):

@@ -64,11 +64,11 @@
 | | |
 |---|---|
 | 使う場面 | ポジション型の検証スクリプトの冒頭。アイデア候補の行の内容をそのまま写す |
-| 入力 | qid、question、hypothesis、reject_if（棄却条件の文）、syms、kind（"D1_fromH1"|"H1_dukascopy"|"H1→D1"）、params（掃引する設定の list。1 件なら [{}]）、main_param（判定に使う設定の添字）、n_tests（判定に使う検定の本数＝holm の m）、warmup（先頭を NaN にする本数）、per_year（年率化の本数）、B、split_year、start、null_kind（"circ_shift"|"block_perm"|"none"）、null_block、cost_rel（暗号資産など rel コストにする銘柄の集合）、discarded（捨てた案の数）、knowledge_cutoff、delegation（委託の確かめ方）、settings（追加の設定） |
+| 入力 | qid、question、hypothesis、reject_if（判定規則の文。3 分岐）、syms、kind（"D1_fromH1"|"H1_dukascopy"|"H1→D1"）、params（掃引する設定の list。1 件なら [{}]）、main_param（判定に使う設定の添字）、n_tests（判定に使う検定の本数＝holm の m）、warmup、per_year、B、split_year、start、null_kind（"circ_shift"|"block_perm"|"none"）、null_block、null_min_shift、cost_rel、discarded、knowledge_cutoff、delegation、README 用の source・data・measure・null_desc・prior_art・batch・designer・coder、settings |
 | 返り値 | dataclass |
 | 禁止 | 結果を見てから hypothesis・reject_if・n_tests・main_param・B を変えない |
 
-### `class Runner`  — `runner.py:87`
+### `class Runner`  — `runner.py:96`
 
 ポジション型の検証の固定された流れ。strategy(df, p, sym) -> pos（長さ len(df) の ±1/0。shift しない）だけを外から受ける。
 
@@ -471,7 +471,7 @@ holm の補正後 p と有意フラグの両方を返す（旧 q147・q153 の�
 | 返り値 | (adj, sig)。sig は bool 配列（NaN は False） |
 | 禁止 | alpha を事前登録の値以外にしない |
 
-### `default_judge(res, spec)`  — `runner.py:67`
+### `default_judge(res, spec)`  — `runner.py:76`
 
 既定の 3 分岐。main_param のコスト後 bp（all15・年単位）が前後半とも >0 かつ holm 補正後 p<0.05 → 支持。全期間の z<1 → 棄却。ほか → 未確定。
 
@@ -528,4 +528,15 @@ results/<qid>_result_<ts>.json（smoke は smoke_ 接頭辞）と任意の CSV �
 | 入力 | qid、res: dict、smoke: bool、extra_csv: {名前: DataFrame}、out_dir: 省略で <here>/results、here: 呼び出し元の __file__ のフォルダ（省略で sys.argv[0] のフォルダ。Runner や Jupyter からは必ず渡す） |
 | 返り値 | 書いた JSON のパス |
 | 禁止 | 結果を上書きしない（同じ秒なら _1, _2 を付ける）。巨大な配列を JSON に入れない（CSV へ）。res に qid/smoke/generated を入れない（ここで付ける） |
+
+### `render_readme(spec, script, status=None, script_kind='Runner 型', elapsed=None, today=None)`  — `readme.py:47`
+
+Spec から README.md の本文を作る。
+
+| | |
+|---|---|
+| 使う場面 | /lab-plan のコーディング時（`python3 <script> --readme`）。実行後の結果の節は人が書く |
+| 入力 | spec: Spec、script: スクリプトのファイル名、status: 状態の 1 文（省略で「設計とコードまで。実行と解釈は未」）、script_kind: "Runner 型"|"土台を直接使う型"、elapsed: 実行時間のメモ、today: 日付 |
+| 返り値 | str（Markdown） |
+| 禁止 | 結果の節をここで埋めない（解釈は人） |
 

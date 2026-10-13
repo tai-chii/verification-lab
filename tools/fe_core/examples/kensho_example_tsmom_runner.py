@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Runner の見本（判定には使わない・QID は EXAMPLE）: 日足 15 銘柄の時系列モメンタム L=60/120 を段階1コストで。
-検証スクリプトが書くのは Spec・strategy（・必要なら judge）だけ。流れは fe_core.Runner が持つ。
-実行: python3 kensho_example_tsmom_runner.py --smoke --B 5 ／ python3 kensho_example_tsmom_runner.py --B 200
+"""Runner の見本（判定には使わない・QID は EXAMPLE）。事前登録の内容は下の SPEC が正本（docstring に重複して書かない）。
+実行: --smoke --B 5（経路確認）／ --B 200（本番）／ --readme（README.md を SPEC から生成）
 """
 import os
 import sys
@@ -22,6 +21,9 @@ SPEC = Spec(
     params=[{"L": 60}, {"L": 120}], main_param=0, n_tests=2, warmup=120,
     B=200, null_kind="circ_shift", null_min_shift=120,
     discarded="0（見本）", delegation="見本のため無し",
+    source="知見 Q136（TSMOM の基準）", measure="all15 の年単位平均 bp（コスト 0 と段階1）、年単位 t、束ねた t、Sharpe、最大下落、露出",
+    null_desc="合図の循環シフト（min_shift=120）B 回 → all15 の年単位 bp の帰無分布 → z・perm_p・Holm",
+    prior_art="見本のため省略", batch="fe_core Runner の見本（2026-10-13）",
 )
 
 

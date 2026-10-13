@@ -22,6 +22,7 @@ from .metrics import tstat, nw_t, spearman, max_drawdown, sharpe_ann, sharpe_ann
 from .multiple import z_of, perm_p, null_summary, null_degenerate, perm_within, block_perm, circ_shift, holm, holm_sig
 from .io import parse_args, write_result, sanitize, _json_default
 from .runner import Spec, Runner, default_judge
+from .readme import render_readme
 
 __version__ = "0.2.0"  # 2026-10-13 Opus レビュー反映・固定
 __all__ = [
@@ -32,5 +33,5 @@ __all__ = [
     "tstat", "nw_t", "spearman", "max_drawdown", "sharpe_ann", "sharpe_ann_n", "qlike", "by_year_stats", "cluster_t", "f", "fmt",
     "z_of", "perm_p", "null_summary", "null_degenerate", "perm_within", "block_perm", "circ_shift", "holm", "holm_sig",
     "parse_args", "write_result", "sanitize", "_json_default",
-    "Spec", "Runner", "default_judge",
+    "Spec", "Runner", "default_judge", "render_readme",
 ]

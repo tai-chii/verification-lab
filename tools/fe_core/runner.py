@@ -31,7 +31,7 @@ PERIODS = {"all": (0, 9999), "pre": None, "post": None}  # pre/post は spec.spl
 class Spec:
     """事前登録の中身。測る前に埋めて固定する（Runner が最初に results/<qid>_spec_<ts>.json へ書く）。
     使う場面: ポジション型の検証スクリプトの冒頭。アイデア候補の行の内容をそのまま写す
-    入力: qid、question、hypothesis、reject_if（棄却条件の文）、syms、kind（"D1_fromH1"|"H1_dukascopy"|"H1→D1"）、params（掃引する設定の list。1 件なら [{}]）、main_param（判定に使う設定の添字）、n_tests（判定に使う検定の本数＝holm の m）、warmup（先頭を NaN にする本数）、per_year（年率化の本数）、B、split_year、start、null_kind（"circ_shift"|"block_perm"|"none"）、null_block、cost_rel（暗号資産など rel コストにする銘柄の集合）、discarded（捨てた案の数）、knowledge_cutoff、delegation（委託の確かめ方）、settings（追加の設定）
+    入力: qid、question、hypothesis、reject_if（判定規則の文。3 分岐）、syms、kind（"D1_fromH1"|"H1_dukascopy"|"H1→D1"）、params（掃引する設定の list。1 件なら [{}]）、main_param（判定に使う設定の添字）、n_tests（判定に使う検定の本数＝holm の m）、warmup、per_year、B、split_year、start、null_kind（"circ_shift"|"block_perm"|"none"）、null_block、null_min_shift、cost_rel、discarded、knowledge_cutoff、delegation、README 用の source・data・measure・null_desc・prior_art・batch・designer・coder、settings
     返り値: dataclass
     禁止: 結果を見てから hypothesis・reject_if・n_tests・main_param・B を変えない
     段階: 共通
@@ -58,6 +58,15 @@ class Spec:
     discarded: str = ""
     knowledge_cutoff: str = "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない"
     delegation: str = ""
+    # README 用（/lab-plan が埋める）
+    source: str = ""          # 出典（主張カード [[...]]・知見 Qxxx・原論文）
+    data: str = ""            # データの説明（省略で「N 銘柄 kind」）
+    measure: str = ""         # 測るもの
+    null_desc: str = ""       # 帰無の説明（省略で null_kind から）
+    prior_art: str = ""       # 先行研究チェック（WebSearch の日付・検索語・結果）
+    batch: str = ""           # 「20案一括生成 第X弾」など
+    designer: str = "Fable"
+    coder: str = "Claude"
     settings: dict = dataclasses.field(default_factory=dict)
 
     def as_dict(self):
@@ -241,12 +250,26 @@ class Runner:
         yr = cells.groupby(["param", "sym", "year"])[["pnl_gross", "pnl_net", "exp"]].mean().reset_index()
         return res, {"year_sym": yr}
 
-    def execute(self, argv=None, extra_args=None):
-        """parse_args → spec を先に保存 → run → write_result。スクリプトの main() から呼ぶ。"""
+    def execute(self, argv=None, extra_args=None, script=None):
+        """parse_args → spec を先に保存 → run → write_result。スクリプトの main() から呼ぶ。`--readme` なら README.md を生成して終わる（実行しない）。"""
+        import sys as _sys
+        from .readme import render_readme
         spec = self.spec
-        args = parse_args(default_B=spec.B, extra=extra_args, argv=argv)
-        rng = np.random.default_rng(args.seed)
         here = self.here or P.script_dir()
+        script = script or os.path.basename(_sys.argv[0] if _sys.argv and _sys.argv[0] else "kensho.py")
+        av = list(argv) if argv is not None else _sys.argv[1:]
+        if "--readme" in av:
+            path = os.path.join(here, "README.md")
+            with open(path, "w", encoding="utf-8") as fh:
+                fh.write(render_readme(spec, script))
+            print("wrote", path); return path, None
+
+        def _extra(ap):
+            ap.add_argument("--readme", action="store_true", help="README.md を SPEC から生成して終わる")
+            if extra_args:
+                extra_args(ap)
+        args = parse_args(default_B=spec.B, extra=_extra, argv=argv)
+        rng = np.random.default_rng(args.seed)
         out = os.path.join(here, "results"); os.makedirs(out, exist_ok=True)
         ts = _dt.datetime.now().strftime("%Y%m%d_%H%M%S")
         pre = f"smoke_{spec.qid}" if args.smoke else spec.qid

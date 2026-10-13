@@ -13,6 +13,7 @@
 | `metrics.py` | `tstat`・`nw_t`・`spearman`・`max_drawdown`・`sharpe_ann`・`qlike`・`by_year_stats`・`f` |
 | `multiple.py` | `z_of`・`perm_within`・`block_perm`・`circ_shift`・`holm`・`holm_sig` |
 | `io.py` | `parse_args`・`write_result`（出力先は呼び出し元の `results/`）・`sanitize`・`_json_default` |
+| `readme.py` | `render_readme(spec, script)`・`TEMPLATE`: 検証フォルダの README（「Q204 の形」）の正本。Runner 型は `python3 <script> --readme` で生成。人が手で書くときの写しは `検証/_基盤/知識/_テンプレ/検証README.md` |
 | `runner.py` | **`Spec`・`Runner`・`default_judge`**: ポジション型の検証の固定された流れ（事前登録 → 読み込み＋health → strategy → 損益 2 本 → all/pre/post → 年単位 t・束ねた t・Sharpe・DD・露出 → 帰無（循環シフト／ブロック） → Holm → 3 分岐の判定 → spec と結果の保存）。検証スクリプトは `Spec` と `strategy(df, p, sym)` だけ書く。見本: `examples/kensho_example_tsmom_runner.py`（手書きの流れと 1e-15 で一致、15 銘柄×2 設定×B=200 で 4.9 秒） |
 
 ## 目録（CATALOG.md・catalog.json）
