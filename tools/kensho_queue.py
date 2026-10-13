@@ -179,6 +179,7 @@ elif cmd == 'release':
     save(L, w0, w1, rows, mtime0); print('待ちに戻した:', qid)
 elif cmd == 'add':
     kind, tgt, why = sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else ''
+    tgt, why = tgt.replace('|', '｜'), why.replace('|', '｜')  # 表の区切りと衝突する縦棒は全角に（Q273 で列ずれが起きた・2026-10-13）
     qid = next_id(); rows.append(['0', qid, kind, tgt, why, '', '待ち', TODAY] + sys.argv[5:6]); rerank(rows); save(L, w0, w1, rows, mtime0); print('足した:', qid)
 elif cmd == 'inv':
     iid = sys.argv[2]; kv = dict(a.split('=', 1) for a in sys.argv[3:])
