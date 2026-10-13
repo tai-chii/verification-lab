@@ -37,7 +37,15 @@ def find_source(inv_id):
             if score:
                 cands.append((score, f))
     cands.sort(reverse=True)
+    # 以前の取得で保存した対応表（inv_id → パス）
+    mp = os.path.join(BUNKEN, "_ローカルLLM", "_sources.json")
+    if os.path.exists(mp):
+        m = json.load(open(mp, encoding="utf-8")).get(str(inv_id))
+        if m and os.path.exists(os.path.join(WS, m)):
+            return row, os.path.join(WS, m)
     if not cands or cands[0][0] < 2:
+        if row.get("URL", "").startswith("http"):
+            return row, None  # 本文は Mac 側の loop が URL から取る
         print("本文ファイルを特定できない。候補:", [os.path.basename(c[1]) for c in cands[:5]])
         print("--src でパスを指定する"); sys.exit(2)
     return row, cands[0][1]
@@ -63,7 +71,7 @@ def main():
                 for f in fs:
                     j = json.load(open(f, encoding="utf-8")); print("  ", j["id"], j["kind"], j.get("label"), j.get("error", "")[:80])
         return
-    job = {"id": f"llm_{now()}_{a.kind}", "kind": a.kind, "model": a.model, "created": now(), "params": {}}
+    job = {"id": f"llm_{now()}_{a.kind}_{a.inv or os.getpid()}", "kind": a.kind, "model": a.model, "created": now(), "params": {}}
     if a.kind == "quotes":
         if a.inv:
             row, src = find_source(a.inv)
@@ -75,9 +83,12 @@ def main():
             job["title"] = job["label"]; job["source_kind"] = ""
         else:
             sys.exit("--inv か --src が必要")
-        if not os.path.exists(src):
+        if src is None:
+            job["source"] = None; job["url"] = row["URL"]
+        elif not os.path.exists(src):
             sys.exit(f"本文が無い: {src}")
-        job["source"] = os.path.relpath(src, WS)
+        else:
+            job["source"] = os.path.relpath(src, WS)
         job["params"] = {"max_quotes": a.max_quotes, "focus": a.focus}
     elif a.kind == "translate":
         if not a.from_quotes:

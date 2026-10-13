@@ -63,7 +63,54 @@ SYSTEM_QUOTES = """あなたは金融工学の文献から「主張の候補に�
 引用は必ず本文に実在する文字列をそのまま写すこと（言い換え・省略・結合をしない）。1 文が途中で切れている場合は、文の始めから終わりまでを写す。"""
 
 
+def fetch_source(job):
+    """job["url"] から本文を取って 文献/PDF か 文献/Web保存 に保存し、job["source"] を埋める。対応表 _sources.json に inv_id → パスを残す。
+    arXiv の abs → PDF。ほかは HTML → テキスト（md）。取れない（paywall・403）ときは例外。"""
+    import datetime as _d
+    import re as _re
+    from urllib.parse import urlparse
+    from llm_common import BUNKEN
+    url = job["url"]; iid = str(job.get("inv_id", "")); u = urlparse(url)
+    hdr = {"User-Agent": "Mozilla/5.0 (Macintosh) verification-lab/ollama_loop (+local research use)"}
+    today = _d.date.today().isoformat()
+    if "arxiv.org" in u.netloc:
+        aid = _re.search(r"(\d{4}\.\d{4,5})(v\d+)?", url).group(1)
+        pdf_url = f"https://arxiv.org/pdf/{aid}"
+        dst = os.path.join(BUNKEN, "PDF", f"arXiv_{aid}_{_re.sub(r'[^A-Za-z0-9]+', '_', job.get('title', ''))[:60]}.pdf")
+        req = urllib.request.Request(pdf_url, headers=hdr)
+        with urllib.request.urlopen(req, timeout=60) as r, open(dst, "wb") as f:
+            f.write(r.read())
+    else:
+        req = urllib.request.Request(url, headers=hdr)
+        with urllib.request.urlopen(req, timeout=60) as r:
+            raw = r.read()
+        html = raw.decode("utf-8", errors="replace")
+        html = re.sub(r"<script.*?</script>|<style.*?</style>|<nav.*?</nav>|<footer.*?</footer>", " ", html, flags=re.S | re.I)
+        title = (re.search(r"<title>(.*?)</title>", html, re.S | re.I) or [None, job.get("title", "")])[1]
+        text = re.sub(r"<br\s*/?>|</p>|</h\d>|</li>|</tr>", "\n", html, flags=re.I)
+        text = re.sub(r"<[^>]+>", " ", text)
+        import html as _h
+        text = _h.unescape(text)
+        text = re.sub(r"[ \t]+", " ", text); text = re.sub(r"\n\s*\n+", "\n\n", text).strip()
+        if len(text) < 500:
+            raise RuntimeError(f"本文がほぼ取れない（{len(text)} 字）。paywall か JS 描画の可能性: {url}")
+        site = u.netloc.replace("www.", "").split(".")[0]
+        slug = _re.sub(r"[^A-Za-z0-9\-]+", "-", u.path.rstrip("/").split("/")[-1])[:60] or "page"
+        dst = os.path.join(BUNKEN, "Web保存", f"{today}_{site}_{slug}.md")
+        with open(dst, "w", encoding="utf-8") as f:
+            f.write(f"# {str(title).strip()}\n\n出典: {url}\n取得: {today}（ollama_loop が自動取得・原文のテキスト化）\n\n---\n\n{text}\n")
+    job["source"] = os.path.relpath(dst, WS)
+    mp = os.path.join(OUT_DIR, "_sources.json"); os.makedirs(OUT_DIR, exist_ok=True)
+    m = json.load(open(mp, encoding="utf-8")) if os.path.exists(mp) else {}
+    if iid:
+        m[iid] = job["source"]; json.dump(m, open(mp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"  取得 {url} → {job['source']}")
+    return job
+
+
 def run_quotes(job, model, mock):
+    if not job.get("source") and job.get("url"):
+        fetch_source(job)
     src = os.path.join(WS, job["source"])
     pages = extract_pages(src)
     total_chars = sum(len(t) for _, t in pages)
@@ -154,6 +201,37 @@ def run_translate(job, model, mock):
     return {"out_json": os.path.relpath(out_json, WS), "n": len(out)}
 
 
+def reverify(label):
+    """_ローカルLLM/<label>_quotes.json の rejected を、本文に対して照合だけやり直す（Ollama を呼ばない。照合規則を直したとき用）。"""
+    oj = os.path.join(OUT_DIR, f"{label}_quotes.json")
+    d = json.load(open(oj, encoding="utf-8"))
+    pages = extract_pages(os.path.join(WS, d["source"]))
+    joined = [(pages[0][0], "\n".join(t for _, t in pages))] if pages else []
+    still, moved = [], 0
+    for r in d["rejected"]:
+        q = str(r.get("quote", ""))
+        ok, pno = verify_quote(q, pages, page_hint=r.get("page"))
+        approx = False
+        if not ok and joined:
+            ok, pno = verify_quote(q, joined); approx = ok
+        if ok:
+            d["quotes"].append({"quote": q, "page": pno, "page_approx": approx, "kind": r.get("kind", ""), "gist_ja": r.get("gist_ja", "")}); moved += 1
+        else:
+            still.append(r)
+    d["rejected"] = still; d["n_accepted"] = len(d["quotes"]); d["n_rejected"] = len(still); d["reverified"] = now()
+    json.dump(d, open(oj, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    md = oj[:-5] + ".md"
+    L = [f"# ローカルLLM 抜き出し: {d.get('title','')}", "",
+         f"- 入荷台帳: {d.get('inv_id','—')} / 本文: `{d['source']}` / モデル: {d.get('model')} / 再照合 {d['reverified']}",
+         f"- 原文に実在すると照合できた引用 {len(d['quotes'])} 件（捨てた {len(still)} 件）。**要点はローカル訳（未確認）。主張カードにするかの判断は人（Claude）が行う。**", ""]
+    for a in d["quotes"]:
+        L += [f"## p.{a['page']}{'〜（ページ境界・概算）' if a.get('page_approx') else ''}（{a.get('kind','')}）", "", f"> {a['quote']}", "", f"要点（ローカル・未確認）: {a.get('gist_ja','')}", ""]
+    if still:
+        L += ["## 捨てたもの（照合に失敗・JSON 不良）", ""] + [f"- {r.get('reason')}: {str(r.get('quote',''))[:100]}" for r in still]
+    open(md, "w", encoding="utf-8").write("\n".join(L) + "\n")
+    print(f"reverify {label}: 採用 {len(d['quotes'])}（+{moved}）/ 捨て {len(still)}")
+
+
 def process(path, model, mock):
     job = json.load(open(path, encoding="utf-8"))
     rp = move_job(path, "running", {"started": now()})
@@ -177,8 +255,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--once", action="store_true"); ap.add_argument("--watch", type=int, default=0)
     ap.add_argument("--model", default=DEFAULT_MODEL); ap.add_argument("--mock", action="store_true")
+    ap.add_argument("--reverify", nargs="+", metavar="LABEL", help="保存済みの抜き出しを照合だけやり直す（Ollama 不要）")
     a = ap.parse_args()
     ensure_dirs()
+    if a.reverify:
+        for lb in a.reverify:
+            reverify(lb)
+        return
     if not a.mock:
         try:
             with urllib.request.urlopen(OLLAMA + "/api/tags", timeout=5) as r:

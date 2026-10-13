@@ -82,19 +82,26 @@ def extract_pages(src):
 
 
 def norm(s):
-    """照合用の正規化: 全角→半角、空白・改行・ハイフン改行を潰す、引用符を揃える、小文字。"""
+    """照合用の正規化: 全角→半角、**空白を全部除く**（HTML 由来の「下回りました 。」と「下回りました。」を同じにする）、
+    ハイフン改行を潰す、引用符を揃える、小文字。英語も空白を除いて比べる（両側同じ処理なので部分一致は保たれる）。"""
     s = unicodedata.normalize("NFKC", s)
-    s = s.replace("-\n", "").replace("‐\n", "")
-    s = re.sub(r"[‘’]", "'", s); s = re.sub(r"[“”]", '"', s)
-    s = re.sub(r"\s+", " ", s)
+    s = s.replace("-\n", "").replace("\u2010\n", "")
+    s = re.sub("[\u2018\u2019]", "'", s); s = re.sub("[\u201c\u201d]", '"', s)
+    s = re.sub(r"\s+", "", s)
     return s.strip().lower()
+
+
+def _cjk_ratio(s):
+    n = len(s) or 1
+    return sum(1 for ch in s if "\u3040" <= ch <= "\u30ff" or "\u4e00" <= ch <= "\u9fff") / n
 
 
 def verify_quote(quote, pages, page_hint=None):
     """引用が本文に実在するか。返り値: (ok, page_no)。page_hint の前後 1 ページを先に見る。
-    完全一致（正規化後）→ ok。なければ、引用の先頭 60 字と末尾 60 字が同じページにあれば ok（OCR の揺れ対策）。"""
+    完全一致（正規化後・空白無視）→ ok。なければ、引用の先頭 60 字と末尾 60 字が同じページにあれば ok（OCR の揺れ対策）。
+    最短: 英語は 20 字、日本語（かな・漢字が 3 割以上）は 10 字。"""
     q = norm(quote)
-    if len(q) < 20:
+    if len(q) < (10 if _cjk_ratio(q) >= 0.3 else 20):
         return False, None
     order = list(pages)
     if page_hint:
