@@ -58,7 +58,9 @@ def _mock(user):
 SYSTEM_QUOTES = """あなたは金融工学の文献から「主張の候補になる文」を抜き出す係です。判断や要約はしません。
 出力は JSON だけ: {"quotes": [{"quote": "<本文からの逐語の引用（1〜3 文・英語なら英語のまま・改変禁止）>", "page": <ページ番号の整数>, "kind": "<結果|方法|限界|条件>", "gist_ja": "<日本語で 1 文の要点>"}]}
 抜く基準: 数値や方向（上がる・下がる・有意・有意でない）を伴う結果、データと期間、コストの扱い、著者が認める限界、成り立つ条件。
-抜かない: 先行研究の紹介、一般論、著者の抱負。引用は必ず本文に実在する文字列をそのまま写すこと（言い換え・省略・結合をしない）。"""
+**各引用は、数値・比較（より良い／悪い・上回る）・期間・条件のどれかを含むこと。** 含まない文は "限界" 以外は抜かない。
+抜かない: 先行研究の紹介、応用先の列挙や意義の宣伝（「〜に有用である」「〜で重要である」）、著者の抱負、表の行（数字だけの行）。
+引用は必ず本文に実在する文字列をそのまま写すこと（言い換え・省略・結合をしない）。1 文が途中で切れている場合は、文の始めから終わりまでを写す。"""
 
 
 def run_quotes(job, model, mock):
@@ -86,10 +88,15 @@ def run_quotes(job, model, mock):
                 items = []
                 if attempt == MAX_RETRY:
                     rejected.append({"reason": "JSON にならない", "pages": [p for p, _ in bundle]})
+        joined = [(bundle[0][0], "\n".join(t for _, t in bundle))]  # ページ境界で割れた文のための束全体
         for it in items:
             q = str(it.get("quote", "")).strip()
             ok, pno = verify_quote(q, bundle, page_hint=it.get("page"))
-            rec = {"quote": q, "page": pno if ok else it.get("page"), "kind": it.get("kind", ""), "gist_ja": it.get("gist_ja", "")}
+            approx = False
+            if not ok:
+                ok, pno = verify_quote(q, joined)
+                approx = ok
+            rec = {"quote": q, "page": pno if ok else it.get("page"), "page_approx": approx, "kind": it.get("kind", ""), "gist_ja": it.get("gist_ja", "")}
             (accepted if ok else rejected).append(rec if ok else {**rec, "reason": "本文に実在しない"})
     # 重複を除く
     seen = set(); uniq = []
@@ -110,7 +117,7 @@ def run_quotes(job, model, mock):
          f"- 入荷台帳: {job.get('inv_id','—')} / 本文: `{job['source']}` / モデル: {res['model']} / {now()}",
          f"- 原文に実在すると照合できた引用 {len(uniq)} 件（捨てた {len(rejected)} 件）。**要点はローカル訳（未確認）。主張カードにするかの判断は人（Claude）が行う。**", ""]
     for a in uniq:
-        L += [f"## p.{a['page']}（{a['kind']}）", "", f"> {a['quote']}", "", f"要点（ローカル・未確認）: {a['gist_ja']}", ""]
+        L += [f"## p.{a['page']}{'〜（ページ境界・概算）' if a.get('page_approx') else ''}（{a['kind']}）", "", f"> {a['quote']}", "", f"要点（ローカル・未確認）: {a['gist_ja']}", ""]
     if rejected:
         L += ["## 捨てたもの（照合に失敗・JSON 不良）", ""] + [f"- {r.get('reason')}: {str(r.get('quote',''))[:100]}" for r in rejected]
     open(out_md, "w", encoding="utf-8").write("\n".join(L) + "\n")
