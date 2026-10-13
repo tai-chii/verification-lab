@@ -37,9 +37,11 @@ from zoneinfo import ZoneInfo
 _JST = dt.datetime.now(ZoneInfo('Asia/Tokyo')); TODAY = _JST.date().isoformat(); NOW = _JST.strftime('%Y-%m-%d %H:%M')
 OLD_HDR = '| 順位 | ID | 種類 | 対象 | 優先の根拠 | 手動 | 状態 | 追加日 |'
 WAIT_HDR = OLD_HDR + ' 担当 |'
-def tanto(kind, tgt):
-    """既定の担当。判断・設計が要るもの（a 出口で検証・c の接続・見直し）は opus、手順どおりに進むものは sonnet。"""
-    if kind[:1] == 'a' or '見直し' in kind or '主張カード化 → 接続' in tgt: return 'opus'
+def tanto(kind, tgt, why=''):
+    """既定の担当。判断・設計が要るもの（設計から行う a・c の接続・見直し）は opus、手順どおりに進むものは sonnet。
+    2026-10-14: 設計とコードが済んだ a（根拠に「設計とコードまで」）は実行と記録だけなので sonnet。怪しければ escalate、確定は事後の判断（Opus）が毎回見直す。"""
+    if '見直し' in kind or '主張カード化 → 接続' in tgt: return 'opus'
+    if kind[:1] == 'a': return 'sonnet' if '設計とコードまで' in (why or '') else 'opus'
     return 'sonnet'
 DONE_HDR = '| ID | 種類 | 対象 | 完了日 | 結果 |'
 
@@ -75,7 +77,7 @@ def load():
     return L, w0, w1, d0, rows, mtime0
 def save(L, w0, w1, rows, mtime0):
     _check_unchanged(QP, mtime0)
-    for r in rows: r[8:] = [r[8] if len(r) > 8 and r[8] in ('opus', 'sonnet') else tanto(r[2], r[3])]
+    for r in rows: r[8:] = [r[8] if len(r) > 8 and r[8] in ('opus', 'sonnet') else tanto(r[2], r[3], r[4])]
     out = ['| ' + ' | '.join(r) + ' |' for r in rows]
     L[w0:w1] = out; s = '\n'.join(L)
     s = re.sub(r'^更新日: .*$', f'更新日: {TODAY}', s, count=1, flags=re.M)
