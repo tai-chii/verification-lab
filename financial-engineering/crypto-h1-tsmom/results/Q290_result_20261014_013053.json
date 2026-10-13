@@ -1,0 +1,363 @@
+{
+ "qid": "Q290",
+ "smoke": false,
+ "generated": "20261014_013053",
+ "question": "暗号資産 11 通貨 H1 の 24 本 TSMOM（L=24）はコスト後に前後半とも正か（Neely2003-3 の暗号 H1 移植）",
+ "spec": {
+  "qid": "Q290",
+  "question": "暗号資産 11 通貨 H1 の 24 本 TSMOM（L=24）はコスト後に前後半とも正か（Neely2003-3 の暗号 H1 移植）",
+  "hypothesis": "pos[t]=sign(close[t]−close[t−24])。CRYPTO 11 通貨の年単位平均 bp（段階1コスト・CRYPTO_COST_RT_REL=30bp）が前後半とも >0。",
+  "reject_if": "支持: 前後半とも bp_net>0 かつ Holm 補正後 p<0.05。棄却: 全期間 z<1。ほか: 未確定。多重比較は main_param=0 の pre/post の 2 本（Holm で m=2）。",
+  "syms": [
+   "BTCUSD",
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "kind": "H1_dukascopy",
+  "params": [
+   {
+    "L": 24
+   },
+   {
+    "L": 72
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 24,
+  "per_year": 8760,
+  "B": 500,
+  "split_year": 2022,
+  "start": null,
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 72,
+  "cost_rel": {},
+  "discarded": "約3: (i) L=12（半日・保有が短すぎてコストに負ける）、(ii) H4（Q262 の D1 と中間でメッセージが薄い）、(iii) BTC 単独。",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "設計・コード・実行・解釈は Opus 本体の自動運転。委託なし。",
+  "source": "[[Neely2003-3_為替のトレンドは週次月次では強いが日中足にはない]]。関連: 知見「暗号資産11通貨の日足順張りは2022以降もコスト後に残るか」(Q262)・[[Farag2024-1_暗号資産の5分足の流動性供給の見返りはボラや暴落リスクで期間外でも予測できた]]。",
+  "data": "暗号資産 11 通貨（CRYPTO = BTCUSD・ETHUSD・XRPUSD・LTCUSD・ADAUSD・BCHUSD・XLMUSD・EOSUSD・LNKUSD・DOTUSD・SOLUSD）H1_dukascopy、2017〜2026-09。",
+  "measure": "CRYPTO プール（全銘柄等加重）の年単位平均 bp（コスト 0 と段階1）、年単位 t、束ねた t、Sharpe、最大下落、露出。",
+  "null_desc": "合図の循環シフト（min_shift=72）B=500 → CRYPTO プールの年単位 bp の帰無分布 → z・perm_p・Holm。",
+  "prior_art": "WebSearch 2026-10-14・英語・\"cryptocurrency hourly time series momentum TSMOM 24-bar lookback empirical 11 pairs\"。見つかったもの: TSMOM in cryptocurrency markets (Zenodo 19671502, SSRN 4825389) ― 日次 TSMOM の pre/post ETF 期間比較、volume-weighted TSMOM。未確認: 11 通貨 H1 の L=24 TSMOM で、循環シフト帰無 B=500 と Holm 補正で判定する実証は未確認（移植）。",
+  "batch": "10案一括生成（ターミナル版 2026-10-14）",
+  "designer": "Claude Opus 4.7（自動運転）",
+  "coder": "Claude Opus 4.7（自動運転）",
+  "settings": {
+   "split_year_note": "暗号資産は 2017〜なので前後半を 2022 で分ける（Q262 と同じ）。"
+  },
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "BTCUSD",
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "XRPUSD": {
+    "months": 99,
+    "missing_months": 1,
+    "missing": [
+     "2019-01"
+    ],
+    "worst_ratio": 0.7655038759689923,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2018-05-15 13:00:00",
+    "last": "2026-07-31 20:00:00"
+   },
+   "BCHUSD": {
+    "months": 101,
+    "missing_months": 18,
+    "missing": [
+     "2019-12",
+     "2020-01",
+     "2020-02",
+     "2020-03",
+     "2020-04",
+     "2020-05",
+     "2020-06",
+     "2020-07",
+     "2020-08",
+     "2020-09",
+     "2020-10",
+     "2020-11",
+     "2020-12",
+     "2021-01",
+     "2021-02",
+     "2021-03",
+     "2021-04",
+     "2021-05"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 3,
+    "max_gap_h": 12932.0,
+    "gaps": [
+     {
+      "from": "2019-11-25 16:00:00",
+      "to": "2021-05-17 12:00:00",
+      "hours": 12932.0
+     },
+     {
+      "from": "2021-05-31 23:00:00",
+      "to": "2021-06-09 15:00:00",
+      "hours": 208.0
+     },
+     {
+      "from": "2018-11-15 16:00:00",
+      "to": "2018-11-20 12:00:00",
+      "hours": 116.0
+     }
+    ],
+    "first": "2018-05-15 12:00:00",
+    "last": "2026-09-30 23:00:00"
+   },
+   "EOSUSD": {
+    "months": 86,
+    "missing_months": 8,
+    "missing": [
+     "2018-12",
+     "2019-01",
+     "2019-02",
+     "2019-03",
+     "2019-04",
+     "2019-05",
+     "2019-06",
+     "2019-07"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 4,
+    "max_gap_h": 3541.0,
+    "gaps": [
+     {
+      "from": "2018-12-10 19:00:00",
+      "to": "2019-05-07 08:00:00",
+      "hours": 3541.0
+     },
+     {
+      "from": "2019-05-31 18:00:00",
+      "to": "2019-08-04 22:00:00",
+      "hours": 1564.0
+     },
+     {
+      "from": "2020-06-01 19:00:00",
+      "to": "2020-06-12 16:00:00",
+      "hours": 261.0
+     },
+     {
+      "from": "2019-05-07 08:00:00",
+      "to": "2019-05-13 06:00:00",
+      "hours": 142.0
+     }
+    ],
+    "first": "2018-05-15 13:00:00",
+    "last": "2025-06-28 08:00:00"
+   },
+   "LNKUSD": {
+    "months": 61,
+    "missing_months": 0,
+    "missing": [],
+    "worst_ratio": 1.302325581395349,
+    "n_gaps": 1,
+    "max_gap_h": 101.0,
+    "gaps": [
+     {
+      "from": "2026-07-30 02:00:00",
+      "to": "2026-08-03 07:00:00",
+      "hours": 101.0
+     }
+    ],
+    "first": "2021-09-25 17:00:00",
+    "last": "2026-09-30 23:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "main": {
+  "all": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 548438,
+   "bp_gross": 0.1832,
+   "t_gross": 0.4022,
+   "bp_net": -2.9931,
+   "t_year": -10.5285,
+   "t_cluster": -10.168,
+   "sharpe_net": -3.4217,
+   "sharpe_gross": -0.0074,
+   "max_dd_net_bp": -245909.1255,
+   "exposure": 0.9898,
+   "gap_bars": 8,
+   "z": 0.5174,
+   "pct": 0.69,
+   "p_perm": 0.3114,
+   "null_degenerate": false,
+   "null_q025": -4.4302,
+   "null_q975": -2.1892
+  },
+  "pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 161214,
+   "bp_gross": 1.1156,
+   "t_gross": 1.7466,
+   "bp_net": -2.4797,
+   "t_year": -7.3404,
+   "t_cluster": -4.7244,
+   "sharpe_net": -2.3244,
+   "sharpe_gross": 0.7563,
+   "max_dd_net_bp": -98414.1617,
+   "exposure": 0.9878,
+   "gap_bars": 7,
+   "z": 1.1836,
+   "pct": 0.878,
+   "p_perm": 0.1238,
+   "null_degenerate": false,
+   "null_q025": -6.1282,
+   "null_q975": -1.7225,
+   "p_holm": 0.2475
+  },
+  "post": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 387224,
+   "bp_gross": -0.7492,
+   "t_gross": -2.479,
+   "bp_net": -3.5065,
+   "t_year": -10.2179,
+   "t_cluster": -11.8612,
+   "sharpe_net": -5.54,
+   "sharpe_gross": -1.2071,
+   "max_dd_net_bp": -147783.5052,
+   "exposure": 0.9906,
+   "gap_bars": 1,
+   "z": -5.2472,
+   "pct": 0.0,
+   "p_perm": 1.0,
+   "null_degenerate": false,
+   "null_q025": -3.0173,
+   "null_q975": -2.4434,
+   "p_holm": 1.0
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 548438,
+   "bp_gross": 0.1832,
+   "t_gross": 0.4022,
+   "bp_net": -2.9931,
+   "t_year": -10.5285,
+   "t_cluster": -10.168,
+   "sharpe_net": -3.4217,
+   "sharpe_gross": -0.0074,
+   "max_dd_net_bp": -245909.1255,
+   "exposure": 0.9898,
+   "gap_bars": 8
+  },
+  "p0_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 161214,
+   "bp_gross": 1.1156,
+   "t_gross": 1.7466,
+   "bp_net": -2.4797,
+   "t_year": -7.3404,
+   "t_cluster": -4.7244,
+   "sharpe_net": -2.3244,
+   "sharpe_gross": 0.7563,
+   "max_dd_net_bp": -98414.1617,
+   "exposure": 0.9878,
+   "gap_bars": 7
+  },
+  "p0_all_post": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 387224,
+   "bp_gross": -0.7492,
+   "t_gross": -2.479,
+   "bp_net": -3.5065,
+   "t_year": -10.2179,
+   "t_cluster": -11.8612,
+   "sharpe_net": -5.54,
+   "sharpe_gross": -1.2071,
+   "max_dd_net_bp": -147783.5052,
+   "exposure": 0.9906,
+   "gap_bars": 1
+  },
+  "p1_all_all": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 548438,
+   "bp_gross": 0.318,
+   "t_gross": 0.948,
+   "bp_net": -1.4021,
+   "t_year": -3.5456,
+   "t_cluster": -3.4431,
+   "sharpe_net": -1.1377,
+   "sharpe_gross": 0.7566,
+   "max_dd_net_bp": -85181.8708,
+   "exposure": 0.9933,
+   "gap_bars": 8
+  },
+  "p1_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 161214,
+   "bp_gross": 0.6367,
+   "t_gross": 1.0312,
+   "bp_net": -1.2334,
+   "t_year": -1.5709,
+   "t_cluster": -0.8832,
+   "sharpe_net": -0.4271,
+   "sharpe_gross": 1.2355,
+   "max_dd_net_bp": -27619.8449,
+   "exposure": 0.9902,
+   "gap_bars": 7
+  },
+  "p1_all_post": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 387224,
+   "bp_gross": -0.0008,
+   "t_gross": -0.0028,
+   "bp_net": -1.5708,
+   "t_year": -5.8156,
+   "t_cluster": -5.1582,
+   "sharpe_net": -2.3583,
+   "sharpe_gross": 0.0973,
+   "max_dd_net_bp": -68927.0376,
+   "exposure": 0.9945,
+   "gap_bars": 1
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 71.8,
+ "machine_verdict": "棄却: 全期間の z<1（data_health に failed/gaps あり: 確定にする前に点検）"
+}
