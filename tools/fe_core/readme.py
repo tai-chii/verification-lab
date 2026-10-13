@@ -61,3 +61,21 @@ def render_readme(spec, script, status=None, script_kind="Runner 型", elapsed=N
         measure=spec.measure or "（未記入）", null_desc=spec.null_desc or f"{spec.null_kind}（min_shift={spec.null_min_shift}, block={spec.null_block}）",
         n_tests=spec.n_tests, prior_art=spec.prior_art or "（未記入。WebSearch の日付・検索語・見つかった研究と未確認の点を書く）",
         discarded=spec.discarded or "（未記入）", knowledge_cutoff=spec.knowledge_cutoff, delegation=spec.delegation or "（未記入）", reject_if=spec.reject_if)
+
+
+def render_idea_row(spec, date=None, folder=None, batch_note=None, prior_art_short=None):
+    """アイデア候補.md（学問/金融工学/知識/文献）に追記する 1 行を Spec から作る。列: 日付 | 案 | 出典ノート | 何を測れば正しいと言えるか | コスト | 棄却条件 | 状態。
+    使う場面: /lab-plan の記録（手で写さない）。`|` は `\\|` に直す
+    入力: spec、date（省略で今日）、folder: 実験フォルダ名、batch_note: 状態欄の「N案一括生成 第X弾」など、prior_art_short: 先行研究の 1 文
+    返り値: str（1 行。末尾に改行なし）
+    禁止: 状態欄に結果を書かない（未着手で始める）
+    段階: 保存
+    """
+    d = date or _dt.date.today().isoformat()
+    esc = lambda s: str(s).replace("|", "\\|").replace("\n", " ")
+    cost = f"小〜中（B={spec.B}・{len(spec.syms)} 銘柄 {spec.kind}・{len(spec.params)} 設定）"
+    status = (f"未着手（{spec.qid}・{batch_note or spec.batch or '単発'}。設計は {spec.designer}、コードは {spec.coder}（fe_core Runner 型）、実行と解釈は未。"
+              f"{('フォルダ `' + folder + '`。') if folder else ''}先行研究: {prior_art_short or spec.prior_art or '未記入'}）")
+    return "| " + " | ".join(esc(x) for x in [d, f"**{spec.question}**（{spec.qid}）", spec.source or "（未記入）",
+                                               f"{spec.measure or spec.hypothesis} 帰無: {spec.null_desc or spec.null_kind}。", cost,
+                                               f"事前固定: {spec.reject_if}", status]) + " |"

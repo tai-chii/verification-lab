@@ -263,9 +263,13 @@ class Runner:
             with open(path, "w", encoding="utf-8") as fh:
                 fh.write(render_readme(spec, script))
             print("wrote", path); return path, None
+        if "--idea-row" in av:  # アイデア候補.md に貼る 1 行を標準出力へ（ファイルには書かない）
+            from .readme import render_idea_row
+            print(render_idea_row(spec, folder=os.path.basename(here))); return None, None
 
         def _extra(ap):
             ap.add_argument("--readme", action="store_true", help="README.md を SPEC から生成して終わる")
+            ap.add_argument("--idea-row", action="store_true", help="アイデア候補.md 用の 1 行を出して終わる")
             if extra_args:
                 extra_args(ap)
         args = parse_args(default_B=spec.B, extra=_extra, argv=argv)

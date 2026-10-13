@@ -540,3 +540,14 @@ Spec から README.md の本文を作る。
 | 返り値 | str（Markdown） |
 | 禁止 | 結果の節をここで埋めない（解釈は人） |
 
+### `render_idea_row(spec, date=None, folder=None, batch_note=None, prior_art_short=None)`  — `readme.py:66`
+
+アイデア候補.md（学問/金融工学/知識/文献）に追記する 1 行を Spec から作る。列: 日付 | 案 | 出典ノート | 何を測れば正しいと言えるか | コスト | 棄却条件 | 状態。
+
+| | |
+|---|---|
+| 使う場面 | /lab-plan の記録（手で写さない）。`|` は `\|` に直す |
+| 入力 | spec、date（省略で今日）、folder: 実験フォルダ名、batch_note: 状態欄の「N案一括生成 第X弾」など、prior_art_short: 先行研究の 1 文 |
+| 返り値 | str（1 行。末尾に改行なし） |
+| 禁止 | 状態欄に結果を書かない（未着手で始める） |
+
