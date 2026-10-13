@@ -43,7 +43,7 @@
 | [direction-accuracy-vs-base-rate](./direction-accuracy-vs-base-rate) | Q147 翌日の方向の的中率は「常に上」「前日の符号」の基準率を超えるか（HSAT の基準の置き方） | 確定 |
 | [dollar-factor-momentum](./dollar-factor-momentum) | Q208 ドル因子（6 通貨の対ドル等加重）の順張りは個別ペアの順張りの平均より強いか（Verdelhan 2018 の型） | 棄却 |
 | [dow-structure-direction-vs-time](./dow-structure-direction-vs-time) | Q104 ダウ型の構造確定の後の24時間: 向きの情報か、時刻と地合いか | 棄却（向きの情報なし） |
-| [dual-lookback-rotation](./dual-lookback-rotation) | Q292 15 銘柄 D1 の二周期ローテーション規則（L=20 と L=120 の TSMOM が同符号時のみ ±1）は、単独 TSMOM60 より all15 の年単位平均 bp（コスト後）が高いか（Korzan2026-1 の規則の移植） | … |
+| [dual-lookback-rotation](./dual-lookback-rotation) | Q292 15 銘柄 D1 の二周期ローテーション規則（L=20 と L=120 の TSMOM が同符号時のみ ±1）は、単独 TSMOM60 より all15 の年単位平均 bp（コスト後）が高いか（Korzan2026-1 の規則の移植） | 15 銘柄平均で見ると支持だが、群で分かれる |
 | [ecb-fix-vshape](./ecb-fix-vshape) | Q268 ECB 参照レート（14:15 CET）の前後にドルの V 字はあるか（Krohn 2024 のロンドン fix の移植・FX6 H1） | 未確定 |
 | [eia-release-followthrough](./eia-release-followthrough) | Q269 EIA 原油在庫発表（水曜 10:30 ET）直後 1 時間の向きは次の 2〜4 時間に続くか（WTI・UKOIL H1） | 要確認 |
 | [eia-release-pool-q280](./eia-release-pool-q280) | Q280 EIA 原油在庫発表の実発表日に揃えた WTI・UKOIL の継続性再検証（2 銘柄プール） | WTIで継続側・時代効果と銘柄間の揃いが条件を欠く |
