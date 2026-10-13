@@ -1,0 +1,99 @@
+{
+ "qid": "Q289",
+ "smoke": false,
+ "generated": "20261014_012340",
+ "question": "XAUUSD H1 で 16:00 UTC 周辺に pre−post の構造（V 字）はあるか",
+ "settings": {
+  "sym": "XAUUSD",
+  "tz": "UTC",
+  "pre_hour": 15,
+  "post_hour": 16,
+  "control": "10 時台 − 11 時台",
+  "start": "2008-01-01",
+  "split_year": 2017,
+  "B": 1000,
+  "null": "日ごとに D の符号並べ替え → 年単位平均",
+  "side": "two",
+  "verdict_basis": "判定は D の前後半 2 本（Holm で補正）。対照・|z| と符号。"
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "XAUUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {},
+  "n_dup": {},
+  "n_gap_syms": 0
+ },
+ "summary": {
+  "whole_sample": {
+   "all": {
+    "n_years": 19,
+    "n_days": 4697,
+    "D_bp": -0.7421,
+    "t": -1.0063,
+    "pre_bp": 0.1181,
+    "post_bp": 0.5129,
+    "z": -1.0777,
+    "pct": 0.15,
+    "perm_p_two": 0.3037
+   },
+   "pre": {
+    "n_years": 9,
+    "n_days": 2248,
+    "D_bp": -0.3684,
+    "t": -0.3059,
+    "pre_bp": 0.5718,
+    "post_bp": 0.6409,
+    "z": -0.3921,
+    "pct": 0.353,
+    "perm_p_two": 0.6953
+   },
+   "post": {
+    "n_years": 10,
+    "n_days": 2449,
+    "D_bp": -1.0785,
+    "t": -1.1494,
+    "pre_bp": -0.2984,
+    "post_bp": 0.3955,
+    "z": -1.0858,
+    "pct": 0.136,
+    "perm_p_two": 0.2787
+   }
+  },
+  "control_10h_minus_11h": {
+   "all": {
+    "n_years": 19,
+    "n_days": 4696,
+    "D_ctl_bp": -0.961,
+    "t": -1.9192,
+    "pre_bp": -0.4252,
+    "post_bp": 0.4083
+   },
+   "pre": {
+    "n_years": 9,
+    "n_days": 2247,
+    "D_ctl_bp": -1.8496,
+    "t": -2.4492,
+    "pre_bp": -0.8819,
+    "post_bp": 0.8074
+   },
+   "post": {
+    "n_years": 10,
+    "n_days": 2449,
+    "D_ctl_bp": -0.1613,
+    "t": -0.274,
+    "pre_bp": -0.0061,
+    "post_bp": 0.0422
+   }
+  },
+  "holm_adj_p": {
+   "pre": 0.6953,
+   "post": 0.5574
+  }
+ },
+ "machine_verdict": "未確定",
+ "multiple_comparisons": "判定は D の前後半 2 本（Holm で補正）。対照は記述。"
+}
