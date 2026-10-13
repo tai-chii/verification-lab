@@ -14,6 +14,13 @@
 | `multiple.py` | `z_of`・`perm_within`・`block_perm`・`circ_shift`・`holm`・`holm_sig` |
 | `io.py` | `parse_args`・`write_result`（出力先は呼び出し元の `results/`）・`_json_default` |
 
+## 目録（CATALOG.md・catalog.json）
+
+`python3 tools/gen_fe_core_catalog.py` が各関数の docstring から **`CATALOG.md`（LLM が読む用・段階の順）** と `catalog.json`（機械用）を作る。
+**新しい検証を書く前に CATALOG.md を上から読む**。手で編集しない。正本は docstring で、書式は
+「1 行目: 一言／使う場面:／入力:／返り値:／禁止:／段階: 読み込み|合図|損益|統計|帰無|判定|保存|共通」。
+関数を足したり変えたりしたら docstring を同じ書式で書き、生成し直す（`--check` で最新かだけ確かめられる）。
+
 ## 使い方（新しい検証スクリプトの冒頭）
 
 ```python
@@ -40,7 +47,7 @@ Q268（`ecb-fix-vshape/kensho_ecb_fix_q268.py` → `kensho_ecb_fix_q268_fecore.p
 
 ## 守ること
 
-- **ここは固定の土台。検証ごとの戦略・判定は書かない。** 変えるときは、雛形由来の既存スクリプト 1 本以上を `fe_core` 版にして数値一致を確かめてから。
+- **ここは固定の土台。検証ごとの戦略・判定は書かない。** docstring を変えたら `gen_fe_core_catalog.py` を回す。 変えるときは、雛形由来の既存スクリプト 1 本以上を `fe_core` 版にして数値一致を確かめてから。
 - 既存 385 本は書き換えない。新規の検証からこの土台を使う。古い検証は再走が必要になったときに移植する。
 - 未来の行に触れない: `pnl_bp` が 1 本ずらすので、合図側で `shift` しない。
 - Python のまま（numpy のベクトル演算が本体）。遅い 1 関数が見つかったときだけ Rust（PyO3）を検討する。

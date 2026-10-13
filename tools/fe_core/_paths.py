@@ -9,7 +9,13 @@ WS = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".
 
 
 def _p(*parts):
-    """macOS 共有の NFD 名に対応（NFC で無ければ NFD で探す）。"""
+    """ワークスペース内のパスを作る。macOS 共有の NFD 名に対応（NFC で無ければ NFD で探す）。
+    使う場面: DATA_DIR 以外のワークスペース内ファイルを指すとき
+    入力: parts: ワークスペースからの相対パスの各要素
+    返り値: 絶対パス（str）
+    禁止: 絶対パスをハードコードしない
+    段階: 共通
+    """
     a = os.path.join(WS, *parts)
     if os.path.exists(a):
         return a
@@ -17,7 +23,13 @@ def _p(*parts):
 
 
 def script_dir():
-    """呼び出し元スクリプトのフォルダ（雛形の HERE に相当）。対話実行時はカレント。"""
+    """呼び出し元スクリプトのフォルダ（雛形の HERE に相当）。対話実行時はカレント。
+    使う場面: write_result の既定の出力先
+    入力: なし
+    返り値: 絶対パス（str）
+    禁止: —
+    段階: 共通
+    """
     a = sys.argv[0] if sys.argv and sys.argv[0] else ""
     return os.path.dirname(os.path.abspath(a)) if a else os.getcwd()
 

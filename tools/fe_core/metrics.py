@@ -7,6 +7,13 @@ import pandas as pd
 
 
 def tstat(x):
+    """平均の t 値（iid 前提、ddof=1）。
+    使う場面: 年単位平均など、自己相関が無いとみなせる標本。日次損益には nw_t を使う
+    入力: x: 1 次元配列（NaN は落とす）
+    返り値: float（n<2 か分散 0 なら NaN）
+    禁止: 自己相関のある日次系列にそのまま使わない
+    段階: 統計
+    """
     x = np.asarray(x, float); x = x[np.isfinite(x)]
     if len(x) < 2 or x.std(ddof=1) == 0:
         return float("nan")
@@ -14,7 +21,13 @@ def tstat(x):
 
 
 def nw_t(x, lag=5):
-    """Newey-West（Bartlett）の t。"""
+    """Newey-West（Bartlett 核）の t 値。
+    使う場面: 日次・時間足の損益や重なりのあるリターンの平均の検定
+    入力: x: 1 次元配列（NaN は落とす）、lag: ラグ数（既定 5。保有期間に合わせる）
+    返り値: float（n<3 なら NaN）
+    禁止: lag を結果を見てから変えない（事前に固定）
+    段階: 統計
+    """
     x = np.asarray(x, float); x = x[np.isfinite(x)]
     n = len(x)
     if n < 3:
@@ -28,6 +41,13 @@ def nw_t(x, lag=5):
 
 
 def spearman(x, y):
+    """スピアマンの順位相関。
+    使う場面: IC（予測と実現の順位相関）、パラメータと成績の単調性の確認
+    入力: x, y: 同じ長さの配列（どちらかが NaN の行は落とす）
+    返り値: float（n<3 なら NaN）
+    禁止: IC の改善だけで採用しない（本番指標と帰無を併記する）
+    段階: 統計
+    """
     x = np.asarray(x, float); y = np.asarray(y, float)
     m = np.isfinite(x) & np.isfinite(y); x, y = x[m], y[m]
     if len(x) < 3:
@@ -39,25 +59,50 @@ def spearman(x, y):
 
 
 def max_drawdown(pnl):
+    """累積損益のピークからの最大の落ち込み（負の値、pnl と同じ単位）。
+    使う場面: 成績の要約。sharpe_ann と並べて書く
+    入力: pnl: 長さ n の損益（bp など加算できる単位）
+    返り値: float ≤ 0（空なら NaN）
+    禁止: 複利の資産曲線に使わない（加算の損益用）
+    段階: 統計
+    """
     cum = np.cumsum(np.asarray(pnl, float)); peak = np.maximum.accumulate(cum)
     return float((cum - peak).min()) if len(cum) else float("nan")
 
 
 def sharpe_ann(pnl, per_year=252):
-    """年率シャープ。NaN は落として計算する（落とさない版が 20 本あったが、NaN が 1 つで全体が NaN になるため統一）。"""
+    """年率シャープ（平均/標準偏差×√per_year、ddof=1）。NaN は落として計算する。
+    使う場面: 成績の要約。日足は 252、H1 は 24*260 など足の本数を per_year に渡す
+    入力: pnl: 長さ n の損益、per_year: 年あたりの足の本数
+    返り値: float（n≤2 か分散 0 なら NaN）
+    禁止: 無リスク金利を引かない（bp の超過損益が前提）。年率 2 超は先読み・リークを疑う
+    段階: 統計
+    """
     x = np.asarray(pnl, float); x = x[np.isfinite(x)]
     return float(x.mean() / x.std(ddof=1) * math.sqrt(per_year)) if len(x) > 2 and x.std(ddof=1) > 0 else float("nan")
 
 
 def qlike(s2_pred, r2):
-    """QLIKE 損失（小さいほど良い）。r2: 実現分散、s2_pred: 予測分散。"""
+    """QLIKE 損失（分散予測の評価。小さいほど良い）。
+    使う場面: HAR などボラ予測の比較
+    入力: s2_pred: 予測分散、r2: 実現分散（同じ長さ。どちらかが非正・NaN の行は落とす）
+    返り値: float（有効な行が 2 以下なら NaN）
+    禁止: 水準の違う銘柄を混ぜて平均しない
+    段階: 統計
+    """
     s2 = np.asarray(s2_pred, float); r2 = np.asarray(r2, float)
     m = np.isfinite(s2) & np.isfinite(r2) & (s2 > 0) & (r2 > 0)
     return float(np.mean(r2[m] / s2[m] - np.log(r2[m] / s2[m]) - 1)) if m.sum() > 2 else float("nan")
 
 
 def by_year_stats(df, col, year_col="year", y0=0, y1=9999):
-    """年を単位にした平均と t（銘柄は年の中で平均してから）。df: year, sym, col。"""
+    """年を単位にした平均と t（sym 列があれば年の中で銘柄平均してから）。
+    使う場面: 期間分割（全期間／前半／後半）の判定値。日次の t より保守的
+    入力: df: year（と sym）と col を持つ DataFrame、col: 集計する列、y0/y1: 年の範囲 [y0, y1)
+    返り値: {"n_years", "mean", "t"}
+    禁止: 年数が 5 未満の区間で t を判定に使わない（記述にとどめる）
+    段階: 統計
+    """
     d = df[(df[year_col] >= y0) & (df[year_col] < y1)]
     if d.empty:
         return {"n_years": 0, "mean": float("nan"), "t": float("nan")}
@@ -70,7 +115,13 @@ def by_year_stats(df, col, year_col="year", y0=0, y1=9999):
 
 
 def f(x, nd=4):
-    """JSON 用の丸め。NaN/None は None。"""
+    """JSON 用の丸め（NaN・None は None）。
+    使う場面: 結果 dict に数値を入れるとき
+    入力: x: 数値、nd: 小数桁
+    返り値: float か None
+    禁止: 計算の途中で使わない（丸め誤差が積もる）
+    段階: 保存
+    """
     try:
         return None if x is None or not np.isfinite(x) else round(float(x), nd)
     except Exception:

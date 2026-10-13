@@ -10,6 +10,13 @@ from ._paths import DATA_DIR, SEED
 
 # ----------------------------------------------------------------------------- 読み込み（雛形どおり）
 def _read(path):
+    """CSV を読み、time を datetime にして並べ替え・重複除去する（生の読み込み）。
+    使う場面: load_* の中。直接使うのは data_*.csv 以外の表を読むときだけ
+    入力: path: CSV のパス（time 列が必要）
+    返り値: DataFrame（time 昇順・重複なし）
+    禁止: 失敗を空の DataFrame で握りつぶさない（例外はそのまま上げる）
+    段階: 読み込み
+    """
     df = pd.read_csv(path)
     df["time"] = pd.to_datetime(df["time"])
     df = df.sort_values("time").drop_duplicates("time").reset_index(drop=True)
@@ -17,7 +24,13 @@ def _read(path):
 
 
 def load_d1(sym, smoke=False, rng=None):
-    """UTC 日足（D1_fromH1）。値動きのない足（high==low）は除く。列: time, open, high, low, close, ret, year"""
+    """UTC 日足（data_<sym>_D1_fromH1.csv）。値動きのない足（high==low）は除く。
+    使う場面: 日足の検証の読み込み。--smoke のときは合成データ
+    入力: sym: 銘柄、smoke: 合成データにするか、rng: smoke 用の Generator
+    返り値: DataFrame（time, open, high, low, close, ret, year）。ret は比（bp ではない）
+    禁止: ret の単位を変えた列を同じ名前で作らない（旧 q284・q286 で bp 版があり事故の種）
+    段階: 読み込み
+    """
     if smoke:
         df = _smoke_ohlc(sym, rng, n=2600, freq="D", start="2015-01-01")
     else:
@@ -29,14 +42,26 @@ def load_d1(sym, smoke=False, rng=None):
 
 
 def load_csv(name, smoke=False, rng=None, freq="h", n=20000, start="2015-01-01"):
-    """任意の data_<name>.csv（H1/H4/M15/yahoo/ask）。"""
+    """任意の data_<name>.csv（H1/H4/M15/yahoo/ask など）を読む。
+    使う場面: load_d1・load_h1 に無い足種や別ソース
+    入力: name: data_ の後ろの名前、smoke/rng/freq/n/start: 合成データの設定
+    返り値: DataFrame（生の列。ret・year は付かない）
+    禁止: 同じ銘柄を別ソースで混ぜて 1 本の系列にしない
+    段階: 読み込み
+    """
     if smoke:
         return _smoke_ohlc(name, rng, n=n, freq=freq, start=start)
     return _read(os.path.join(DATA_DIR, f"data_{name}.csv"))
 
 
 def load_h1(sym, smoke=False, rng=None, n=60000, start="2015-01-01"):
-    """UTC 1時間足（H1_dukascopy）。値動きのない足は除く。列: time, open, high, low, close, volume, ret, year, hour, dow"""
+    """UTC 1 時間足（data_<sym>_H1_dukascopy.csv）。値動きのない足は除く。
+    使う場面: 時間帯・イベント研究・H1 からの日足作成（h1_to_d1）
+    入力: sym、smoke、rng、n/start: 合成データの長さと開始
+    返り値: DataFrame（time, open, high, low, close, volume, ret, year, hour, dow）
+    禁止: 読んだ後に check_gaps／health で欠損を点検せずに判定しない
+    段階: 読み込み
+    """
     df = load_csv(f"{sym}_H1_dukascopy", smoke, rng, freq="h", n=n, start=start)
     df = df[df["high"] != df["low"]].reset_index(drop=True)
     df["ret"] = df["close"].pct_change()
@@ -47,7 +72,13 @@ def load_h1(sym, smoke=False, rng=None, n=60000, start="2015-01-01"):
 
 
 def h1_to_d1(h1, cutoff_hour=0):
-    """H1 を「cutoff_hour（UTC）始まり」の日足に束ねる。日付ラベルは区間の開始日。"""
+    """H1 を「cutoff_hour（UTC）始まり」の日足に束ねる。日付ラベルは区間の開始日。
+    使う場面: 日の区切り（NY 17 時など）を変えた日足が要るとき
+    入力: h1: load_h1 の返り値、cutoff_hour: 区切りの時刻（UTC）
+    返り値: DataFrame（time, open, high, low, close, volume, nbars, ret, year）。本数 6 未満の日は除く
+    禁止: cutoff を結果を見てから変えない（Q140 系の「区切り依存」を再現する）
+    段階: 読み込み
+    """
     t = h1["time"] - pd.Timedelta(hours=cutoff_hour)
     key = t.dt.floor("D")
     g = h1.groupby(key)
@@ -60,7 +91,13 @@ def h1_to_d1(h1, cutoff_hour=0):
 
 
 def _smoke_ohlc(sym, rng, n, freq, start):
-    """合成データ（GBM）。判定には使わない。"""
+    """合成データ（GBM）。経路の確認用で、判定には使わない。
+    使う場面: --smoke。load_* が内部で呼ぶ
+    入力: sym（未使用）、rng、n: 本数、freq: pandas の頻度、start: 開始日
+    返り値: DataFrame（time, open, high, low, close, volume）
+    禁止: smoke の結果を結果 JSON の判定に使わない（smoke_ 接頭辞で分ける）
+    段階: 読み込み
+    """
     rng = rng or np.random.default_rng(SEED)
     t = pd.date_range(start, periods=n, freq=freq)
     r = rng.normal(0.0001, 0.006, n)
@@ -73,10 +110,24 @@ def _smoke_ohlc(sym, rng, n, freq, start):
 
 
 def exists_sym(sym, kind="D1_fromH1"):
+    """data_<sym>_<kind>.csv があるか。
+    使う場面: 銘柄ループの前。無い銘柄は missing に記録する
+    入力: sym、kind: "D1_fromH1" か "H1_dukascopy" など
+    返り値: bool
+    禁止: 無い銘柄を黙って飛ばさない（JSON の missing に書く）
+    段階: 読み込み
+    """
     return os.path.exists(os.path.join(DATA_DIR, f"data_{sym}_{kind}.csv"))
 
 
 def syms_available(syms, kind="D1_fromH1", smoke=False):
+    """銘柄リストを「ある／ない」に分ける。
+    使う場面: run の最初。ok だけを回し、missing を JSON に入れる
+    入力: syms、kind、smoke（True なら全部ある扱い）
+    返り値: (ok, missing)
+    禁止: missing を空だと仮定しない
+    段階: 読み込み
+    """
     if smoke:
         return list(syms), []
     ok = [s for s in syms if exists_sym(s, kind)]
@@ -88,9 +139,13 @@ _EXPECTED_PER_WEEK = {"H1": 24 * 5, "M15": 24 * 4 * 5, "H4": 6 * 5, "D1": 5}
 
 
 def check_gaps(df, bar="H1", min_ratio=0.5):
-    """月ごとの本数を数え、期待本数の min_ratio 未満の月を「欠け」として返す。
-    返り値: {"months": 総月数, "missing_months": 欠けた月の数, "missing": ["2019-03", ...], "worst_ratio": 最も少ない月の比}
-    期待本数は週あたりの本数 × 4.3。先頭月・末尾月は部分月なので除く。"""
+    """月ごとの本数を数え、期待本数の min_ratio 未満の月と行の無い月を「欠け」として返す。
+    使う場面: 読み込みの直後。欠けが 1 月でもあれば結果 JSON に残し、欠けた期間を除いた結果も並べる
+    入力: df: time 列を持つ DataFrame、bar: "H1"/"M15"/"H4"/"D1"、min_ratio: 欠けと見なす比
+    返り値: {"months", "missing_months", "missing": ["2019-03", ...], "worst_ratio"}
+    禁止: 欠けを「データなし」と同じに扱わない（2026-09-30 の事故）
+    段階: 読み込み
+    """
     if df is None or len(df) == 0 or "time" not in df:
         return {"months": 0, "missing_months": 0, "missing": [], "worst_ratio": float("nan")}
     per_week = _EXPECTED_PER_WEEK.get(bar.upper(), None)
@@ -113,8 +168,13 @@ def check_gaps(df, bar="H1", min_ratio=0.5):
 
 
 def health(syms, kind="H1_dukascopy", bar=None, min_ratio=0.5):
-    """銘柄ごとに 成功／データなし／失敗 を区別して返す。結果 JSON の "data_health" にそのまま入れる想定。
-    kind から bar を推定（H1_dukascopy→H1、D1_fromH1→D1、M15_...→M15）。"""
+    """銘柄ごとに 成功／データなし／失敗 を区別し、欠けのある銘柄の check_gaps をまとめる。
+    使う場面: run の最初に 1 回。返り値をそのまま結果 JSON の "data_health" に入れる
+    入力: syms、kind、bar（省略で kind から推定）、min_ratio
+    返り値: {"ok", "no_data", "failed": {sym: 例外}, "gaps": {sym: check_gaps}, "n_gap_syms"}
+    禁止: failed が 1 件でもあるのに結果を「確定」にしない
+    段階: 読み込み
+    """
     if bar is None:
         bar = kind.split("_")[0]
     out = {"ok": [], "no_data": [], "failed": {}, "gaps": {}}
