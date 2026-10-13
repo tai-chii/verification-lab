@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 133 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 143 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -16,8 +16,10 @@
 | [bbc-cv-optimism](./bbc-cv-optimism) | Q172 BBC-CV のブートストラップ補正は時系列の順張り選択の楽観を取り除くか（Tsamardinos 2018） | —（未実行） |
 | [bbc-cv-tsmom-optimism](./bbc-cv-tsmom-optimism) | Q172 BBC-CV のブートストラップ補正は時系列の順張り選択の楽観を取り除くか（Tsamardinos 2018） | 確定 |
 | [bid-ask-signal-fragility](./bid-ask-signal-fragility) | Q185 合図は bid か ask かで何割変わるか（XAUUSD 実測＋15銘柄の半スプレッドの擬似ずらし） | 未確定（機械判定）／解釈: 規則の型による |
+| [bollinger-mean-reversion-d1](./bollinger-mean-reversion-d1) | Q293 15 銘柄 D1 のボリンジャー平均回帰（+2σ 売り・−2σ 買い、SMA20 戻りで決済）は all15 の年単位平均 bp（コスト後）が前後半とも正か（Coakley2016-2 の D1 移植） | … |
 | [breakeven-cost-vs-spread](./breakeven-cost-vs-spread) | Q140 順張りの損益分岐コストは実測スプレッドの何倍か（XAUUSD の Ask データで容量・コスト曲線） | TSMOM20・ドンチャン55/20 とも未確定 |
 | [close-location-next-day](./close-location-next-day) | Q237 終値位置 CLV が極端な日の翌日は、続くか反転するか（15 銘柄・Holm） | … |
+| [cluster-t-h1-shrinkage](./cluster-t-h1-shrinkage) | Q295 15 銘柄 H1 のクラスター t（時刻束ね）は naive パネル t より 30% 以上縮むか | — |
 | [cluster-t-shrinkage](./cluster-t-shrinkage) | Q175 15銘柄を束ねた t は日でクラスタさせると素朴な t から何割下がるか（GarciaArano 2026-3） | 支持（確定） |
 | [commodity-currency-leadlag](./commodity-currency-leadlag) | Q241 原油→USDCAD・金→AUDUSD の日次リード・ラグは、両方向のどちらが強いか（Chen・Rogoff・Rossi 2010 の逆向き） | … |
 | [correlation-regime-tsmom](./correlation-regime-tsmom) | Q258 15銘柄の直近60日平均ペア相関が高い月は順張り束のシャープが低いか（相関レジーム） | … |
@@ -28,6 +30,8 @@
 | [cross-signal-tsmom](./cross-signal-tsmom) | Q256 クロス・シグナル（金→銀・WTI→UKOIL・US500→USTECH・BTC→ETH）の日足順張りは自身の合図より良いか | … |
 | [crypto-d1-tsmom](./crypto-d1-tsmom) | Q262 暗号資産11通貨の日足順張り（TSMOM 20/60/120）は 2022 年以降もコスト後に残るか | … |
 | [crypto-h1-reversal-vol](./crypto-h1-reversal-vol) | Q183 暗号資産の1時間足の逆張りの見返りは直前のボラで予測できるか（Farag 2024-1・11通貨） | ボラは1時間逆張りの粗利を予測する（Farag 2024-1 の H1 版）。ただし後半で係数が3〜4倍小さくなり、保… |
+| [crypto-h1-rules-battery](./crypto-h1-rules-battery) | Q298 暗号資産 11 通貨 H1 の 3 ルール群（TSMOM24・SMA50・RSI14 の 50 水準順張り）はコスト後に全て前後半で正か（Neely2003-2 の暗号 H1 移植） | … |
+| [crypto-h1-tsmom](./crypto-h1-tsmom) | Q290 暗号資産 11 通貨 H1 の 24 本 TSMOM（L=24）はコスト後に前後半とも正か（Neely2003-3 の暗号 H1 移植） | … |
 | [crypto-hour-of-day](./crypto-hour-of-day) | Q242 暗号資産 11 通貨の UTC 時刻効果は、Holm 補正後に前後半で同符号で残るか | … |
 | [crypto-variance-ratio-trend](./crypto-variance-ratio-trend) | Q264 暗号資産11通貨の H1 の分散比は 2022 年以降に 1 へ近づいたか（適応的市場仮説の移植） | … |
 | [crypto-weekend-effect](./crypto-weekend-effect) | Q212 暗号資産の週末（土日）はリターン・ボラ・順張りの損益が平日と違うか（11 通貨 H1） | H1a 弱い確定（効果はほぼ消滅）／H1b 棄却 |
@@ -38,6 +42,7 @@
 | [direction-accuracy-vs-base-rate](./direction-accuracy-vs-base-rate) | Q147 翌日の方向の的中率は「常に上」「前日の符号」の基準率を超えるか（HSAT の基準の置き方） | 確定 |
 | [dollar-factor-momentum](./dollar-factor-momentum) | Q208 ドル因子（6 通貨の対ドル等加重）の順張りは個別ペアの順張りの平均より強いか（Verdelhan 2018 の型） | 棄却 |
 | [dow-structure-direction-vs-time](./dow-structure-direction-vs-time) | Q104 ダウ型の構造確定の後の24時間: 向きの情報か、時刻と地合いか | 棄却（向きの情報なし） |
+| [dual-lookback-rotation](./dual-lookback-rotation) | Q292 15 銘柄 D1 の二周期ローテーション規則（L=20 と L=120 の TSMOM が同符号時のみ ±1）は、単独 TSMOM60 より all15 の年単位平均 bp（コスト後）が高いか（Korzan2026-1 の規則の移植） | … |
 | [ecb-fix-vshape](./ecb-fix-vshape) | Q268 ECB 参照レート（14:15 CET）の前後にドルの V 字はあるか（Krohn 2024 のロンドン fix の移植・FX6 H1） | 未確定 |
 | [eia-release-followthrough](./eia-release-followthrough) | Q269 EIA 原油在庫発表（水曜 10:30 ET）直後 1 時間の向きは次の 2〜4 時間に続くか（WTI・UKOIL H1） | 要確認 |
 | [eia-release-pool-q280](./eia-release-pool-q280) | Q280 EIA 原油在庫発表の実発表日に揃えた WTI・UKOIL の継続性再検証（2 銘柄プール） | WTIで継続側・時代効果と銘柄間の揃いが条件を欠く |
@@ -49,6 +54,7 @@
 | [fundagent](./fundagent) | fundagent：ニュースから売買仮説を出し、その的中率を実測するシステム | — |
 | [fx-roundnumber-bounce](./fx-roundnumber-bounce) | 為替のキリ番は「跳ね返る場所」ではなく「抜けやすい場所」 | 支持 |
 | [fx-shortterm-meanreversion](./fx-shortterm-meanreversion) | 為替の超短期平均回帰は2015年以降の1時間足では消えたか | 消えた（支持） |
+| [fx8-h1-triple-indicator](./fx8-h1-triple-indicator) | Q291 FX8 H1 の 3 指標（TSMOM24・SMA50・RSI14 符号）が同符号のときだけ売買すると、束ねた t はコスト後に単独 TSMOM24 を上回るか（Loubaris2026-2 の H1 移植） | … |
 | [gotobi-cross-jpy](./gotobi-cross-jpy) | Q179 五十日の仲値前の円安はクロス円でも出て2021年以降に消えたか（Bessho 2023） | 対立を支持: ドル固有 |
 | [h4-tsmom-trend7](./h4-tsmom-trend7) | Q261 トレンド7 の H4 順張り（TSMOM 30/60/120 本）はコスト後に残るか（為替で消えた H4 の条件の穴） | … |
 | [halloween-effect](./halloween-effect) | Q238 「5 月に売れ」（ハロウィン効果）は 2008〜2026 の指数・商品 6 銘柄で残るか（6 か月ブロックの循環シフト帰無） | … |
@@ -60,6 +66,7 @@
 | [indicator-confirmation](./indicator-confirmation) | Q182 複数の順張り指標が一致したときだけ売買すると的中率と純損益は上がるか（Loubaris 2026-2） | 棄却（Loubaris と同じ非有意） |
 | [instrument-selection-bias](./instrument-selection-bias) | Q150 15銘柄から成績の良い 8 銘柄を事後に選ぶと順張りの成績はどれだけ膨らむか（Korzan 2026 §6 の銘柄選択バイアス） | 支持（確定）。選んだ銘柄は後半でむしろ劣る（反転）。膨らみが帰無の95%点をわずかに超えるのはその反転の裏返し（帰無は… |
 | [intraday-momentum-first-last](./intraday-momentum-first-last) | Q176 最初の1時間→最後の1時間の日中モメンタムは為替・株価指数・金で公表後に残るか（GarciaArano 2026） | 最初の1時間 → 最後の1時間 の日中モメンタムは、FX8・金・US株価指数2 の H1 で公表後にコスト前・コスト後… |
+| [intraday-momentum-indices-decay](./intraday-momentum-indices-decay) | Q297 US500 / USTECH H1 の日中モメンタム（初動 1 時間 → 終盤 1 時間）は 2016 以降に減衰したか | — |
 | [jump-day-followthrough](./jump-day-followthrough) | Q273 ジャンプ日（／ret／>2.5σ）の翌日・翌5日は継続か反転か（15銘柄・年内並べ替え帰無） | … |
 | [kensho-anomaly-decay](./kensho-anomaly-decay) | 決算発表後のアノマリー減衰 | README の「主な検証」表を参照 |
 | [long-short-decomposition](./long-short-decomposition) | Q152 順張りの利益は買い側だけか: 売り側はコスト後に0と区別できるか | 未確定（売り側に利益なしは確定。買い側の順張りは機械判定では支持だが、BTC・後半・ドンチャンに依存） |
@@ -129,13 +136,16 @@
 | [vol-asymmetry-by-group](./vol-asymmetry-by-group) | Q247 ボラの非対称性の向きは群で違うか（株価指数は負・金は正・FX は無し。HAR に符号項・15 銘柄） | … |
 | [vol-change-reversal](./vol-change-reversal) | Q174 ボラの変化は1日逆張りの翌日リターンを予測するか（DellaCorte 2015-3・15銘柄） | 棄却 |
 | [vol-forecast-loss-vs-model](./vol-forecast-loss-vs-model) | Q187 為替のボラ予測で損失関数の差はモデルの差の何倍に見えるか（Tokajuk 2026-1 の為替移植） | 棄却（H0 支持: 為替では損失関数の差はモデルの差より小さい・Tokajuk の構図は為替で再現しない） |
+| [vol-regime-autocorr](./vol-regime-autocorr) | Q294 15 銘柄 D1 の 1 次自己相関は高ボラ月で低ボラ月より高いか | … |
 | [vol-regime-trend-following](./vol-regime-trend-following) | Q142 高ボラ局面では順張りの的中率と純損益が下がるか（15銘柄・GARCH なしの実現ボラ） | 未確定（事後発見の向きは4通り一致、大きさは半期では届かず・全期間は2/4 で ／z／≥2・主に XAUUSD と v… |
 | [vol-targeting-tsmom](./vol-targeting-tsmom) | Q205 ボラ・ターゲティング（σ60 で規模調整）は 15 銘柄の日足順張りの年ごとのシャープを上げるか（Harvey ほか 2018 の追試） | 支持（確定・事前登録どおり） |
 | [volume-confirmed-breakout](./volume-confirmed-breakout) | Q235 ティック出来高の急増つきドンチャン・ブレイクアウトは、継続率と純損益を上げるか（15 銘柄・H1 出来高から日足） | … |
 | [volume-return-interaction](./volume-return-interaction) | Q216 出来高（ティック数）が多い日のリターンは翌日に続きやすく、少ない日は反転しやすいか（Campbell・Grossman・Wang 1993 の型・15 銘柄） | 棄却（CGW の型の反転は FX+コモディティ+指数の日足では前後半揃って再現しない） |
 | [weekend-gap-fill-trend7](./weekend-gap-fill-trend7) | Q248 トレンド群（金・銀・原油 2・株価指数 2）の週末の窓は週内に埋まるか（Dao 2016 の FX 以外への条件の穴） | … |
+| [weekend-gap-reversal-15](./weekend-gap-reversal-15) | Q296 15 銘柄 D1 の月曜ギャップ逆張り（金曜終値→月曜始値のギャップと逆方向に月曜のみ ±1、火曜以降 0）は all15 の年単位平均 bp（コスト後）が前後半とも正か（Dao2016-2 の 15 銘柄移植） | … |
 | [weekend-variance-ratio](./weekend-variance-ratio) | Q272 月曜（週末跨ぎ）のリターン分散は他の曜日の何倍か（取引時間 vs 暦時間・French・Roll 1986・15銘柄） | … |
 | [weekly-vs-daily-tsmom](./weekly-vs-daily-tsmom) | Q186 週足の順張りは日足より強いか（Neely 2003-3・15銘柄・2008〜2026） | 棄却（前後半のどちらかで ／t／<2） |
 | [window-pnl-vs-vol](./window-pnl-vs-vol) | Q184 2か月窓の順張り成績はその窓の実現ボラとドリフトで説明できるか（Rashid 2026-1・Q144 の続き） | Rashid の「ボラに左右される」は向きが違う |
 | [wrc-spa-disagreement](./wrc-spa-disagreement) | Q154 WRC・SPA(consistent)・SPA(conservative) の判定は同じルール群でどれだけ割れるか | 確定（棄却） |
+| [xauusd-london-fix-vshape](./xauusd-london-fix-vshape) | Q289 XAUUSD の WM/Reuters ロンドン fix（16:00 UTC）の前後に V 字はあるか | … |
 | [xauusd-vol-regime-single](./xauusd-vol-regime-single) | Q161 XAUUSD 単銘柄・直前20〜60日の実現ボラが高い日に翌日の順張り損益が下がるか（ドリフト除去・前後半） | 未確定（6/6 で向き一致・／z／≥2 達成は 3/6 で窓40・60日に偏る・ドリフト除去は結論を変えない） |
