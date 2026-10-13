@@ -1,0 +1,141 @@
+{
+ "qid": "Q268",
+ "smoke": false,
+ "generated": "20261013_122048",
+ "question": "ECB 参照レート時刻の前 1 時間（CET 13 時台）のドルは上がり、後 1 時間（14 時台）は下がるか（D=pre−post>0）",
+ "settings": {
+  "pairs": {
+   "EURUSD": -1,
+   "GBPUSD": -1,
+   "AUDUSD": -1,
+   "USDJPY": 1,
+   "USDCHF": 1,
+   "USDCAD": 1
+  },
+  "tz": "Europe/Berlin",
+  "pre_hour": 13,
+  "post_hour": 14,
+  "control": "10 時台 − 11 時台",
+  "change_date": "2016-07-01",
+  "start": "2008-01-01",
+  "split_year": 2017,
+  "B": 300,
+  "null": "日ごとに pre/post ラベルを入れ替え（D の符号並べ替え）→ 年単位平均",
+  "verdict_basis": "判定は同じ時間帯（13・14 時台）で全標本を 2017 で前後半に分けた whole_sample。主（2016-07-01 以降）・以前・対照は記述。"
+ },
+ "missing": [],
+ "summary": {
+  "whole_sample": {
+   "all": {
+    "n_years": 19,
+    "n_days": 4805,
+    "D_bp": 0.3753,
+    "t": 1.9176,
+    "pre_bp": 0.3321,
+    "post_bp": -0.048,
+    "z": 1.4408,
+    "pct": 0.9167
+   },
+   "pre": {
+    "n_years": 9,
+    "n_days": 2342,
+    "D_bp": -0.0971,
+    "t": -0.3564,
+    "pre_bp": 0.2181,
+    "post_bp": 0.3156,
+    "z": -0.2202,
+    "pct": 0.4433
+   },
+   "post": {
+    "n_years": 10,
+    "n_days": 2463,
+    "D_bp": 0.8005,
+    "t": 3.8263,
+    "pre_bp": 0.4406,
+    "post_bp": -0.3939,
+    "z": 2.3711,
+    "pct": 0.9867
+   }
+  },
+  "main_after_2016_07_01415": {
+   "all": {
+    "n_years": 11,
+    "n_days": 2594,
+    "D_bp": 0.7438,
+    "t": 3.765,
+    "pre_bp": 0.5122,
+    "post_bp": -0.289
+   },
+   "pre": {
+    "n_years": 1,
+    "n_days": 131,
+    "D_bp": 0.1767,
+    "t": null,
+    "pre_bp": 1.8587,
+    "post_bp": 1.682
+   },
+   "post": {
+    "n_years": 10,
+    "n_days": 2463,
+    "D_bp": 0.8005,
+    "t": 3.8263,
+    "pre_bp": 0.4406,
+    "post_bp": -0.3939
+   }
+  },
+  "before_2016_07_1430": {
+   "all": {
+    "n_years": 9,
+    "n_days": 2211,
+    "D_bp": -0.0052,
+    "t": -0.0159,
+    "pre_bp": 0.1209,
+    "post_bp": 0.2347
+   },
+   "pre": {
+    "n_years": 9,
+    "n_days": 2211,
+    "D_bp": -0.0052,
+    "t": -0.0159,
+    "pre_bp": 0.1209,
+    "post_bp": 0.2347
+   },
+   "post": {
+    "n_years": 0,
+    "n_days": 0,
+    "D_bp": null,
+    "t": null,
+    "pre_bp": null,
+    "post_bp": null
+   }
+  },
+  "control_10h_minus_11h": {
+   "all": {
+    "n_years": 19,
+    "n_days": 4805,
+    "D_ctl_bp": -0.2046,
+    "t": -1.0442,
+    "pre_bp": -0.1028,
+    "post_bp": 0.1057
+   },
+   "pre": {
+    "n_years": 9,
+    "n_days": 2342,
+    "D_ctl_bp": -0.6851,
+    "t": -2.405,
+    "pre_bp": -0.535,
+    "post_bp": 0.1519
+   },
+   "post": {
+    "n_years": 10,
+    "n_days": 2463,
+    "D_ctl_bp": 0.2278,
+    "t": 1.1822,
+    "pre_bp": 0.3081,
+    "post_bp": 0.0618
+   }
+  }
+ },
+ "machine_verdict": "未確定",
+ "multiple_comparisons": "判定は D の前後半 2 本。対照・時刻変更前は記述。"
+}
