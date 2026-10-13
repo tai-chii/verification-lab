@@ -1,0 +1,56 @@
+{
+ "qid": "Q291",
+ "registered": "20261014_013623",
+ "B": 500,
+ "seed": 20261010,
+ "question": "FX8 H1 の 3 指標（TSMOM24・SMA50・RSI14 符号）が同符号のときだけ売買すると、束ねた t はコスト後に単独 TSMOM24 を上回るか（Loubaris2026-2 の H1 移植）",
+ "hypothesis": "3 指標同符号フィルタ（params[1]）は単独 TSMOM24（params[0]）より FX8 プールの年単位平均 bp（段階1コスト後）が高く、前後半とも >0。",
+ "reject_if": "支持: フィルタ版が前後半ともコスト後 bp>0 かつ Holm 補正後 p<0.05、かつ単独より bp_net が高い。棄却: 全期間 z<1。ほか: 未確定。多重比較は main_param=1 の pre/post の 2 本（Holm で m=2）。",
+ "syms": [
+  "EURUSD",
+  "GBPUSD",
+  "AUDUSD",
+  "USDJPY",
+  "USDCHF",
+  "USDCAD",
+  "EURJPY",
+  "GBPJPY"
+ ],
+ "kind": "H1_dukascopy",
+ "params": [
+  {
+   "mode": "tsmom24"
+  },
+  {
+   "mode": "agree3"
+  }
+ ],
+ "main_param": 1,
+ "n_tests": 2,
+ "warmup": 50,
+ "per_year": 6048,
+ "split_year": 2017,
+ "start": null,
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 72,
+ "cost_rel": {},
+ "discarded": "約3: (i) 2 指標の交互作用（組合せが増え多重比較の本数が爆発）、(ii) RSI の閾値 30/70（Loubaris は符号による）、(iii) MACD（SMA と相関が高い）。",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "設計・コード・実行・解釈は Opus 本体の自動運転。委託なし。",
+ "source": "[[Loubaris2026-2_複数指標の確認は個別指標より的中率が高い傾向があるが有意差なし]]。関連: 知見「15銘柄の日足で3つの順張り指標が同符号のときだけ売買する厳しい一致は的中率も持った日あたりの純損益も最良単独を上回らない」。",
+ "data": "FX8 H1_dukascopy、2008〜2026-06。往復コストは COST_RT 既定。",
+ "measure": "FX8 プール（all グループ）の年単位平均 bp（コスト 0 と段階1）、年単位 t、束ねた t、Sharpe、最大下落、露出。params[0]（単独）と params[1]（フィルタ）を summary で並べる。",
+ "null_desc": "合図の循環シフト（min_shift=72）B=500 → FX8 プール（all）の年単位 bp の帰無分布 → z・perm_p・Holm。",
+ "prior_art": "WebSearch 2026-10-14・英語・\"multiple indicator confirmation technical trading FX H1 TSMOM SMA RSI agreement filter\"。見つかったもの: SMA+RSI 組合せの実務記事（TradingView スクリプト・ブログ）。学術的な FX H1 の TSMOM/SMA/RSI 同符号フィルタの束ねた t 比較は未確認（移植）。",
+ "batch": "10案一括生成（ターミナル版 2026-10-14）",
+ "designer": "Claude Opus 4.7（自動運転）",
+ "coder": "Claude Opus 4.7（自動運転）",
+ "settings": {
+  "tsmom_L": 24,
+  "sma_n": 50,
+  "rsi_n": 14,
+  "rsi_threshold": 50
+ }
+}
