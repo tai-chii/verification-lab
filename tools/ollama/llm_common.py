@@ -20,7 +20,7 @@ def _p(*parts):
     return b if os.path.exists(b) else a
 
 
-JOBS = _p("検証", "夜間", "llm")
+JOBS = _p("検証", "自動実行", "llm")
 STATES = ("pending", "running", "done", "failed")
 BUNKEN = _p("検証", "学問", "金融工学", "知識", "文献")
 GAINEN = _p("検証", "_基盤", "知識", "概念")

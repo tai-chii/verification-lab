@@ -170,7 +170,7 @@ elif cmd == 'release-stale':
     for r, age in stale:
         print(f'{"[dry] " if dry else ""}{r[1]} 実行中 {age:.1f} 時間 → 待ちに戻す: {r[3][:60]}')
         if not dry:
-            r[6] = '待ち'; r[4] = r[4] + f'（途中: 実行中のまま {age:.0f} 時間放置されたため {NOW} に自動で待ちへ。ログは 夜間/ログ/lab を確認）'
+            r[6] = '待ち'; r[4] = r[4] + f'（途中: 実行中のまま {age:.0f} 時間放置されたため {NOW} に自動で待ちへ。ログは 自動実行/ログ/lab を確認）'
     if not dry: save(L, w0, w1, rows, mtime0); print(f'{len(stale)} 行を待ちに戻した')
 elif cmd == 'release':
     qid = sys.argv[2]; note = sys.argv[3] if len(sys.argv) > 3 else ''

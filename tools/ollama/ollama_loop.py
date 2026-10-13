@@ -8,7 +8,7 @@
   python3 ollama_loop.py --once --mock          # Ollama を呼ばず偽の応答で経路と検品を試す（VM でも動く）
   python3 ollama_loop.py --once --model qwen2.5:14b
 
-ジョブは 検証/夜間/llm/pending/*.json（make_job.py が作る）。処理の流れ: running へ移す → 本文を抜く → Ollama にページ束ごとに投げる
+ジョブは 検証/自動実行/llm/pending/*.json（make_job.py が作る）。処理の流れ: running へ移す → 本文を抜く → Ollama にページ束ごとに投げる
 → 返った引用を原文と照合（実在しないものは捨てる）→ 文献/_ローカルLLM/<label>_quotes.{json,md} に書く → done へ（失敗は failed へ、理由つき）。
 依存: 標準ライブラリ＋pypdf（PDF 用。無ければ pdftotext）。Ollama は http://localhost:11434。
 """
@@ -25,7 +25,7 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from llm_common import JOBS, OUT_DIR, WS, ensure_dirs, move_job, extract_pages, verify_quote, glossary, now  # noqa: E402
 
-DEFAULT_MODEL = "qwen2.5:7b"   # Mac 16GB の既定。14B（q4・約 9GB）は他のアプリを閉じて試す
+DEFAULT_MODEL = "qwen3:8b"     # Mac M2 16GB の既定（約 5GB）。訳の質が足りなければ gemma3:12b、コードは qwen2.5-coder:7b。名前は ollama.com/library で確認
 OLLAMA = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
 NUM_CTX = 8192                 # 既定の 2048 では 4 ページが入らない
 PAGES_PER_CALL = 3
@@ -37,6 +37,8 @@ def ollama_chat(model, system, user, mock=False, json_mode=True):
         return _mock(user)
     body = {"model": model, "stream": False, "options": {"temperature": 0.1, "num_ctx": NUM_CTX},
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
+    if any(k in model.lower() for k in ("qwen3", "deepseek-r1", "think")):
+        body["think"] = False  # 思考モードを切る（抜き出し・訳には不要で遅いだけ。Ollama 0.9 以降）
     if json_mode:
         body["format"] = "json"
     req = urllib.request.Request(OLLAMA + "/api/chat", data=json.dumps(body).encode(), headers={"Content-Type": "application/json"})

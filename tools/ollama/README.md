@@ -6,7 +6,7 @@
 ## 仕組み
 
 ```
-Claude（device_bash）: make_job.py quotes --inv 95   → 検証/夜間/llm/pending/<id>.json
+Claude（device_bash）: make_job.py quotes --inv 95   → 検証/自動実行/llm/pending/<id>.json
         ↓
 Mac のターミナル: ollama_loop.py --once | --watch 120
         pending → running → 本文を抜く（pypdf / pdftotext / md）→ Ollama にページ 3 枚ずつ投げる
@@ -16,12 +16,12 @@ Mac のターミナル: ollama_loop.py --once | --watch 120
 Claude: _ローカルLLM/<label>_quotes.md を読む（本文全体ではなく、照合済みの引用だけ）→ 主張カードにするかを判断
 ```
 
-**device_bash の Linux VM から Mac の Ollama（localhost:11434）には届かない。** だからループは Mac 本体で動かす（`夜間/lab_loop.sh` と同じ置き方）。
+**device_bash の Linux VM から Mac の Ollama（localhost:11434）には届かない。** だからループは Mac 本体で動かす（`自動実行/lab_loop.sh` と同じ置き方）。
 
 ## Mac の準備（1 回）
 
 1. Ollama を入れる: https://ollama.com からインストール（または `brew install ollama`）。`ollama serve` が動いていること（アプリ起動で自動）。
-2. モデル: `ollama pull qwen2.5:7b`（16GB の既定）。余裕があれば `ollama pull qwen2.5:14b`（q4・約 9GB。他のアプリを閉じる）。日本語の訳を重視するなら `gemma3:12b` も候補。**モデル名は `ollama list` で確認**（この README の名前は 2026-06 時点の知識）。
+2. モデル: `ollama pull qwen3:8b`（M2 16GB の既定・約 5GB。思考モードはループが切る）。訳の質が足りなければ `ollama pull gemma3:12b`（約 8GB。他のアプリを閉じる）、コード生成（後日）は `qwen2.5-coder:7b`。30B 級は 16GB に入らない。**モデル名は ollama.com/library か `ollama list` で確認**（この README の名前は 2026-06 時点の知識）。
 3. PDF 用: `pip3 install --user pypdf`（無ければ `pdftotext` を探す。どちらも無いと failed になる）。
 
 ## 使い方
