@@ -12,7 +12,8 @@
 | `costs.py` | `COST_RT`（段階1の往復コスト）・`CRYPTO_COST_RT_REL`・`cost_bp_oneway`・`pnl_bp`（1 本ずらしはここで行う） |
 | `metrics.py` | `tstat`・`nw_t`・`spearman`・`max_drawdown`・`sharpe_ann`・`qlike`・`by_year_stats`・`f` |
 | `multiple.py` | `z_of`・`perm_within`・`block_perm`・`circ_shift`・`holm`・`holm_sig` |
-| `io.py` | `parse_args`・`write_result`（出力先は呼び出し元の `results/`）・`_json_default` |
+| `io.py` | `parse_args`・`write_result`（出力先は呼び出し元の `results/`）・`sanitize`・`_json_default` |
+| `runner.py` | **`Spec`・`Runner`・`default_judge`**: ポジション型の検証の固定された流れ（事前登録 → 読み込み＋health → strategy → 損益 2 本 → all/pre/post → 年単位 t・束ねた t・Sharpe・DD・露出 → 帰無（循環シフト／ブロック） → Holm → 3 分岐の判定 → spec と結果の保存）。検証スクリプトは `Spec` と `strategy(df, p, sym)` だけ書く。見本: `examples/kensho_example_tsmom_runner.py`（手書きの流れと 1e-15 で一致、15 銘柄×2 設定×B=200 で 4.9 秒） |
 
 ## 目録（CATALOG.md・catalog.json）
 
@@ -58,8 +59,14 @@ Q268（`ecb-fix-vshape/kensho_ecb_fix_q268.py` → `kensho_ecb_fix_q268_fecore.p
 - 未来の行に触れない: `pnl_bp` が 1 本ずらすので、合図側で `shift` しない。
 - Python のまま（numpy のベクトル演算が本体）。遅い 1 関数が見つかったときだけ Rust（PyO3）を検討する。
 
+## Runner を使うか、土台を直接使うか
+
+- **ポジション型**（合図 → 損益 → 年単位の統計。tsmom・MA・フィルタ・パラメータ掃引）→ `Runner`。`params` に設定を並べれば掃引し、`n_tests` と Holm を Runner が扱う。独自の帰無は `null=`、独自の判定は `judge=` に関数を渡す（規則の文は `Spec.reject_if` に）。
+- **イベント型**（時刻ラベル・発表日・月末などの平均を比べる。Q268 型）→ 土台の関数を直接使って `run(args, rng)` を書く（従来の形）。`EventRunner` は今後の候補。
+
 ## 次の候補
 
+- `EventRunner`（イベント型の流れ）。
 - 監査で見送った低優先: `block_perm` のランダムな開始位置、`GROUPS`/`SYMS` の tuple 化、`h1_to_d1` の tz 引数（夏時間）、`perm_within` の NaN グループ。
 
 - `Runner`（事前登録 → 読み込み＋health → 合図 → pnl → 期間分割 → 統計 → judge → write）を 1 つの型にする。`SPEC.params` に設定を並べれば掃引を自動で回し、`n_tests` を数える。

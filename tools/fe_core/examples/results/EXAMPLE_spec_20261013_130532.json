@@ -1,0 +1,50 @@
+{
+ "qid": "EXAMPLE",
+ "registered": "20261013_130532",
+ "B": 200,
+ "seed": 20261010,
+ "question": "日足 15 銘柄の時系列モメンタム（L=60）はコスト後に前後半とも正か（Runner の見本）",
+ "hypothesis": "pos[t]=sign(close[t]−close[t−L])。all15 の年単位平均 bp（段階1コスト後）が前後半とも >0",
+ "reject_if": "全期間の z<1 → 棄却。前後半とも bp>0 かつ Holm 後 p<0.05 → 支持。ほか → 未確定",
+ "syms": [
+  "EURUSD",
+  "GBPUSD",
+  "AUDUSD",
+  "USDJPY",
+  "USDCHF",
+  "USDCAD",
+  "EURJPY",
+  "GBPJPY",
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "UKOIL",
+  "US500",
+  "USTECH",
+  "BTCUSD"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "L": 60
+  },
+  {
+   "L": 120
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 120,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": null,
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 120,
+ "cost_rel": {},
+ "discarded": "0（見本）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "見本のため無し",
+ "settings": {}
+}

@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PKG = os.path.join(HERE, "fe_core")
 STAGES = ["共通", "読み込み", "合図", "損益", "統計", "帰無", "判定", "保存"]
 FIELDS = ["使う場面", "入力", "返り値", "禁止", "段階"]
-MODULES = ["_paths", "data", "signals", "costs", "metrics", "multiple", "io"]
+MODULES = ["_paths", "data", "signals", "costs", "metrics", "multiple", "io", "runner"]
 
 
 def parse_doc(doc):
@@ -45,9 +45,10 @@ def collect():
         src = open(path, encoding="utf-8").read(); tree = ast.parse(src)
         moddoc = (ast.get_docstring(tree) or "").splitlines()[0] if ast.get_docstring(tree) else ""
         for n in tree.body:
-            if isinstance(n, ast.FunctionDef) and n.name in exported:
+            if isinstance(n, (ast.FunctionDef, ast.ClassDef)) and n.name in exported:
                 d = parse_doc(ast.get_docstring(n))
-                funcs.append({"name": n.name, "module": mod, "signature": f"{n.name}({ast.unparse(n.args)})",
+                sig = f"{n.name}({ast.unparse(n.args)})" if isinstance(n, ast.FunctionDef) else f"class {n.name}"
+                funcs.append({"name": n.name, "module": mod, "signature": sig,
                               "line": n.lineno, **d})
             elif isinstance(n, ast.Assign) and len(n.targets) == 1 and isinstance(n.targets[0], ast.Name) and n.targets[0].id in exported:
                 val = ast.unparse(n.value)

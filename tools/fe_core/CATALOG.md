@@ -57,6 +57,28 @@
 | 返り値 | argparse.Namespace |
 | 禁止 | 事前登録した B・seed を結果を見てから変えない |
 
+### `class Spec`  — `runner.py:31`
+
+事前登録の中身。測る前に埋めて固定する（Runner が最初に results/<qid>_spec_<ts>.json へ書く）。
+
+| | |
+|---|---|
+| 使う場面 | ポジション型の検証スクリプトの冒頭。アイデア候補の行の内容をそのまま写す |
+| 入力 | qid、question、hypothesis、reject_if（棄却条件の文）、syms、kind（"D1_fromH1"|"H1_dukascopy"|"H1→D1"）、params（掃引する設定の list。1 件なら [{}]）、main_param（判定に使う設定の添字）、n_tests（判定に使う検定の本数＝holm の m）、warmup（先頭を NaN にする本数）、per_year（年率化の本数）、B、split_year、start、null_kind（"circ_shift"|"block_perm"|"none"）、null_block、cost_rel（暗号資産など rel コストにする銘柄の集合）、discarded（捨てた案の数）、knowledge_cutoff、delegation（委託の確かめ方）、settings（追加の設定） |
+| 返り値 | dataclass |
+| 禁止 | 結果を見てから hypothesis・reject_if・n_tests・main_param・B を変えない |
+
+### `class Runner`  — `runner.py:87`
+
+ポジション型の検証の固定された流れ。strategy(df, p, sym) -> pos（長さ len(df) の ±1/0。shift しない）だけを外から受ける。
+
+| | |
+|---|---|
+| 使う場面 | 日足・時間足で合図→損益→統計→帰無→判定を行う検証。params に設定を並べると掃引し、n_tests を数える |
+| 入力 | spec: Spec、strategy: 関数、judge: (res, spec)->str（省略で default_judge）、null: (rng, pos, df, p, sym)->pos（省略で spec.null_kind）、summarize_extra: (cells, spec)->dict（結果に足す記述統計） |
+| 返り値 | Runner。run(args, rng) -> (res, csvs)、execute(argv=None) で parse_args から保存まで |
+| 禁止 | Runner の中の流れを検証ごとに書き換えない。合図側で shift しない。gap 行・years_dropped・data_health の failed を見ずに「確定」と書かない |
+
 
 ## 段階: 読み込み
 
@@ -448,6 +470,17 @@ holm の補正後 p と有意フラグの両方を返す（旧 q147・q153 の�
 | 入力 | pvals、alpha: 有意水準 |
 | 返り値 | (adj, sig)。sig は bool 配列（NaN は False） |
 | 禁止 | alpha を事前登録の値以外にしない |
+
+### `default_judge(res, spec)`  — `runner.py:67`
+
+既定の 3 分岐。main_param のコスト後 bp（all15・年単位）が前後半とも >0 かつ holm 補正後 p<0.05 → 支持。全期間の z<1 → 棄却。ほか → 未確定。
+
+| | |
+|---|---|
+| 使う場面 | Runner(judge=None) のとき。独自の規則にするなら同じ署名の関数を渡し、規則の文を Spec.reject_if に書く |
+| 入力 | res: Runner が組んだ結果 dict、spec |
+| 返り値 | str（"支持: …"／"棄却: …"／"未確定: …"） |
+| 禁止 | 判定に使う数を結果を見てから変えない |
 
 
 ## 段階: 保存
