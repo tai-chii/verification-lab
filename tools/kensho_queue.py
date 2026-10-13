@@ -11,6 +11,7 @@
   python3 kensho_queue.py add "a 出口で検証" "対象" "根拠" sonnet   # 5つ目で担当を指定（省略時は既定の規則）
   python3 kensho_queue.py tag Q081=opus Q082=sonnet   # 担当をまとめて付け直す（Opus が行の文面だけ見て判断）
   python3 kensho_queue.py escalate Q081 "理由"   # Sonnet が怪しい結果を見つけたとき: Q081 を未確定で完了し、Opus の見直し行を最上位に足す
+  python3 kensho_queue.py release-stale --hours 6 [--dry]   # 「実行中（… 開始）」が 6 時間を超えた行を待ちに戻す（止まったセッションの詰まり解消。2026-10-13）
 担当（2026-10-05 追加）: 待ちの表の最後の列。既定は a・接続・見直し=opus、それ以外=sonnet。
 書き込みガード（2026-10-07 追加）: このプロセスが読み込んでから書き込むまでの間に、
 検証キュー.md / 入荷台帳.csv が他（別PC・別セッション）から更新されていたら、
@@ -154,6 +155,23 @@ elif cmd == 'tag':
         if t not in ('opus', 'sonnet'): raise SystemExit(f'担当は opus か sonnet: {a}')
         next(r for r in rows if r[1] == qid)[8:] = [t]
     save(L, w0, w1, rows, mtime0); print('担当を更新:', ' '.join(sys.argv[2:]))
+elif cmd == 'release-stale':
+    hours = 6.0; dry = '--dry' in sys.argv
+    for i, a in enumerate(sys.argv):
+        if a == '--hours' and i + 1 < len(sys.argv): hours = float(sys.argv[i + 1])
+    stale = []
+    for r in rows:
+        m = re.match(r'実行中（(\d{4}-\d{2}-\d{2} \d{2}:\d{2}) 開始）', r[6])
+        if not m: continue
+        t0 = dt.datetime.strptime(m.group(1), '%Y-%m-%d %H:%M').replace(tzinfo=ZoneInfo('Asia/Tokyo'))
+        age = (_JST - t0).total_seconds() / 3600
+        if age >= hours: stale.append((r, age))
+    if not stale: print(f'{hours} 時間を超えた実行中の行はない'); sys.exit(0)
+    for r, age in stale:
+        print(f'{"[dry] " if dry else ""}{r[1]} 実行中 {age:.1f} 時間 → 待ちに戻す: {r[3][:60]}')
+        if not dry:
+            r[6] = '待ち'; r[4] = r[4] + f'（途中: 実行中のまま {age:.0f} 時間放置されたため {NOW} に自動で待ちへ。ログは 夜間/ログ/lab を確認）'
+    if not dry: save(L, w0, w1, rows, mtime0); print(f'{len(stale)} 行を待ちに戻した')
 elif cmd == 'release':
     qid = sys.argv[2]; note = sys.argv[3] if len(sys.argv) > 3 else ''
     r = next(r for r in rows if r[1] == qid); r[6] = '待ち'
