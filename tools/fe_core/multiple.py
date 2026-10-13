@@ -5,18 +5,69 @@ import math
 import numpy as np
 
 
-def z_of(obs, null):
-    """観測値の帰無分布に対する z と百分位。
-    使う場面: 並べ替え（perm_within・block_perm・circ_shift）で作った帰無分布と観測値を比べる
-    入力: obs: 観測値、null: 帰無分布の配列（B 個。NaN は落とす）
-    返り値: (z, pct)。pct は null < obs の割合
-    禁止: B<100 の帰無分布で判定しない（経路確認のみ）
+def null_degenerate(null, min_unique=20):
+    """帰無分布が一点に潰れているか（Q145 の事故: 2.5 点と 97.5 点が同じなのに z=14 が出た）。
+    使う場面: z_of・perm_p の内部。自分で帰無を要約するときも先に呼ぶ
+    入力: null: 帰無分布、min_unique: これ未満のユニーク値なら退化とみなす
+    返り値: bool
+    禁止: 退化した帰無の z を判定に使わない
     段階: 帰無
     """
     null = np.asarray(null, float); null = null[np.isfinite(null)]
-    if len(null) < 3 or null.std(ddof=1) == 0 or not np.isfinite(obs):
+    if len(null) < 3:
+        return True
+    q = np.percentile(null, [2.5, 97.5])
+    return bool(q[0] == q[1] or len(np.unique(null)) < min(min_unique, len(null)))
+
+
+def z_of(obs, null):
+    """観測値の帰無分布に対する z と百分位。帰無が退化していれば (nan, nan)。
+    使う場面: 並べ替え（perm_within・block_perm・circ_shift）で作った帰無分布と観測値を比べる
+    入力: obs: 観測値、null: 帰無分布の配列（B 個。NaN は落とす）
+    返り値: (z, pct)。pct は null < obs の割合。帰無の 2.5 点と 97.5 点が同じなら退化として (nan, nan)
+    禁止: B<100 の帰無分布で判定しない（経路確認のみ）。z が桁外れ（|z|>20）なら null_summary で分位点を見る
+    段階: 帰無
+    """
+    null = np.asarray(null, float); null = null[np.isfinite(null)]
+    if len(null) < 3 or null.std(ddof=1) == 0 or not np.isfinite(obs) or null_degenerate(null):
         return float("nan"), float("nan")
     return float((obs - null.mean()) / null.std(ddof=1)), float((null < obs).mean())
+
+
+def perm_p(obs, null, side="greater"):
+    """並べ替え検定の p 値 (1 + #{null が obs 以上}) / (B + 1)（改善判定.md の式）。
+    使う場面: holm に渡す p を作るとき。1−pct（0 になりうる）や正規近似で p を作らない
+    入力: obs、null、side: "greater"（obs が大きいほど良い）/"less"/"two"
+    返り値: float（退化なら nan）
+    禁止: side を結果を見てから変えない
+    段階: 帰無
+    """
+    null = np.asarray(null, float); null = null[np.isfinite(null)]
+    if not np.isfinite(obs) or null_degenerate(null):
+        return float("nan")
+    B = len(null)
+    if side == "greater":
+        k = int((null >= obs).sum())
+    elif side == "less":
+        k = int((null <= obs).sum())
+    else:
+        c = null.mean(); k = int((np.abs(null - c) >= abs(obs - c)).sum())
+    return float((1 + k) / (B + 1))
+
+
+def null_summary(obs, null):
+    """帰無分布の要約（B・分位点・z・pct・perm_p・退化フラグ）を dict で返す。
+    使う場面: 結果 JSON に帰無の形を残すとき（z の桁外れの点検に使う）
+    入力: obs、null
+    返り値: {"B","q025","q500","q975","z","pct","p_perm","degenerate"}
+    禁止: —
+    段階: 帰無
+    """
+    n = np.asarray(null, float); n = n[np.isfinite(n)]
+    z, pct = z_of(obs, n)
+    q = np.percentile(n, [2.5, 50, 97.5]) if len(n) else [np.nan] * 3
+    return {"B": int(len(n)), "q025": float(q[0]), "q500": float(q[1]), "q975": float(q[2]),
+            "z": z, "pct": pct, "p_perm": perm_p(obs, n), "degenerate": null_degenerate(n)}
 
 
 def perm_within(rng, x, groups):
@@ -51,13 +102,13 @@ def block_perm(rng, x, block):
 def circ_shift(rng, x, min_shift=1):
     """循環シフト（合図とリターンの対応を壊し、合図の自己相関は保つ）。
     使う場面: 合図列の帰無。合図の持続性が結果に効くとき
-    入力: rng、x: 長さ n、min_shift: 最小のずらし
-    返り値: 長さ n
+    入力: rng、x: 長さ n、min_shift: 最小のずらし（持続する合図では保有期間の数倍にする）
+    返り値: 長さ n。k は [min_shift, n−min_shift] の一様（旧雛形は上限が 1 つ足りなかった。レビュー 2026-10-13）
     禁止: 短い系列（n<10×min_shift）で使わない
     段階: 帰無
     """
     x = np.asarray(x, float); n = len(x)
-    k = int(rng.integers(min_shift, max(min_shift + 1, n - min_shift)))
+    k = int(rng.integers(min_shift, max(min_shift + 1, n - min_shift + 1)))
     return np.roll(x, k)
 
 

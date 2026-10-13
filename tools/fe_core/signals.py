@@ -38,7 +38,7 @@ def atr(high, low, close, n=20):
     使う場面: 損切り幅・ボラ調整・フィルタの閾値
     入力: high/low/close: 長さ n の配列、n: 窓
     返り値: 長さ n（先頭 n−1 本は NaN）。価格単位
-    禁止: 当日の ATR で当日の建玉サイズを決めない（前日の値を使う）
+    禁止: 返り値を shift しない。pos[t] に ATR[t] を使ってよい（pnl_bp が 1 本ずらす）
     段階: 合図
     """
     h = np.asarray(high, float); l = np.asarray(low, float); c = np.asarray(close, float)
@@ -52,7 +52,7 @@ def rsi(close, n):
     使う場面: 逆張り・過熱の閾値
     入力: close: 長さ n、n: 期間
     返り値: 長さ n の 0〜100（先頭は NaN）
-    禁止: 同じ足の RSI で同じ足に建てない
+    禁止: 返り値を shift しない。pos[t] に RSI[t] を使ってよい（pnl_bp が 1 本ずらす）。下落が無い区間は NaN になる（100 ではない）
     段階: 合図
     """
     c = pd.Series(np.asarray(close, float))

@@ -2,7 +2,7 @@
 """fe_core — 金融工学の検証スクリプトの共通の土台（2026-10-13 作成）。
 
 雛形（kensho_*_q089〜q286 の「共通の土台ここまで」より上）を切り出したもの。数値の挙動は変えていない
-（例外: sharpe_ann は isfinite 版に統一、holm は NaN を安全に扱う）。
+（例外は README の「雛形との違い」。2026-10-13 に Opus の監査を受けて 0.2.0 で固定）。
 
 使い方（検証スクリプトの冒頭）:
     import os, sys
@@ -17,16 +17,18 @@ from ._paths import WS, _p, DATA_DIR, FX8, FX6, TREND7, SYMS, CRYPTO, SPLIT_YEAR
 from .costs import COST_RT, CRYPTO_COST_RT_REL, cost_bp_oneway, pnl_bp
 from .data import (_read, load_d1, load_csv, load_h1, h1_to_d1, _smoke_ohlc, exists_sym, syms_available,
                    check_gaps, health)
-from .metrics import tstat, nw_t, spearman, max_drawdown, sharpe_ann, qlike, by_year_stats, f
-from .multiple import z_of, perm_within, block_perm, circ_shift, holm, holm_sig
-from .io import parse_args, write_result, _json_default
+from .signals import tsmom_pos, sma_pos, atr, rsi
+from .metrics import tstat, nw_t, spearman, max_drawdown, sharpe_ann, sharpe_ann_n, qlike, by_year_stats, cluster_t, f, fmt
+from .multiple import z_of, perm_p, null_summary, null_degenerate, perm_within, block_perm, circ_shift, holm, holm_sig
+from .io import parse_args, write_result, sanitize, _json_default
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"  # 2026-10-13 Opus レビュー反映・固定
 __all__ = [
     "WS", "_p", "DATA_DIR", "FX8", "FX6", "TREND7", "SYMS", "CRYPTO", "SPLIT_YEAR", "SEED", "GROUPS", "script_dir",
     "COST_RT", "CRYPTO_COST_RT_REL", "cost_bp_oneway", "pnl_bp",
     "_read", "load_d1", "load_csv", "load_h1", "h1_to_d1", "_smoke_ohlc", "exists_sym", "syms_available", "check_gaps", "health",
-    "tstat", "nw_t", "spearman", "max_drawdown", "sharpe_ann", "qlike", "by_year_stats", "f",
-    "z_of", "perm_within", "block_perm", "circ_shift", "holm", "holm_sig",
-    "parse_args", "write_result", "_json_default",
+    "tsmom_pos", "sma_pos", "atr", "rsi",
+    "tstat", "nw_t", "spearman", "max_drawdown", "sharpe_ann", "sharpe_ann_n", "qlike", "by_year_stats", "cluster_t", "f", "fmt",
+    "z_of", "perm_p", "null_summary", "null_degenerate", "perm_within", "block_perm", "circ_shift", "holm", "holm_sig",
+    "parse_args", "write_result", "sanitize", "_json_default",
 ]

@@ -1,4 +1,4 @@
-# fe_core — 検証スクリプトの共通の土台（2026-10-13 作成）
+# fe_core — 検証スクリプトの共通の土台（2026-10-13 作成・同日 Opus 監査を経て 0.2.0 で固定）
 
 `financial-engineering/*/kensho_*_q089〜q286.py` の 91 本が同じ雛形（「共通の土台ここまで」より上の約 300 行）をコピーしていた
 （調査: `tools/重複関数調査_20261013.md`、道具: `tools/dup_scan.py`・`tools/dup_diff.py`）。その土台をここに切り出した。
@@ -32,6 +32,11 @@ from fe_core import *   # 雛形と同じ名前がそのまま使える
 ```
 以下は雛形の「共通の土台ここまで」より下（QID・定義・run・main）だけを書く。`/lab-plan` の雛形もこの形に替える。
 
+## 固定（0.2.0）
+
+2026-10-13 に作者とは別の Opus がコードを読んで手計算・実行で監査し（`REVIEW_20261013.md`）、必須の指摘をすべて反映した上で **固定**した。
+固定後に土台を変えるときは、(1) 変更理由を REVIEW か改善ログに書く、(2) `kensho_ecb_fix_q268_fecore.py` と旧 `kensho_ecb_fix_q268.py` を同 seed で走らせて JSON・CSV が一致することを確かめる、(3) `gen_fe_core_catalog.py` を回す。
+
 ## 雛形との違い（意図した変更のみ）
 
 - `sharpe_ann`: `x[np.isfinite(x)]` あり版に統一（20 本は無し版だった。NaN が 1 つで全体が NaN になるため）。
@@ -39,6 +44,7 @@ from fe_core import *   # 雛形と同じ名前がそのまま使える
 - `write_result(..., out_dir=None)`: 既定は `<スクリプトのフォルダ>/results`（雛形の `OUT` と同じ）。
 - `parse_args(..., default_seed=SEED, argv=None)`: seed の既定を渡せる。
 - 追加: `check_gaps(df, bar)`・`health(syms, kind)`。結果 JSON の `data_health` に入れる想定（失敗パターン集 2026-09-30・Q108 の再発防止）。
+- 0.2.0（監査の反映）: `z_of` は退化した帰無で (nan, nan)。`perm_p`・`null_summary`・`null_degenerate`・`cluster_t`・`sharpe_ann_n`・`sanitize`・`fmt` を追加。load_* に `dt_prev_h`・`gap` 列、`h1_to_d1` に `close_time` 列。`by_year_stats(min_rows=20)`。`pnl_bp` は pos の NaN を 0 にして警告、スカラーの cost も受ける。`_read` は安定ソート＋`attrs["n_dup"]`。`circ_shift` の上限を 1 増やした。`nw_t` は定数で NaN。`max_drawdown` は NaN を 0 扱い。`parse_args` の B の既定 500。`write_result` は上書きせず連番、`here=` を受ける。詳細は `REVIEW_20261013.md`。
 
 ## 照合（移植が正しいことの証拠）
 
@@ -53,6 +59,8 @@ Q268（`ecb-fix-vshape/kensho_ecb_fix_q268.py` → `kensho_ecb_fix_q268_fecore.p
 - Python のまま（numpy のベクトル演算が本体）。遅い 1 関数が見つかったときだけ Rust（PyO3）を検討する。
 
 ## 次の候補
+
+- 監査で見送った低優先: `block_perm` のランダムな開始位置、`GROUPS`/`SYMS` の tuple 化、`h1_to_d1` の tz 引数（夏時間）、`perm_within` の NaN グループ。
 
 - `Runner`（事前登録 → 読み込み＋health → 合図 → pnl → 期間分割 → 統計 → judge → write）を 1 つの型にする。`SPEC.params` に設定を並べれば掃引を自動で回し、`n_tests` を数える。
 - `walk_forward`・`events`（イベント研究）の型を揃える。

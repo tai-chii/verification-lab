@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """コスト（段階1の保守値）と損益。雛形 91 本・COST_RT 116 本で一致していた実装。"""
+import warnings
+
 import numpy as np
 
 # 往復コスト（価格単位・段階1の保守値。Q136〜Q190 と同じ表）
@@ -7,6 +9,9 @@ COST_RT = {"EURUSD": .0002, "GBPUSD": .0002, "AUDUSD": .0002, "USDCHF": .0002, "
            "USDJPY": .02, "EURJPY": .02, "GBPJPY": .02, "XAUUSD": 0.6,
            "XAGUSD": 0.04, "WTI": 0.06, "UKOIL": 0.06, "US500": 1.0, "USTECH": 3.0, "BTCUSD": 40.0}
 CRYPTO_COST_RT_REL = 30e-4  # 暗号資産: 往復 30bp の仮置き（Q152 と同じ）
+# BTCUSD は COST_RT（40 USD・TREND7 の一員として）と CRYPTO（相対 30bp）の両方に入る。決まり: TREND7/SYMS として回すときは COST_RT、
+# CRYPTO 群として他の暗号資産と並べるときは rel=CRYPTO_COST_RT_REL。どちらを使ったかを結果 JSON の settings に書く（レビュー 2026-10-13 M5）。
+# 価格単位の固定コストは価格水準で bp が変わる（BTC 40USD は価格 300 で片道 667bp、60000 で 3.3bp）。前後半でコスト水準が違うことを解釈に書く。
 
 
 def cost_bp_oneway(sym, close, rel=None):
@@ -27,10 +32,16 @@ def pnl_bp(pos, close, cost_oneway_bp):
     使う場面: 合図を作った直後。コスト0（cost を 0 列にする）と COST_RT 版の2本を必ず並べる
     入力: pos: 長さ n の ±1/0（t の終値で決めた値をそのまま）、close: 長さ n、cost_oneway_bp: 長さ n [bp]（cost_bp_oneway の返り値）
     返り値: 長さ n の損益 [bp]。pnl[t+1] = pos[t]*ret[t+1]*1e4 − |pos[t]−pos[t−1]|*片道[bp]。先頭は 0
-    禁止: pos 側で shift しない（ここで 1 本ずらすので二重にずれる）。close に未来の値を混ぜない
+    禁止: pos 側で shift しない（ここで 1 本ずらすので二重にずれる）。close に未来の値を混ぜない。「保有なし」を NaN で表さない（0 にする。NaN は 0 に置き換えて警告する）
     段階: 損益
     """
     c = np.asarray(close, float); pos = np.asarray(pos, float)
+    if np.isnan(pos).any():
+        warnings.warn(f"pnl_bp: pos に NaN が {int(np.isnan(pos).sum())} 本。0（保有なし）として扱う")
+        pos = np.nan_to_num(pos, nan=0.0)
+    cost_oneway_bp = np.asarray(cost_oneway_bp, float)
+    if cost_oneway_bp.ndim == 0:
+        cost_oneway_bp = np.full(len(c), float(cost_oneway_bp))
     ret = np.zeros(len(c)); ret[1:] = c[1:] / c[:-1] - 1
     held = np.r_[0.0, pos[:-1]]
     prev = np.r_[0.0, held[:-1]]
