@@ -1,0 +1,259 @@
+{
+ "qid": "Q273",
+ "smoke": false,
+ "generated": "20261014_005544",
+ "question": "ジャンプ日（|ret|>2.5σ60）の翌日・翌 5 日は継続か反転か（15 銘柄）",
+ "settings": {
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "start": "2008-01-01",
+  "sigma_window": 60,
+  "k": 2.5,
+  "h5": 5,
+  "split_year": 2017,
+  "B": 1000,
+  "null": "ジャンプ日ラベルを年内で並べ替え（年×銘柄・数を保つ）"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "y1": {
+     "n_cells": 260,
+     "n_years": 19,
+     "n_jump": 1825,
+     "mean_bp": -4.772,
+     "t": -0.9011,
+     "z": -1.172,
+     "pct": 0.118,
+     "ctrl_mean_bp": -0.6292,
+     "ctrl_t": -0.9993
+    },
+    "y5": {
+     "n_cells": 260,
+     "n_years": 19,
+     "n_jump": 1395,
+     "mean_bp": 23.1252,
+     "t": 1.4998,
+     "z": 2.6355,
+     "pct": 0.997,
+     "ctrl_mean_bp": 0.8249,
+     "ctrl_t": 0.4262
+    }
+   },
+   "pre": {
+    "y1": {
+     "n_cells": 110,
+     "n_years": 9,
+     "n_jump": 747,
+     "mean_bp": 5.9539,
+     "t": 0.9848,
+     "z": 1.4982,
+     "pct": 0.939,
+     "ctrl_mean_bp": -1.1924,
+     "ctrl_t": -1.7151
+    },
+    "y5": {
+     "n_cells": 110,
+     "n_years": 9,
+     "n_jump": 584,
+     "mean_bp": 1.7892,
+     "t": 0.0685,
+     "z": 0.1303,
+     "pct": 0.544,
+     "ctrl_mean_bp": 0.5642,
+     "ctrl_t": 0.4813
+    }
+   },
+   "post": {
+    "y1": {
+     "n_cells": 150,
+     "n_years": 10,
+     "n_jump": 1078,
+     "mean_bp": -14.4253,
+     "t": -1.9369,
+     "z": -2.784,
+     "pct": 0.005,
+     "ctrl_mean_bp": -0.1224,
+     "ctrl_t": -0.1189
+    },
+    "y5": {
+     "n_cells": 150,
+     "n_years": 10,
+     "n_jump": 811,
+     "mean_bp": 42.3275,
+     "t": 2.5707,
+     "z": 3.1565,
+     "pct": 1.0,
+     "ctrl_mean_bp": 1.0596,
+     "ctrl_t": 0.2925
+    }
+   }
+  },
+  "fx8": {
+   "all": {
+    "y1": {
+     "n_cells": 152,
+     "n_years": 19,
+     "n_jump": 942,
+     "mean_bp": 0.5411,
+     "t": 0.1384,
+     "z": 0.4638,
+     "pct": 0.702,
+     "ctrl_mean_bp": -0.6621,
+     "ctrl_t": -1.403
+    },
+    "y5": {
+     "n_cells": 152,
+     "n_years": 19,
+     "n_jump": 753,
+     "mean_bp": 2.1519,
+     "t": 0.193,
+     "z": 0.6528,
+     "pct": 0.732,
+     "ctrl_mean_bp": -1.8446,
+     "ctrl_t": -1.8694
+    }
+   },
+   "pre": {
+    "y1": {
+     "n_cells": 72,
+     "n_years": 9,
+     "n_jump": 444,
+     "mean_bp": -2.8843,
+     "t": -0.4065,
+     "z": -0.4323,
+     "pct": 0.332,
+     "ctrl_mean_bp": -1.066,
+     "ctrl_t": -1.4679
+    },
+    "y5": {
+     "n_cells": 72,
+     "n_years": 9,
+     "n_jump": 352,
+     "mean_bp": -7.0761,
+     "t": -0.3573,
+     "z": -0.6621,
+     "pct": 0.255,
+     "ctrl_mean_bp": -0.4656,
+     "ctrl_t": -0.2927
+    }
+   },
+   "post": {
+    "y1": {
+     "n_cells": 80,
+     "n_years": 10,
+     "n_jump": 498,
+     "mean_bp": 3.6239,
+     "t": 0.9182,
+     "z": 1.6411,
+     "pct": 0.95,
+     "ctrl_mean_bp": -0.2985,
+     "ctrl_t": -0.476
+    },
+    "y5": {
+     "n_cells": 80,
+     "n_years": 10,
+     "n_jump": 401,
+     "mean_bp": 10.4571,
+     "t": 0.8764,
+     "z": 2.1364,
+     "pct": 0.982,
+     "ctrl_mean_bp": -3.0857,
+     "ctrl_t": -2.692
+    }
+   }
+  },
+  "trend7": {
+   "all": {
+    "y1": {
+     "n_cells": 108,
+     "n_years": 19,
+     "n_jump": 883,
+     "mean_bp": -3.1618,
+     "t": -0.2514,
+     "z": -0.3159,
+     "pct": 0.367,
+     "ctrl_mean_bp": -0.3923,
+     "ctrl_t": -0.2973
+    },
+    "y5": {
+     "n_cells": 108,
+     "n_years": 19,
+     "n_jump": 642,
+     "mean_bp": 66.7242,
+     "t": 1.8886,
+     "z": 2.9348,
+     "pct": 0.998,
+     "ctrl_mean_bp": 5.759,
+     "ctrl_t": 1.3098
+    }
+   },
+   "pre": {
+    "y1": {
+     "n_cells": 38,
+     "n_years": 9,
+     "n_jump": 303,
+     "mean_bp": 32.2728,
+     "t": 3.0696,
+     "z": 2.4046,
+     "pct": 0.994,
+     "ctrl_mean_bp": -0.9159,
+     "ctrl_t": -0.5571
+    },
+    "y5": {
+     "n_cells": 38,
+     "n_years": 9,
+     "n_jump": 232,
+     "mean_bp": 53.3612,
+     "t": 0.7613,
+     "z": 1.3982,
+     "pct": 0.92,
+     "ctrl_mean_bp": 5.7167,
+     "ctrl_t": 1.2363
+    }
+   },
+   "post": {
+    "y1": {
+     "n_cells": 70,
+     "n_years": 10,
+     "n_jump": 580,
+     "mean_bp": -35.0529,
+     "t": -2.118,
+     "z": -3.2916,
+     "pct": 0.0,
+     "ctrl_mean_bp": 0.0789,
+     "ctrl_t": 0.0376
+    },
+    "y5": {
+     "n_cells": 70,
+     "n_years": 10,
+     "n_jump": 410,
+     "mean_bp": 78.7509,
+     "t": 2.8212,
+     "z": 2.7422,
+     "pct": 0.999,
+     "ctrl_mean_bp": 5.7971,
+     "ctrl_t": 0.7722
+    }
+   }
+  }
+ },
+ "machine_verdict": "未確定: 全期間 |z|≥2 だが前後半で |z|≥2 かつ |t|≥2 が揃わない",
+ "multiple_comparisons": "判定は all15 の y1・y5 の全期間 2 本。前後半・群別・対照は記述。"
+}
