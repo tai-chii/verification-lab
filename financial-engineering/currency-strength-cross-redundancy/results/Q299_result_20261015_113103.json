@@ -1,0 +1,320 @@
+{
+ "qid": "Q299",
+ "smoke": false,
+ "generated": "20261015_113103",
+ "question": "通貨強度（対ドル 6 本の平均）はクロス 2 本を足した最小二乗版と相関 0.99 以上か（クロスは冗長か）",
+ "settings": {
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY"
+  ],
+  "start": "2008-01-01",
+  "split_year": 2017,
+  "L_hours": [
+   24,
+   120,
+   480
+  ],
+  "vol_win": 480,
+  "curs": [
+   "USD",
+   "EUR",
+   "GBP",
+   "AUD",
+   "JPY",
+   "CHF",
+   "CAD"
+  ],
+  "n_rows_joined": 112867,
+  "null": "なし（閾値判定）",
+  "n_tests": 0,
+  "verdict_basis": "生の版・7 通貨 × 3 L × pre/post の 42 セルで corr(a,b) ≥ 0.99 → 支持、< 0.95 のセルあり → 棄却"
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {},
+  "n_dup": {},
+  "n_gap_syms": 0
+ },
+ "summary": {
+  "norm0_L24_all": {
+   "min_corr_a_b": 0.9998,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.7051,
+   "mean_corr_c_b": 0.8571,
+   "max_rmse_ratio_a_b": 0.0181
+  },
+  "norm0_L24_post": {
+   "min_corr_a_b": 0.9999,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.5939,
+   "mean_corr_c_b": 0.8276,
+   "max_rmse_ratio_a_b": 0.0135
+  },
+  "norm0_L24_pre": {
+   "min_corr_a_b": 0.9998,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.7528,
+   "mean_corr_c_b": 0.8679,
+   "max_rmse_ratio_a_b": 0.0196
+  },
+  "norm0_L120_all": {
+   "min_corr_a_b": 1.0,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.6985,
+   "mean_corr_c_b": 0.8555,
+   "max_rmse_ratio_a_b": 0.0083
+  },
+  "norm0_L120_post": {
+   "min_corr_a_b": 1.0,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.5583,
+   "mean_corr_c_b": 0.8216,
+   "max_rmse_ratio_a_b": 0.0071
+  },
+  "norm0_L120_pre": {
+   "min_corr_a_b": 1.0,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.7548,
+   "mean_corr_c_b": 0.8676,
+   "max_rmse_ratio_a_b": 0.0087
+  },
+  "norm0_L480_all": {
+   "min_corr_a_b": 1.0,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.6605,
+   "mean_corr_c_b": 0.8501,
+   "max_rmse_ratio_a_b": 0.0042
+  },
+  "norm0_L480_post": {
+   "min_corr_a_b": 1.0,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.584,
+   "mean_corr_c_b": 0.8165,
+   "max_rmse_ratio_a_b": 0.0038
+  },
+  "norm0_L480_pre": {
+   "min_corr_a_b": 1.0,
+   "mean_corr_a_b": 1.0,
+   "min_corr_c_b": 0.6947,
+   "mean_corr_c_b": 0.8616,
+   "max_rmse_ratio_a_b": 0.0043
+  },
+  "norm1_L24_all": {
+   "min_corr_a_b": 0.9847,
+   "mean_corr_a_b": 0.9943,
+   "min_corr_c_b": 0.7639,
+   "mean_corr_c_b": 0.8534,
+   "max_rmse_ratio_a_b": 0.2003
+  },
+  "norm1_L24_post": {
+   "min_corr_a_b": 0.9864,
+   "mean_corr_a_b": 0.9946,
+   "min_corr_c_b": 0.7498,
+   "mean_corr_c_b": 0.8462,
+   "max_rmse_ratio_a_b": 0.1803
+  },
+  "norm1_L24_pre": {
+   "min_corr_a_b": 0.9816,
+   "mean_corr_a_b": 0.9944,
+   "min_corr_c_b": 0.7792,
+   "mean_corr_c_b": 0.8608,
+   "max_rmse_ratio_a_b": 0.2229
+  },
+  "norm1_L120_all": {
+   "min_corr_a_b": 0.985,
+   "mean_corr_a_b": 0.9943,
+   "min_corr_c_b": 0.7563,
+   "mean_corr_c_b": 0.8509,
+   "max_rmse_ratio_a_b": 0.2037
+  },
+  "norm1_L120_post": {
+   "min_corr_a_b": 0.9866,
+   "mean_corr_a_b": 0.9945,
+   "min_corr_c_b": 0.7411,
+   "mean_corr_c_b": 0.8425,
+   "max_rmse_ratio_a_b": 0.1877
+  },
+  "norm1_L120_pre": {
+   "min_corr_a_b": 0.9827,
+   "mean_corr_a_b": 0.9945,
+   "min_corr_c_b": 0.7724,
+   "mean_corr_c_b": 0.8593,
+   "max_rmse_ratio_a_b": 0.2197
+  },
+  "norm1_L480_all": {
+   "min_corr_a_b": 0.9839,
+   "mean_corr_a_b": 0.9944,
+   "min_corr_c_b": 0.7451,
+   "mean_corr_c_b": 0.8469,
+   "max_rmse_ratio_a_b": 0.2106
+  },
+  "norm1_L480_post": {
+   "min_corr_a_b": 0.9852,
+   "mean_corr_a_b": 0.9944,
+   "min_corr_c_b": 0.7354,
+   "mean_corr_c_b": 0.8384,
+   "max_rmse_ratio_a_b": 0.1927
+  },
+  "norm1_L480_pre": {
+   "min_corr_a_b": 0.9831,
+   "mean_corr_a_b": 0.9947,
+   "min_corr_c_b": 0.7309,
+   "mean_corr_c_b": 0.8535,
+   "max_rmse_ratio_a_b": 0.2233
+  }
+ },
+ "triangular_residual": [
+  {
+   "cross": "EURJPY",
+   "L": 24,
+   "period": "all",
+   "std_resid_over_std_cross": 0.021773205150444352,
+   "corr_cross_synth": 0.9997629372464613
+  },
+  {
+   "cross": "EURJPY",
+   "L": 24,
+   "period": "pre",
+   "std_resid_over_std_cross": 0.022826725732534327,
+   "corr_cross_synth": 0.9997394364349916
+  },
+  {
+   "cross": "EURJPY",
+   "L": 24,
+   "period": "post",
+   "std_resid_over_std_cross": 0.018710585596899528,
+   "corr_cross_synth": 0.9998249706204756
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 24,
+   "period": "all",
+   "std_resid_over_std_cross": 0.013418713263821071,
+   "corr_cross_synth": 0.9999099662334259
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 24,
+   "period": "pre",
+   "std_resid_over_std_cross": 0.011513749505093828,
+   "corr_cross_synth": 0.9999337195921977
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 24,
+   "period": "post",
+   "std_resid_over_std_cross": 0.01700109172988388,
+   "corr_cross_synth": 0.9998554732195493
+  },
+  {
+   "cross": "EURJPY",
+   "L": 120,
+   "period": "all",
+   "std_resid_over_std_cross": 0.010180233129483515,
+   "corr_cross_synth": 0.9999481844796034
+  },
+  {
+   "cross": "EURJPY",
+   "L": 120,
+   "period": "pre",
+   "std_resid_over_std_cross": 0.010318759107814554,
+   "corr_cross_synth": 0.999946767706605
+  },
+  {
+   "cross": "EURJPY",
+   "L": 120,
+   "period": "post",
+   "std_resid_over_std_cross": 0.009831887424753752,
+   "corr_cross_synth": 0.9999516659518557
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 120,
+   "period": "all",
+   "std_resid_over_std_cross": 0.006094687542164276,
+   "corr_cross_synth": 0.9999814274722283
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 120,
+   "period": "pre",
+   "std_resid_over_std_cross": 0.005107945095990857,
+   "corr_cross_synth": 0.9999869543694285
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 120,
+   "period": "post",
+   "std_resid_over_std_cross": 0.007975135950417133,
+   "corr_cross_synth": 0.9999682004062014
+  },
+  {
+   "cross": "EURJPY",
+   "L": 480,
+   "period": "all",
+   "std_resid_over_std_cross": 0.005088367930296066,
+   "corr_cross_synth": 0.9999870583954213
+  },
+  {
+   "cross": "EURJPY",
+   "L": 480,
+   "period": "pre",
+   "std_resid_over_std_cross": 0.005019872371230497,
+   "corr_cross_synth": 0.999987400963814
+  },
+  {
+   "cross": "EURJPY",
+   "L": 480,
+   "period": "post",
+   "std_resid_over_std_cross": 0.005386217694682359,
+   "corr_cross_synth": 0.999985531615476
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 480,
+   "period": "all",
+   "std_resid_over_std_cross": 0.0031650522225888634,
+   "corr_cross_synth": 0.9999949941829848
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 480,
+   "period": "pre",
+   "std_resid_over_std_cross": 0.0026302322661094072,
+   "corr_cross_synth": 0.9999965428660894
+  },
+  {
+   "cross": "GBPJPY",
+   "L": 480,
+   "period": "post",
+   "std_resid_over_std_cross": 0.004238068963955893,
+   "corr_cross_synth": 0.9999910260685942
+  }
+ ],
+ "judge_cells": {
+  "n": 42,
+  "n_finite": 42,
+  "min_corr_a_b": 0.9998
+ },
+ "machine_verdict": "支持: 生の版の corr(平均6本, 最小二乗8本) の最小値 0.9998 ≥ 0.99（42 セル全部）→ クロスは冗長",
+ "multiple_comparisons": "閾値判定のみ（検定なし）。42 セルの最小値で判定。"
+}
