@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 144 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 147 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -35,6 +35,9 @@
 | [crypto-hour-of-day](./crypto-hour-of-day) | Q242 暗号資産 11 通貨の UTC 時刻効果は、Holm 補正後に前後半で同符号で残るか | … |
 | [crypto-variance-ratio-trend](./crypto-variance-ratio-trend) | Q264 暗号資産11通貨の H1 の分散比は 2022 年以降に 1 へ近づいたか（適応的市場仮説の移植） | … |
 | [crypto-weekend-effect](./crypto-weekend-effect) | Q212 暗号資産の週末（土日）はリターン・ボラ・順張りの損益が平日と違うか（11 通貨 H1） | H1a 弱い確定（効果はほぼ消滅）／H1b 棄却 |
+| [currency-strength-cross-redundancy](./currency-strength-cross-redundancy) | Q299 通貨強度（対ドル 6 本の L 本リターン平均・7 通貨）は、クロス 2 本（EURJPY・GBPJPY）を足した最小二乗版と H1 の L=24/120/480 時間で相関 0.99 以上か（クロスは冗長か） | — |
+| [currency-strength-session-entry](./currency-strength-session-entry) | Q301 強度スプレッドの合図のエントリーをロンドン・NY 重複帯（NY 8〜12 時・8:30 ET の足の確定後）に限ると、1 トレードのコスト後期待値は即時エントリーとランダム時間窓の帰無を上回るか（全体／前半 3 時間・H1 執行・24 時間保有） | — |
+| [currency-strength-spread-quintile](./currency-strength-spread-quintile) | Q300 7 通貨の強度ランキングの最強−最弱スプレッド（4H・L=30 本・ボラ正規化）の上位五分位は、翌 6 本（1 日）の合成リターンがコスト後に継続か反転か | — |
 | [d1-fromh1-gap-check](./d1-fromh1-gap-check) | Q288: D1_fromH1 の WTI・UKOIL・US500・USTECH にある 2011-09〜2012-01 の空白は取得失敗か提供元の欠落か | H1 データの取得失敗が原因。提供元（Dukascopy D1）は欠落していない |
 | [daily-cutoff-hour-dependence](./daily-cutoff-hour-dependence) | Q211 日足の区切り時刻（0・8・13・17・21 UTC）で順張りの純損益はどれだけ変わるか（帰無: 区切りをランダムに選ぶ） | 棄却 |
 | [data-source-signal-agreement](./data-source-signal-agreement) | Q137 データ提供元の違い（Dukascopy vs Yahoo）で順張りの合図は何割一致し、純損益はどれだけ変わるか | 「データ源は規則の定義の一部（Korzan と同じ）」→ 確定 |
