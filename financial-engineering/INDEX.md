@@ -34,7 +34,7 @@
 | [crypto-h1-tsmom](./crypto-h1-tsmom) | Q290 暗号資産 11 通貨 H1 の 24 本 TSMOM（L=24）はコスト後に前後半とも正か（Neely2003-3 の暗号 H1 移植） | 棄却 |
 | [crypto-hour-of-day](./crypto-hour-of-day) | Q242 暗号資産 11 通貨の UTC 時刻効果は、Holm 補正後に前後半で同符号で残るか | — |
 | [crypto-ma200-drawdown](./crypto-ma200-drawdown) | Q302 暗号資産 11 通貨日足の 200 日線（終値>SMA200 で買い・下で現金）の最大下落は同じ露出の循環シフトより浅いか（Q097/Q098 の暗号資産への移植） | 棄却 |
-| [crypto-rsi2-dip](./crypto-rsi2-dip) | Q304 暗号資産 11 通貨日足の RSI2 押し目買い（RSI2<10 かつ終値>SMA200 で買い・終値>SMA5 で手仕舞い）はコスト後に前後半とも正か | — |
+| [crypto-rsi2-dip](./crypto-rsi2-dip) | Q304 暗号資産 11 通貨日足の RSI2 押し目買い（RSI2<10 かつ終値>SMA200 で買い・終値>SMA5 で手仕舞い）はコスト後に前後半とも正か | 棄却 |
 | [crypto-variance-ratio-trend](./crypto-variance-ratio-trend) | Q264 暗号資産11通貨の H1 の分散比は 2022 年以降に 1 へ近づいたか（適応的市場仮説の移植） | — |
 | [crypto-weekend-effect](./crypto-weekend-effect) | Q212 暗号資産の週末（土日）はリターン・ボラ・順張りの損益が平日と違うか（11 通貨 H1） | H1a 弱い確定（効果はほぼ消滅）／H1b 棄却 |
 | [currency-strength-cross-redundancy](./currency-strength-cross-redundancy) | Q299 通貨強度（対ドル 6 本の L 本リターン平均・7 通貨）は、クロス 2 本（EURJPY・GBPJPY）を足した最小二乗版と H1 の L=24/120/480 時間で相関 0.99 以上か（クロスは冗長か） | 確定（支持: クロスは冗長） |

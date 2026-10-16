@@ -1,0 +1,57 @@
+{
+ "qid": "Q304",
+ "registered": "20261016_152414",
+ "B": 500,
+ "seed": 20261010,
+ "question": "暗号資産 11 通貨日足の RSI2 押し目買い（RSI2<10 かつ終値>SMA200 で買い・終値>SMA5 で手仕舞い）はコスト後に前後半とも正か",
+ "hypothesis": "Connors 型: t の終値で RSI(2)<lo かつ close>SMA200 なら翌日から買い、保有中に close>SMA5 となった日の終値で手仕舞い（空売りなし）。11 通貨の年単位の日平均純損益 [bp]（往復 30bp）が前半（〜2021）・後半（2022〜）とも >0 で、合図の循環シフト帰無より高い",
+ "reject_if": "既定の 3 分岐: main（lo=10）の前後半ともコスト後 bp>0 かつ Holm 補正後 p<0.05（循環シフト帰無の perm_p）→ 支持。全期間の z<1 → 棄却。それ以外 → 未確定",
+ "syms": [
+  "BTCUSD",
+  "ETHUSD",
+  "XRPUSD",
+  "LTCUSD",
+  "ADAUSD",
+  "BCHUSD",
+  "XLMUSD",
+  "EOSUSD",
+  "LNKUSD",
+  "DOTUSD",
+  "SOLUSD"
+ ],
+ "kind": "H1→D1",
+ "params": [
+  {
+   "lo": 10
+  },
+  {
+   "lo": 5
+  },
+  {
+   "lo": 20
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 200,
+ "per_year": 365,
+ "split_year": 2022,
+ "start": null,
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 60,
+ "cost_rel": {},
+ "discarded": "約4: 手仕舞いを RSI2>70 にする版（Q271 型・掃引を増やさないため記述にも入れない）、SMA200 フィルタなし、高ボラ局面限定（Q271 の続きで別案）、H4 版",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。データは 2017-05〜2026-09（2026-07 以降は締め切り後）。規則は固定で相場観は使わない",
+ "delegation": "設計とコードは Opus（2026-10-16）。実行と記録は Sonnet（怪しければ escalate）。結論ではなく JSON のパス・前後半の bp・z・p_holm を返させ、本体が確かめる",
+ "source": "[[ブログQuanterLab2026-1_SP500のRSI2押し目買いの20日後の上昇はほとんどが市場全体の分]]、[[ブログQuanterLab2026-2_RSI2押し目買いは片道0.05パーセントのコストでSPYとの差が消えた]]、知見 Q271（US500・USTECH の RSI2 押し目買い）、知見「暗号資産の1時間足の逆張りの粗利は直前24本の実現ボラで前後半とも予測できるが…保守的なコストで赤字」。種: ローカル LLM アイデア 2026-10-15",
+ "data": "暗号資産 11 通貨 H1_dukascopy → h1_to_d1（UTC 0 時区切り・週末込み）。前半（〜2021）は実質 6 通貨",
+ "measure": "年単位の日平均純損益 bp（コスト 0 と往復 30bp）、年単位 t、束ねた t、Sharpe（365 日）、最大下落、露出。記述: lo=5/20",
+ "null_desc": "通貨ごとに合図列を循環シフト（min_shift=60）B 回 → 束の年単位 bp の帰無分布 → z・perm_p・Holm（前後半 2 本）",
+ "prior_art": "WebSearch 2026-10-16・standard・検索語 \"Connors RSI(2) mean reversion strategy cryptocurrency daily backtest bitcoin altcoins transaction costs\"。見つかったもの: ProRealCode の RSI-2 戦略、Substack の RSI2 バックテスト、TradingView の Connors RSI（いずれもブログ・株価指数中心）。未確認: 暗号資産の複数通貨で RSI2 押し目買いをコスト込み・前後半・合図の循環シフト帰無で測った研究は見当たらない（移植）。ブログは根拠にしない",
+ "batch": "4案一括生成（ローカル LLM アイデアの選別 2026-10-16）",
+ "designer": "Opus",
+ "coder": "Claude（Opus）",
+ "settings": {}
+}
