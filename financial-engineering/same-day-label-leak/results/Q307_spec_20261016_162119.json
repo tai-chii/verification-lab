@@ -1,0 +1,75 @@
+{
+ "qid": "Q307",
+ "registered": "20261016_162119",
+ "B": 500,
+ "seed": 20261010,
+ "question": "同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1）",
+ "hypothesis": "HSAT と同じ 7 特徴量（終値・出来高・終値差・RSI14・SMA20・MACD・モメンタム10）の直近 5 日の窓（35 次元）を入力にしたロジスティック回帰で、ラベルを同日（r_t>0。窓の最後の日の値動き）にするとテストの精度は 15 銘柄平均で基準率 max(p_up,1−p_up) を 10 ポイント以上上回り、翌日（r_t+1>0）にすると基準率と区別できない",
+ "reject_if": "支持（論文の精度はリークで再現できる）: 同日ラベルの精度が 15 銘柄平均で基準率 +0.10 以上 かつ 翌日ラベルの『精度−基準率』の 15 銘柄平均が、テストのラベルを年内で並べ替えた帰無に対し z<2。棄却: 同日ラベルでも基準率 +0.03 未満。ほか → 未確定。判定に使うのは正規化『全期間 min-max』（論文の書き方に近い方）。学習期間のみの正規化は記述",
+ "syms": [
+  "EURUSD",
+  "GBPUSD",
+  "AUDUSD",
+  "USDJPY",
+  "USDCHF",
+  "USDCAD",
+  "EURJPY",
+  "GBPJPY",
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "UKOIL",
+  "US500",
+  "USTECH",
+  "BTCUSD"
+ ],
+ "kind": "H1→D1",
+ "params": [
+  {
+   "label": "same_day"
+  },
+  {
+   "label": "next_day"
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 1,
+ "warmup": 0,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": null,
+ "cutoff_hour": 0,
+ "null_kind": "none",
+ "null_block": 20,
+ "null_min_shift": 60,
+ "cost_rel": {},
+ "discarded": "約3: 木モデル（Mac に sklearn が無く入れられないため・ロジスティック回帰に変更。測る前の決定）、Transformer の再実装（論文のコード非公開・再現の幅が大きい）、窓幅 3/7/10 の掃引（論文の主結果の窓幅 5 に固定）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。データは 2008〜2026-06 で締め切り前。規則は固定で相場観は使わない",
+ "delegation": "設計・コード・実行・解釈は Opus 本体（2026-10-17）。委託なし。数値は JSON から直接読む",
+ "source": "[[Mustafa2026-1_技術指標を足したTransformerは25銘柄の上げ下げ分類で平均F1が0.70と比較モデルの0.34から0.49を上回った]]、[[Mustafa2026-3_比較モデルの高いF1の多くは下げを一度も当てない偏りで論文の成功は正解が誤りより多いことと定義されている]]、知見 Q147（単純規則は基準率を超えない）、接続ログ Q306-C1",
+ "data": "15 銘柄 H1_dukascopy → h1_to_d1（UTC 0 時区切り。出来高＝ティック数の和）。銘柄ごとに時系列順で 60/20/20",
+ "measure": "テストの精度・F1（上げを正例）・基準率・TN=0 の有無を、ラベル 2 通り × 正規化 2 通りで。選択期間の精度も記述",
+ "null_desc": "翌日ラベル: 銘柄ごとにテストのラベルを暦年内で並べ替え（予測は固定）B 回 → 『精度−基準率』の 15 銘柄平均の帰無 → z",
+ "prior_art": "WebSearch 2026-10-17・standard・\"stock price direction prediction look-ahead bias same-day label leakage technical indicators deep learning inflated accuracy\"。Information leakage in financial machine learning research（Algorithmic Finance 2019）、arXiv 2608.26106（SPY の当日方向予測）。HSAT の特徴量でリークの大きさを測った例は未確認（追試＋診断）",
+ "batch": "単発（接続 Q306 の通過案）",
+ "designer": "Opus",
+ "coder": "Claude（Opus）",
+ "settings": {
+  "win": 5,
+  "feats": [
+   "close",
+   "volume",
+   "close_diff",
+   "rsi14",
+   "sma20",
+   "macd",
+   "mom10"
+  ],
+  "split": [
+   0.6,
+   0.8
+  ],
+  "ridge": 0.01,
+  "model": "L2 ロジスティック回帰（Newton 法）"
+ }
+}

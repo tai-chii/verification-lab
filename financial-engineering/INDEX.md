@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 151 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 152 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -114,6 +114,7 @@
 | [rsi-rules-fx](./rsi-rules-fx) | Q180 RSI の族は先進国通貨の日足で2016年以降も補正後に残るか（Coakley 2016-2） | 棄却（確定） |
 | [rsi2-dip-highvol-indices](./rsi2-dip-highvol-indices) | Q271 US500・USTECH の RSI2 押し目買いは高ボラのときだけコスト後に残るか（QuanterLab 2026-3 の追試・CFD 日足） | — |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | — |
+| [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | — |
 | [seasonality](./seasonality) | 季節性（暖房株・気温相関など） | README の「主な検証」表を参照 |
 | [selection-optimism-vs-J](./selection-optimism-vs-J) | Q139 候補数 J を増やすと選択の楽観はどれだけ増え、Alonso の下側限界はそれを覆うか | 単調性「支持」・限界「使える」 |
