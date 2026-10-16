@@ -1,0 +1,415 @@
+{
+ "qid": "Q298_r0",
+ "smoke": false,
+ "generated": "20261016_114255",
+ "question": "暗号資産 11 通貨 H1 の 3 ルール群（TSMOM24・SMA50・RSI14 の 50 水準順張り）はコスト後に全て前後半で正か（Neely2003-2 の暗号 H1 移植）",
+ "spec": {
+  "qid": "Q298_r0",
+  "question": "暗号資産 11 通貨 H1 の 3 ルール群（TSMOM24・SMA50・RSI14 の 50 水準順張り）はコスト後に全て前後半で正か（Neely2003-2 の暗号 H1 移植）",
+  "hypothesis": "TSMOM24（params[0]）・SMA50（params[1]）・RSI14 の 50 水準（params[2]）の 3 ルールがそれぞれ CRYPTO プールの年単位平均 bp（段階1コスト・CRYPTO_COST_RT_REL=30bp）で前後半とも >0。",
+  "reject_if": "支持: 3 ルールとも前後半で bp_net>0 かつ Holm 補正後 p<0.05。棄却: 3 ルールとも全期間 z<1。ほか: 未確定。多重比較は 3 ルール × pre/post の 6 本（Holm で m=6）。",
+  "syms": [
+   "BTCUSD",
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "kind": "H1_dukascopy",
+  "params": [
+   {
+    "mode": "tsmom24"
+   },
+   {
+    "mode": "sma50"
+   },
+   {
+    "mode": "rsi14"
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 6,
+  "warmup": 50,
+  "per_year": 8760,
+  "B": 500,
+  "split_year": 2022,
+  "start": null,
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 72,
+  "cost_rel": {},
+  "discarded": "約4: (i) 2 ルール（Neely は 3 本以上）、(ii) RSI 30/70 の逆張り（Q191 系と重複）、(iii) D1（Q262 と重複）、(iv) BTC 単独。",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "設計・コード・実行・解釈は Opus 本体の自動運転。委託なし。",
+  "source": "[[Neely2003-2_為替テクニカル戦略の収益性は時間とともに減少した]]。関連: 知見「暗号資産11通貨の日足順張りは2022以降もコスト後に残るか」(Q262)・[[Loubaris2026-2_複数指標の確認は個別指標より的中率が高い傾向があるが有意差なし]]。",
+  "data": "暗号資産 11 通貨（CRYPTO）H1_dukascopy、2017〜2026-09。往復コストは CRYPTO_COST_RT_REL=30bp。",
+  "measure": "CRYPTO プール（全銘柄等加重）の年単位平均 bp（コスト 0 と段階1）、年単位 t、束ねた t、Sharpe、最大下落、露出。3 ルールを summary で並べる。",
+  "null_desc": "合図の循環シフト（min_shift=72）B=500 → CRYPTO プール（all）の年単位 bp の帰無分布 → z・perm_p・Holm（m=6）。",
+  "prior_art": "WebSearch 2026-10-14・英語・\"cryptocurrency hourly technical trading rules battery TSMOM SMA RSI multiple testing Holm empirical\"。見つかったもの: Neely-Weller-Dittmar の為替テクニカルの時系列減衰、暗号での MA・RSI 戦略の実務ブログ、Dukascopy 2024 crypto trends。未確認: 11 通貨 H1 で 3 ルール群を循環シフト帰無と Holm 補正（m=6）で判定する実証は未確認（移植）。",
+  "batch": "10案一括生成（ターミナル版 2026-10-14）",
+  "designer": "Claude Opus 4.7（自動運転）",
+  "coder": "Claude Opus 4.7（自動運転）",
+  "settings": {
+   "tsmom_L": 24,
+   "sma_n": 50,
+   "rsi_n": 14,
+   "rsi_threshold": 50,
+   "split_year_note": "暗号資産は 2017〜なので前後半を 2022 で分ける（Q262 と同じ）。"
+  },
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "BTCUSD",
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "XRPUSD": {
+    "months": 99,
+    "missing_months": 1,
+    "missing": [
+     "2019-01"
+    ],
+    "worst_ratio": 0.7655038759689923,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2018-05-15 13:00:00",
+    "last": "2026-07-31 20:00:00"
+   },
+   "BCHUSD": {
+    "months": 101,
+    "missing_months": 18,
+    "missing": [
+     "2019-12",
+     "2020-01",
+     "2020-02",
+     "2020-03",
+     "2020-04",
+     "2020-05",
+     "2020-06",
+     "2020-07",
+     "2020-08",
+     "2020-09",
+     "2020-10",
+     "2020-11",
+     "2020-12",
+     "2021-01",
+     "2021-02",
+     "2021-03",
+     "2021-04",
+     "2021-05"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 3,
+    "max_gap_h": 12932.0,
+    "gaps": [
+     {
+      "from": "2019-11-25 16:00:00",
+      "to": "2021-05-17 12:00:00",
+      "hours": 12932.0
+     },
+     {
+      "from": "2021-05-31 23:00:00",
+      "to": "2021-06-09 15:00:00",
+      "hours": 208.0
+     },
+     {
+      "from": "2018-11-15 16:00:00",
+      "to": "2018-11-20 12:00:00",
+      "hours": 116.0
+     }
+    ],
+    "first": "2018-05-15 12:00:00",
+    "last": "2026-09-30 23:00:00"
+   },
+   "EOSUSD": {
+    "months": 86,
+    "missing_months": 8,
+    "missing": [
+     "2018-12",
+     "2019-01",
+     "2019-02",
+     "2019-03",
+     "2019-04",
+     "2019-05",
+     "2019-06",
+     "2019-07"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 4,
+    "max_gap_h": 3541.0,
+    "gaps": [
+     {
+      "from": "2018-12-10 19:00:00",
+      "to": "2019-05-07 08:00:00",
+      "hours": 3541.0
+     },
+     {
+      "from": "2019-05-31 18:00:00",
+      "to": "2019-08-04 22:00:00",
+      "hours": 1564.0
+     },
+     {
+      "from": "2020-06-01 19:00:00",
+      "to": "2020-06-12 16:00:00",
+      "hours": 261.0
+     },
+     {
+      "from": "2019-05-07 08:00:00",
+      "to": "2019-05-13 06:00:00",
+      "hours": 142.0
+     }
+    ],
+    "first": "2018-05-15 13:00:00",
+    "last": "2025-06-28 08:00:00"
+   },
+   "LNKUSD": {
+    "months": 61,
+    "missing_months": 0,
+    "missing": [],
+    "worst_ratio": 1.302325581395349,
+    "n_gaps": 1,
+    "max_gap_h": 101.0,
+    "gaps": [
+     {
+      "from": "2026-07-30 02:00:00",
+      "to": "2026-08-03 07:00:00",
+      "hours": 101.0
+     }
+    ],
+    "first": "2021-09-25 17:00:00",
+    "last": "2026-09-30 23:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "main": {
+  "all": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 548152,
+   "bp_gross": -0.1116,
+   "t_gross": -0.3977,
+   "bp_net": -3.3005,
+   "t_year": -10.2938,
+   "t_cluster": -10.2381,
+   "sharpe_net": -3.4444,
+   "sharpe_gross": -0.0292,
+   "max_dd_net_bp": -246766.8839,
+   "exposure": 0.9898,
+   "gap_bars": 8,
+   "z": -0.042,
+   "pct": 0.48,
+   "p_perm": 0.521,
+   "null_degenerate": false,
+   "null_q025": -4.3966,
+   "null_q975": -2.1334
+  },
+  "pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 160980,
+   "bp_gross": 0.5261,
+   "t_gross": 2.1589,
+   "bp_net": -3.0942,
+   "t_year": -5.4395,
+   "t_cluster": -4.8013,
+   "sharpe_net": -2.3617,
+   "sharpe_gross": 0.7203,
+   "max_dd_net_bp": -99241.0519,
+   "exposure": 0.9878,
+   "gap_bars": 7,
+   "z": 0.5769,
+   "pct": 0.732,
+   "p_perm": 0.2695,
+   "null_degenerate": false,
+   "null_q025": -6.0461,
+   "null_q975": -1.4804,
+   "p_holm": 1.0
+  },
+  "post": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 387172,
+   "bp_gross": -0.7493,
+   "t_gross": -2.4794,
+   "bp_net": -3.5068,
+   "t_year": -10.2192,
+   "t_cluster": -11.8634,
+   "sharpe_net": -5.5412,
+   "sharpe_gross": -1.2083,
+   "max_dd_net_bp": -147814.3733,
+   "exposure": 0.9906,
+   "gap_bars": 1,
+   "z": -5.1628,
+   "pct": 0.0,
+   "p_perm": 1.0,
+   "null_degenerate": false,
+   "null_q025": -3.0444,
+   "null_q975": -2.4418,
+   "p_holm": 1.0
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 548152,
+   "bp_gross": -0.1116,
+   "t_gross": -0.3977,
+   "bp_net": -3.3005,
+   "t_year": -10.2938,
+   "t_cluster": -10.2381,
+   "sharpe_net": -3.4444,
+   "sharpe_gross": -0.0292,
+   "max_dd_net_bp": -246766.8839,
+   "exposure": 0.9898,
+   "gap_bars": 8
+  },
+  "p0_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 160980,
+   "bp_gross": 0.5261,
+   "t_gross": 2.1589,
+   "bp_net": -3.0942,
+   "t_year": -5.4395,
+   "t_cluster": -4.8013,
+   "sharpe_net": -2.3617,
+   "sharpe_gross": 0.7203,
+   "max_dd_net_bp": -99241.0519,
+   "exposure": 0.9878,
+   "gap_bars": 7
+  },
+  "p0_all_post": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 387172,
+   "bp_gross": -0.7493,
+   "t_gross": -2.4794,
+   "bp_net": -3.5068,
+   "t_year": -10.2192,
+   "t_cluster": -11.8634,
+   "sharpe_net": -5.5412,
+   "sharpe_gross": -1.2083,
+   "max_dd_net_bp": -147814.3733,
+   "exposure": 0.9906,
+   "gap_bars": 1
+  },
+  "p1_all_all": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 548152,
+   "bp_gross": -0.9902,
+   "t_gross": -1.7095,
+   "bp_net": -3.4979,
+   "t_year": -4.5019,
+   "t_cluster": -8.542,
+   "sharpe_net": -2.9087,
+   "sharpe_gross": -0.2597,
+   "max_dd_net_bp": -208893.4466,
+   "exposure": 0.9988,
+   "gap_bars": 8
+  },
+  "p1_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 160980,
+   "bp_gross": -1.3418,
+   "t_gross": -1.1442,
+   "bp_net": -4.1468,
+   "t_year": -2.6769,
+   "t_cluster": -4.116,
+   "sharpe_net": -2.0556,
+   "sharpe_gross": 0.2604,
+   "max_dd_net_bp": -88324.4634,
+   "exposure": 0.997,
+   "gap_bars": 7
+  },
+  "p1_all_post": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 387172,
+   "bp_gross": -0.6386,
+   "t_gross": -2.3673,
+   "bp_net": -2.8491,
+   "t_year": -8.7337,
+   "t_cluster": -9.8079,
+   "sharpe_net": -4.5976,
+   "sharpe_gross": -1.1107,
+   "max_dd_net_bp": -122619.6421,
+   "exposure": 0.9995,
+   "gap_bars": 1
+  },
+  "p2_all_all": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 548152,
+   "bp_gross": -0.6646,
+   "t_gross": -1.5206,
+   "bp_net": -4.4321,
+   "t_year": -9.9218,
+   "t_cluster": -13.6019,
+   "sharpe_net": -4.6672,
+   "sharpe_gross": -0.5918,
+   "max_dd_net_bp": -335429.3773,
+   "exposure": 0.9999,
+   "gap_bars": 8
+  },
+  "p2_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 160980,
+   "bp_gross": -0.5583,
+   "t_gross": -0.6539,
+   "bp_net": -4.7309,
+   "t_year": -5.7754,
+   "t_cluster": -7.587,
+   "sharpe_net": -3.81,
+   "sharpe_gross": -0.1874,
+   "max_dd_net_bp": -160196.3892,
+   "exposure": 0.9998,
+   "gap_bars": 7
+  },
+  "p2_all_post": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 387172,
+   "bp_gross": -0.7709,
+   "t_gross": -2.1792,
+   "bp_net": -4.1333,
+   "t_year": -9.6806,
+   "t_cluster": -13.7768,
+   "sharpe_net": -6.5461,
+   "sharpe_gross": -1.2926,
+   "max_dd_net_bp": -175542.5803,
+   "exposure": 1.0,
+   "gap_bars": 1
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=6、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 82.7,
+ "machine_verdict": "棄却: 全期間の z<1（data_health に failed/gaps あり: 確定にする前に点検）"
+}

@@ -1,0 +1,63 @@
+{
+ "qid": "Q298_r2",
+ "registered": "20261016_114429",
+ "B": 500,
+ "seed": 20261010,
+ "question": "暗号資産 11 通貨 H1 の 3 ルール群（TSMOM24・SMA50・RSI14 の 50 水準順張り）はコスト後に全て前後半で正か（Neely2003-2 の暗号 H1 移植）",
+ "hypothesis": "TSMOM24（params[0]）・SMA50（params[1]）・RSI14 の 50 水準（params[2]）の 3 ルールがそれぞれ CRYPTO プールの年単位平均 bp（段階1コスト・CRYPTO_COST_RT_REL=30bp）で前後半とも >0。",
+ "reject_if": "支持: 3 ルールとも前後半で bp_net>0 かつ Holm 補正後 p<0.05。棄却: 3 ルールとも全期間 z<1。ほか: 未確定。多重比較は 3 ルール × pre/post の 6 本（Holm で m=6）。",
+ "syms": [
+  "BTCUSD",
+  "ETHUSD",
+  "XRPUSD",
+  "LTCUSD",
+  "ADAUSD",
+  "BCHUSD",
+  "XLMUSD",
+  "EOSUSD",
+  "LNKUSD",
+  "DOTUSD",
+  "SOLUSD"
+ ],
+ "kind": "H1_dukascopy",
+ "params": [
+  {
+   "mode": "tsmom24"
+  },
+  {
+   "mode": "sma50"
+  },
+  {
+   "mode": "rsi14"
+  }
+ ],
+ "main_param": 2,
+ "n_tests": 6,
+ "warmup": 50,
+ "per_year": 8760,
+ "split_year": 2022,
+ "start": null,
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 72,
+ "cost_rel": {},
+ "discarded": "約4: (i) 2 ルール（Neely は 3 本以上）、(ii) RSI 30/70 の逆張り（Q191 系と重複）、(iii) D1（Q262 と重複）、(iv) BTC 単独。",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "設計・コード・実行・解釈は Opus 本体の自動運転。委託なし。",
+ "source": "[[Neely2003-2_為替テクニカル戦略の収益性は時間とともに減少した]]。関連: 知見「暗号資産11通貨の日足順張りは2022以降もコスト後に残るか」(Q262)・[[Loubaris2026-2_複数指標の確認は個別指標より的中率が高い傾向があるが有意差なし]]。",
+ "data": "暗号資産 11 通貨（CRYPTO）H1_dukascopy、2017〜2026-09。往復コストは CRYPTO_COST_RT_REL=30bp。",
+ "measure": "CRYPTO プール（全銘柄等加重）の年単位平均 bp（コスト 0 と段階1）、年単位 t、束ねた t、Sharpe、最大下落、露出。3 ルールを summary で並べる。",
+ "null_desc": "合図の循環シフト（min_shift=72）B=500 → CRYPTO プール（all）の年単位 bp の帰無分布 → z・perm_p・Holm（m=6）。",
+ "prior_art": "WebSearch 2026-10-14・英語・\"cryptocurrency hourly technical trading rules battery TSMOM SMA RSI multiple testing Holm empirical\"。見つかったもの: Neely-Weller-Dittmar の為替テクニカルの時系列減衰、暗号での MA・RSI 戦略の実務ブログ、Dukascopy 2024 crypto trends。未確認: 11 通貨 H1 で 3 ルール群を循環シフト帰無と Holm 補正（m=6）で判定する実証は未確認（移植）。",
+ "batch": "10案一括生成（ターミナル版 2026-10-14）",
+ "designer": "Claude Opus 4.7（自動運転）",
+ "coder": "Claude Opus 4.7（自動運転）",
+ "settings": {
+  "tsmom_L": 24,
+  "sma_n": 50,
+  "rsi_n": 14,
+  "rsi_threshold": 50,
+  "split_year_note": "暗号資産は 2017〜なので前後半を 2022 で分ける（Q262 と同じ）。"
+ }
+}

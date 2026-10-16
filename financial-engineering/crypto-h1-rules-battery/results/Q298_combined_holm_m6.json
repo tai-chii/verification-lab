@@ -1,0 +1,59 @@
+{
+ "rows": [
+  {
+   "rule": "tsmom24",
+   "period": "pre",
+   "bp_net": -3.0942,
+   "p_perm": 0.2695,
+   "p_holm_m6": 1.0,
+   "z_all": -0.042,
+   "file": "Q298_r0_result_20261016_114255.json"
+  },
+  {
+   "rule": "tsmom24",
+   "period": "post",
+   "bp_net": -3.5068,
+   "p_perm": 1.0,
+   "p_holm_m6": 1.0,
+   "z_all": -0.042,
+   "file": "Q298_r0_result_20261016_114255.json"
+  },
+  {
+   "rule": "sma50",
+   "period": "pre",
+   "bp_net": -4.1468,
+   "p_perm": 0.8403,
+   "p_holm_m6": 1.0,
+   "z_all": -1.5288,
+   "file": "Q298_r1_result_20261016_114421.json"
+  },
+  {
+   "rule": "sma50",
+   "period": "post",
+   "bp_net": -2.8491,
+   "p_perm": 1.0,
+   "p_holm_m6": 1.0,
+   "z_all": -1.5288,
+   "file": "Q298_r1_result_20261016_114421.json"
+  },
+  {
+   "rule": "rsi14",
+   "period": "pre",
+   "bp_net": -4.7309,
+   "p_perm": 0.5669,
+   "p_holm_m6": 1.0,
+   "z_all": -0.8083,
+   "file": "Q298_r2_result_20261016_114557.json"
+  },
+  {
+   "rule": "rsi14",
+   "period": "post",
+   "bp_net": -4.1333,
+   "p_perm": 1.0,
+   "p_holm_m6": 1.0,
+   "z_all": -0.8083,
+   "file": "Q298_r2_result_20261016_114557.json"
+  }
+ ],
+ "verdict_spec_rule": "棄却: 3 ルールとも全期間 z<1"
+}
