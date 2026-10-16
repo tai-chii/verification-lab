@@ -52,7 +52,7 @@ def parse(d, fallback):
     title = re.sub(r"\s*—\s*", "：", title)
     verdict = "—"
     for pat in VERDICT_PATTERNS:
-        m = next((pat.search(l) for l in lines if pat.search(l)), None)
+        m = next((pat.search(l) for l in lines if pat.search(l) and "`判定: **" not in l and "`結論: **" not in l), None)  # README 雛形の手順の例文（`判定: **…**`）を拾わない（2026-10-16）
         if m:
             verdict = short(m.group(1))
             break
