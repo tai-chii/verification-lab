@@ -1,0 +1,677 @@
+{
+ "qid": "Q310",
+ "smoke": false,
+ "generated": "20261016_163333",
+ "question": "月次（約 220 か月）に束ねた 15 銘柄の順張りルール群で、並べ替え帰無の下の WRC・SPA の棄却率は名目 5% を超えるか（Q154 の月次版・Q309-C1）",
+ "spec": {
+  "qid": "Q310",
+  "question": "月次（約 220 か月）に束ねた 15 銘柄の順張りルール群で、並べ替え帰無の下の WRC・SPA の棄却率は名目 5% を超えるか（Q154 の月次版・Q309-C1）",
+  "hypothesis": "Q154 と同じ 180 本（TSMOM 参照日数 5〜300 × 買い／売り／両方）の日次純損益を暦月で合計し、真の差 0 の帰無（日次の対数リターンを全期間で並べ替えて価格を作り直し、並べ替えの期待値 μ0 で中心化）で WRC・SPA(consistent)・SPA(conservative) を当てると、どれかの検定・ブロック長で 5% 棄却率が名目を明らかに超える",
+  "reject_if": "支持（月次ではサイズが崩れる）: 3 検定 × ブロック長 3・6・12 か月の 9 つのどれかで、510 組の帰無データの 5% 棄却率 ≥ 8%。棄却: 9 つすべて ≤ 7%。ほか → 未確定。（9 つの率の記述で、個々の率への多重比較の補正はしない。8% は 510 組の二項の 95% 上限 ≈ 6.9% の外）",
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "block": 3
+   },
+   {
+    "block": 6
+   },
+   {
+    "block": 12
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 9,
+  "warmup": 0,
+  "per_year": 252,
+  "B": 499,
+  "split_year": 2017,
+  "start": null,
+  "cutoff_hour": 0,
+  "null_kind": "none",
+  "null_block": 20,
+  "null_min_shift": 60,
+  "cost_rel": {},
+  "discarded": "約3: 前後半に分けた月次（各約 108 か月で短すぎる）、週次（Q154 の日次と月次の間で新しさが薄い）、Step-SPA（個々のルールの判定は問わない）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。データは 2008〜2026-06 で締め切り前。Hansen 2005 の定義は Q154 の実装（記憶による・arch と中心化を照合済み）",
+  "delegation": "設計・実行・解釈は Opus 本体（2026-10-17）。検定の実装は Q154（Fable 設計・Claude コード）を変えずに使う。委託なし",
+  "source": "[[Jedrzejewska2026-2_評価標本150で依存が強いとWRCとSPAとCPAは名目5パーセントのほぼ3倍の14から17パーセントで誤って棄却した]]、[[Jedrzejewska2026-1_同じ13モデルの比較でWRCとSPAのconsistentとCPAは棄却しSPAのconservativeだけ棄却せず検定の種類で結論が分かれた]]、知見 Q154（日次ではサイズ 3.1〜3.4%）",
+  "data": "15 銘柄 D1_fromH1（2008〜2026-06）。全ルールが定義される日（t>300）から。日次純損益を暦月で合計",
+  "measure": "(a) 帰無データ 510 組での 3 検定 × 3 ブロック長の 5% 棄却率（サイズ）。(b) 実データの月次で 15 銘柄の 3 つの p と判定の割れ方（記述・Q154 の日次と比較）",
+  "null_desc": "銘柄ごとに日次対数リターンを全期間で並べ替え→価格を作り直し→180 本の純損益→月次合計→μ0（20 回の並べ替えの月次平均）で中心化。銘柄ごと 34 組。ブートストラップは循環ブロック（月）B=499",
+  "prior_art": "WebSearch 2026-10-17・standard・\"size distortion White reality check Hansen SPA small sample monthly returns block bootstrap Monte Carlo trading rules\"。arXiv 2008.02318（ハイブリッド検定のサイズ）、Hsu・Kuan の再検討、arch の SPA 文書。手元のルール群の月次でのサイズは未確認（条件の穴）",
+  "batch": "単発（接続 Q309 の通過案）",
+  "designer": "Opus",
+  "coder": "Claude（Opus）",
+  "settings": {
+   "blocks_month": [
+    3,
+    6,
+    12
+   ],
+   "boot_B": 499,
+   "reps_per_sym": 34,
+   "mu0_perms": 20,
+   "seed": 20261017
+  }
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "AUDUSD",
+   "BTCUSD",
+   "EURJPY",
+   "EURUSD",
+   "GBPJPY",
+   "GBPUSD",
+   "UKOIL",
+   "US500",
+   "USDCAD",
+   "USDCHF",
+   "USDJPY",
+   "USTECH",
+   "WTI",
+   "XAGUSD",
+   "XAUUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "UKOIL": {
+    "months": 187,
+    "missing_months": 15,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2012-06",
+     "2012-09",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-03",
+     "2013-05",
+     "2013-10",
+     "2013-11",
+     "2013-12",
+     "2014-02",
+     "2017-04",
+     "2023-04"
+    ],
+    "worst_ratio": 0.37790697674418605,
+    "n_gaps": 8,
+    "max_gap_h": 664.0,
+    "gaps": [
+     {
+      "from": "2011-10-18 21:00:00",
+      "to": "2011-11-15 13:00:00",
+      "hours": 664.0
+     },
+     {
+      "from": "2013-01-16 19:00:00",
+      "to": "2013-02-01 09:00:00",
+      "hours": 374.0
+     },
+     {
+      "from": "2012-12-14 19:00:00",
+      "to": "2012-12-28 14:00:00",
+      "hours": 331.0
+     },
+     {
+      "from": "2013-05-01 19:00:00",
+      "to": "2013-05-15 07:00:00",
+      "hours": 324.0
+     },
+     {
+      "from": "2013-02-13 19:00:00",
+      "to": "2013-02-26 13:00:00",
+      "hours": 306.0
+     }
+    ],
+    "first": "2010-12-02 01:00:00",
+    "last": "2026-06-30 20:00:00"
+   },
+   "US500": {
+    "months": 178,
+    "missing_months": 60,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01",
+     "2012-02",
+     "2012-03",
+     "2012-04",
+     "2012-05",
+     "2012-06",
+     "2012-07",
+     "2012-08",
+     "2012-09",
+     "2012-10",
+     "2012-11",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-03",
+     "2013-04",
+     "2013-05",
+     "2013-10",
+     "2014-01",
+     "2014-02",
+     "2015-04",
+     "2015-05",
+     "2015-06",
+     "2015-07",
+     "2015-08",
+     "2015-09",
+     "2015-10",
+     "2015-11",
+     "2015-12",
+     "2016-01",
+     "2016-02",
+     "2016-03",
+     "2016-04",
+     "2016-05",
+     "2016-06",
+     "2016-07",
+     "2016-08",
+     "2016-09",
+     "2016-10",
+     "2016-11",
+     "2016-12",
+     "2017-01",
+     "2017-02",
+     "2017-03",
+     "2017-04",
+     "2017-05",
+     "2017-06",
+     "2017-07",
+     "2017-08",
+     "2017-09",
+     "2017-10",
+     "2017-11",
+     "2017-12",
+     "2018-01",
+     "2018-02",
+     "2018-03",
+     "2018-04"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2765.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 19:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2765.0
+     }
+    ],
+    "first": "2011-09-19 13:00:00",
+    "last": "2026-06-30 23:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 58,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01",
+     "2012-02",
+     "2012-03",
+     "2012-04",
+     "2012-05",
+     "2012-06",
+     "2012-07",
+     "2012-08",
+     "2012-09",
+     "2012-10",
+     "2012-11",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-03",
+     "2013-04",
+     "2013-05",
+     "2013-10",
+     "2014-02",
+     "2015-05",
+     "2015-06",
+     "2015-07",
+     "2015-08",
+     "2015-09",
+     "2015-10",
+     "2015-11",
+     "2015-12",
+     "2016-01",
+     "2016-02",
+     "2016-03",
+     "2016-04",
+     "2016-05",
+     "2016-06",
+     "2016-07",
+     "2016-08",
+     "2016-09",
+     "2016-10",
+     "2016-11",
+     "2016-12",
+     "2017-01",
+     "2017-02",
+     "2017-03",
+     "2017-04",
+     "2017-05",
+     "2017-06",
+     "2017-07",
+     "2017-08",
+     "2017-09",
+     "2017-10",
+     "2017-11",
+     "2017-12",
+     "2018-01",
+     "2018-02",
+     "2018-03",
+     "2018-04"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 4,
+    "max_gap_h": 2853.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 19:00:00",
+      "to": "2012-01-19 16:00:00",
+      "hours": 2853.0
+     },
+     {
+      "from": "2013-10-11 19:00:00",
+      "to": "2013-10-17 11:00:00",
+      "hours": 136.0
+     },
+     {
+      "from": "2013-05-17 15:00:00",
+      "to": "2013-05-22 15:00:00",
+      "hours": 120.0
+     },
+     {
+      "from": "2012-10-26 19:00:00",
+      "to": "2012-10-31 13:00:00",
+      "hours": 114.0
+     }
+    ],
+    "first": "2011-09-19 13:00:00",
+    "last": "2026-06-30 23:00:00"
+   },
+   "WTI": {
+    "months": 178,
+    "missing_months": 5,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-02",
+     "2014-06",
+     "2014-07"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 2,
+    "max_gap_h": 1145.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 12:00:00",
+      "to": "2011-11-10 05:00:00",
+      "hours": 1145.0
+     },
+     {
+      "from": "2014-06-11 03:00:00",
+      "to": "2014-06-17 06:00:00",
+      "hours": 147.0
+     }
+    ],
+    "first": "2011-09-23 07:00:00",
+    "last": "2026-06-30 23:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "size": {
+  "L3_p_wrc": {
+   "rate": 0.0529,
+   "n": 510,
+   "rate_10pct": 0.1118
+  },
+  "L3_p_spa_consistent": {
+   "rate": 0.0588,
+   "n": 510,
+   "rate_10pct": 0.1157
+  },
+  "L3_p_spa_conservative": {
+   "rate": 0.0588,
+   "n": 510,
+   "rate_10pct": 0.1157
+  },
+  "L6_p_wrc": {
+   "rate": 0.0451,
+   "n": 510,
+   "rate_10pct": 0.1137
+  },
+  "L6_p_spa_consistent": {
+   "rate": 0.0784,
+   "n": 510,
+   "rate_10pct": 0.1373
+  },
+  "L6_p_spa_conservative": {
+   "rate": 0.0784,
+   "n": 510,
+   "rate_10pct": 0.1373
+  },
+  "L12_p_wrc": {
+   "rate": 0.0627,
+   "n": 510,
+   "rate_10pct": 0.1235
+  },
+  "L12_p_spa_consistent": {
+   "rate": 0.1255,
+   "n": 510,
+   "rate_10pct": 0.1941
+  },
+  "L12_p_spa_conservative": {
+   "rate": 0.1255,
+   "n": 510,
+   "rate_10pct": 0.1922
+  }
+ },
+ "observed_monthly": {
+  "L3": {
+   "n_syms": 15,
+   "n_split": 1,
+   "n_reject": {
+    "p_wrc": 2,
+    "p_spa_consistent": 3,
+    "p_spa_conservative": 3
+   },
+   "p": {
+    "AUDUSD": {
+     "p_wrc": 0.8697,
+     "p_spa_consistent": 0.8577,
+     "p_spa_conservative": 0.8597
+    },
+    "BTCUSD": {
+     "p_wrc": 0.0822,
+     "p_spa_consistent": 0.0721,
+     "p_spa_conservative": 0.0762
+    },
+    "EURJPY": {
+     "p_wrc": 0.4529,
+     "p_spa_consistent": 0.2565,
+     "p_spa_conservative": 0.2585
+    },
+    "EURUSD": {
+     "p_wrc": 0.6393,
+     "p_spa_consistent": 0.6713,
+     "p_spa_conservative": 0.6854
+    },
+    "GBPJPY": {
+     "p_wrc": 0.4449,
+     "p_spa_consistent": 0.1784,
+     "p_spa_conservative": 0.1784
+    },
+    "GBPUSD": {
+     "p_wrc": 0.9699,
+     "p_spa_consistent": 0.9739,
+     "p_spa_conservative": 0.9739
+    },
+    "UKOIL": {
+     "p_wrc": 0.7074,
+     "p_spa_consistent": 0.7776,
+     "p_spa_conservative": 0.7776
+    },
+    "US500": {
+     "p_wrc": 0.0621,
+     "p_spa_consistent": 0.002,
+     "p_spa_conservative": 0.002
+    },
+    "USDCAD": {
+     "p_wrc": 0.98,
+     "p_spa_consistent": 0.978,
+     "p_spa_conservative": 0.978
+    },
+    "USDCHF": {
+     "p_wrc": 0.992,
+     "p_spa_consistent": 0.992,
+     "p_spa_conservative": 0.992
+    },
+    "USDJPY": {
+     "p_wrc": 0.2104,
+     "p_spa_consistent": 0.2645,
+     "p_spa_conservative": 0.2645
+    },
+    "USTECH": {
+     "p_wrc": 0.014,
+     "p_spa_consistent": 0.0,
+     "p_spa_conservative": 0.0
+    },
+    "WTI": {
+     "p_wrc": 0.4689,
+     "p_spa_consistent": 0.5331,
+     "p_spa_conservative": 0.5351
+    },
+    "XAGUSD": {
+     "p_wrc": 0.2886,
+     "p_spa_consistent": 0.2966,
+     "p_spa_conservative": 0.3046
+    },
+    "XAUUSD": {
+     "p_wrc": 0.0421,
+     "p_spa_consistent": 0.018,
+     "p_spa_conservative": 0.018
+    }
+   }
+  },
+  "L6": {
+   "n_syms": 15,
+   "n_split": 1,
+   "n_reject": {
+    "p_wrc": 2,
+    "p_spa_consistent": 3,
+    "p_spa_conservative": 3
+   },
+   "p": {
+    "AUDUSD": {
+     "p_wrc": 0.8357,
+     "p_spa_consistent": 0.7916,
+     "p_spa_conservative": 0.7996
+    },
+    "BTCUSD": {
+     "p_wrc": 0.0842,
+     "p_spa_consistent": 0.0701,
+     "p_spa_conservative": 0.0701
+    },
+    "EURJPY": {
+     "p_wrc": 0.4689,
+     "p_spa_consistent": 0.3086,
+     "p_spa_conservative": 0.3086
+    },
+    "EURUSD": {
+     "p_wrc": 0.6513,
+     "p_spa_consistent": 0.6633,
+     "p_spa_conservative": 0.6733
+    },
+    "GBPJPY": {
+     "p_wrc": 0.3828,
+     "p_spa_consistent": 0.1944,
+     "p_spa_conservative": 0.1964
+    },
+    "GBPUSD": {
+     "p_wrc": 0.9699,
+     "p_spa_consistent": 0.976,
+     "p_spa_conservative": 0.976
+    },
+    "UKOIL": {
+     "p_wrc": 0.6854,
+     "p_spa_consistent": 0.7675,
+     "p_spa_conservative": 0.7675
+    },
+    "US500": {
+     "p_wrc": 0.0601,
+     "p_spa_consistent": 0.0,
+     "p_spa_conservative": 0.002
+    },
+    "USDCAD": {
+     "p_wrc": 0.98,
+     "p_spa_consistent": 0.9679,
+     "p_spa_conservative": 0.9719
+    },
+    "USDCHF": {
+     "p_wrc": 0.984,
+     "p_spa_consistent": 0.982,
+     "p_spa_conservative": 0.986
+    },
+    "USDJPY": {
+     "p_wrc": 0.1804,
+     "p_spa_consistent": 0.1743,
+     "p_spa_conservative": 0.1743
+    },
+    "USTECH": {
+     "p_wrc": 0.004,
+     "p_spa_consistent": 0.0,
+     "p_spa_conservative": 0.002
+    },
+    "WTI": {
+     "p_wrc": 0.4048,
+     "p_spa_consistent": 0.523,
+     "p_spa_conservative": 0.523
+    },
+    "XAGUSD": {
+     "p_wrc": 0.3527,
+     "p_spa_consistent": 0.4309,
+     "p_spa_conservative": 0.4509
+    },
+    "XAUUSD": {
+     "p_wrc": 0.0401,
+     "p_spa_consistent": 0.0341,
+     "p_spa_conservative": 0.0341
+    }
+   }
+  },
+  "L12": {
+   "n_syms": 15,
+   "n_split": 2,
+   "n_reject": {
+    "p_wrc": 3,
+    "p_spa_consistent": 3,
+    "p_spa_conservative": 3
+   },
+   "p": {
+    "AUDUSD": {
+     "p_wrc": 0.8317,
+     "p_spa_consistent": 0.7876,
+     "p_spa_conservative": 0.7956
+    },
+    "BTCUSD": {
+     "p_wrc": 0.0481,
+     "p_spa_consistent": 0.0521,
+     "p_spa_conservative": 0.0521
+    },
+    "EURJPY": {
+     "p_wrc": 0.3447,
+     "p_spa_consistent": 0.2004,
+     "p_spa_conservative": 0.2004
+    },
+    "EURUSD": {
+     "p_wrc": 0.6012,
+     "p_spa_consistent": 0.6172,
+     "p_spa_conservative": 0.6313
+    },
+    "GBPJPY": {
+     "p_wrc": 0.3928,
+     "p_spa_consistent": 0.1683,
+     "p_spa_conservative": 0.1683
+    },
+    "GBPUSD": {
+     "p_wrc": 0.984,
+     "p_spa_consistent": 0.9699,
+     "p_spa_conservative": 0.9699
+    },
+    "UKOIL": {
+     "p_wrc": 0.6373,
+     "p_spa_consistent": 0.7395,
+     "p_spa_conservative": 0.7395
+    },
+    "US500": {
+     "p_wrc": 0.0581,
+     "p_spa_consistent": 0.0,
+     "p_spa_conservative": 0.0
+    },
+    "USDCAD": {
+     "p_wrc": 0.99,
+     "p_spa_consistent": 0.9739,
+     "p_spa_conservative": 0.976
+    },
+    "USDCHF": {
+     "p_wrc": 0.994,
+     "p_spa_consistent": 0.978,
+     "p_spa_conservative": 0.996
+    },
+    "USDJPY": {
+     "p_wrc": 0.1503,
+     "p_spa_consistent": 0.1383,
+     "p_spa_conservative": 0.1443
+    },
+    "USTECH": {
+     "p_wrc": 0.004,
+     "p_spa_consistent": 0.0,
+     "p_spa_conservative": 0.0
+    },
+    "WTI": {
+     "p_wrc": 0.3687,
+     "p_spa_consistent": 0.4429,
+     "p_spa_conservative": 0.4449
+    },
+    "XAGUSD": {
+     "p_wrc": 0.3086,
+     "p_spa_consistent": 0.3086,
+     "p_spa_conservative": 0.3287
+    },
+    "XAUUSD": {
+     "p_wrc": 0.0481,
+     "p_spa_consistent": 0.022,
+     "p_spa_conservative": 0.024
+    }
+   }
+  }
+ },
+ "n_months": {
+  "AUDUSD": 209,
+  "BTCUSD": 99,
+  "EURJPY": 206,
+  "EURUSD": 209,
+  "GBPJPY": 209,
+  "GBPUSD": 209,
+  "UKOIL": 173,
+  "US500": 160,
+  "USDCAD": 209,
+  "USDCHF": 209,
+  "USDJPY": 208,
+  "USTECH": 159,
+  "WTI": 162,
+  "XAGUSD": 209,
+  "XAUUSD": 205
+ },
+ "machine_verdict": "支持: 月次で名目を超える（最大 L12_p_spa_consistent の棄却率 0.126）（data_health に failed/gaps あり: 確定にする前に点検）",
+ "multiple_comparisons": "9 つの棄却率の記述（検定 3 × ブロック長 3）。判定は最大値の閾値"
+}
