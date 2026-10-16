@@ -1,0 +1,373 @@
+{
+ "qid": "Q302",
+ "smoke": false,
+ "generated": "20261016_121003",
+ "question": "暗号資産 11 通貨日足の 200 日線（終値>SMA200 で買い・下で現金）の最大下落は同じ露出の循環シフトより浅いか（Q097/Q098 の暗号資産への移植）",
+ "spec": {
+  "qid": "Q302",
+  "question": "暗号資産 11 通貨日足の 200 日線（終値>SMA200 で買い・下で現金）の最大下落は同じ露出の循環シフトより浅いか（Q097/Q098 の暗号資産への移植）",
+  "hypothesis": "合図 s[t]=1{close[t]>SMA200[t]}（t の終値で決め t+1 から保有・空売りなし・現金は 0%）。等加重の暗号資産束の最大下落の深さ |MDD| は、各通貨の合図を期間内で循環シフトした（露出と切り替え回数を保つ）帰無の |MDD| の 5% 点より浅い（前後半とも）",
+  "reject_if": "支持: 前半（〜2021）・後半（2022〜）とも |MDD_実際| < 帰無 |MDD| の 5% 点（帰無の 95% より浅い）。棄却: 前後半とも |MDD_実際| ≥ 帰無 |MDD| の 10% 点（浅い側 10% に入らない）。それ以外 → 未確定。（両期間とも通ることを求める交差検定なので多重比較の補正はしない）",
+  "syms": [
+   "BTCUSD",
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "kind": "H1→D1",
+  "params": [
+   {
+    "MA": 200
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 200,
+  "per_year": 365,
+  "B": 1000,
+  "split_year": 2017,
+  "start": null,
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 126,
+  "cost_rel": {},
+  "discarded": "約3: ボラ目標の併用（Q098 型・別案に回す）、SMA100/50 の掃引（判定 1 本に絞るため記述も省略）、BTC 単独（Q097 の株と同じ形だが 1 銘柄で検出力不足）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。データは 2017-05〜2026-09（2026-07 以降の 3 か月は締め切り後）。規則は固定で相場観は使わない",
+  "delegation": "設計とコードは Opus（2026-10-16）。実行と記録は Sonnet（怪しければ escalate）。結論ではなく JSON のパス・|MDD| と帰無の 5%/10% 点・百分位を返させ、本体が確かめる",
+  "source": "知見「株価指数の200日線と12か月モメンタムの保有現金規則だけが同じ露出の無作為なタイミングより最大下落が浅く、商品と為替では下落の軽さは露出の低さで説明できる」（Q097/Q098）、知見「トレンドフォローの最大下落の軽さは市場滞在時間が同じ無作為なタイミングより浅い」、[[ブログQuanterLab2026b-2_SPY全期間ではボラティリティターゲティングが買い持ちをわずかに上回り200日線は最大下落を抑える]]。種: ローカル LLM アイデア 2026-10-15",
+  "data": "暗号資産 11 通貨 H1_dukascopy → h1_to_d1（UTC 0 時区切り・週末込み）。開始は BTC 2017-05・ETH 2017-12・XRP/BCH/EOS 2018-05・LTC 2018-09・XLM 2021-05・ADA/LNK 2021-09・DOT/SOL 2024-03。前半（〜2021）は実質 6 通貨",
+  "measure": "等加重束（その日に合図が定義された通貨の平均）の複利の最大下落（コスト後・往復 30bp）を前後半で。記述: 買い持ちの最大下落、露出、通貨ごとの帰無百分位、年率リターン",
+  "null_desc": "通貨ごと・期間ごとに合図列を循環シフト（k∈[126, n−126]）B 回 → 束の |MDD| の帰無分布 → 実際の百分位（浅い側から）",
+  "prior_art": "WebSearch 2026-10-16・standard・検索語 \"200-day moving average cryptocurrency drawdown reduction timing versus exposure random timing test\"。見つかったもの: Unger Academy のブログ（BTC のトレンド規則で下落 1/3）、TradingView の 200 日 EMA の図、arXiv 2303.02613（下落制御の再起動機構・別問題）。未確認: 露出をそろえた循環シフト帰無で 200 日線の下落の軽さが『タイミング』か『露出』かを暗号資産の複数通貨で分けた検証は見当たらない（移植）。ブログは根拠にしない",
+  "batch": "4案一括生成（ローカル LLM アイデアの選別 2026-10-16）",
+  "designer": "Opus",
+  "coder": "Claude（Opus）",
+  "settings": {
+   "MA": 200,
+   "split": "2022-01-01",
+   "cost_rt_rel": 0.003,
+   "cutoff_hour_utc": 0
+  },
+  "B_used": 1000,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "BTCUSD",
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "XRPUSD": {
+    "months": 99,
+    "missing_months": 1,
+    "missing": [
+     "2019-01"
+    ],
+    "worst_ratio": 0.7655038759689923,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2018-05-15 13:00:00",
+    "last": "2026-07-31 20:00:00"
+   },
+   "BCHUSD": {
+    "months": 101,
+    "missing_months": 18,
+    "missing": [
+     "2019-12",
+     "2020-01",
+     "2020-02",
+     "2020-03",
+     "2020-04",
+     "2020-05",
+     "2020-06",
+     "2020-07",
+     "2020-08",
+     "2020-09",
+     "2020-10",
+     "2020-11",
+     "2020-12",
+     "2021-01",
+     "2021-02",
+     "2021-03",
+     "2021-04",
+     "2021-05"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 3,
+    "max_gap_h": 12932.0,
+    "gaps": [
+     {
+      "from": "2019-11-25 16:00:00",
+      "to": "2021-05-17 12:00:00",
+      "hours": 12932.0
+     },
+     {
+      "from": "2021-05-31 23:00:00",
+      "to": "2021-06-09 15:00:00",
+      "hours": 208.0
+     },
+     {
+      "from": "2018-11-15 16:00:00",
+      "to": "2018-11-20 12:00:00",
+      "hours": 116.0
+     }
+    ],
+    "first": "2018-05-15 12:00:00",
+    "last": "2026-09-30 23:00:00"
+   },
+   "EOSUSD": {
+    "months": 86,
+    "missing_months": 8,
+    "missing": [
+     "2018-12",
+     "2019-01",
+     "2019-02",
+     "2019-03",
+     "2019-04",
+     "2019-05",
+     "2019-06",
+     "2019-07"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 4,
+    "max_gap_h": 3541.0,
+    "gaps": [
+     {
+      "from": "2018-12-10 19:00:00",
+      "to": "2019-05-07 08:00:00",
+      "hours": 3541.0
+     },
+     {
+      "from": "2019-05-31 18:00:00",
+      "to": "2019-08-04 22:00:00",
+      "hours": 1564.0
+     },
+     {
+      "from": "2020-06-01 19:00:00",
+      "to": "2020-06-12 16:00:00",
+      "hours": 261.0
+     },
+     {
+      "from": "2019-05-07 08:00:00",
+      "to": "2019-05-13 06:00:00",
+      "hours": 142.0
+     }
+    ],
+    "first": "2018-05-15 13:00:00",
+    "last": "2025-06-28 08:00:00"
+   },
+   "LNKUSD": {
+    "months": 61,
+    "missing_months": 0,
+    "missing": [],
+    "worst_ratio": 1.302325581395349,
+    "n_gaps": 1,
+    "max_gap_h": 101.0,
+    "gaps": [
+     {
+      "from": "2026-07-30 02:00:00",
+      "to": "2026-08-03 07:00:00",
+      "hours": 101.0
+     }
+    ],
+    "first": "2021-09-25 17:00:00",
+    "last": "2026-09-30 23:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "periods": {
+  "pre": {
+   "members": [
+    "BTCUSD",
+    "ETHUSD",
+    "XRPUSD",
+    "LTCUSD",
+    "BCHUSD",
+    "EOSUSD"
+   ],
+   "n_days": 1285,
+   "mdd": -0.6279,
+   "mdd_buyhold": -0.7627,
+   "exposure_mean": 0.5409,
+   "ann_ret": 0.1642,
+   "null_B": 1000,
+   "null_depth_q05": 0.5522,
+   "null_depth_q10": 0.5869,
+   "null_depth_q50": 0.6865,
+   "pct_null_shallower_or_equal": 0.22,
+   "per_coin": {
+    "BTCUSD": {
+     "n_days": 1145,
+     "mdd": -0.6444,
+     "mdd_bh": -0.7278,
+     "exposure": 0.6122,
+     "ann_ret": 0.2445
+    },
+    "ETHUSD": {
+     "n_days": 991,
+     "mdd": -0.6377,
+     "mdd_bh": -0.6809,
+     "exposure": 0.6912,
+     "ann_ret": 1.3908
+    },
+    "XRPUSD": {
+     "n_days": 912,
+     "mdd": -0.7065,
+     "mdd_bh": -0.7149,
+     "exposure": 0.4759,
+     "ann_ret": 0.1973
+    },
+    "LTCUSD": {
+     "n_days": 886,
+     "mdd": -0.7819,
+     "mdd_bh": -0.7906,
+     "exposure": 0.4661,
+     "ann_ret": -0.1526
+    },
+    "BCHUSD": {
+     "n_days": 473,
+     "mdd": -0.7709,
+     "mdd_bh": -0.6349,
+     "exposure": 0.6596,
+     "ann_ret": -0.4851
+    },
+    "EOSUSD": {
+     "n_days": 802,
+     "mdd": -0.8421,
+     "mdd_bh": -0.7922,
+     "exposure": 0.3404,
+     "ann_ret": -0.4313
+    }
+   }
+  },
+  "post": {
+   "members": [
+    "BTCUSD",
+    "ETHUSD",
+    "XRPUSD",
+    "LTCUSD",
+    "ADAUSD",
+    "BCHUSD",
+    "XLMUSD",
+    "EOSUSD",
+    "LNKUSD",
+    "DOTUSD",
+    "SOLUSD"
+   ],
+   "n_days": 1734,
+   "mdd": -0.534,
+   "mdd_buyhold": -0.7038,
+   "exposure_mean": 0.3709,
+   "ann_ret": 0.0708,
+   "null_B": 1000,
+   "null_depth_q05": 0.3532,
+   "null_depth_q10": 0.3715,
+   "null_depth_q50": 0.4424,
+   "pct_null_shallower_or_equal": 0.945,
+   "per_coin": {
+    "BTCUSD": {
+     "n_days": 1640,
+     "mdd": -0.3212,
+     "mdd_bh": -0.6702,
+     "exposure": 0.5195,
+     "ann_ret": 0.2654
+    },
+    "ETHUSD": {
+     "n_days": 1732,
+     "mdd": -0.3843,
+     "mdd_bh": -0.741,
+     "exposure": 0.4342,
+     "ann_ret": 0.1832
+    },
+    "XRPUSD": {
+     "n_days": 1189,
+     "mdd": -0.6465,
+     "mdd_bh": -0.7087,
+     "exposure": 0.4651,
+     "ann_ret": 0.2323
+    },
+    "LTCUSD": {
+     "n_days": 1732,
+     "mdd": -0.6409,
+     "mdd_bh": -0.7317,
+     "exposure": 0.3609,
+     "ann_ret": -0.091
+    },
+    "ADAUSD": {
+     "n_days": 1630,
+     "mdd": -0.8316,
+     "mdd_bh": -0.8914,
+     "exposure": 0.3055,
+     "ann_ret": -0.1826
+    },
+    "BCHUSD": {
+     "n_days": 1734,
+     "mdd": -0.7931,
+     "mdd_bh": -0.8025,
+     "exposure": 0.4729,
+     "ann_ret": -0.034
+    },
+    "XLMUSD": {
+     "n_days": 1734,
+     "mdd": -0.7963,
+     "mdd_bh": -0.7617,
+     "exposure": 0.3443,
+     "ann_ret": 0.0462
+    },
+    "EOSUSD": {
+     "n_days": 1275,
+     "mdd": -0.8404,
+     "mdd_bh": -0.8745,
+     "exposure": 0.2706,
+     "ann_ret": -0.4086
+    },
+    "LNKUSD": {
+     "n_days": 1628,
+     "mdd": -0.6907,
+     "mdd_bh": -0.7585,
+     "exposure": 0.3931,
+     "ann_ret": -0.0447
+    },
+    "DOTUSD": {
+     "n_days": 654,
+     "mdd": -0.6865,
+     "mdd_bh": -0.9298,
+     "exposure": 0.1575,
+     "ann_ret": -0.2935
+    },
+    "SOLUSD": {
+     "n_days": 654,
+     "mdd": -0.3965,
+     "mdd_bh": -0.7633,
+     "exposure": 0.3563,
+     "ann_ret": 0.0008
+    }
+   }
+  }
+ },
+ "machine_verdict": "棄却: 前後半とも実際の |MDD| が帰無の浅い側 10% に入らない（下落の軽さは露出で説明できる）（data_health に failed/gaps あり: 確定にする前に点検）",
+ "multiple_comparisons": "判定は前後半 2 本の交差（両方を要求）。通貨ごとの百分位・買い持ちは記述"
+}
