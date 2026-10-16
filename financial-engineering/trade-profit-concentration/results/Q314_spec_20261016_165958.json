@@ -1,0 +1,97 @@
+{
+ "qid": "Q314",
+ "registered": "20261016_165958",
+ "B": 500,
+ "seed": {
+  "cells": {
+   "D1": {
+    "tsmom": 60,
+    "sma": 50
+   },
+   "H1": {
+    "tsmom": 24,
+    "sma": 50
+   }
+  },
+  "cost": "段階1 COST_RT（片道）を取引ごとに入りと出で 2 回"
+ },
+ "question": "順張りの利益は少数の取引に集中するか: 最良 1 取引の総利益比を、同じ取引数・保有期間で入る時期だけランダムにした帰無と比べる（Q313-C1・ブログの 91% は普通か異常か）",
+ "hypothesis": "15 銘柄 × 2 規則（TSMOM・SMA、常に ±1）× 2 足（日足 D1: TSMOM60・SMA50／H1: TSMOM24・SMA50）で、取引（同じ向きの連続）ごとの純損益を出し、S1 = 最良 1 取引 ÷ 勝ち取引の合計（総利益）を測る。帰無は取引の『保有本数と向き』の組を並べ替えて時間軸に敷き直す（取引数・保有期間の分布・露出は同じ、入る時期だけランダム）。順張りは帰無より少数の大勝ちに集中する（S1 の帰無百分位が高い）",
+ "reject_if": "足ごとに 30 セル（15 銘柄 × 2 規則）の『S1 の帰無百分位』を集計。支持: D1 か H1 のどちらかで、百分位の平均 ≥ 0.75 かつ 0.5 超のセル数の符号検定（片側）p<0.05。棄却: D1・H1 の両方で百分位の平均 < 0.6。ほか → 未確定。（2 つの足のどちらかを要求するので、符号検定の p は 2 倍して読む＝Bonferroni）",
+ "syms": [
+  "EURUSD",
+  "GBPUSD",
+  "AUDUSD",
+  "USDJPY",
+  "USDCHF",
+  "USDCAD",
+  "EURJPY",
+  "GBPJPY",
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "UKOIL",
+  "US500",
+  "USTECH",
+  "BTCUSD"
+ ],
+ "kind": "D1_fromH1 と H1_dukascopy",
+ "params": [
+  {
+   "freq": "D1",
+   "rule": "tsmom",
+   "n": 60
+  },
+  {
+   "freq": "D1",
+   "rule": "sma",
+   "n": 50
+  },
+  {
+   "freq": "H1",
+   "rule": "tsmom",
+   "n": 24
+  },
+  {
+   "freq": "H1",
+   "rule": "sma",
+   "n": 50
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 0,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": null,
+ "cutoff_hour": 0,
+ "null_kind": "none",
+ "null_block": 20,
+ "null_min_shift": 60,
+ "cost_rel": {},
+ "discarded": "約3: ボリンジャー併用（ブログの規則は非公開で再現できない）、15 分足（XAUUSD の M15 は yahoo で別ソース）、総利益を『純損益』にする定義（合計が負のとき比が定義できない）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。データは 2008〜2026-06 で締め切り前。規則は固定で相場観は使わない",
+ "delegation": "設計・コード・実行・解釈は Opus 本体（2026-10-17）。委託なし",
+ "source": "[[ブログZenn2026hiro-2_XAUUSD15分足のトレンド規則は利益の91パーセントが1取引で残り116取引は1.11Rだけだった]]、知見 Q230（日次の上位 1% への集中は帰無よりむしろ低い）",
+ "data": "15 銘柄 D1_fromH1（2008〜2026-06）と H1_dukascopy（同）。gap 行はリターン 0 扱い",
+ "measure": "セルごとの S1・最良除外後の合計 R_ex・取引数、S1 の帰無百分位。足ごとに百分位の平均・符号検定。記述: R_ex<0 の割合、XAUUSD の値",
+ "null_desc": "取引の（保有本数, 向き）の列をランダムに並べ替えて先頭から敷き直す B 回 → 同じ損益計算で S1 の帰無分布 → 実際の百分位（帰無 < 実際 の割合 + 同順位の半分）",
+ "prior_art": "WebSearch 2026-10-17・standard・\"trend following profits concentrated in few trades share of total profit largest trade versus random entry test outlier dependence\"。Zarattini・Pagani・Wilcox（株の順張りは少数の大勝ち頼み）、TradingView『Largest winner as % of gross profit』、MQL5 のブログ。帰無との比較は未確認",
+ "batch": "単発（接続 Q313 の通過案）",
+ "designer": "Opus",
+ "coder": "Claude（Opus）",
+ "settings": {
+  "cells": {
+   "D1": {
+    "tsmom": 60,
+    "sma": 50
+   },
+   "H1": {
+    "tsmom": 24,
+    "sma": 50
+   }
+  },
+  "cost": "段階1 COST_RT（片道）を取引ごとに入りと出で 2 回"
+ },
+ "note": "帰無の変更後に実行の前に保存"
+}
