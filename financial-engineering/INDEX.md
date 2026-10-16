@@ -38,7 +38,7 @@
 | [crypto-variance-ratio-trend](./crypto-variance-ratio-trend) | Q264 暗号資産11通貨の H1 の分散比は 2022 年以降に 1 へ近づいたか（適応的市場仮説の移植） | … |
 | [crypto-weekend-effect](./crypto-weekend-effect) | Q212 暗号資産の週末（土日）はリターン・ボラ・順張りの損益が平日と違うか（11 通貨 H1） | H1a 弱い確定（効果はほぼ消滅）／H1b 棄却 |
 | [currency-strength-cross-redundancy](./currency-strength-cross-redundancy) | Q299 通貨強度（対ドル 6 本の L 本リターン平均・7 通貨）は、クロス 2 本（EURJPY・GBPJPY）を足した最小二乗版と H1 の L=24/120/480 時間で相関 0.99 以上か（クロスは冗長か） | 確定（支持: クロスは冗長） |
-| [currency-strength-session-entry](./currency-strength-session-entry) | Q301 強度スプレッドの合図のエントリーをロンドン・NY 重複帯（NY 8〜12 時・8:30 ET の足の確定後）に限ると、1 トレードのコスト後期待値は即時エントリーとランダム時間窓の帰無を上回るか（全体／前半 3 時間・H1 執行・24 時間保有） | — |
+| [currency-strength-session-entry](./currency-strength-session-entry) | Q301 強度スプレッドの合図のエントリーをロンドン・NY 重複帯（NY 8〜12 時・8:30 ET の足の確定後）に限ると、1 トレードのコスト後期待値は即時エントリーとランダム時間窓の帰無を上回るか（全体／前半 3 時間・H1 執行・24 時間保有） | 棄却 |
 | [currency-strength-spread-quintile](./currency-strength-spread-quintile) | Q300 7 通貨の強度ランキングの最強−最弱スプレッド（4H・L=30 本・ボラ正規化）の上位五分位は、翌 6 本（1 日）の合成リターンがコスト後に継続か反転か | 棄却 |
 | [d1-fromh1-gap-check](./d1-fromh1-gap-check) | Q288: D1_fromH1 の WTI・UKOIL・US500・USTECH にある 2011-09〜2012-01 の空白は取得失敗か提供元の欠落か | H1 データの取得失敗が原因。提供元（Dukascopy D1）は欠落していない |
 | [daily-cutoff-hour-dependence](./daily-cutoff-hour-dependence) | Q211 日足の区切り時刻（0・8・13・17・21 UTC）で順張りの純損益はどれだけ変わるか（帰無: 区切りをランダムに選ぶ） | 棄却 |
@@ -72,7 +72,7 @@
 | [indicator-confirmation](./indicator-confirmation) | Q182 複数の順張り指標が一致したときだけ売買すると的中率と純損益は上がるか（Loubaris 2026-2） | 棄却（Loubaris と同じ非有意） |
 | [instrument-selection-bias](./instrument-selection-bias) | Q150 15銘柄から成績の良い 8 銘柄を事後に選ぶと順張りの成績はどれだけ膨らむか（Korzan 2026 §6 の銘柄選択バイアス） | 支持（確定）。選んだ銘柄は後半でむしろ劣る（反転）。膨らみが帰無の95%点をわずかに超えるのはその反転の裏返し（帰無は… |
 | [intraday-momentum-first-last](./intraday-momentum-first-last) | Q176 最初の1時間→最後の1時間の日中モメンタムは為替・株価指数・金で公表後に残るか（GarciaArano 2026） | 最初の1時間 → 最後の1時間 の日中モメンタムは、FX8・金・US株価指数2 の H1 で公表後にコスト前・コスト後… |
-| [intraday-momentum-indices-decay](./intraday-momentum-indices-decay) | Q297 US500 / USTECH H1 の日中モメンタム（初動 1 時間 → 終盤 1 時間）は 2016 以降に減衰したか | — |
+| [intraday-momentum-indices-decay](./intraday-momentum-indices-decay) | Q297 US500 / USTECH H1 の日中モメンタム（初動 1 時間 → 終盤 1 時間）は 2016 以降に減衰したか | ノイズ |
 | [jump-day-followthrough](./jump-day-followthrough) | Q273 ジャンプ日（／ret／>2.5σ）の翌日・翌5日は継続か反転か（15銘柄・年内並べ替え帰無） | 未確定・ただし 2017 を境に y1 が「継続→反転」へ、y5 が「中立→継続」へ振れている可能性 |
 | [kensho-anomaly-decay](./kensho-anomaly-decay) | 決算発表後のアノマリー減衰 | README の「主な検証」表を参照 |
 | [long-short-decomposition](./long-short-decomposition) | Q152 順張りの利益は買い側だけか: 売り側はコスト後に0と区別できるか | 未確定（売り側に利益なしは確定。買い側の順張りは機械判定では支持だが、BTC・後半・ドンチャンに依存） |

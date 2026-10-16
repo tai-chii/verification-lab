@@ -1,0 +1,10 @@
+model,period,n_trades,bp_net_per_trade,t_year,n_years,years_dropped,win_rate,bp_gross_per_trade,bp_net_per_day
+A_immediate,all,1382,-5.3618,-1.5883,19,[],0.4703,-2.0097,-1.3843
+A_immediate,pre,662,-6.6819,-0.9739,9,[],0.4562,-3.1618,-1.756
+A_immediate,post,720,-4.1738,-1.8098,10,[],0.4833,-0.9729,-1.0352
+B_overlap_all,all,1185,-4.4313,-1.2677,19,[],0.4726,-1.09,-1.0051
+B_overlap_all,pre,560,-5.9733,-0.8467,9,[],0.4464,-2.4483,-1.47
+B_overlap_all,post,625,-3.0434,-1.2259,10,[],0.496,0.1326,-0.5683
+C_overlap_first3h,all,1077,-5.0292,-1.5583,19,[],0.4643,-1.6763,-0.9638
+C_overlap_first3h,pre,506,-6.9707,-1.0922,9,[],0.4526,-3.4365,-1.3847
+C_overlap_first3h,post,571,-3.2819,-1.3094,10,[],0.4746,-0.0921,-0.5684
