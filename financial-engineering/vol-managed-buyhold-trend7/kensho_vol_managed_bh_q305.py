@@ -96,6 +96,7 @@ def run(args, rng):
     obs = pd.concat({s: pd.Series(sym_pnl(dfs[s], s, W[s]), index=idx[s]) for s in syms}, axis=1).sort_index()
     bh = pd.concat({s: pd.Series(sym_pnl(dfs[s], s, np.where(W[s] > 0, 1.0, 0.0)), index=idx[s]) for s in syms}, axis=1).sort_index()
     gro = pd.concat({s: pd.Series(sym_pnl(dfs[s], s, W[s], gross=True), index=idx[s]) for s in syms}, axis=1).sort_index()
+    U = obs.index; UY = U.year.values; POS = {s: U.get_indexer(idx[s]) for s in syms}  # 帰無の高速化用
     periods = {"all": (0, 9999), "pre": (0, SPLIT_YEAR), "post": (SPLIT_YEAR, 9999)}
     res = {"question": SPEC.question, "spec": SPEC.as_dict(), "missing": missing, "data_health": dh, "main": {}}
     for pn, (y0, y1) in periods.items():
@@ -104,13 +105,16 @@ def run(args, rng):
         shb, poolb = basket_sharpe(bh, y0, y1)
         null = []
         for _ in range(args.B):
-            cols = {}
-            for s in syms:
+            # 高速化（2026-10-17・計算は元と同一: 日付の和集合の行列に入れて銘柄平均 → 期間で切る → 全欠損の行を落とす）
+            arr = np.full((len(U), len(syms)), np.nan)
+            for j, s in enumerate(syms):
                 yrs = idx[s].year; m = (yrs >= y0) & (yrs < y1); ii = np.where(m)[0]; w2 = W[s].copy(); n = len(ii)
                 if n > 2 * MIN_SHIFT:
                     k = int(rng.integers(MIN_SHIFT, n - MIN_SHIFT + 1)); w2[ii] = np.roll(W[s][ii], k)
-                cols[s] = pd.Series(sym_pnl(dfs[s], s, w2), index=idx[s])
-            null.append(basket_sharpe(pd.concat(cols, axis=1).sort_index(), y0, y1)[0])
+                arr[POS[s], j] = sym_pnl(dfs[s], s, w2)
+            sub = arr[(UY >= y0) & (UY < y1)]
+            ok = ~np.all(np.isnan(sub), axis=1)
+            null.append(sharpe_ann(np.nanmean(sub[ok], axis=1), 252))
         z, pct = z_of(sh, np.array(null, float)) if null else (None, None)
         dsub = obs[(obs.index.year >= y0) & (obs.index.year < y1)]; bsub = bh[(bh.index.year >= y0) & (bh.index.year < y1)]
         res["main"][pn] = {"sharpe_vm": fmt(sh), "sharpe_vm_gross": fmt(shg), "sharpe_bh": fmt(shb), "z": fmt(z), "pct": fmt(pct),

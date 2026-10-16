@@ -142,7 +142,7 @@
 | [vol-asymmetry-by-group](./vol-asymmetry-by-group) | Q247 ボラの非対称性の向きは群で違うか（株価指数は負・金は正・FX は無し。HAR に符号項・15 銘柄） | 未確定 |
 | [vol-change-reversal](./vol-change-reversal) | Q174 ボラの変化は1日逆張りの翌日リターンを予測するか（DellaCorte 2015-3・15銘柄） | 棄却 |
 | [vol-forecast-loss-vs-model](./vol-forecast-loss-vs-model) | Q187 為替のボラ予測で損失関数の差はモデルの差の何倍に見えるか（Tokajuk 2026-1 の為替移植） | 棄却（H0 支持: 為替では損失関数の差はモデルの差より小さい・Tokajuk の構図は為替で再現しない） |
-| [vol-managed-buyhold-trend7](./vol-managed-buyhold-trend7) | Q305 TREND7 日足の買い持ちを直前 20 日実現ボラの逆数で規模調整するとシャープは同じ重み分布の循環シフトより高いか（Moreira–Muir の CFD 移植） | — |
+| [vol-managed-buyhold-trend7](./vol-managed-buyhold-trend7) | Q305 TREND7 日足の買い持ちを直前 20 日実現ボラの逆数で規模調整するとシャープは同じ重み分布の循環シフトより高いか（Moreira–Muir の CFD 移植） | 未確定 |
 | [vol-regime-autocorr](./vol-regime-autocorr) | Q294 15 銘柄 D1 の 1 次自己相関は高ボラ月で低ボラ月より高いか | 棄却 |
 | [vol-regime-trend-following](./vol-regime-trend-following) | Q142 高ボラ局面では順張りの的中率と純損益が下がるか（15銘柄・GARCH なしの実現ボラ） | 未確定（事後発見の向きは4通り一致、大きさは半期では届かず・全期間は2/4 で ／z／≥2・主に XAUUSD と v… |
 | [vol-targeting-tsmom](./vol-targeting-tsmom) | Q205 ボラ・ターゲティング（σ60 で規模調整）は 15 銘柄の日足順張りの年ごとのシャープを上げるか（Harvey ほか 2018 の追試） | 支持（確定・事前登録どおり） |
