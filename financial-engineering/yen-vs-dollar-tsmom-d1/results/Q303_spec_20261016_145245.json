@@ -1,0 +1,67 @@
+{
+ "qid": "Q303",
+ "registered": "20261016_145245",
+ "seed": 20261010,
+ "question": "FX8 日足の TSMOM60 で円の組 3 本の純損益はドルの組 5 本を上回るか（円の組の 4 時間足の知見の日足版・組ラベルの全 56 通り帰無）",
+ "hypothesis": "pos[t]=sign(close[t]−close[t−60])（t の終値で決め t+1 から保有）。D = 円の組 3 本の等加重の日次純損益 − ドルの組 5 本の等加重の日次純損益 [bp]、年ごとの平均を年で平均したもの。D は前後半とも >0 で、8 銘柄から 3 本を『円の組』と呼ぶ全 56 通りの中で上位 5% に入る",
+ "reject_if": "支持: 前半（2008–2016）・後半（2017–2026-06）とも D>0 かつ 正確な p（56 通りのうち D 以上の割合）≤0.05。棄却: 全期間の D が 56 通りの中央値以下（p>0.5）。それ以外 → 未確定。（前後半の両方を要求する交差なので Holm はかけない）",
+ "syms": [
+  "EURUSD",
+  "GBPUSD",
+  "AUDUSD",
+  "USDJPY",
+  "USDCHF",
+  "USDCAD",
+  "EURJPY",
+  "GBPJPY"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "L": 60
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 60,
+ "per_year": 252,
+ "B": 56,
+ "split_year": 2017,
+ "start": null,
+ "cutoff_hour": 0,
+ "null_kind": "none",
+ "null_block": 20,
+ "null_min_shift": 60,
+ "cost_rel": {},
+ "discarded": "約3: H4 で再確認（既知見の繰り返し）、L の掃引 20/120（判定は 1 本に固定）、通貨強度でのグループ分け（Q291 系と重なる）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。データは 2008-02〜2026-06 で締め切り前。規則は固定で相場観は使わない",
+ "delegation": "設計とコードは Opus（2026-10-16）。実行と記録は Sonnet（怪しければ escalate）。結論ではなく JSON のパス・D・正確な p・年ごとの表を返させ、本体が確かめる",
+ "source": "知見「円の組の4時間足に順張りの効きは見えない」・[[ブログZenn2026-3_4時間足の順張りは円の組で再現しドルの組では再現しない]]、知見「6通貨のドル因子に日足順張りを当てても個別ペアの順張りより強くならず」。種: ローカル LLM アイデア 2026-10-15",
+ "data": "FX8 D1_fromH1（2008-02〜2026-06）。円の組 = USDJPY・EURJPY・GBPJPY、ドルの組 = EURUSD・GBPUSD・AUDUSD・USDCHF・USDCAD（USDJPY は円の組に入れる）",
+ "measure": "D（円の組 − ドルの組、年単位の日平均 bp、段階1コスト後）と年単位 t、各組の純損益・粗利・Sharpe。記述: L=20/120 の D",
+ "null_desc": "8 銘柄から 3 本を円の組とする全 56 通りで D を計算し、実際の D の正確な順位 p（乱数なし）",
+ "prior_art": "WebSearch 2026-10-16・standard・検索語 \"time series momentum yen crosses versus dollar pairs daily FX trend following performance comparison\"。見つかったもの: CXO Advisory の通貨モメンタム検定、Deutsche Bank 2007 の FX モメンタム資料、QuantInsti の主要通貨のトレンドフォロー（ブログ）。未確認: 円クロスとドルストレートの順張りの差を、組ラベルの正確な並べ替え帰無で前後半に分けて測った研究は見当たらない（条件の穴）",
+ "batch": "4案一括生成（ローカル LLM アイデアの選別 2026-10-16）",
+ "designer": "Opus",
+ "coder": "Claude（Opus）",
+ "settings": {
+  "L_main": 60,
+  "L_sub": [
+   20,
+   120
+  ],
+  "yen": [
+   "USDJPY",
+   "EURJPY",
+   "GBPJPY"
+  ],
+  "dollar": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDCHF",
+   "USDCAD"
+  ],
+  "split_year": 2017
+ }
+}

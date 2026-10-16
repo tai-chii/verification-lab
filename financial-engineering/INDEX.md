@@ -156,4 +156,4 @@
 | [wrc-spa-disagreement](./wrc-spa-disagreement) | Q154 WRC・SPA(consistent)・SPA(conservative) の判定は同じルール群でどれだけ割れるか | 確定（棄却） |
 | [xauusd-london-fix-vshape](./xauusd-london-fix-vshape) | Q289 XAUUSD の WM/Reuters ロンドン fix（16:00 UTC）の前後に V 字はあるか | 未確定 |
 | [xauusd-vol-regime-single](./xauusd-vol-regime-single) | Q161 XAUUSD 単銘柄・直前20〜60日の実現ボラが高い日に翌日の順張り損益が下がるか（ドリフト除去・前後半） | 未確定（6/6 で向き一致・／z／≥2 達成は 3/6 で窓40・60日に偏る・ドリフト除去は結論を変えない） |
-| [yen-vs-dollar-tsmom-d1](./yen-vs-dollar-tsmom-d1) | Q303 FX8 日足の TSMOM60 で円の組 3 本の純損益はドルの組 5 本を上回るか（円の組の 4 時間足の知見の日足版・組ラベルの全 56 通り帰無） | — |
+| [yen-vs-dollar-tsmom-d1](./yen-vs-dollar-tsmom-d1) | Q303 FX8 日足の TSMOM60 で円の組 3 本の純損益はドルの組 5 本を上回るか（円の組の 4 時間足の知見の日足版・組ラベルの全 56 通り帰無） | 未確定 |
