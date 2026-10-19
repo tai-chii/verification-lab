@@ -1,0 +1,105 @@
+{
+ "question": "Q338",
+ "n_rows": 136,
+ "n_included": 103,
+ "n_extractable": 76,
+ "n_positive": 11,
+ "n_positive_extractable": 8,
+ "share_positive_not_extractable": 0.2727272727272727,
+ "S_BY": 0.125,
+ "S_BH": 0.125,
+ "n_BY": 2,
+ "n_BH": 4,
+ "verdict": "効果ありの多くは探索の量で説明できる",
+ "positive_rows": [
+  {
+   "dir": "bbc-cv-tsmom-optimism",
+   "Q": "Q172",
+   "stat_name": "年単位t_year(Opt) 前半(H1前提)",
+   "value": "4.72",
+   "p": 2.3584464330327966e-06,
+   "BH": true,
+   "BY": true
+  },
+  {
+   "dir": "crypto-h1-reversal-vol",
+   "Q": "Q183",
+   "stat_name": "NW t 後半 (b: V 上位1/5 vs 残り 粗利差)",
+   "value": "2.61",
+   "p": 0.009054222265934657,
+   "BH": false,
+   "BY": false
+  },
+  {
+   "dir": "dual-lookback-rotation",
+   "Q": "Q292",
+   "stat_name": "z 後半(pre/post の小さいほう)",
+   "value": "1.73",
+   "p": 0.08363027522718994,
+   "BH": false,
+   "BY": false
+  },
+  {
+   "dir": "instrument-selection-bias",
+   "Q": "Q150",
+   "stat_name": "年単位t 選択効果(k=8)",
+   "value": "-1.71",
+   "p": 0.08726587304806384,
+   "BH": false,
+   "BY": false
+  },
+  {
+   "dir": "parkinson-vol-forecast",
+   "Q": "222",
+   "stat_name": "PK−CC 年単位t 前半",
+   "value": "-2.08",
+   "p": 0.03752553286987552,
+   "BH": false,
+   "BY": false
+  },
+  {
+   "dir": "pbo-cscv-tsmom",
+   "Q": "171",
+   "stat_name": "null z 全期間",
+   "value": "2.43",
+   "p": 0.015098822832618411,
+   "BH": false,
+   "BY": false
+  },
+  {
+   "dir": "same-day-label-leak",
+   "Q": "307",
+   "stat_name": "翌日ラベル帰無 z",
+   "value": "0.01",
+   "p": 0.9920212873707368,
+   "BH": false,
+   "BY": false
+  },
+  {
+   "dir": "vol-targeting-tsmom",
+   "Q": "205",
+   "stat_name": "年単位t 後半 (VT−固定シャープ差)",
+   "value": "2.63",
+   "p": 0.00853848681817871,
+   "BH": false,
+   "BY": false
+  }
+ ],
+ "positive_not_extractable": [
+  {
+   "dir": "cluster-t-shrinkage",
+   "Q": "Q175",
+   "reason": "判定量は日クラスタ t／素朴 t の比（≤0.7）で、t/z そのものではない"
+  },
+  {
+   "dir": "currency-strength-cross-redundancy",
+   "Q": "Q299",
+   "reason": "判定量は相関 corr≥0.99(42セル)で t/z でない。迷い: 「効果」でなく冗長性の主張だが README は支持・確定なので positive=1 とした"
+  },
+  {
+   "dir": "selection-optimism-vs-J",
+   "Q": "139",
+   "reason": "迷い: 判定はSpearman(J,楽観)>=0.8と比(>=0.9)でt/zなし。Alonsoの下側限界の較正でもあるが、楽観がJで増えるを支持としてpositive=1"
+  }
+ ]
+}

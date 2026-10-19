@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 159 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 160 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -78,6 +78,7 @@
 | [jump-day-followthrough](./jump-day-followthrough) | Q273 ジャンプ日（／ret／>2.5σ）の翌日・翌5日は継続か反転か（15銘柄・年内並べ替え帰無） | 未確定・ただし 2017 を境に y1 が「継続→反転」へ、y5 が「中立→継続」へ振れている可能性 |
 | [kensho-anomaly-decay](./kensho-anomaly-decay) | 決算発表後のアノマリー減衰 | README の「主な検証」表を参照 |
 | [leaderboard-width-tsmom-q326](./leaderboard-width-tsmom-q326) | Q326 順張りの参照日数60本の順位表 L(j) は上位ほど悪いか・格子を広げるほど選択の翌年は悪くなるか（Wang 2026 BT-2 を手元へ・Q325-C1） | ノイズ（幅は選択を良くも悪くもしない、と区別できない） |
+| [ledger-fdr-q338](./ledger-fdr-q338) | Q338 手元の検証の全体に偽発見率の補正を当てると「効果あり」のうち何本残るか（Chang ら 2026 を自分の台帳へ・Q336-C3） | 確定 |
 | [long-short-decomposition](./long-short-decomposition) | Q152 順張りの利益は買い側だけか: 売り側はコスト後に0と区別できるか | 未確定（売り側に利益なしは確定。買い側の順張りは機械判定では支持だが、BTC・後半・ドンチャンに依存） |
 | [lookback-ensemble-tsmom](./lookback-ensemble-tsmom) | Q223 参照日数の集合（20・60・120・250 の合図平均）は最良単一の参照日数より標本外で良いか（Baltas・Kosowski の型） | ノイズ: 合図平均と最良単一の差は前後半で揃わず事前固定の t≥2 または t≤−2 のどちらも通らない |
 | [m15-autocorr-by-hour](./m15-autocorr-by-hour) | Q153 15分足の1次自己相関は時刻で符号が変わるか（USDJPY・EURUSD 2021〜・Holm 補正） | 確定（棄却） |
