@@ -424,7 +424,7 @@ groups（例: 年）の中で x を並べ替える。
 | 返り値 | 長さ n の並べ替え後の x |
 | 禁止 | rng を毎回作り直さない（seed 固定の rng を渡す） |
 
-### `block_perm(rng, x, block)`  — `multiple.py:88`
+### `block_perm(rng, x, block)`  — `multiple.py:106`
 
 block 本ごとの塊を並べ替える（塊の中の順序は保つ）。
 
@@ -435,7 +435,7 @@ block 本ごとの塊を並べ替える（塊の中の順序は保つ）。
 | 返り値 | 長さ n |
 | 禁止 | block を結果を見てから変えない |
 
-### `circ_shift(rng, x, min_shift=1)`  — `multiple.py:102`
+### `circ_shift(rng, x, min_shift=1)`  — `multiple.py:120`
 
 循環シフト（合図とリターンの対応を壊し、合図の自己相関は保つ）。
 
@@ -449,7 +449,7 @@ block 本ごとの塊を並べ替える（塊の中の順序は保つ）。
 
 ## 段階: 判定
 
-### `holm(pvals)`  — `multiple.py:115`
+### `holm(pvals)`  — `multiple.py:133`
 
 Holm の段階的補正（補正後 p）。有限な p だけなら雛形 91 本と同じ値。NaN は m に数えるが補正後も NaN。
 
@@ -460,7 +460,7 @@ Holm の段階的補正（補正後 p）。有限な p だけなら雛形 91 本
 | 返り値 | 同じ長さの補正後 p（NaN はそのまま） |
 | 禁止 | 検定の数を結果を見てから減らさない |
 
-### `holm_sig(pvals, alpha=0.05)`  — `multiple.py:135`
+### `holm_sig(pvals, alpha=0.05)`  — `multiple.py:153`
 
 holm の補正後 p と有意フラグの両方を返す（旧 q147・q153 の形）。
 

@@ -85,6 +85,24 @@ def perm_within(rng, x, groups):
     return x
 
 
+def perm_dates_within(rng, X, groups, return_index=False):
+    """groups（例: 年）の中で日付（行）を 1 つの並べ替えで動かし、全銘柄（列）を一緒に動かす（Q321・Q322 で追加）。
+    使う場面: 複数銘柄の統計を束ねる帰無。銘柄ごとに perm_within を別々に回すと銘柄間の相関が壊れ、帰無が狭くなってサイズが膨らむ
+      （Q320・Q321: 腕なしで 12〜16%）。日付共通にすると横の相関が残り名目 5% に戻る（Q321: 5.0%）
+    入力: rng、X: (T,) または (T, S)。行＝共通の日付の格子（昇順でなくてよい）、groups: 長さ T のラベル（年・年月など）
+    返り値: X[π]（π は groups の中だけで日付を入れ替える 1 つの並べ替え）。return_index=True なら (X[π], π)
+    禁止: 銘柄ごとに別の rng 呼び出しで回さない（それでは perm_within と同じ）。格子に無い銘柄の日は NaN のまま入るので、
+      呼び出し側で埋める（ffill 等）か除くかを測る前に決める
+    段階: 帰無
+    """
+    X = np.asarray(X); g = np.asarray(groups)
+    pi = np.arange(len(g))
+    for v in np.unique(g):
+        idx = np.where(g == v)[0]
+        pi[idx] = idx[rng.permutation(len(idx))]
+    return (X[pi], pi) if return_index else X[pi]
+
+
 def block_perm(rng, x, block):
     """block 本ごとの塊を並べ替える（塊の中の順序は保つ）。
     使う場面: 自己相関を保ったまま対応を壊す帰無。block は保有期間の数倍

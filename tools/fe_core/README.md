@@ -48,6 +48,8 @@ from fe_core import *   # 雛形と同じ名前がそのまま使える
 - 追加: `check_gaps(df, bar)`・`health(syms, kind)`。結果 JSON の `data_health` に入れる想定（失敗パターン集 2026-09-30・Q108 の再発防止）。
 - 0.2.0（監査の反映）: `z_of` は退化した帰無で (nan, nan)。`perm_p`・`null_summary`・`null_degenerate`・`cluster_t`・`sharpe_ann_n`・`sanitize`・`fmt` を追加。load_* に `dt_prev_h`・`gap` 列、`h1_to_d1` に `close_time` 列。`by_year_stats(min_rows=20)`。`pnl_bp` は pos の NaN を 0 にして警告、スカラーの cost も受ける。`_read` は安定ソート＋`attrs["n_dup"]`。`circ_shift` の上限を 1 増やした。`nw_t` は定数で NaN。`max_drawdown` は NaN を 0 扱い。`parse_args` の B の既定 500。`write_result` は上書きせず連番、`here=` を受ける。詳細は `REVIEW_20261013.md`。
 
+- 0.2.1（2026-10-19・Q322）: `multiple.perm_dates_within(rng, X, groups, return_index=False)` を追加（追加のみ・既存関数は不変）。理由: 銘柄ごとの perm_within を束ねると帰無が狭くなる（Q320・Q321、`_基盤/知識/検証方法論/失敗パターン集.md` 2026-10-19）。Q268 の照合 JSON（generated 以外）一致: `financial-engineering/ecb-fix-vshape/results/_fecore照合_20261019_Q322/`。CATALOG 再生成済み。
+
 ## 照合（移植が正しいことの証拠）
 
 Q268（`ecb-fix-vshape/kensho_ecb_fix_q268.py` → `kensho_ecb_fix_q268_fecore.py`、463 行 → 159 行）を同じ seed・B=300 で両方実行し、
