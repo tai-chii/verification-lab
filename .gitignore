@@ -38,3 +38,6 @@ financial-engineering/common-perm-size-q321/results/calib_Q321.npz
 
 # 削除できない一時ファイルの置き場（Q322）
 **/_to_delete/
+
+# Q333: 銘柄ごとの帰無の生の判定（計8MB）。要約は results/Q333_result_*.json
+financial-engineering/wfo-window-gate-q333/results/parts/
