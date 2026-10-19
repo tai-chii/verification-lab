@@ -1,0 +1,142 @@
+{
+ "qid": "Q274",
+ "smoke": false,
+ "generated": "20261011_153821",
+ "question": "15 銘柄をプールしたパネル HAR は銘柄別 HAR より翌日の QLIKE を下げるか",
+ "settings": {
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "start": "2008-01-01",
+  "min_train": 500,
+  "split_year": 2017,
+  "B": 2000,
+  "model": "log Parkinson 分散の HAR(1,5,22)・年次ウォークフォワード（拡大窓）・予測 exp(log 予測)",
+  "pooled": "係数共通＋銘柄固定効果（within 推定）",
+  "null": "差の符号を年×銘柄で反転"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "n_cells": 224,
+    "n_years": 17,
+    "diff_mean": -0.003604,
+    "t": -1.0206,
+    "z": -1.0104,
+    "pct": 0.191,
+    "qlike_A_mean": 0.504809,
+    "qlike_B_mean": 0.500909,
+    "frac_cells_B_better": 0.5357
+   },
+   "pre": {
+    "n_cells": 77,
+    "n_years": 7,
+    "diff_mean": -0.007723,
+    "t": -0.926,
+    "z": -0.9503,
+    "pct": 0.2665,
+    "qlike_A_mean": 0.552685,
+    "qlike_B_mean": 0.542782,
+    "frac_cells_B_better": 0.5065
+   },
+   "post": {
+    "n_cells": 147,
+    "n_years": 10,
+    "diff_mean": -0.000721,
+    "t": -0.4169,
+    "z": -0.2983,
+    "pct": 0.381,
+    "qlike_A_mean": 0.47973,
+    "qlike_B_mean": 0.478976,
+    "frac_cells_B_better": 0.551
+   }
+  },
+  "fx8": {
+   "all": {
+    "n_cells": 134,
+    "n_years": 17,
+    "diff_mean": -0.006951,
+    "t": -1.2555,
+    "z": -1.2071,
+    "pct": 0.063,
+    "qlike_A_mean": 0.48448,
+    "qlike_B_mean": 0.477336,
+    "frac_cells_B_better": 0.5299
+   },
+   "pre": {
+    "n_cells": 54,
+    "n_years": 7,
+    "diff_mean": -0.012096,
+    "t": -0.8859,
+    "z": -0.8657,
+    "pct": 0.384,
+    "qlike_A_mean": 0.579537,
+    "qlike_B_mean": 0.56677,
+    "frac_cells_B_better": 0.4815
+   },
+   "post": {
+    "n_cells": 80,
+    "n_years": 10,
+    "diff_mean": -0.00335,
+    "t": -2.2929,
+    "z": -2.0863,
+    "pct": 0.018,
+    "qlike_A_mean": 0.420317,
+    "qlike_B_mean": 0.416968,
+    "frac_cells_B_better": 0.5625
+   }
+  },
+  "trend7": {
+   "all": {
+    "n_cells": 90,
+    "n_years": 17,
+    "diff_mean": -0.000622,
+    "t": -0.2521,
+    "z": -0.1838,
+    "pct": 0.41,
+    "qlike_A_mean": 0.535075,
+    "qlike_B_mean": 0.536008,
+    "frac_cells_B_better": 0.5444
+   },
+   "pre": {
+    "n_cells": 23,
+    "n_years": 7,
+    "diff_mean": -0.00525,
+    "t": -1.5615,
+    "z": -1.3401,
+    "pct": 0.1035,
+    "qlike_A_mean": 0.489643,
+    "qlike_B_mean": 0.486463,
+    "frac_cells_B_better": 0.5652
+   },
+   "post": {
+    "n_cells": 67,
+    "n_years": 10,
+    "diff_mean": 0.002618,
+    "t": 0.8155,
+    "z": 0.5615,
+    "pct": 0.6955,
+    "qlike_A_mean": 0.550671,
+    "qlike_B_mean": 0.553016,
+    "frac_cells_B_better": 0.5373
+   }
+  }
+ },
+ "machine_verdict": "棄却: 差は見えない（支持にも逆向きにも届かない）",
+ "multiple_comparisons": "判定は all15 の前後半 2 本。群別は記述。"
+}

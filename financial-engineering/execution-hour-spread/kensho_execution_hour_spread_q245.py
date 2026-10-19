@@ -379,9 +379,9 @@ def load_mid(args, rng):
 
 
 def build_index(m):
-    idx = {(d, h): i for i, (d, h) in enumerate(zip(m["date"].values, m["hour"].values))}
+    idx = {(d, h): i for i, (d, h) in enumerate(zip(m["date"], m["hour"].astype(int)))}
     first = {}
-    for i, d in enumerate(m["date"].values):
+    for i, d in enumerate(m["date"]):
         if d not in first:
             first[d] = i
     return idx, first

@@ -1,0 +1,304 @@
+{
+ "qid": "Q251",
+ "smoke": false,
+ "generated": "20261011_153408",
+ "question": "時間ストップ（N=20 日で手仕舞い・再合図まで待つ）は TSMOM60 の純損益と最大下落を改善するか",
+ "settings": {
+  "L": 60,
+  "N_main": 20,
+  "Ns": [
+   10,
+   20,
+   40
+  ],
+  "split_year": 2017,
+  "B": 300,
+  "null": "現金の日（B=0 かつ A≠0）の位置を年内で循環シフトし A の建玉に当てる（滞在率を保つ）",
+  "stat_for_z": "純損益差・最大下落差（年×銘柄）を年内で銘柄平均→年平均",
+  "mdd_unit": "年×銘柄の中の最大下落の深さ [bp]（正の値・差<0 が浅い）"
+ },
+ "missing": [],
+ "summary": {
+  "N_10": {
+   "all15": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -0.9954,
+     "pnl_t": -1.7056,
+     "mdd_diff_bp": -1003.9584,
+     "mdd_t": -9.1117,
+     "in_market_B": 0.2815,
+     "in_market_A": 0.9718
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": -0.5043,
+     "pnl_t": -0.6483,
+     "mdd_diff_bp": -900.7262,
+     "mdd_t": -11.5638,
+     "in_market_B": 0.2709,
+     "in_market_A": 0.9378
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": -1.4373,
+     "pnl_t": -1.6441,
+     "mdd_diff_bp": -1096.8673,
+     "mdd_t": -5.5361,
+     "in_market_B": 0.2897,
+     "in_market_A": 0.9979
+    }
+   },
+   "fx8": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -0.309,
+     "pnl_t": -0.8142,
+     "mdd_diff_bp": -509.6028,
+     "mdd_t": -11.6785,
+     "in_market_B": 0.3009,
+     "in_market_A": 0.9877
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": -0.9509,
+     "pnl_t": -1.3526,
+     "mdd_diff_bp": -595.2829,
+     "mdd_t": -8.743,
+     "in_market_B": 0.2858,
+     "in_market_A": 0.9741
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": 0.2687,
+     "pnl_t": 0.9896,
+     "mdd_diff_bp": -432.4906,
+     "mdd_t": -9.3663,
+     "in_market_B": 0.3144,
+     "in_market_A": 0.9999
+    }
+   },
+   "trend7": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -1.5539,
+     "pnl_t": -1.2774,
+     "mdd_diff_bp": -1646.3995,
+     "mdd_t": -6.9129,
+     "in_market_B": 0.2555,
+     "in_market_A": 0.9505
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": 0.483,
+     "pnl_t": 0.3882,
+     "mdd_diff_bp": -1413.3379,
+     "mdd_t": -6.4024,
+     "in_market_B": 0.2458,
+     "in_market_A": 0.8771
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": -3.3871,
+     "pnl_t": -1.7861,
+     "mdd_diff_bp": -1856.155,
+     "mdd_t": -4.5525,
+     "in_market_B": 0.2615,
+     "in_market_A": 0.9957
+    }
+   }
+  },
+  "N_20": {
+   "all15": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -0.9227,
+     "pnl_t": -1.7612,
+     "mdd_diff_bp": -768.3102,
+     "mdd_t": -7.7251,
+     "in_market_B": 0.4266,
+     "in_market_A": 0.9718,
+     "pnl_z": 0.8322,
+     "pnl_pct": 0.79,
+     "mdd_z": -2.8883,
+     "mdd_pct": 0.0
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": -0.4525,
+     "pnl_t": -0.59,
+     "mdd_diff_bp": -689.4316,
+     "mdd_t": -13.5926,
+     "in_market_B": 0.4128,
+     "in_market_A": 0.9378,
+     "pnl_z": 0.5589,
+     "pnl_pct": 0.7033,
+     "mdd_z": -2.2804,
+     "mdd_pct": 0.01
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": -1.3459,
+     "pnl_t": -1.8479,
+     "mdd_diff_bp": -839.301,
+     "mdd_t": -4.5286,
+     "in_market_B": 0.4372,
+     "in_market_A": 0.9979,
+     "pnl_z": 0.6547,
+     "pnl_pct": 0.75,
+     "mdd_z": -2.1502,
+     "mdd_pct": 0.0167
+    }
+   },
+   "fx8": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -0.2631,
+     "pnl_t": -0.8093,
+     "mdd_diff_bp": -381.9995,
+     "mdd_t": -10.3823,
+     "in_market_B": 0.4483,
+     "in_market_A": 0.9877
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": -0.8187,
+     "pnl_t": -1.3886,
+     "mdd_diff_bp": -453.1631,
+     "mdd_t": -7.5834,
+     "in_market_B": 0.4304,
+     "in_market_A": 0.9741
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": 0.237,
+     "pnl_t": 0.9305,
+     "mdd_diff_bp": -317.9523,
+     "mdd_t": -8.734,
+     "in_market_B": 0.4645,
+     "in_market_A": 0.9999
+    }
+   },
+   "trend7": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -1.479,
+     "pnl_t": -1.376,
+     "mdd_diff_bp": -1283.5093,
+     "mdd_t": -6.1984,
+     "in_market_B": 0.3973,
+     "in_market_A": 0.9505
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": 0.3831,
+     "pnl_t": 0.3197,
+     "mdd_diff_bp": -1115.0439,
+     "mdd_t": -9.4293,
+     "in_market_B": 0.3833,
+     "in_market_A": 0.8771
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": -3.1548,
+     "pnl_t": -1.9631,
+     "mdd_diff_bp": -1435.128,
+     "mdd_t": -3.7513,
+     "in_market_B": 0.4059,
+     "in_market_A": 0.9957
+    }
+   }
+  },
+  "N_40": {
+   "all15": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -0.0321,
+     "pnl_t": -0.0614,
+     "mdd_diff_bp": -535.7533,
+     "mdd_t": -5.8667,
+     "in_market_B": 0.6193,
+     "in_market_A": 0.9718
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": -0.4894,
+     "pnl_t": -0.7135,
+     "mdd_diff_bp": -391.8381,
+     "mdd_t": -10.6065,
+     "in_market_B": 0.6001,
+     "in_market_A": 0.9378
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": 0.3794,
+     "pnl_t": 0.4798,
+     "mdd_diff_bp": -665.277,
+     "mdd_t": -4.0743,
+     "in_market_B": 0.6341,
+     "in_market_A": 0.9979
+    }
+   },
+   "fx8": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": -0.1374,
+     "pnl_t": -0.5083,
+     "mdd_diff_bp": -251.1809,
+     "mdd_t": -8.0511,
+     "in_market_B": 0.6432,
+     "in_market_A": 0.9877
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": -0.7244,
+     "pnl_t": -1.6538,
+     "mdd_diff_bp": -301.5456,
+     "mdd_t": -6.4198,
+     "in_market_B": 0.6207,
+     "in_market_A": 0.9741
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": 0.3909,
+     "pnl_t": 1.6106,
+     "mdd_diff_bp": -205.8527,
+     "mdd_t": -5.4029,
+     "in_market_B": 0.6634,
+     "in_market_A": 0.9999
+    }
+   },
+   "trend7": {
+    "all": {
+     "n_years": 19,
+     "pnl_diff_bp": 0.1394,
+     "pnl_t": 0.1451,
+     "mdd_diff_bp": -865.937,
+     "mdd_t": -4.5268,
+     "in_market_B": 0.5872,
+     "in_market_A": 0.9505
+    },
+    "pre": {
+     "n_years": 9,
+     "pnl_diff_bp": -0.1129,
+     "pnl_t": -0.098,
+     "mdd_diff_bp": -505.4964,
+     "mdd_t": -5.0366,
+     "in_market_B": 0.5654,
+     "in_market_A": 0.8771
+    },
+    "post": {
+     "n_years": 10,
+     "pnl_diff_bp": 0.3664,
+     "pnl_t": 0.235,
+     "mdd_diff_bp": -1190.3334,
+     "mdd_t": -3.6507,
+     "in_market_B": 0.6006,
+     "in_market_A": 0.9957
+    }
+   }
+  }
+ },
+ "machine_verdict": "支持: 時間ストップは最大下落を浅くするが純損益は上げない（Q204 と同じ型）",
+ "multiple_comparisons": "判定は all15 の最大下落の差と純損益差の前後半（4 本）。N=10・40・群別は記述。"
+}

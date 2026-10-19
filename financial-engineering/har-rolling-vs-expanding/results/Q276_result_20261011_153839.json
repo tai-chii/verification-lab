@@ -1,0 +1,242 @@
+{
+ "qid": "Q276",
+ "smoke": false,
+ "generated": "20261011_153839",
+ "question": "HAR の係数を 500 日 rolling で毎日推定し直すと拡大窓より翌日の QLIKE は下がるか",
+ "settings": {
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "start": "2008-01-01",
+  "min_train": 500,
+  "roll": 500,
+  "split_year": 2017,
+  "B": 2000,
+  "model": "log Parkinson 分散の HAR(1,5,22)・毎日再推定（累積 X'X・X'y）・予測 exp(log 予測)",
+  "C": "A と B の分散予測の単純平均",
+  "null": "差の符号を年×銘柄で反転"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "n_cells": 232,
+    "BA": {
+     "n_years": 17,
+     "diff_mean": 0.00632,
+     "t": 1.7625,
+     "z": 2.4018,
+     "pct": 0.993,
+     "frac_cells_better": 0.4483
+    },
+    "CA": {
+     "n_years": 17,
+     "diff_mean": 0.000166,
+     "t": 0.0971,
+     "z": 0.1298,
+     "pct": 0.5515,
+     "frac_cells_better": 0.5086
+    },
+    "qlike_A_expanding_mean": 0.508232,
+    "qlike_B_rolling_mean": 0.514776,
+    "qlike_C_avg_mean": 0.508363
+   },
+   "pre": {
+    "n_cells": 84,
+    "BA": {
+     "n_years": 7,
+     "diff_mean": 0.009173,
+     "t": 1.7687,
+     "z": 2.2106,
+     "pct": 0.9985,
+     "frac_cells_better": 0.4048
+    },
+    "CA": {
+     "n_years": 7,
+     "diff_mean": 0.002788,
+     "t": 1.1541,
+     "z": 1.4472,
+     "pct": 0.928,
+     "frac_cells_better": 0.4286
+    },
+    "qlike_A_expanding_mean": 0.545715,
+    "qlike_B_rolling_mean": 0.556029,
+    "qlike_C_avg_mean": 0.54899
+   },
+   "post": {
+    "n_cells": 148,
+    "BA": {
+     "n_years": 10,
+     "diff_mean": 0.004322,
+     "t": 0.8605,
+     "z": 1.2675,
+     "pct": 0.9035,
+     "frac_cells_better": 0.473
+    },
+    "CA": {
+     "n_years": 10,
+     "diff_mean": -0.00167,
+     "t": -0.7359,
+     "z": -1.0157,
+     "pct": 0.1555,
+     "frac_cells_better": 0.5541
+    },
+    "qlike_A_expanding_mean": 0.486958,
+    "qlike_B_rolling_mean": 0.491362,
+    "qlike_C_avg_mean": 0.485305
+   }
+  },
+  "fx8": {
+   "all": {
+    "n_cells": 136,
+    "BA": {
+     "n_years": 17,
+     "diff_mean": 0.010025,
+     "t": 1.4831,
+     "z": 2.7437,
+     "pct": 0.9985,
+     "frac_cells_better": 0.4191
+    },
+    "CA": {
+     "n_years": 17,
+     "diff_mean": 0.002465,
+     "t": 0.7614,
+     "z": 1.4496,
+     "pct": 0.9275,
+     "frac_cells_better": 0.4779
+    },
+    "qlike_A_expanding_mean": 0.485057,
+    "qlike_B_rolling_mean": 0.495083,
+    "qlike_C_avg_mean": 0.487523
+   },
+   "pre": {
+    "n_cells": 56,
+    "BA": {
+     "n_years": 7,
+     "diff_mean": 0.014861,
+     "t": 1.5267,
+     "z": 2.2383,
+     "pct": 0.9995,
+     "frac_cells_better": 0.375
+    },
+    "CA": {
+     "n_years": 7,
+     "diff_mean": 0.005874,
+     "t": 1.254,
+     "z": 1.8223,
+     "pct": 0.9935,
+     "frac_cells_better": 0.3929
+    },
+    "qlike_A_expanding_mean": 0.57767,
+    "qlike_B_rolling_mean": 0.592531,
+    "qlike_C_avg_mean": 0.583543
+   },
+   "post": {
+    "n_cells": 80,
+    "BA": {
+     "n_years": 10,
+     "diff_mean": 0.00664,
+     "t": 0.6969,
+     "z": 1.6173,
+     "pct": 0.9475,
+     "frac_cells_better": 0.45
+    },
+    "CA": {
+     "n_years": 10,
+     "diff_mean": 8e-05,
+     "t": 0.0179,
+     "z": 0.0129,
+     "pct": 0.5035,
+     "frac_cells_better": 0.5375
+    },
+    "qlike_A_expanding_mean": 0.420229,
+    "qlike_B_rolling_mean": 0.426869,
+    "qlike_C_avg_mean": 0.420308
+   }
+  },
+  "trend7": {
+   "all": {
+    "n_cells": 96,
+    "BA": {
+     "n_years": 17,
+     "diff_mean": 0.002613,
+     "t": 0.6651,
+     "z": 0.6874,
+     "pct": 0.758,
+     "frac_cells_better": 0.4896
+    },
+    "CA": {
+     "n_years": 17,
+     "diff_mean": -0.002318,
+     "t": -1.2143,
+     "z": -1.3544,
+     "pct": 0.0935,
+     "frac_cells_better": 0.5521
+    },
+    "qlike_A_expanding_mean": 0.541062,
+    "qlike_B_rolling_mean": 0.542674,
+    "qlike_C_avg_mean": 0.537887
+   },
+   "pre": {
+    "n_cells": 28,
+    "BA": {
+     "n_years": 7,
+     "diff_mean": 0.003555,
+     "t": 0.6709,
+     "z": 0.8943,
+     "pct": 0.784,
+     "frac_cells_better": 0.4643
+    },
+    "CA": {
+     "n_years": 7,
+     "diff_mean": -0.000553,
+     "t": -0.2278,
+     "z": -0.3262,
+     "pct": 0.382,
+     "frac_cells_better": 0.5
+    },
+    "qlike_A_expanding_mean": 0.481804,
+    "qlike_B_rolling_mean": 0.483024,
+    "qlike_C_avg_mean": 0.479883
+   },
+   "post": {
+    "n_cells": 68,
+    "BA": {
+     "n_years": 10,
+     "diff_mean": 0.001953,
+     "t": 0.3378,
+     "z": 0.3758,
+     "pct": 0.646,
+     "frac_cells_better": 0.5
+    },
+    "CA": {
+     "n_years": 10,
+     "diff_mean": -0.003554,
+     "t": -1.2681,
+     "z": -1.3174,
+     "pct": 0.0965,
+     "frac_cells_better": 0.5735
+    },
+    "qlike_A_expanding_mean": 0.565463,
+    "qlike_B_rolling_mean": 0.567236,
+    "qlike_C_avg_mean": 0.561771
+   }
+  }
+ },
+ "machine_verdict": "棄却: 差は見えない（支持にも逆向きにも届かない）",
+ "multiple_comparisons": "判定は all15 の B−A の前後半 2 本。C−A・群別は記述。"
+}

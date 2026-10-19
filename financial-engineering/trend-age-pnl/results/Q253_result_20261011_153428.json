@@ -1,0 +1,137 @@
+{
+ "qid": "Q253",
+ "smoke": false,
+ "generated": "20261011_153428",
+ "question": "TSMOM60 の合図の年齢（反転からの営業日数）が短いほど翌日の順張り粗利は高いか（D=若−老>0）",
+ "settings": {
+  "L": 60,
+  "young_max": 10,
+  "old_min": 41,
+  "split_year": 2017,
+  "B": 500,
+  "gross": "pos[t−1]·ret[t]·1e4（年齢も t−1 時点）",
+  "null": "年齢区分ラベルを年×銘柄内で並べ替え（perm_within）",
+  "stat_for_z": "年×銘柄の D を年内で銘柄平均→年平均"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "n_years": 19,
+    "D_young_minus_old_bp": 6.8998,
+    "t": 2.6952,
+    "young_bp": 5.1208,
+    "mid_bp": 3.5838,
+    "old_bp": -2.4854,
+    "young_net_bp": 4.1672,
+    "mid_net_bp": 3.5838,
+    "old_net_bp": -2.4854,
+    "z": 4.0462,
+    "pct": 1.0
+   },
+   "pre": {
+    "n_years": 9,
+    "D_young_minus_old_bp": 2.7628,
+    "t": 0.6527,
+    "young_bp": 2.0412,
+    "mid_bp": 1.1431,
+    "old_bp": -1.7093,
+    "young_net_bp": 1.2756,
+    "mid_net_bp": 1.1431,
+    "old_net_bp": -1.7093,
+    "z": 1.2883,
+    "pct": 0.898
+   },
+   "post": {
+    "n_years": 10,
+    "D_young_minus_old_bp": 10.6231,
+    "t": 3.927,
+    "young_bp": 7.3997,
+    "mid_bp": 5.3899,
+    "old_bp": -3.0674,
+    "young_net_bp": 6.307,
+    "mid_net_bp": 5.3899,
+    "old_net_bp": -3.0674,
+    "z": 4.1619,
+    "pct": 1.0
+   }
+  },
+  "fx8": {
+   "all": {
+    "n_years": 19,
+    "D_young_minus_old_bp": 2.2561,
+    "t": 1.6954,
+    "young_bp": 1.1162,
+    "mid_bp": 1.0015,
+    "old_bp": -1.1881,
+    "young_net_bp": 0.7918,
+    "mid_net_bp": 1.0015,
+    "old_net_bp": -1.1881
+   },
+   "pre": {
+    "n_years": 9,
+    "D_young_minus_old_bp": 1.3752,
+    "t": 0.5526,
+    "young_bp": 1.4616,
+    "mid_bp": 1.4932,
+    "old_bp": 0.0863,
+    "young_net_bp": 1.1443,
+    "mid_net_bp": 1.4932,
+    "old_net_bp": 0.0863
+   },
+   "post": {
+    "n_years": 10,
+    "D_young_minus_old_bp": 3.0489,
+    "t": 2.3906,
+    "young_bp": 0.8054,
+    "mid_bp": 0.559,
+    "old_bp": -2.3645,
+    "young_net_bp": 0.4746,
+    "mid_net_bp": 0.559,
+    "old_net_bp": -2.3645
+   }
+  },
+  "trend7": {
+   "all": {
+    "n_years": 19,
+    "D_young_minus_old_bp": 11.1413,
+    "t": 2.2319,
+    "young_bp": 10.7052,
+    "mid_bp": 7.1848,
+    "old_bp": -4.2706,
+    "young_net_bp": 8.8742,
+    "mid_net_bp": 7.1848,
+    "old_net_bp": -4.2706
+   },
+   "pre": {
+    "n_years": 9,
+    "D_young_minus_old_bp": 2.6463,
+    "t": 0.3335,
+    "young_bp": 3.1112,
+    "mid_bp": 0.4968,
+    "old_bp": -5.0244,
+    "young_net_bp": 1.5181,
+    "mid_net_bp": 0.4968,
+    "old_net_bp": -5.0244
+   },
+   "post": {
+    "n_years": 10,
+    "D_young_minus_old_bp": 18.7868,
+    "t": 3.3961,
+    "young_bp": 14.9361,
+    "mid_bp": 10.911,
+    "old_bp": -3.8506,
+    "young_net_bp": 12.9725,
+    "mid_net_bp": 10.911,
+    "old_net_bp": -3.8506
+   }
+  },
+  "age_share": {
+   "young": 0.3057,
+   "mid": 0.3383,
+   "old": 0.356
+  }
+ },
+ "machine_verdict": "未確定",
+ "multiple_comparisons": "判定は all15 の D の前後半 2 本。群別・3 区分の平均・純損益は記述。"
+}

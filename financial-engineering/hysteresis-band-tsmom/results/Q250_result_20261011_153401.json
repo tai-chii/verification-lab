@@ -1,0 +1,243 @@
+{
+ "qid": "Q250",
+ "smoke": false,
+ "generated": "20261011_153401",
+ "question": "ヒステリシス帯（±θσ60√60 の不感帯・θ=0.25）は TSMOM60 の合図反転を減らし純損益を上げるか",
+ "settings": {
+  "L": 60,
+  "theta_main": 0.25,
+  "thetas": [
+   0.25,
+   0.5,
+   1.0
+  ],
+  "split_year": 2017,
+  "B": 300,
+  "null": "凍結日（帯の中で前日を維持した日）の暦月ブロックを年内で並べ替え、同じ凍結日数で建玉を再構成",
+  "stat_for_z": "日次差 B−A を年×銘柄平均→年内銘柄平均→年平均"
+ },
+ "missing": [],
+ "summary": {
+  "theta_0.25": {
+   "all15": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": -0.1809,
+     "t": -0.6523,
+     "trade_ratio_B_over_A": 0.332,
+     "mdd_diff_bp_mean": -60.0215,
+     "z": -2.7656,
+     "pct": 0.0033
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 0.4052,
+     "t": 1.3459,
+     "trade_ratio_B_over_A": 0.323,
+     "mdd_diff_bp_mean": 42.781,
+     "z": 3.5388,
+     "pct": 1.0
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -0.7084,
+     "t": -1.8022,
+     "trade_ratio_B_over_A": 0.3387,
+     "mdd_diff_bp_mean": -138.8367,
+     "z": -6.8719,
+     "pct": 0.0
+    }
+   },
+   "fx8": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": 0.1308,
+     "t": 0.9497,
+     "trade_ratio_B_over_A": 0.3226,
+     "mdd_diff_bp_mean": 26.6894
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 0.319,
+     "t": 1.9694,
+     "trade_ratio_B_over_A": 0.324,
+     "mdd_diff_bp_mean": 49.7886
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -0.0386,
+     "t": -0.1834,
+     "trade_ratio_B_over_A": 0.3213,
+     "mdd_diff_bp_mean": 5.9002
+    }
+   },
+   "trend7": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": -0.4878,
+     "t": -0.8322,
+     "trade_ratio_B_over_A": 0.3473,
+     "mdd_diff_bp_mean": -176.6591
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 0.6078,
+     "t": 1.063,
+     "trade_ratio_B_over_A": 0.3208,
+     "mdd_diff_bp_mean": 31.0473
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -1.4739,
+     "t": -1.6318,
+     "trade_ratio_B_over_A": 0.3621,
+     "mdd_diff_bp_mean": -304.2502
+    }
+   }
+  },
+  "theta_0.5": {
+   "all15": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": -0.0737,
+     "t": -0.172,
+     "trade_ratio_B_over_A": 0.2072,
+     "mdd_diff_bp_mean": -65.6692
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 0.3664,
+     "t": 0.5357,
+     "trade_ratio_B_over_A": 0.2153,
+     "mdd_diff_bp_mean": -19.7767
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -0.4698,
+     "t": -0.8767,
+     "trade_ratio_B_over_A": 0.2011,
+     "mdd_diff_bp_mean": -100.8535
+    }
+   },
+   "fx8": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": 0.1211,
+     "t": 0.4529,
+     "trade_ratio_B_over_A": 0.194,
+     "mdd_diff_bp_mean": 1.9074
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 0.3107,
+     "t": 0.6535,
+     "trade_ratio_B_over_A": 0.1965,
+     "mdd_diff_bp_mean": 21.5789
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -0.0495,
+     "t": -0.1709,
+     "trade_ratio_B_over_A": 0.1918,
+     "mdd_diff_bp_mean": -15.797
+    }
+   },
+   "trend7": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": -0.0375,
+     "t": -0.041,
+     "trade_ratio_B_over_A": 0.2287,
+     "mdd_diff_bp_mean": -156.5687
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 0.9766,
+     "t": 0.719,
+     "trade_ratio_B_over_A": 0.2554,
+     "mdd_diff_bp_mean": -89.0232
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -0.9501,
+     "t": -0.7753,
+     "trade_ratio_B_over_A": 0.2137,
+     "mdd_diff_bp_mean": -198.061
+    }
+   }
+  },
+  "theta_1.0": {
+   "all15": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": -0.287,
+     "t": -0.3692,
+     "trade_ratio_B_over_A": 0.1207,
+     "mdd_diff_bp_mean": -35.356
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 0.1209,
+     "t": 0.1571,
+     "trade_ratio_B_over_A": 0.1273,
+     "mdd_diff_bp_mean": -26.0026
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -0.6541,
+     "t": -0.4887,
+     "trade_ratio_B_over_A": 0.1159,
+     "mdd_diff_bp_mean": -42.527
+    }
+   },
+   "fx8": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": -0.233,
+     "t": -0.7032,
+     "trade_ratio_B_over_A": 0.1103,
+     "mdd_diff_bp_mean": -66.6162
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": -0.2319,
+     "t": -0.3611,
+     "trade_ratio_B_over_A": 0.1145,
+     "mdd_diff_bp_mean": -63.897
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -0.2339,
+     "t": -0.793,
+     "trade_ratio_B_over_A": 0.1066,
+     "mdd_diff_bp_mean": -69.0634
+    }
+   },
+   "trend7": {
+    "all": {
+     "n_years": 19,
+     "B_minus_A_bp": 0.1364,
+     "t": 0.0785,
+     "trade_ratio_B_over_A": 0.1378,
+     "mdd_diff_bp_mean": 6.693
+    },
+    "pre": {
+     "n_years": 9,
+     "B_minus_A_bp": 1.5483,
+     "t": 0.894,
+     "trade_ratio_B_over_A": 0.1545,
+     "mdd_diff_bp_mean": 37.4484
+    },
+    "post": {
+     "n_years": 10,
+     "B_minus_A_bp": -1.1343,
+     "t": -0.3843,
+     "trade_ratio_B_over_A": 0.1285,
+     "mdd_diff_bp_mean": -12.1996
+    }
+   }
+  }
+ },
+ "machine_verdict": "棄却: 差は見えない",
+ "multiple_comparisons": "判定は all15 の主セル θ=0.25 の前後半 2 本。θ=0.5・1.0 と群別は記述。"
+}

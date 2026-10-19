@@ -1,0 +1,64 @@
+{
+ "qid": "Q263",
+ "smoke": false,
+ "generated": "20261011_153622",
+ "question": "アルトコインの対 BTC 相対強弱（4 週）は翌週の相対リターンを予測するか（10 通貨の横断）",
+ "settings": {
+  "base": "BTCUSD",
+  "alts": [
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "lookback_weeks": 4,
+  "top_k": 3,
+  "week": "UTC 月曜 0 時区切り",
+  "cost_bp_per_week": 60.0,
+  "split_year": 2022,
+  "B": 2000,
+  "min_avail_per_week": 6,
+  "null": "各週の順位を無作為に付け替え（順位並べ替え）"
+ },
+ "missing": [],
+ "summary": {
+  "all": {
+   "n_weeks": 262,
+   "mean_bp_per_week": -31.114,
+   "nw_t": -0.8461,
+   "z": 0.8118,
+   "pct": 0.794,
+   "year_t": -0.8459,
+   "n_years": 6,
+   "gross_mean_bp_per_week": 28.886
+  },
+  "pre": {
+   "n_weeks": 28,
+   "mean_bp_per_week": 29.3454,
+   "nw_t": 0.3999,
+   "z": 0.8883,
+   "pct": 0.7995,
+   "year_t": null,
+   "n_years": 1,
+   "gross_mean_bp_per_week": 89.3454
+  },
+  "post": {
+   "n_weeks": 234,
+   "mean_bp_per_week": -38.3485,
+   "nw_t": -0.9393,
+   "z": 0.5693,
+   "pct": 0.724,
+   "year_t": -0.9425,
+   "n_years": 5,
+   "gross_mean_bp_per_week": 21.6515
+  }
+ },
+ "machine_verdict": "棄却: 全期間 z<2",
+ "multiple_comparisons": "判定は前後半 2 本。年単位 t・NW t は記述。"
+}

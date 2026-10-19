@@ -1,0 +1,65 @@
+{
+ "qid": "Q229",
+ "smoke": false,
+ "generated": "20261011_152320",
+ "question": "月末のロンドン16時フィキシング前のドルの向きは、その月の US500 リターンと逆か",
+ "settings": {
+  "pairs": {
+   "EURUSD": -1,
+   "GBPUSD": -1,
+   "AUDUSD": -1,
+   "USDJPY": 1,
+   "USDCHF": 1,
+   "USDCAD": 1
+  },
+  "pre_hour_london": 15,
+  "post_hour_london": 16,
+  "start": "2012-01-01",
+  "split_year": 2017,
+  "B": 2000
+ },
+ "missing": [],
+ "summary": {
+  "all": {
+   "n_month_end": 174,
+   "n_up": 121,
+   "n_down": 53,
+   "D_bp": -4.5818,
+   "D_z": -1.6086,
+   "D_pct": 0.0575,
+   "mean_usd_prefix_me_bp": -3.2267,
+   "slope_bp_per_logret": -85.0717,
+   "D_ctrl_nonmonthend_bp": -2.5252,
+   "n_ctrl": 3587,
+   "D_postfix_me_bp": 4.6148
+  },
+  "pre": {
+   "n_month_end": 60,
+   "n_up": 40,
+   "n_down": 20,
+   "D_bp": -6.2639,
+   "D_z": -1.3616,
+   "D_pct": 0.089,
+   "mean_usd_prefix_me_bp": -2.0657,
+   "slope_bp_per_logret": -54.4821,
+   "D_ctrl_nonmonthend_bp": -3.5063,
+   "n_ctrl": 1238,
+   "D_postfix_me_bp": 4.3363
+  },
+  "post": {
+   "n_month_end": 114,
+   "n_up": 81,
+   "n_down": 33,
+   "D_bp": -3.5097,
+   "D_z": -0.9514,
+   "D_pct": 0.1795,
+   "mean_usd_prefix_me_bp": -3.8378,
+   "slope_bp_per_logret": -95.855,
+   "D_ctrl_nonmonthend_bp": -1.972,
+   "n_ctrl": 2349,
+   "D_postfix_me_bp": 4.9022
+  }
+ },
+ "machine_verdict": "棄却: 全期間の z > −2",
+ "multiple_comparisons": "判定は D の前後半 2 本。対照（非月末）・後の時間帯・傾きは記述。"
+}

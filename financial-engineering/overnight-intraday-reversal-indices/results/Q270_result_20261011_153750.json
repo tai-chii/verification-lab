@@ -1,0 +1,202 @@
+{
+ "qid": "Q270",
+ "smoke": false,
+ "generated": "20261011_153750",
+ "question": "株価指数・金の夜間→日中の逆張りはコスト後に残るか（H1・NY 時刻）",
+ "settings": {
+  "syms": [
+   "US500",
+   "USTECH",
+   "XAUUSD"
+  ],
+  "start": "2012-01-01",
+  "tz": "America/New_York",
+  "open_hour_ny": 9,
+  "close_hour_ny": 16,
+  "split_year": 2017,
+  "cost": "往復 COST_RT/open9",
+  "B": 2000,
+  "null": "sign(r_N) を日で無作為に付け替え"
+ },
+ "missing": [],
+ "summary": {
+  "bundle3": {
+   "all": {
+    "n_days": 10216,
+    "n_years": 15,
+    "net_mean_bp": -3.8472,
+    "net_t": -2.9701,
+    "net_z": 0.213,
+    "net_pct": 0.585,
+    "gross_mean_bp": 0.1431,
+    "gross_t": 0.1425,
+    "gross_z": 0.1619,
+    "gross_pct": 0.556,
+    "cost_rt_mean_bp": 3.9663,
+    "sharpe_net_ann": -0.6828
+   },
+   "pre": {
+    "n_days": 3448,
+    "n_years": 5,
+    "net_mean_bp": -7.539,
+    "net_t": -2.881,
+    "net_z": -1.0988,
+    "net_pct": 0.1445,
+    "gross_mean_bp": -1.3242,
+    "gross_t": -0.5366,
+    "gross_z": -1.1388,
+    "gross_pct": 0.1225,
+    "cost_rt_mean_bp": 6.0752,
+    "sharpe_net_ann": -1.6125
+   },
+   "post": {
+    "n_days": 6768,
+    "n_years": 10,
+    "net_mean_bp": -2.0012,
+    "net_t": -1.7847,
+    "net_z": 0.7419,
+    "net_pct": 0.7765,
+    "gross_mean_bp": 0.8768,
+    "gross_t": 0.9682,
+    "gross_z": 0.7915,
+    "gross_pct": 0.7745,
+    "cost_rt_mean_bp": 2.8918,
+    "sharpe_net_ann": -0.3241
+   }
+  },
+  "US500": {
+   "all": {
+    "n_days": 3281,
+    "n_years": 15,
+    "net_mean_bp": -2.7559,
+    "net_t": -0.9873,
+    "net_z": 0.6472,
+    "net_pct": 0.751,
+    "gross_mean_bp": 0.8843,
+    "gross_t": 0.3623,
+    "gross_z": 0.6433,
+    "gross_pct": 0.744,
+    "cost_rt_mean_bp": 3.5981,
+    "sharpe_net_ann": -0.4555
+   },
+   "pre": {
+    "n_days": 1089,
+    "n_years": 5,
+    "net_mean_bp": -11.7282,
+    "net_t": -1.9965,
+    "net_z": -3.135,
+    "net_pct": 0.0015,
+    "gross_mean_bp": -6.0992,
+    "gross_t": -1.1086,
+    "gross_z": -3.1585,
+    "gross_pct": 0.0005,
+    "cost_rt_mean_bp": 5.5821,
+    "sharpe_net_ann": -2.7973
+   },
+   "post": {
+    "n_days": 2192,
+    "n_years": 10,
+    "net_mean_bp": 1.7302,
+    "net_t": 0.887,
+    "net_z": 2.3992,
+    "net_pct": 0.9915,
+    "gross_mean_bp": 4.376,
+    "gross_t": 2.4807,
+    "gross_z": 2.3825,
+    "gross_pct": 0.9905,
+    "cost_rt_mean_bp": 2.6125,
+    "sharpe_net_ann": 0.373
+   }
+  },
+  "USTECH": {
+   "all": {
+    "n_days": 3302,
+    "n_years": 15,
+    "net_mean_bp": -3.6272,
+    "net_t": -1.8418,
+    "net_z": 0.5819,
+    "net_pct": 0.726,
+    "gross_mean_bp": 1.0203,
+    "gross_t": 0.5896,
+    "gross_z": 0.5683,
+    "gross_pct": 0.7215,
+    "cost_rt_mean_bp": 4.5509,
+    "sharpe_net_ann": -0.5414
+   },
+   "pre": {
+    "n_days": 1100,
+    "n_years": 5,
+    "net_mean_bp": -7.9853,
+    "net_t": -2.9262,
+    "net_z": 0.1827,
+    "net_pct": 0.5715,
+    "gross_mean_bp": 0.5026,
+    "gross_t": 0.1571,
+    "gross_z": 0.1906,
+    "gross_pct": 0.5795,
+    "cost_rt_mean_bp": 8.3428,
+    "sharpe_net_ann": -1.6548
+   },
+   "post": {
+    "n_days": 2202,
+    "n_years": 10,
+    "net_mean_bp": -1.4482,
+    "net_t": -0.6007,
+    "net_z": 0.5143,
+    "net_pct": 0.688,
+    "gross_mean_bp": 1.2792,
+    "gross_t": 0.5906,
+    "gross_z": 0.5355,
+    "gross_pct": 0.695,
+    "cost_rt_mean_bp": 2.6567,
+    "sharpe_net_ann": -0.1802
+   }
+  },
+  "XAUUSD": {
+   "all": {
+    "n_days": 3633,
+    "n_years": 15,
+    "net_mean_bp": -5.1583,
+    "net_t": -5.545,
+    "net_z": -1.1174,
+    "net_pct": 0.1355,
+    "gross_mean_bp": -1.4752,
+    "gross_t": -1.2867,
+    "gross_z": -1.1629,
+    "gross_pct": 0.1225,
+    "cost_rt_mean_bp": 3.7673,
+    "sharpe_net_ann": -1.1791
+   },
+   "pre": {
+    "n_days": 1259,
+    "n_years": 5,
+    "net_mean_bp": -2.9036,
+    "net_t": -1.6214,
+    "net_z": 0.8335,
+    "net_pct": 0.7875,
+    "gross_mean_bp": 1.6241,
+    "gross_t": 0.9401,
+    "gross_z": 0.8017,
+    "gross_pct": 0.794,
+    "cost_rt_mean_bp": 4.5206,
+    "sharpe_net_ann": -0.6515
+   },
+   "post": {
+    "n_days": 2374,
+    "n_years": 10,
+    "net_mean_bp": -6.2857,
+    "net_t": -6.6892,
+    "net_z": -1.9748,
+    "net_pct": 0.026,
+    "gross_mean_bp": -3.0248,
+    "gross_t": -2.3887,
+    "gross_z": -2.0638,
+    "gross_pct": 0.0235,
+    "cost_rt_mean_bp": 3.3678,
+    "sharpe_net_ann": -1.483
+   }
+  }
+ },
+ "machine_verdict": "棄却: 全期間の粗利の z<2（信号がない）",
+ "multiple_comparisons": "判定は束の前後半 2 本（純損益）＋全期間の粗利 z。個別は記述。"
+}

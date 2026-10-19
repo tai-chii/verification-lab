@@ -1,0 +1,121 @@
+{
+ "qid": "Q262",
+ "smoke": false,
+ "generated": "20261011_153613",
+ "question": "暗号資産 11 通貨の日足順張り（TSMOM 20/60/120）は 2022 年以降もコスト後に残るか",
+ "settings": {
+  "syms": [
+   "BTCUSD",
+   "ETHUSD",
+   "XRPUSD",
+   "LTCUSD",
+   "ADAUSD",
+   "BCHUSD",
+   "XLMUSD",
+   "EOSUSD",
+   "LNKUSD",
+   "DOTUSD",
+   "SOLUSD"
+  ],
+  "kind": "H1_dukascopy → h1_to_d1(UTC 0 時)",
+  "L_main": 60,
+  "L_sub": [
+   20,
+   120
+  ],
+  "split_year": 2022,
+  "cost_rt_rel": 0.003,
+  "B": 500,
+  "null": "主セルの合図を循環シフト（min_shift=60）",
+  "min_days_per_year": 60,
+  "basket_sharpe_per_year": 365
+ },
+ "missing": [],
+ "summary": {
+  "crypto11": {
+   "all": {
+    "L60": {
+     "n_years": 10,
+     "net_bp_per_day": 7.8392,
+     "net_t": 0.6172,
+     "gross_bp_per_day": 9.267,
+     "gross_t": 0.7388,
+     "net_z": 1.0499,
+     "net_pct": 0.852
+    },
+    "L20": {
+     "n_years": 10,
+     "net_bp_per_day": 5.4542,
+     "net_t": 0.5095,
+     "gross_bp_per_day": 8.3254,
+     "gross_t": 0.7882
+    },
+    "L120": {
+     "n_years": 10,
+     "net_bp_per_day": 6.643,
+     "net_t": 0.8488,
+     "gross_bp_per_day": 7.4497,
+     "gross_t": 0.9662
+    },
+    "basket_sharpe_ann_L60": 0.2458,
+    "basket_n_days": 3241
+   },
+   "pre": {
+    "L60": {
+     "n_years": 5,
+     "net_bp_per_day": 14.7039,
+     "net_t": 0.5654,
+     "gross_bp_per_day": 15.7546,
+     "gross_t": 0.6125,
+     "net_z": 0.8485,
+     "net_pct": 0.802
+    },
+    "L20": {
+     "n_years": 5,
+     "net_bp_per_day": 14.6344,
+     "net_t": 0.6785,
+     "gross_bp_per_day": 17.2133,
+     "gross_t": 0.8079
+    },
+    "L120": {
+     "n_years": 5,
+     "net_bp_per_day": 9.1767,
+     "net_t": 0.6006,
+     "gross_bp_per_day": 9.8917,
+     "gross_t": 0.6563
+    },
+    "basket_sharpe_ann_L60": 0.3613,
+    "basket_n_days": 1507
+   },
+   "post": {
+    "L60": {
+     "n_years": 5,
+     "net_bp_per_day": 0.9745,
+     "net_t": 0.1909,
+     "gross_bp_per_day": 2.7793,
+     "gross_t": 0.5523,
+     "net_z": 1.0934,
+     "net_pct": 0.866
+    },
+    "L20": {
+     "n_years": 5,
+     "net_bp_per_day": -3.726,
+     "net_t": -1.2838,
+     "gross_bp_per_day": -0.5626,
+     "gross_t": -0.192
+    },
+    "L120": {
+     "n_years": 5,
+     "net_bp_per_day": 4.1093,
+     "net_t": 0.6581,
+     "gross_bp_per_day": 5.0078,
+     "gross_t": 0.8189
+    },
+    "basket_sharpe_ann_L60": 0.1005,
+    "basket_n_days": 1734
+   }
+  }
+ },
+ "machine_verdict": "最初から無い: 前半 t<2（別の確定）",
+ "multiple_comparisons": "判定は主セル 60 日の前後半 2 本。20・120 日・束のシャープは記述。"
+}

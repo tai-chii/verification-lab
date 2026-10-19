@@ -1,0 +1,184 @@
+{
+ "qid": "Q266",
+ "smoke": false,
+ "generated": "20261011_153709",
+ "question": "SPX・NDX の『12 月最終 5 営業日＋1 月最初 2 営業日』の累積リターンは同じ年の他の 7 日ブロックの平均より高いか",
+ "settings": {
+  "main": {
+   "SPX": "SPX_D1_long_yahoo",
+   "NDX": "NDX_D1_long_yahoo"
+  },
+  "trial": {
+   "US500": "US500_D1_fromH1",
+   "USTECH": "USTECH_D1_fromH1"
+  },
+  "window": "12 月最後 5 営業日 + 翌 1 月最初 2 営業日",
+  "year_span": "7 月〜翌 6 月",
+  "blocks": "span を先頭から 7 営業日ずつ非重複に区切った累積の平均",
+  "ret": "対数リターン [bp]",
+  "split_year": 2017,
+  "year_label": "12 月の年",
+  "B": 2000,
+  "null": "窓の開始位置を span 内で無作為に選ぶ（年内ブロック並べ替え）",
+  "verdict_reject_rule": "棄却は SPX・NDX の両方で全期間 z<1 のとき"
+ },
+ "missing": [],
+ "summary": {
+  "SPX": {
+   "all": {
+    "n_years": 18,
+    "D_bp": 46.8564,
+    "t": 0.8525,
+    "z": 0.695,
+    "pct": 0.765,
+    "share_pos": 0.6667,
+    "win_mean_bp": 73.1405,
+    "block_mean_bp": 26.2841
+   },
+   "pre": {
+    "n_years": 9,
+    "D_bp": 79.368,
+    "t": 0.7413,
+    "z": 0.7987,
+    "pct": 0.792,
+    "share_pos": 0.6667,
+    "win_mean_bp": 97.8251,
+    "block_mean_bp": 18.457
+   },
+   "post": {
+    "n_years": 9,
+    "D_bp": 14.3448,
+    "t": 0.4301,
+    "z": 0.1498,
+    "pct": 0.5435,
+    "share_pos": 0.6667,
+    "win_mean_bp": 48.456,
+    "block_mean_bp": 34.1112
+   }
+  },
+  "NDX": {
+   "all": {
+    "n_years": 18,
+    "D_bp": 7.3261,
+    "t": 0.1259,
+    "z": 0.0819,
+    "pct": 0.5125,
+    "share_pos": 0.5556,
+    "win_mean_bp": 49.982,
+    "block_mean_bp": 42.6559
+   },
+   "pre": {
+    "n_years": 9,
+    "D_bp": 54.862,
+    "t": 0.5099,
+    "z": 0.4589,
+    "pct": 0.669,
+    "share_pos": 0.5556,
+    "win_mean_bp": 88.1553,
+    "block_mean_bp": 33.2934
+   },
+   "post": {
+    "n_years": 9,
+    "D_bp": -40.2098,
+    "t": -0.8468,
+    "z": -0.3212,
+    "pct": 0.3535,
+    "share_pos": 0.5556,
+    "win_mean_bp": 11.8087,
+    "block_mean_bp": 52.0185
+   }
+  },
+  "US500": {
+   "all": {
+    "n_years": 14,
+    "D_bp": -12.2559,
+    "t": -0.2094,
+    "z": -0.1671,
+    "pct": 0.4065,
+    "share_pos": 0.4286,
+    "win_mean_bp": 20.0182,
+    "block_mean_bp": 32.2741
+   },
+   "pre": {
+    "n_years": 5,
+    "D_bp": -80.6525,
+    "t": -0.9964,
+    "z": -0.9585,
+    "pct": 0.161,
+    "share_pos": 0.4,
+    "win_mean_bp": -49.5123,
+    "block_mean_bp": 31.1401
+   },
+   "post": {
+    "n_years": 9,
+    "D_bp": 25.7422,
+    "t": 0.3235,
+    "z": 0.2953,
+    "pct": 0.5995,
+    "share_pos": 0.4444,
+    "win_mean_bp": 58.6463,
+    "block_mean_bp": 32.9041
+   }
+  },
+  "USTECH": {
+   "all": {
+    "n_years": 14,
+    "D_bp": -64.4311,
+    "t": -0.9547,
+    "z": -0.7672,
+    "pct": 0.217,
+    "share_pos": 0.4286,
+    "win_mean_bp": -16.2843,
+    "block_mean_bp": 48.1468
+   },
+   "pre": {
+    "n_years": 5,
+    "D_bp": -128.3756,
+    "t": -1.3165,
+    "z": -1.1926,
+    "pct": 0.116,
+    "share_pos": 0.2,
+    "win_mean_bp": -82.556,
+    "block_mean_bp": 45.8196
+   },
+   "post": {
+    "n_years": 9,
+    "D_bp": -28.9064,
+    "t": -0.3148,
+    "z": -0.2435,
+    "pct": 0.3875,
+    "share_pos": 0.5556,
+    "win_mean_bp": 20.5333,
+    "block_mean_bp": 49.4397
+   }
+  },
+  "bundle_SPX_NDX": {
+   "all": {
+    "n_years": 18,
+    "D_bp": 27.0912,
+    "t": 0.4845,
+    "z": 0.5236,
+    "pct": 0.6945,
+    "share_pos": 0.5556
+   },
+   "pre": {
+    "n_years": 9,
+    "D_bp": 67.115,
+    "t": 0.6292,
+    "z": 0.875,
+    "pct": 0.804,
+    "share_pos": 0.5556
+   },
+   "post": {
+    "n_years": 9,
+    "D_bp": -12.9325,
+    "t": -0.3331,
+    "z": -0.1561,
+    "pct": 0.424,
+    "share_pos": 0.5556
+   }
+  }
+ },
+ "machine_verdict": "棄却: 全期間 z<1（SPX・NDX とも）",
+ "multiple_comparisons": "判定は 2 指数の全期間（2 本）。US500/USTECH CFD の追試・束は記述。"
+}

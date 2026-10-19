@@ -1,0 +1,224 @@
+{
+ "qid": "Q256",
+ "smoke": false,
+ "generated": "20261011_153457",
+ "question": "クロス・シグナル（主の TSMOM60 を従に当てる）は従自身の合図より純損益が良いか（D=クロス−自身）",
+ "settings": {
+  "pairs": [
+   "XAUUSD->XAGUSD",
+   "WTI->UKOIL",
+   "US500->USTECH",
+   "BTCUSD->ETHUSD"
+  ],
+  "L": 60,
+  "split_year_default": 2017,
+  "split_year_btc_eth": 2021,
+  "B": 500,
+  "eth": "H1_dukascopy → h1_to_d1（UTC 0 時区切り）、コストは CRYPTO_COST_RT_REL",
+  "dates": "主・従の共通 UTC 日のみ",
+  "null": "主の合図を従のリターンに対し循環シフト",
+  "stat_for_z": "年ごとの D の平均（年単位）",
+  "holm": "組の 4 本（z の両側 p）を前後半それぞれで Holm 補正、判定は補正後 p<0.05 かつ z≥2 かつ D>0"
+ },
+ "missing": [],
+ "summary": {
+  "pairs": {
+   "XAUUSD->XAGUSD": {
+    "split_year": 2017,
+    "n_days": 4719,
+    "first": "2008-05-01",
+    "last": "2026-06-30",
+    "all": {
+     "n_years": 19,
+     "D_bp": 3.2585,
+     "t": 1.3402,
+     "z": 1.1326,
+     "pct": 0.924,
+     "p_two_sided": 0.2574,
+     "cross_bp": 3.9546,
+     "own_bp": 0.6961,
+     "signal_agree": 0.823
+    },
+    "pre": {
+     "n_years": 9,
+     "D_bp": -1.6914,
+     "t": -0.8683,
+     "z": 0.3643,
+     "pct": 0.686,
+     "p_two_sided": 0.7156,
+     "cross_bp": 0.743,
+     "own_bp": 2.4344,
+     "signal_agree": 0.8738
+    },
+    "post": {
+     "n_years": 10,
+     "D_bp": 7.7134,
+     "t": 2.0069,
+     "z": 1.2819,
+     "pct": 0.892,
+     "p_two_sided": 0.1999,
+     "cross_bp": 6.845,
+     "own_bp": -0.8684,
+     "signal_agree": 0.7773
+    }
+   },
+   "WTI->UKOIL": {
+    "split_year": 2017,
+    "n_days": 3714,
+    "first": "2011-09-23",
+    "last": "2026-06-30",
+    "all": {
+     "n_years": 16,
+     "D_bp": 2.0801,
+     "t": 1.8386,
+     "z": 0.4237,
+     "pct": 0.73,
+     "p_two_sided": 0.6718,
+     "cross_bp": 2.0448,
+     "own_bp": -0.0353,
+     "signal_agree": 0.9135
+    },
+    "pre": {
+     "n_years": 6,
+     "D_bp": 3.773,
+     "t": 1.7797,
+     "z": 0.2721,
+     "pct": 0.628,
+     "p_two_sided": 0.7856,
+     "cross_bp": 1.3336,
+     "own_bp": -2.4395,
+     "signal_agree": 0.8398
+    },
+    "post": {
+     "n_years": 10,
+     "D_bp": 1.0644,
+     "t": 0.839,
+     "z": 0.3624,
+     "pct": 0.662,
+     "p_two_sided": 0.717,
+     "cross_bp": 2.4715,
+     "own_bp": 1.4071,
+     "signal_agree": 0.9504
+    }
+   },
+   "US500->USTECH": {
+    "split_year": 2017,
+    "n_days": 3725,
+    "first": "2011-09-19",
+    "last": "2026-06-30",
+    "all": {
+     "n_years": 16,
+     "D_bp": 0.7976,
+     "t": 0.7165,
+     "z": 0.4308,
+     "pct": 0.75,
+     "p_two_sided": 0.6666,
+     "cross_bp": 2.1876,
+     "own_bp": 1.3901,
+     "signal_agree": 0.9036
+    },
+    "pre": {
+     "n_years": 6,
+     "D_bp": 0.6545,
+     "t": 0.3771,
+     "z": 0.4977,
+     "pct": 0.75,
+     "p_two_sided": 0.6187,
+     "cross_bp": -0.5775,
+     "own_bp": -1.232,
+     "signal_agree": 0.8785
+    },
+    "post": {
+     "n_years": 10,
+     "D_bp": 0.8834,
+     "t": 0.5827,
+     "z": -0.2327,
+     "pct": 0.414,
+     "p_two_sided": 0.816,
+     "cross_bp": 3.8467,
+     "own_bp": 2.9633,
+     "signal_agree": 0.9162
+    }
+   },
+   "BTCUSD->ETHUSD": {
+    "split_year": 2021,
+    "n_days": 2831,
+    "first": "2017-12-12",
+    "last": "2026-06-30",
+    "all": {
+     "n_years": 10,
+     "D_bp": 7.5787,
+     "t": 1.4302,
+     "z": 1.1999,
+     "pct": 0.898,
+     "p_two_sided": 0.2302,
+     "cross_bp": 19.9727,
+     "own_bp": 12.3941,
+     "signal_agree": 0.8422
+    },
+    "pre": {
+     "n_years": 4,
+     "D_bp": 14.3993,
+     "t": 2.6028,
+     "z": 0.5099,
+     "pct": 0.602,
+     "p_two_sided": 0.6101,
+     "cross_bp": 19.3037,
+     "own_bp": 4.9044,
+     "signal_agree": 0.8093
+    },
+    "post": {
+     "n_years": 6,
+     "D_bp": 3.0316,
+     "t": 0.3861,
+     "z": 2.1877,
+     "pct": 0.978,
+     "p_two_sided": 0.0287,
+     "cross_bp": 20.4188,
+     "own_bp": 17.3872,
+     "signal_agree": 0.8586
+    }
+   }
+  },
+  "pooled_year_t": {
+   "all": {
+    "n_years": 19,
+    "D_bp": 2.4096,
+    "t": 2.2105
+   },
+   "pre": {
+    "n_years": 9,
+    "D_bp": 0.2982,
+    "t": 0.1931
+   },
+   "post": {
+    "n_years": 10,
+    "D_bp": 4.31,
+    "t": 3.2475
+   }
+  },
+  "holm_adj_p": {
+   "pre": {
+    "XAUUSD->XAGUSD": 1.0,
+    "WTI->UKOIL": 1.0,
+    "US500->USTECH": 1.0,
+    "BTCUSD->ETHUSD": 1.0
+   },
+   "post": {
+    "XAUUSD->XAGUSD": 0.5997,
+    "WTI->UKOIL": 1.0,
+    "US500->USTECH": 1.0,
+    "BTCUSD->ETHUSD": 0.1148
+   },
+   "all": {
+    "XAUUSD->XAGUSD": 0.9208,
+    "WTI->UKOIL": 1.0,
+    "US500->USTECH": 1.0,
+    "BTCUSD->ETHUSD": 0.9208
+   }
+  },
+  "supported_pairs": []
+ },
+ "machine_verdict": "棄却: 主はリードしない（4 組とも全期間 |z|<2）",
+ "multiple_comparisons": "判定は 4 組 × 前後半 = 8 本（Holm は組の 4 本）。束ねた t・一致率は記述。"
+}

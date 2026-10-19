@@ -1,0 +1,46 @@
+{
+ "qid": "Q234",
+ "smoke": false,
+ "generated": "20261011_152436",
+ "question": "XAUUSD の実測スプレッドの変化は HAR に足すと翌時間の実現ボラの QLIKE を下げるか",
+ "settings": {
+  "min_train_years": 2,
+  "B": 100,
+  "null": "S を 24 本以上の循環シフト（日の塊を保つ近似）"
+ },
+ "n_obs": 108865,
+ "summary": {
+  "all": {
+   "n_years": 17,
+   "qlike_har": 0.7614,
+   "qlike_har_s": 0.7577,
+   "diff": -0.0037,
+   "diff_t": -3.4129,
+   "coef_S_mean": 0.1123,
+   "diff_z": -11.1162,
+   "null_mean": -0.0
+  },
+  "pre": {
+   "n_years": 7,
+   "qlike_har": 1.0078,
+   "qlike_har_s": 1.0036,
+   "diff": -0.00417,
+   "diff_t": -1.5741,
+   "coef_S_mean": 0.0719,
+   "diff_z": -5.2194,
+   "null_mean": -2e-05
+  },
+  "post": {
+   "n_years": 10,
+   "qlike_har": 0.5889,
+   "qlike_har_s": 0.5855,
+   "diff": -0.00338,
+   "diff_t": -6.6583,
+   "coef_S_mean": 0.1405,
+   "diff_z": -74.5915,
+   "null_mean": 1e-05
+  }
+ },
+ "machine_verdict": "棄却: 前後半のどちらかで t > −2 または z > −2",
+ "multiple_comparisons": "判定は前後半の (t, z) 4 本。"
+}

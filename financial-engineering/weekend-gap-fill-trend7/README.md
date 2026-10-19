@@ -30,3 +30,5 @@ Sonnet／Opus が実行するときの手順:
 ## 結果
 
 未実行。
+判定: **棄却: 全期間の z < 2**（2026-10-19 Q339: 結果 JSON `results/Q248_result_20261011_153349.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 post.rev_big_z=0.0767（rev_big の z（前後半の小さいほう））；pre.rev_big_z=1.3207; post.rev_big_z=0.0767

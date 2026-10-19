@@ -35,3 +35,5 @@ Sonnet／Opus が実行するときの手順:
 ## 結果
 
 未実行。
+判定: **棄却: 符号が逆または Holm 後 |z|≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.0956 z=-3.805 p_holm=0.00057）**（2026-10-19 Q339: 結果 JSON `results/Q277_result_20261011_153849.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 USDJPY.diff_z=-3.805（前後半差の z（4銘柄で |z| 最大））；XAUUSD.diff_z=1.1105; USDJPY.diff_z=-3.805; USDCHF.diff_z=0.1234; AUDUSD.diff_z=-1.6014

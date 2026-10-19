@@ -1,0 +1,229 @@
+{
+ "qid": "Q272",
+ "smoke": false,
+ "generated": "20261011_153811",
+ "question": "月曜（週末跨ぎ）のリターン分散は他の曜日の何倍か（取引時間 vs 暦時間）",
+ "settings": {
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "start": "2008-01-01",
+  "split_year": 2017,
+  "min_days": [
+   20,
+   60
+  ],
+  "B": 1000,
+  "null": "曜日ラベル（月曜）を年内で並べ替え",
+  "ratio": "R = Var(月曜 ret) / Var(火〜金 ret)、年×銘柄"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "n_cells": 260,
+    "n_years": 19,
+    "logR_mean": -0.1536,
+    "R_mean_exp": 0.8576,
+    "logR_median": -0.1491,
+    "t_vs_0": -3.1615,
+    "t_vs_log3": -25.7675,
+    "t_vs_log13": -8.5602,
+    "z": -5.1244,
+    "pct": 0.0
+   },
+   "pre": {
+    "n_cells": 111,
+    "n_years": 9,
+    "logR_mean": -0.1845,
+    "R_mean_exp": 0.8315,
+    "logR_median": -0.1998,
+    "t_vs_0": -2.3245,
+    "t_vs_log3": -16.165,
+    "t_vs_log13": -5.6298,
+    "z": -4.1614,
+    "pct": 0.0
+   },
+   "post": {
+    "n_cells": 149,
+    "n_years": 10,
+    "logR_mean": -0.1259,
+    "R_mean_exp": 0.8817,
+    "logR_median": -0.1274,
+    "t_vs_0": -2.0545,
+    "t_vs_log3": -19.9868,
+    "t_vs_log13": -6.337,
+    "z": -2.9367,
+    "pct": 0.001
+   }
+  },
+  "fx8": {
+   "all": {
+    "n_cells": 151,
+    "n_years": 19,
+    "logR_mean": -0.2687,
+    "R_mean_exp": 0.7644,
+    "logR_median": -0.2982,
+    "t_vs_0": -4.8075,
+    "t_vs_log3": -24.4635,
+    "t_vs_log13": -9.5017,
+    "z": -8.6865,
+    "pct": 0.0
+   },
+   "pre": {
+    "n_cells": 72,
+    "n_years": 9,
+    "logR_mean": -0.2562,
+    "R_mean_exp": 0.774,
+    "logR_median": -0.2675,
+    "t_vs_0": -2.5705,
+    "t_vs_log3": -13.5943,
+    "t_vs_log13": -5.2032,
+    "z": -5.182,
+    "pct": 0.0
+   },
+   "post": {
+    "n_cells": 79,
+    "n_years": 10,
+    "logR_mean": -0.28,
+    "R_mean_exp": 0.7558,
+    "logR_median": -0.3107,
+    "t_vs_0": -4.4857,
+    "t_vs_log3": -22.0873,
+    "t_vs_log13": -8.6892,
+    "z": -6.8651,
+    "pct": 0.0
+   }
+  },
+  "trend7": {
+   "all": {
+    "n_cells": 109,
+    "n_years": 19,
+    "logR_mean": -0.0249,
+    "R_mean_exp": 0.9754,
+    "logR_median": 0.0208,
+    "t_vs_0": -0.4427,
+    "t_vs_log3": -20.0068,
+    "t_vs_log13": -5.1148,
+    "z": 0.4277,
+    "pct": 0.674
+   },
+   "pre": {
+    "n_cells": 39,
+    "n_years": 9,
+    "logR_mean": -0.1103,
+    "R_mean_exp": 0.8956,
+    "logR_median": -0.0893,
+    "t_vs_0": -1.769,
+    "t_vs_log3": -19.3884,
+    "t_vs_log13": -5.9768,
+    "z": -1.0494,
+    "pct": 0.144
+   },
+   "post": {
+    "n_cells": 70,
+    "n_years": 10,
+    "logR_mean": 0.052,
+    "R_mean_exp": 1.0534,
+    "logR_median": 0.0708,
+    "t_vs_0": 0.6016,
+    "t_vs_log3": -12.0967,
+    "t_vs_log13": -2.431,
+    "z": 2.1142,
+    "pct": 0.982
+   }
+  },
+  "BTC_only": {
+   "all": {
+    "n_cells": 10,
+    "n_years": 10,
+    "logR_mean": 0.7016,
+    "R_mean_exp": 2.017,
+    "logR_median": 0.739,
+    "t_vs_0": 6.7962,
+    "t_vs_log3": -3.8457,
+    "t_vs_log13": 4.2548,
+    "z": 5.4588,
+    "pct": 1.0
+   },
+   "pre": {
+    "n_cells": 0,
+    "n_years": 0,
+    "logR_mean": null,
+    "R_mean_exp": null,
+    "logR_median": null,
+    "t_vs_0": null,
+    "t_vs_log3": null,
+    "t_vs_log13": null,
+    "z": null,
+    "pct": null
+   },
+   "post": {
+    "n_cells": 10,
+    "n_years": 10,
+    "logR_mean": 0.7016,
+    "R_mean_exp": 2.017,
+    "logR_median": 0.739,
+    "t_vs_0": 6.7962,
+    "t_vs_log3": -3.8457,
+    "t_vs_log13": 4.2548,
+    "z": 5.4588,
+    "pct": 1.0
+   }
+  },
+  "all15_exBTC": {
+   "all": {
+    "n_cells": 250,
+    "n_years": 19,
+    "logR_mean": -0.1849,
+    "R_mean_exp": 0.8312,
+    "logR_median": -0.1845,
+    "t_vs_0": -3.6966,
+    "t_vs_log3": -25.6634,
+    "t_vs_log13": -8.9426,
+    "z": -6.4694,
+    "pct": 0.0
+   },
+   "pre": {
+    "n_cells": 111,
+    "n_years": 9,
+    "logR_mean": -0.1845,
+    "R_mean_exp": 0.8315,
+    "logR_median": -0.1998,
+    "t_vs_0": -2.3245,
+    "t_vs_log3": -16.165,
+    "t_vs_log13": -5.6298,
+    "z": -4.1614,
+    "pct": 0.0
+   },
+   "post": {
+    "n_cells": 139,
+    "n_years": 10,
+    "logR_mean": -0.1852,
+    "R_mean_exp": 0.8309,
+    "logR_median": -0.1621,
+    "t_vs_0": -2.772,
+    "t_vs_log3": -19.2146,
+    "t_vs_log13": -6.6988,
+    "z": -4.8847,
+    "pct": 0.0
+   }
+  }
+ },
+ "machine_verdict": "支持: all15 の log R の年単位平均が log1.3 未満かつ log3 に対し t≤−2（取引時間仮説）",
+ "multiple_comparisons": "判定は all15 の 1 本（帰無値 log1.3・log3）。群別・BTC・前後半は記述。"
+}

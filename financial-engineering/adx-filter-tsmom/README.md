@@ -30,3 +30,5 @@ all15 前後半とも 差>0 かつ t≥2 かつ z≥2 → 支持。前後半と�
 ## 結果
 
 未実行。
+判定: **棄却: 局面フィルタでは変わらない（Q142・Q221 と同じ）**（2026-10-19 Q339: 結果 JSON `results/Q246_result_20261011_153312.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 all15_pre.sharpe_diff_t=0.7108（all15 シャープ差の t/z（前後半の小さいほう））；all15_pre.sharpe_diff_t=0.7108; all15_pre.sharpe_diff_z=1.1922; all15_post.sharpe_diff_t=-2.7194; all15_post.sharpe_diff_z=-2.1615

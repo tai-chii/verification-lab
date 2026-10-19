@@ -1,0 +1,65 @@
+{
+ "qid": "Q257",
+ "smoke": false,
+ "generated": "20261011_153505",
+ "question": "順張り束（σ60 規模調整・等加重）の月次純損益は US500 月次リターンの 2 次関数（c>0 のスマイル）か",
+ "settings": {
+  "L": 60,
+  "start": "2011-09-01",
+  "vol_target": 0.1,
+  "nw_lag_months": 3,
+  "tail_abs_x": 0.05,
+  "split_year": 2017,
+  "B": 2000,
+  "y": "各銘柄 pnl_bp×(目標/年率σ60) の等加重（その日ある銘柄の平均）を月内で和 [bp]",
+  "x": "ln(US500 月末終値/前月末終値)",
+  "null": "月次 y を並べ替え（x との対応を壊す）→ c の帰無分布",
+  "month_filter": "日数 10 未満の月は除く"
+ },
+ "missing": [],
+ "summary": {
+  "all": {
+   "n_months": 174,
+   "a": 33.7182,
+   "b": -426.1813,
+   "c": -802.5556,
+   "c_nw_t": -0.2491,
+   "mean_y_tail_bp": 34.126,
+   "n_tail": 38,
+   "mean_y_mid_bp": 25.7129,
+   "n_mid": 136,
+   "tail_minus_mid_bp": 8.4132,
+   "corr_y_x": -0.1017,
+   "c_z": -0.1819,
+   "c_pct": 0.43
+  },
+  "pre": {
+   "n_months": 60,
+   "a": 37.3319,
+   "b": -314.4716,
+   "c": -8906.1896,
+   "c_nw_t": -1.4427,
+   "mean_y_tail_bp": -41.1926,
+   "n_tail": 8,
+   "mean_y_mid_bp": 31.2879,
+   "n_mid": 52,
+   "tail_minus_mid_bp": -72.4806,
+   "corr_y_x": -0.1911
+  },
+  "post": {
+   "n_months": 114,
+   "a": 28.1663,
+   "b": -307.9428,
+   "c": 2627.971,
+   "c_nw_t": 0.6161,
+   "mean_y_tail_bp": 54.211,
+   "n_tail": 30,
+   "mean_y_mid_bp": 22.2617,
+   "n_mid": 84,
+   "tail_minus_mid_bp": 31.9494,
+   "corr_y_x": -0.0767
+  }
+ },
+ "machine_verdict": "棄却: 全期間 z<1",
+ "multiple_comparisons": "判定は全期間 c の 1 本（前後半の符号は条件）。裾の月の差は記述。"
+}

@@ -35,3 +35,5 @@ all15 前後半とも シャープ差>0 かつ t≥2 かつ z≥2 → 支持。�
 ## 結果
 
 未実行。
+判定: **棄却: 差は見えない**（2026-10-19 Q339: 結果 JSON `results/Q259_result_20261011_153528.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 post.d_sharpe_t=-0.1203（all15 シャープ差の t/z（前後半の小さいほう））；pre.d_sharpe_t=-2.9718; pre.d_sharpe_z=2.2402; post.d_sharpe_t=-0.1203; post.d_sharpe_z=5.399

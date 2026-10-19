@@ -37,6 +37,9 @@
 
 ## 結果（2026-10-09 Opus 実行・判定）
 
+判定: **データ源は規則の定義の一部（Korzan と同じ）**（2026-10-19 Q339: 結果 JSON `results/Q137_result_20261009_075431.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 一致率の最小=0.94; 年差 |t| の最大=1.2624（閾値 一致率 95%・99%、|t| 2）
+
 - 本番: `検証/verification-lab/financial-engineering/data-source-signal-agreement/results/Q137_result_20261009_075431.json`（`Q137_table_20261009_075431.csv`・`Q137_bars_20261009_075431.png`）。XAUUSD は `data_XAUUSD_D1_yahoo.csv` が無く除外（6銘柄で判定）。
 - **機械判定: 「データ源は規則の定義の一部（Korzan と同じ）」→ 確定。** TSMOM20 の一致率 94.00〜95.37%（4銘柄が <95%）、SMA200 は 97.55〜98.56%。純損益の年差は 12 本とも |t|≤1.26。
 - 補足診断（事後・判定外）: `q137_yahoo_close_diagnosis.py` → `検証/verification-lab/financial-engineering/data-source-signal-agreement/results/Q137_diag_20261009_075657.json`。Yahoo 為替日足は |終値−始値| 中央値 0.3〜0.9bp（高安幅 54〜73bp）＝終値は実は日の始めの値。Dukascopy の UTC 終値と 10bp 以内で合うのは約 2/3 の日、残り約 1/3 は1日ずれた時刻に近い。時刻が合う日の差は中央値 約2bp。

@@ -1,0 +1,101 @@
+{
+ "qid": "Q238",
+ "smoke": false,
+ "generated": "20261011_152814",
+ "question": "「5 月に売れ」は 2008〜2026 の指数・商品 6 銘柄で残るか",
+ "settings": {
+  "files": {
+   "SPX": "SPX_D1_long_yahoo",
+   "NDX": "NDX_D1_long_yahoo",
+   "XAUUSD": "XAUUSD_D1_long_yahoo",
+   "XAGUSD": "XAGUSD_D1_long_yahoo",
+   "WTI": "WTI_D1_long_yahoo",
+   "US500": "US500_D1_fromH1"
+  },
+  "B": 2000,
+  "min_shift": 126
+ },
+ "missing": [],
+ "summary": {
+  "all": {
+   "n_seasons": 17,
+   "D_mean_pct": 0.7733,
+   "D_year_t": 0.1757,
+   "share_positive": 0.7059,
+   "D_z": 0.3188,
+   "D_pct": 0.6095,
+   "null_mean": 0.0365
+  },
+  "pre": {
+   "n_seasons": 8,
+   "D_mean_pct": 4.2091,
+   "D_year_t": 0.7043,
+   "share_positive": 0.625,
+   "D_z": 1.1721,
+   "D_pct": 0.877,
+   "null_mean": 0.1508
+  },
+  "post": {
+   "n_seasons": 9,
+   "D_mean_pct": -2.2808,
+   "D_year_t": -0.3482,
+   "share_positive": 0.7778,
+   "D_z": -0.6989,
+   "D_pct": 0.243,
+   "null_mean": -0.0652
+  }
+ },
+ "per_sym": {
+  "SPX": {
+   "n": 17,
+   "D_mean_pct": 0.9159,
+   "t": 0.2895,
+   "winter_pct": 6.2067,
+   "summer_pct": 5.2908
+  },
+  "NDX": {
+   "n": 17,
+   "D_mean_pct": -1.02,
+   "t": -0.3362,
+   "winter_pct": 8.2072,
+   "summer_pct": 9.2272
+  },
+  "XAUUSD": {
+   "n": 17,
+   "D_mean_pct": 3.2623,
+   "t": 1.4282,
+   "winter_pct": 6.6747,
+   "summer_pct": 3.4123
+  },
+  "XAGUSD": {
+   "n": 17,
+   "D_mean_pct": 1.5083,
+   "t": 0.1781,
+   "winter_pct": 5.4479,
+   "summer_pct": 3.9396
+  },
+  "WTI": {
+   "n": 17,
+   "D_mean_pct": -1.6549,
+   "t": -0.1314,
+   "winter_pct": -1.1397,
+   "summer_pct": 0.5152
+  },
+  "US500": {
+   "n": 13,
+   "D_mean_pct": -0.2257,
+   "t": -0.0815,
+   "winter_pct": 5.956,
+   "summer_pct": 6.1817
+  }
+ },
+ "descriptive_only": {
+  "BTCUSD": {
+   "n": 11,
+   "D_mean_pct": 0.8335,
+   "t": 0.0403
+  }
+ },
+ "machine_verdict": "棄却: 全期間の z < 2（手元の 18 年では見えない）",
+ "multiple_comparisons": "判定は群平均 D の前後半 2 本。銘柄別・BTC は記述。"
+}

@@ -30,3 +30,5 @@ all15 前後半とも t_full≥2 かつ t_trim1<2 → 支持（集中）。前�
 ## 結果
 
 未実行。
+判定: **未確定: all15 の t_full が 2 未満の期間があり集中を問えない**（2026-10-19 Q339: 結果 JSON `results/Q230_result_20261011_144338.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 all15_pre.t_full=0.451（all15 t_full（前後半の小さいほう））；all15_pre.t_full=0.451; all15_post.t_full=1.6112

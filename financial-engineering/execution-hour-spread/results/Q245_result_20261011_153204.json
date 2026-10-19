@@ -1,0 +1,75 @@
+{
+ "qid": "Q245",
+ "smoke": false,
+ "generated": "20261011_153204",
+ "question": "XAUUSD 順張りの約定時刻を実測スプレッドの狭い時間に移すと純損益は上がるか",
+ "settings": {
+  "L": 60,
+  "win_spread": 60,
+  "B": 300
+ },
+ "n_switches_A": 0,
+ "n_switches_B": 0,
+ "hstar_distribution": {
+  "0": 52,
+  "1": 20,
+  "2": 25,
+  "3": 67,
+  "4": 48,
+  "5": 101,
+  "6": 245,
+  "7": 347,
+  "8": 417,
+  "9": 814,
+  "10": 516,
+  "11": 375,
+  "12": 311,
+  "13": 251,
+  "14": 369,
+  "15": 1182,
+  "16": 637,
+  "17": 158,
+  "18": 223,
+  "19": 353,
+  "20": 114,
+  "22": 6,
+  "23": 4
+ },
+ "summary": {
+  "all": {
+   "n_years": 19,
+   "A_bp_per_day": 0.0,
+   "B_bp_per_day": 0.0,
+   "diff_bp": 0.0,
+   "diff_t": null,
+   "cost_saving_bp_per_day": 0.0,
+   "price_effect_bp_per_day": 0.0,
+   "diff_z": null,
+   "random_hour_diff_mean_bp": 0.0
+  },
+  "pre": {
+   "n_years": 9,
+   "A_bp_per_day": 0.0,
+   "B_bp_per_day": 0.0,
+   "diff_bp": 0.0,
+   "diff_t": null,
+   "cost_saving_bp_per_day": 0.0,
+   "price_effect_bp_per_day": 0.0,
+   "diff_z": null,
+   "random_hour_diff_mean_bp": 0.0
+  },
+  "post": {
+   "n_years": 10,
+   "A_bp_per_day": 0.0,
+   "B_bp_per_day": 0.0,
+   "diff_bp": 0.0,
+   "diff_t": null,
+   "cost_saving_bp_per_day": 0.0,
+   "price_effect_bp_per_day": 0.0,
+   "diff_z": null,
+   "random_hour_diff_mean_bp": 0.0
+  }
+ },
+ "machine_verdict": "棄却: 前後半のどちらかで t<2 または z<2",
+ "multiple_comparisons": "判定は前後半の (t, z) 4 本。"
+}

@@ -35,3 +35,5 @@ Sonnet／Opus が実行するときの手順:
 ## 結果
 
 未実行。
+判定: **棄却: 主はリードしない（4 組とも全期間 |z|<2）**（2026-10-19 Q339: 結果 JSON `results/Q256_result_20261011_153457.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 BTCUSD->ETHUSD.pre.z=0.5099（差 D の z（前後半、4組中最良の組））；XAUUSD->XAGUSD.pre.z=0.3643; XAUUSD->XAGUSD.post.z=1.2819; WTI->UKOIL.pre.z=0.2721; WTI->UKOIL.post.z=0.3624; US500->USTECH.pre.z=0.4977; US500->USTECH.post.z=-0.2327; BTCUSD->ETHUSD.pre.z=0.5099; BTCUSD->ETHUSD.post.z=2.1877

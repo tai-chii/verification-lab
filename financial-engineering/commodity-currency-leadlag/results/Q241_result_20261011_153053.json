@@ -1,0 +1,133 @@
+{
+ "qid": "Q241",
+ "smoke": false,
+ "generated": "20261011_153053",
+ "question": "原油→USDCAD・金→AUDUSD の日次リード・ラグは両方向のどちらが強いか",
+ "settings": {
+  "pairs": {
+   "wti_cad": [
+    "WTI",
+    "USDCAD",
+    -1
+   ],
+   "gold_aud": [
+    "XAUUSD",
+    "AUDUSD",
+    1
+   ]
+  },
+  "B": 1000,
+  "min_shift": 30
+ },
+ "missing": [],
+ "summary": {
+  "wti_cad": {
+   "fx_to_comm": {
+    "all": {
+     "n_years": 15,
+     "ic": -0.005,
+     "t": -0.398,
+     "z": -0.2263
+    },
+    "pre": {
+     "n_years": 5,
+     "ic": -0.0388,
+     "t": -1.3796,
+     "z": -1.3651
+    },
+    "post": {
+     "n_years": 10,
+     "ic": 0.0118,
+     "t": 1.1696,
+     "z": 0.6668
+    }
+   },
+   "comm_to_fx": {
+    "all": {
+     "n_years": 15,
+     "ic": 0.0052,
+     "t": 0.407,
+     "z": 0.3261
+    },
+    "pre": {
+     "n_years": 5,
+     "ic": -0.0055,
+     "t": -0.2398,
+     "z": -0.2014
+    },
+    "post": {
+     "n_years": 10,
+     "ic": 0.0106,
+     "t": 0.6533,
+     "z": 0.5341
+    }
+   },
+   "contemporaneous_rho": 0.3473,
+   "trade_comm_by_fx_sign": {
+    "net_bp_per_day": -1.5305,
+    "t_nw": -0.3333
+   },
+   "trade_fx_by_comm_sign": {
+    "net_bp_per_day": -0.4621,
+    "t_nw": -0.6699
+   },
+   "verdict": "棄却: 一方向の先導なし",
+   "n_days": 3786
+  },
+  "gold_aud": {
+   "fx_to_comm": {
+    "all": {
+     "n_years": 19,
+     "ic": -0.0185,
+     "t": -1.2185,
+     "z": -1.2355
+    },
+    "pre": {
+     "n_years": 9,
+     "ic": -0.0139,
+     "t": -0.5753,
+     "z": -0.6477
+    },
+    "post": {
+     "n_years": 10,
+     "ic": -0.0227,
+     "t": -1.1254,
+     "z": -1.1051
+    }
+   },
+   "comm_to_fx": {
+    "all": {
+     "n_years": 19,
+     "ic": 0.0008,
+     "t": 0.0503,
+     "z": 0.0762
+    },
+    "pre": {
+     "n_years": 9,
+     "ic": -0.0145,
+     "t": -1.4495,
+     "z": -0.6959
+    },
+    "post": {
+     "n_years": 10,
+     "ic": 0.0146,
+     "t": 0.4826,
+     "z": 0.7399
+    }
+   },
+   "contemporaneous_rho": 0.3834,
+   "trade_comm_by_fx_sign": {
+    "net_bp_per_day": -1.4454,
+    "t_nw": -0.9452
+   },
+   "trade_fx_by_comm_sign": {
+    "net_bp_per_day": -1.4062,
+    "t_nw": -1.2168
+   },
+   "verdict": "棄却: 一方向の先導なし",
+   "n_days": 4717
+  }
+ },
+ "machine_verdict": "棄却: どちらの組も一方向の先導なし",
+ "multiple_comparisons": "2 組 × 2 方向 × 2 期間 = 8 本。"
+}

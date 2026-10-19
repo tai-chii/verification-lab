@@ -1,0 +1,105 @@
+{
+ "qid": "Q255",
+ "smoke": false,
+ "generated": "20261011_153447",
+ "question": "ドル因子を除いた残差の順張り（sign Σ60 e）は生の TSMOM60 より年×通貨の純損益が高いか（FX6）",
+ "settings": {
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD"
+  ],
+  "usd_sign": {
+   "EURUSD": -1,
+   "GBPUSD": -1,
+   "AUDUSD": -1,
+   "USDJPY": 1,
+   "USDCHF": 1,
+   "USDCAD": 1
+  },
+  "L": 60,
+  "min_window": 250,
+  "split_year": 2017,
+  "B": 500,
+  "dates": "6 通貨の共通日のみ（inner join）",
+  "beta": "t 日までの拡大窓 OLS（切片あり・累積和）",
+  "null": "通貨ごとに 1 つの循環シフトを残差・生の両建玉に適用し、リターンとの対応を壊す",
+  "stat_for_z": "日次差を年×通貨平均→年内通貨平均→年平均"
+ },
+ "missing": [],
+ "summary": {
+  "all": {
+   "n_years": 19,
+   "diff_res_minus_raw_bp": -0.4342,
+   "t": -1.0055,
+   "z": -1.0699,
+   "pct": 0.15,
+   "pnl_res_bp": -0.4283,
+   "pnl_raw_bp": 0.006,
+   "sharpe_res": -0.1645,
+   "sharpe_raw": -0.0358,
+   "signal_agree": 0.6893
+  },
+  "pre": {
+   "n_years": 9,
+   "diff_res_minus_raw_bp": -0.7317,
+   "t": -0.9017,
+   "z": -0.9493,
+   "pct": 0.172,
+   "pnl_res_bp": -0.4461,
+   "pnl_raw_bp": 0.2856,
+   "sharpe_res": -0.1569,
+   "sharpe_raw": 0.0744,
+   "signal_agree": 0.6861
+  },
+  "post": {
+   "n_years": 10,
+   "diff_res_minus_raw_bp": -0.1665,
+   "t": -0.4097,
+   "z": -0.4922,
+   "pct": 0.304,
+   "pnl_res_bp": -0.4122,
+   "pnl_raw_bp": -0.2457,
+   "sharpe_res": -0.1705,
+   "sharpe_raw": -0.135,
+   "signal_agree": 0.6919
+  },
+  "per_sym": {
+   "EURUSD": {
+    "diff_bp": -0.3552,
+    "agree": 0.6063,
+    "beta_last": 1.0841
+   },
+   "GBPUSD": {
+    "diff_bp": -0.9694,
+    "agree": 0.6925,
+    "beta_last": 1.0171
+   },
+   "AUDUSD": {
+    "diff_bp": -0.5141,
+    "agree": 0.6366,
+    "beta_last": 1.3712
+   },
+   "USDJPY": {
+    "diff_bp": -0.1839,
+    "agree": 0.9136,
+    "beta_last": 0.6096
+   },
+   "USDCHF": {
+    "diff_bp": -0.01,
+    "agree": 0.6519,
+    "beta_last": 1.0749
+   },
+   "USDCAD": {
+    "diff_bp": -0.5729,
+    "agree": 0.6348,
+    "beta_last": 0.8431
+   }
+  }
+ },
+ "machine_verdict": "棄却: 差は見えない",
+ "multiple_comparisons": "判定は差の前後半 2 本。合図の一致率・シャープは記述。"
+}

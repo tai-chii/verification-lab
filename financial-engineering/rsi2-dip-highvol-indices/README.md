@@ -35,3 +35,5 @@ Sonnet／Opus が実行するときの手順:
 ## 結果
 
 未実行。
+判定: **棄却: 2 指数とも全期間 z<1**（2026-10-19 Q339: 結果 JSON `results/Q271_result_20261011_153759.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 USTECH.pre.B_z=0.031（B の z（2指数×前後半））；US500.pre.B_z=-0.1762; US500.post.B_z=-0.7402; USTECH.pre.B_z=0.031; USTECH.post.B_z=0.0354

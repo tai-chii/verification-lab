@@ -1,0 +1,99 @@
+{
+ "qid": "Q248",
+ "smoke": false,
+ "generated": "20261011_153349",
+ "question": "トレンド群の週末の窓は週内に埋まるか",
+ "settings": {
+  "syms": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH"
+  ],
+  "B": 2000
+ },
+ "missing": [],
+ "summary": {
+  "all": {
+   "n_weeks": 1132,
+   "n_big": 633,
+   "rev_all_bp": 7.3026,
+   "rev_big_bp": 12.1021,
+   "rev_big_year_t": 0.6324,
+   "fill_rate_all": 0.8887,
+   "fill_rate_big": 0.8246,
+   "net_big_bp": 4.2322,
+   "rev_big_z": 0.6934
+  },
+  "pre": {
+   "n_weeks": 544,
+   "n_big": 300,
+   "rev_all_bp": 14.1022,
+   "rev_big_bp": 23.0476,
+   "rev_big_year_t": 1.5515,
+   "fill_rate_all": 0.9007,
+   "fill_rate_big": 0.8433,
+   "net_big_bp": 15.5537,
+   "rev_big_z": 1.3207
+  },
+  "post": {
+   "n_weeks": 588,
+   "n_big": 333,
+   "rev_all_bp": 1.0118,
+   "rev_big_bp": 2.2412,
+   "rev_big_year_t": 0.2828,
+   "fill_rate_all": 0.8776,
+   "fill_rate_big": 0.8078,
+   "net_big_bp": -5.9672,
+   "rev_big_z": 0.0767
+  }
+ },
+ "per_sym": {
+  "UKOIL": {
+   "n_weeks": 618,
+   "n_big": 349,
+   "rev_all_bp": 4.1092,
+   "rev_big_bp": 9.8648,
+   "rev_big_year_t": 0.6566,
+   "fill_rate_all": 0.89,
+   "fill_rate_big": 0.8252,
+   "net_big_bp": 0.5369
+  },
+  "US500": {
+   "n_weeks": 241,
+   "n_big": 159,
+   "rev_all_bp": 4.8297,
+   "rev_big_bp": 7.7341,
+   "rev_big_year_t": -0.1455,
+   "fill_rate_all": 0.8963,
+   "fill_rate_big": 0.8553,
+   "net_big_bp": 2.6559
+  },
+  "USTECH": {
+   "n_weeks": 229,
+   "n_big": 108,
+   "rev_all_bp": 17.5676,
+   "rev_big_bp": 25.5696,
+   "rev_big_year_t": 0.3862,
+   "fill_rate_all": 0.8821,
+   "fill_rate_big": 0.787,
+   "net_big_bp": 18.1394
+  },
+  "WTI": {
+   "n_weeks": 36,
+   "n_big": 15,
+   "rev_all_bp": 5.6912,
+   "rev_big_bp": 25.8373,
+   "rev_big_year_t": -0.7238,
+   "fill_rate_all": 0.8333,
+   "fill_rate_big": 0.7333,
+   "net_big_bp": 19.4273
+  },
+  "XAGUSD": null,
+  "XAUUSD": null
+ },
+ "machine_verdict": "棄却: 全期間の z < 2",
+ "multiple_comparisons": "判定は |g| 大の前後半 z 2 本。"
+}

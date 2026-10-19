@@ -1,0 +1,205 @@
+{
+ "qid": "Q277",
+ "smoke": false,
+ "generated": "20261011_153849",
+ "question": "リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か",
+ "settings": {
+  "market": "US500",
+  "syms": [
+   "XAUUSD",
+   "USDJPY",
+   "USDCHF",
+   "AUDUSD"
+  ],
+  "start": "2012-01-01",
+  "min_hist": 250,
+  "q": 0.05,
+  "split_year": 2017,
+  "B": 1000,
+  "se": "HC1",
+  "diff_z": "(β_post−β_pre)/√(se_pre²+se_post²)",
+  "holm": "4 本・|z|<2 ⇔ Holm 後 p > 0.04550",
+  "null": "リスクオフ日ラベルを年内で並べ替え → β_off−β_normal（記述）"
+ },
+ "missing": [],
+ "summary": {
+  "XAUUSD": {
+   "pre": {
+    "n_off": 54,
+    "n_normal": 1224,
+    "beta_off": -0.2447,
+    "se_off": 0.3862,
+    "t_off": -0.6336,
+    "beta_normal": -0.0177,
+    "se_normal": 0.0371,
+    "diff_off_minus_normal": -0.227,
+    "perm_z": -0.707,
+    "perm_pct": 0.221
+   },
+   "post": {
+    "n_off": 148,
+    "n_normal": 2313,
+    "beta_off": 0.2001,
+    "se_off": 0.1062,
+    "t_off": 1.8836,
+    "beta_normal": 0.0976,
+    "se_normal": 0.0412,
+    "diff_off_minus_normal": 0.1025,
+    "perm_z": 1.1032,
+    "perm_pct": 0.864
+   },
+   "all": {
+    "n_off": 202,
+    "n_normal": 3537,
+    "beta_off": 0.1698,
+    "se_off": 0.1049,
+    "t_off": 1.6189,
+    "beta_normal": 0.0641,
+    "se_normal": 0.0311,
+    "diff_off_minus_normal": 0.1057,
+    "perm_z": 1.1209,
+    "perm_pct": 0.866
+   },
+   "diff_z": 1.1105,
+   "diff_p": 0.26678,
+   "diff_p_holm": 0.53356,
+   "holm_abs_z_ge2": false,
+   "same_sign": false,
+   "beta_off_distinct_from_0_both": false
+  },
+  "USDJPY": {
+   "pre": {
+    "n_off": 54,
+    "n_normal": 1225,
+    "beta_off": 0.6641,
+    "se_off": 0.1358,
+    "t_off": 4.8918,
+    "beta_normal": 0.2132,
+    "se_normal": 0.0644,
+    "diff_off_minus_normal": 0.451,
+    "perm_z": 3.835,
+    "perm_pct": 1.0
+   },
+   "post": {
+    "n_off": 148,
+    "n_normal": 2315,
+    "beta_off": 0.0956,
+    "se_off": 0.0623,
+    "t_off": 1.5354,
+    "beta_normal": 0.0498,
+    "se_normal": 0.0227,
+    "diff_off_minus_normal": 0.0458,
+    "perm_z": 1.2372,
+    "perm_pct": 0.885
+   },
+   "all": {
+    "n_off": 202,
+    "n_normal": 3540,
+    "beta_off": 0.0989,
+    "se_off": 0.0614,
+    "t_off": 1.609,
+    "beta_normal": 0.0992,
+    "se_normal": 0.0186,
+    "diff_off_minus_normal": -0.0004,
+    "perm_z": 0.7718,
+    "perm_pct": 0.768
+   },
+   "diff_z": -3.805,
+   "diff_p": 0.00014,
+   "diff_p_holm": 0.00057,
+   "holm_abs_z_ge2": true,
+   "same_sign": true,
+   "beta_off_distinct_from_0_both": false
+  },
+  "USDCHF": {
+   "pre": {
+    "n_off": 54,
+    "n_normal": 1225,
+    "beta_off": 0.0193,
+    "se_off": 0.3514,
+    "t_off": 0.055,
+    "beta_normal": 0.0215,
+    "se_normal": 0.0197,
+    "diff_off_minus_normal": -0.0021,
+    "perm_z": -0.61,
+    "perm_pct": 0.214
+   },
+   "post": {
+    "n_off": 148,
+    "n_normal": 2315,
+    "beta_off": 0.0633,
+    "se_off": 0.0608,
+    "t_off": 1.0421,
+    "beta_normal": -0.0281,
+    "se_normal": 0.0174,
+    "diff_off_minus_normal": 0.0915,
+    "perm_z": 2.4599,
+    "perm_pct": 0.991
+   },
+   "all": {
+    "n_off": 202,
+    "n_normal": 3540,
+    "beta_off": 0.0217,
+    "se_off": 0.0721,
+    "t_off": 0.3015,
+    "beta_normal": -0.0136,
+    "se_normal": 0.0135,
+    "diff_off_minus_normal": 0.0353,
+    "perm_z": 0.8974,
+    "perm_pct": 0.837
+   },
+   "diff_z": 0.1234,
+   "diff_p": 0.90181,
+   "diff_p_holm": 0.90181,
+   "holm_abs_z_ge2": false,
+   "same_sign": true,
+   "beta_off_distinct_from_0_both": false
+  },
+  "AUDUSD": {
+   "pre": {
+    "n_off": 54,
+    "n_normal": 1225,
+    "beta_off": 0.4225,
+    "se_off": 0.1193,
+    "t_off": 3.542,
+    "beta_normal": 0.2052,
+    "se_normal": 0.0591,
+    "diff_off_minus_normal": 0.2174,
+    "perm_z": 1.9591,
+    "perm_pct": 0.98
+   },
+   "post": {
+    "n_off": 148,
+    "n_normal": 2315,
+    "beta_off": 0.201,
+    "se_off": 0.07,
+    "t_off": 2.8737,
+    "beta_normal": 0.2808,
+    "se_normal": 0.0289,
+    "diff_off_minus_normal": -0.0798,
+    "perm_z": -1.0757,
+    "perm_pct": 0.141
+   },
+   "all": {
+    "n_off": 202,
+    "n_normal": 3540,
+    "beta_off": 0.2105,
+    "se_off": 0.0647,
+    "t_off": 3.2524,
+    "beta_normal": 0.258,
+    "se_normal": 0.0295,
+    "diff_off_minus_normal": -0.0475,
+    "perm_z": -0.8223,
+    "perm_pct": 0.183
+   },
+   "diff_z": -1.6014,
+   "diff_p": 0.1093,
+   "diff_p_holm": 0.32789,
+   "holm_abs_z_ge2": false,
+   "same_sign": true,
+   "beta_off_distinct_from_0_both": true
+  }
+ },
+ "machine_verdict": "棄却: 符号が逆または Holm 後 |z|≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.0956 z=-3.805 p_holm=0.00057）",
+ "multiple_comparisons": "差の検定 4 本を Holm で補正。並べ替え z・β_normal・全期間は記述。"
+}

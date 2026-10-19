@@ -30,3 +30,5 @@ Sonnet／Opus が実行するときの手順:
 ## 結果
 
 未実行。
+判定: **棄却: 1 組以下**（2026-10-19 Q339: 結果 JSON `results/Q236_result_20261011_152552.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 wti_ukoil.forward.pre.z=-2.8701（順方向 IC の z（前後半、4組中3番目に良い組））；xau_xag.forward.pre.z=-7.9126; xau_xag.forward.post.z=-9.0582; wti_ukoil.forward.pre.z=-2.8701; wti_ukoil.forward.post.z=-3.5882; btc_eth.forward.pre.z=-4.7269; btc_eth.forward.post.z=-9.3083; us500_ustech.forward.pre.z=-0.0874; us500_ustech.forward.post.z=-2.0028

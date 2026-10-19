@@ -1,0 +1,238 @@
+{
+ "qid": "Q236",
+ "smoke": false,
+ "generated": "20261011_152552",
+ "question": "4 組の H1 リード・ラグは両方向のどちらが強いか",
+ "settings": {
+  "pairs": {
+   "xau_xag": [
+    "XAUUSD",
+    "XAGUSD",
+    2017
+   ],
+   "wti_ukoil": [
+    "WTI",
+    "UKOIL",
+    2017
+   ],
+   "btc_eth": [
+    "BTCUSD",
+    "ETHUSD",
+    2022
+   ],
+   "us500_ustech": [
+    "US500",
+    "USTECH",
+    2017
+   ]
+  },
+  "B": 500,
+  "min_shift": 48
+ },
+ "missing": [],
+ "summary": {
+  "xau_xag": {
+   "forward": {
+    "all": {
+     "n_years": 19,
+     "ic": -0.0362,
+     "t": -7.4911,
+     "z": -12.2715
+    },
+    "pre": {
+     "n_years": 9,
+     "ic": -0.0335,
+     "t": -4.6113,
+     "z": -7.9126
+    },
+    "post": {
+     "n_years": 10,
+     "ic": -0.0387,
+     "t": -5.7523,
+     "z": -9.0582
+    }
+   },
+   "reverse": {
+    "all": {
+     "n_years": 19,
+     "ic": -0.0297,
+     "t": -9.2174,
+     "z": -9.874
+    },
+    "pre": {
+     "n_years": 9,
+     "ic": -0.0288,
+     "t": -6.9159,
+     "z": -6.6427
+    },
+    "post": {
+     "n_years": 10,
+     "ic": -0.0305,
+     "t": -6.0494,
+     "z": -7.1137
+    }
+   },
+   "contemporaneous_rho": 0.6779,
+   "trade_lag_by_lead_sign": {
+    "net_bp_per_hour": -10.8433,
+    "t_nw": -66.1349
+   },
+   "verdict": "棄却: 一方向の先導なし",
+   "split_year": 2017,
+   "n_hours": 108894
+  },
+  "wti_ukoil": {
+   "forward": {
+    "all": {
+     "n_years": 16,
+     "ic": -0.0187,
+     "t": -4.9021,
+     "z": -4.469
+    },
+    "pre": {
+     "n_years": 6,
+     "ic": -0.0243,
+     "t": -4.4221,
+     "z": -2.8701
+    },
+    "post": {
+     "n_years": 10,
+     "ic": -0.0154,
+     "t": -3.044,
+     "z": -3.5882
+    }
+   },
+   "reverse": {
+    "all": {
+     "n_years": 16,
+     "ic": -0.0158,
+     "t": -5.5936,
+     "z": -3.9455
+    },
+    "pre": {
+     "n_years": 6,
+     "ic": -0.0216,
+     "t": -4.8208,
+     "z": -2.5976
+    },
+    "post": {
+     "n_years": 10,
+     "ic": -0.0124,
+     "t": -3.7051,
+     "z": -2.7463
+    }
+   },
+   "contemporaneous_rho": 0.8946,
+   "trade_lag_by_lead_sign": {
+    "net_bp_per_hour": -4.7332,
+    "t_nw": -24.3339
+   },
+   "verdict": "棄却: 一方向の先導なし",
+   "split_year": 2017,
+   "n_hours": 76852
+  },
+  "btc_eth": {
+   "forward": {
+    "all": {
+     "n_years": 10,
+     "ic": -0.0527,
+     "t": -5.7869,
+     "z": -8.2528
+    },
+    "pre": {
+     "n_years": 5,
+     "ic": -0.0551,
+     "t": -3.8378,
+     "z": -4.7269
+    },
+    "post": {
+     "n_years": 5,
+     "ic": -0.0503,
+     "t": -3.925,
+     "z": -9.3083
+    }
+   },
+   "reverse": {
+    "all": {
+     "n_years": 10,
+     "ic": -0.0527,
+     "t": -6.0921,
+     "z": -8.1968
+    },
+    "pre": {
+     "n_years": 5,
+     "ic": -0.0539,
+     "t": -3.9014,
+     "z": -4.5185
+    },
+    "post": {
+     "n_years": 5,
+     "ic": -0.0516,
+     "t": -4.2724,
+     "z": -9.0439
+    }
+   },
+   "contemporaneous_rho": 0.8052,
+   "trade_lag_by_lead_sign": {
+    "net_bp_per_hour": -16.8195,
+    "t_nw": -44.5641
+   },
+   "verdict": "棄却: 一方向の先導なし",
+   "split_year": 2022,
+   "n_hours": 67791
+  },
+  "us500_ustech": {
+   "forward": {
+    "all": {
+     "n_years": 15,
+     "ic": -0.0062,
+     "t": -1.4119,
+     "z": -1.5014
+    },
+    "pre": {
+     "n_years": 5,
+     "ic": -0.0014,
+     "t": -0.1168,
+     "z": -0.0874
+    },
+    "post": {
+     "n_years": 10,
+     "ic": -0.0087,
+     "t": -2.4095,
+     "z": -2.0028
+    }
+   },
+   "reverse": {
+    "all": {
+     "n_years": 15,
+     "ic": 0.0134,
+     "t": 0.8028,
+     "z": 3.2898
+    },
+    "pre": {
+     "n_years": 5,
+     "ic": 0.0457,
+     "t": 0.9252,
+     "z": 6.1118
+    },
+    "post": {
+     "n_years": 10,
+     "ic": -0.0028,
+     "t": -0.6906,
+     "z": -0.6202
+    }
+   },
+   "contemporaneous_rho": 0.8881,
+   "trade_lag_by_lead_sign": {
+    "net_bp_per_hour": -2.1389,
+    "t_nw": -19.1848
+   },
+   "verdict": "棄却: 一方向の先導なし",
+   "split_year": 2017,
+   "n_hours": 72915
+  }
+ },
+ "n_lead_to_lag": 0,
+ "machine_verdict": "棄却: 1 組以下",
+ "multiple_comparisons": "4 組 × 2 方向 × 2 期間 = 16 本。"
+}

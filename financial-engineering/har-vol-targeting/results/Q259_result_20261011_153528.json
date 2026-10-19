@@ -1,0 +1,158 @@
+{
+ "qid": "Q259",
+ "smoke": false,
+ "generated": "20261011_153528",
+ "question": "HAR 予測の分散でのボラ・ターゲティングは σ60 版よりシャープが高いか",
+ "settings": {
+  "L_tsmom": 60,
+  "sigma_window": 60,
+  "target_ann": 0.1,
+  "har_lags": [
+   1,
+   5,
+   22
+  ],
+  "min_train_days": 500,
+  "har_target": "log Parkinson variance = log((ln(H/L))^2/(4 ln 2))",
+  "split_year": 2017,
+  "B": 300,
+  "null": "HAR 予測を年内で循環シフト（銘柄×年）"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "n_years": 17,
+    "n_cells": 225,
+    "d_sharpe": -0.0308,
+    "d_sharpe_t": -1.7973,
+    "d_sharpe_z": 5.5944,
+    "d_sharpe_pct": 1.0,
+    "sharpe_A": 0.1541,
+    "sharpe_B": 0.1233,
+    "d_pnl_bp": -0.0926,
+    "d_pnl_t": -1.0969,
+    "cv_scale_A": 0.2029,
+    "cv_scale_B": 0.2171
+   },
+   "pre": {
+    "n_years": 7,
+    "n_cells": 78,
+    "d_sharpe": -0.0713,
+    "d_sharpe_t": -2.9718,
+    "d_sharpe_z": 2.2402,
+    "d_sharpe_pct": 0.98,
+    "sharpe_A": 0.2192,
+    "sharpe_B": 0.1479,
+    "d_pnl_bp": -0.2912,
+    "d_pnl_t": -2.1669,
+    "cv_scale_A": 0.203,
+    "cv_scale_B": 0.2106
+   },
+   "post": {
+    "n_years": 10,
+    "n_cells": 147,
+    "d_sharpe": -0.0024,
+    "d_sharpe_t": -0.1203,
+    "d_sharpe_z": 5.399,
+    "d_sharpe_pct": 1.0,
+    "sharpe_A": 0.1084,
+    "sharpe_B": 0.106,
+    "d_pnl_bp": 0.0464,
+    "d_pnl_t": 0.5216,
+    "cv_scale_A": 0.2028,
+    "cv_scale_B": 0.2216
+   }
+  },
+  "fx8": {
+   "all": {
+    "n_years": 17,
+    "n_cells": 135,
+    "d_sharpe": -0.0163,
+    "d_sharpe_t": -0.8313,
+    "d_sharpe_z": null,
+    "d_sharpe_pct": null,
+    "sharpe_A": 0.058,
+    "sharpe_B": 0.0417,
+    "d_pnl_bp": -0.0563,
+    "d_pnl_t": -0.6143,
+    "cv_scale_A": 0.1839,
+    "cv_scale_B": 0.199
+   },
+   "pre": {
+    "n_years": 7,
+    "n_cells": 55,
+    "d_sharpe": -0.0609,
+    "d_sharpe_t": -2.4606,
+    "d_sharpe_z": null,
+    "d_sharpe_pct": null,
+    "sharpe_A": 0.2371,
+    "sharpe_B": 0.1762,
+    "d_pnl_bp": -0.2158,
+    "d_pnl_t": -2.1116,
+    "cv_scale_A": 0.1991,
+    "cv_scale_B": 0.2051
+   },
+   "post": {
+    "n_years": 10,
+    "n_cells": 80,
+    "d_sharpe": 0.0149,
+    "d_sharpe_t": 0.6016,
+    "d_sharpe_z": null,
+    "d_sharpe_pct": null,
+    "sharpe_A": -0.0674,
+    "sharpe_B": -0.0525,
+    "d_pnl_bp": 0.0553,
+    "d_pnl_t": 0.4226,
+    "cv_scale_A": 0.1732,
+    "cv_scale_B": 0.1947
+   }
+  },
+  "trend7": {
+   "all": {
+    "n_years": 17,
+    "n_cells": 90,
+    "d_sharpe": -0.0574,
+    "d_sharpe_t": -2.5593,
+    "d_sharpe_z": null,
+    "d_sharpe_pct": null,
+    "sharpe_A": 0.3301,
+    "sharpe_B": 0.2726,
+    "d_pnl_bp": -0.1896,
+    "d_pnl_t": -1.257,
+    "cv_scale_A": 0.2329,
+    "cv_scale_B": 0.242
+   },
+   "pre": {
+    "n_years": 7,
+    "n_cells": 23,
+    "d_sharpe": -0.1064,
+    "d_sharpe_t": -3.3169,
+    "d_sharpe_z": null,
+    "d_sharpe_pct": null,
+    "sharpe_A": 0.3493,
+    "sharpe_B": 0.2428,
+    "d_pnl_bp": -0.5119,
+    "d_pnl_t": -1.8869,
+    "cv_scale_A": 0.2252,
+    "cv_scale_B": 0.225
+   },
+   "post": {
+    "n_years": 10,
+    "n_cells": 67,
+    "d_sharpe": -0.0231,
+    "d_sharpe_t": -0.8595,
+    "d_sharpe_z": null,
+    "d_sharpe_pct": null,
+    "sharpe_A": 0.3166,
+    "sharpe_B": 0.2935,
+    "d_pnl_bp": 0.036,
+    "d_pnl_t": 0.2507,
+    "cv_scale_A": 0.2383,
+    "cv_scale_B": 0.254
+   }
+  }
+ },
+ "machine_verdict": "棄却: 差は見えない",
+ "multiple_comparisons": "判定は all15 のシャープ差の前後半 2 本。純損益・群別・規模の変動係数は記述。"
+}

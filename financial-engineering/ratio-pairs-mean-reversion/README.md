@@ -30,3 +30,5 @@ Sonnet／Opus が実行するときの手順:
 ## 結果
 
 未実行。
+判定: **棄却: どの組も残らない**（2026-10-19 Q339: 結果 JSON `results/Q233_result_20261011_152414.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 brent_wti.pre.z=0.493（純損益の t/z（前後半・2組とも必要））；gold_silver.pre.t=-1.6465; gold_silver.pre.z=-1.2716; gold_silver.post.t=-1.0132; gold_silver.post.z=-1.0554; brent_wti.pre.t=1.3159; brent_wti.pre.z=0.493; brent_wti.post.t=2.7223; brent_wti.post.z=3.5324

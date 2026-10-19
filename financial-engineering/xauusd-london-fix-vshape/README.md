@@ -29,6 +29,9 @@
 
 ## 結果（2026-10-14 実行、Opus 4.7）
 
+判定: **未確定**（2026-10-19 Q339: 結果 JSON `results/Q289_result_20261014_012340.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 pre.z=-0.3921（D の z（前後半の小さいほう））；pre.z=-0.3921; post.z=-1.0858
+
 結果 JSON: `results/Q289_result_20261014_012340.json`、日次 CSV: `results/Q289_daily_20261014_012340.csv`。
 
 - data_health: XAUUSD は ok（failed なし・gaps なし・n_dup=0）。期間フィルタ後 n_days=4697、n_years=19。

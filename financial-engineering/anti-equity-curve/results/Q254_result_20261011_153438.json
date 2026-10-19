@@ -1,0 +1,125 @@
+{
+ "qid": "Q254",
+ "smoke": false,
+ "generated": "20261011_153438",
+ "question": "逆エクイティカーブ（直近 20 日純損益が負→規模 1.5・正→0.5）は固定規模より年ごとのシャープが高いか",
+ "settings": {
+  "L": 60,
+  "window": 20,
+  "scale_hi": 1.5,
+  "scale_lo": 0.5,
+  "split_year": 2017,
+  "B": 300,
+  "pnlB": "scale[t−1]·pnlA[t]（規模はその日の終値で決め翌日に効く・コストも倍）",
+  "null": "直近 20 日損益の符号ラベルを 20 日ブロックで年内並べ替え → 規模を再構成",
+  "stat_for_z": "年×銘柄のシャープ差を年内で銘柄平均→年平均",
+  "mdd_unit": "年×銘柄の中の最大下落の深さ [bp]（正・差<0 が浅い）"
+ },
+ "missing": [],
+ "summary": {
+  "all15": {
+   "all": {
+    "n_years": 19,
+    "sharpe_diff": 0.0734,
+    "t": 2.3855,
+    "pnl_diff_bp": -0.4275,
+    "pnl_t": -1.3918,
+    "mdd_depth_diff_bp": 246.8984,
+    "mdd_t": 7.2324,
+    "frac_days_scale_1.5": 0.476,
+    "z": 2.9377,
+    "pct": 1.0
+   },
+   "pre": {
+    "n_years": 9,
+    "sharpe_diff": 0.0252,
+    "t": 0.5747,
+    "pnl_diff_bp": -0.4483,
+    "pnl_t": -1.2691,
+    "mdd_depth_diff_bp": 226.9918,
+    "mdd_t": 4.6887,
+    "frac_days_scale_1.5": 0.4632,
+    "z": 0.9289,
+    "pct": 0.81
+   },
+   "post": {
+    "n_years": 10,
+    "sharpe_diff": 0.1168,
+    "t": 2.9041,
+    "pnl_diff_bp": -0.4087,
+    "pnl_t": -0.8038,
+    "mdd_depth_diff_bp": 264.8143,
+    "mdd_t": 5.3195,
+    "frac_days_scale_1.5": 0.4858,
+    "z": 3.2579,
+    "pct": 1.0
+   }
+  },
+  "fx8": {
+   "all": {
+    "n_years": 19,
+    "sharpe_diff": 0.1154,
+    "t": 3.0686,
+    "pnl_diff_bp": 0.0816,
+    "pnl_t": 0.4046,
+    "mdd_depth_diff_bp": 125.8198,
+    "mdd_t": 4.2734,
+    "frac_days_scale_1.5": 0.4893
+   },
+   "pre": {
+    "n_years": 9,
+    "sharpe_diff": 0.0514,
+    "t": 0.877,
+    "pnl_diff_bp": -0.1971,
+    "pnl_t": -0.5168,
+    "mdd_depth_diff_bp": 160.2505,
+    "mdd_t": 2.8634,
+    "frac_days_scale_1.5": 0.4643
+   },
+   "post": {
+    "n_years": 10,
+    "sharpe_diff": 0.173,
+    "t": 4.0229,
+    "pnl_diff_bp": 0.3323,
+    "pnl_t": 2.1806,
+    "mdd_depth_diff_bp": 94.8321,
+    "mdd_t": 3.9967,
+    "frac_days_scale_1.5": 0.5118
+   }
+  },
+  "trend7": {
+   "all": {
+    "n_years": 19,
+    "sharpe_diff": 0.0123,
+    "t": 0.296,
+    "pnl_diff_bp": -1.0222,
+    "pnl_t": -1.6713,
+    "mdd_depth_diff_bp": 432.3111,
+    "mdd_t": 4.8065,
+    "frac_days_scale_1.5": 0.4581
+   },
+   "pre": {
+    "n_years": 9,
+    "sharpe_diff": -0.0325,
+    "t": -0.4943,
+    "pnl_diff_bp": -0.7628,
+    "pnl_t": -1.1501,
+    "mdd_depth_diff_bp": 402.5683,
+    "mdd_t": 2.4928,
+    "frac_days_scale_1.5": 0.4614
+   },
+   "post": {
+    "n_years": 10,
+    "sharpe_diff": 0.0526,
+    "t": 1.0182,
+    "pnl_diff_bp": -1.2557,
+    "pnl_t": -1.2214,
+    "mdd_depth_diff_bp": 459.0797,
+    "mdd_t": 4.6591,
+    "frac_days_scale_1.5": 0.4561
+   }
+  }
+ },
+ "machine_verdict": "棄却: Q210 の負の自己相関は利益にできない",
+ "multiple_comparisons": "判定は all15 のシャープ差の前後半 2 本。純損益・最大下落・群別は記述。"
+}

@@ -30,3 +30,5 @@ Sonnet／Opus が実行するときの手順:
 ## 結果
 
 未実行。
+判定: **棄却: どちらの組も一方向の先導なし**（2026-10-19 Q339: 結果 JSON `results/Q241_result_20261011_153053.json` の機械判定を転記。人の解釈は未）
+- 主要な数値（JSON より）: 採用 gold_aud.fx_to_comm.pre.z=-0.6477（IC の z（前後半・2組、良いほうの向き））；wti_cad.fx_to_comm.pre.z=-1.3651; wti_cad.fx_to_comm.post.z=0.6668; gold_aud.fx_to_comm.pre.z=-0.6477; gold_aud.fx_to_comm.post.z=-1.1051; wti_cad.comm_to_fx.pre.z=-0.2014; wti_cad.comm_to_fx.post.z=0.5341; gold_aud.comm_to_fx.pre.z=-0.6959; gold_aud.comm_to_fx.post.z=0.7399

@@ -1,0 +1,148 @@
+{
+ "qid": "Q261",
+ "smoke": false,
+ "generated": "20261011_153559",
+ "question": "トレンド7 の H4 順張り（TSMOM 30/60/120 本）はコスト後に残るか",
+ "settings": {
+  "syms": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "kind": "H4_dukascopy",
+  "L_main": 60,
+  "L_sub": [
+   30,
+   120
+  ],
+  "split_year": 2017,
+  "B": 500,
+  "cost": "段階1の表（片道=往復/2）",
+  "null": "主セルの合図を循環シフト（min_shift=60）",
+  "min_bars_per_year": 200
+ },
+ "missing": [],
+ "summary": {
+  "trend7": {
+   "all": {
+    "L60": {
+     "n_years": 19,
+     "net_bp_per_bar": -0.2918,
+     "net_t": -1.0106,
+     "gross_bp_per_bar": 0.2794,
+     "gross_t": 0.9581,
+     "net_z": 0.7148,
+     "net_pct": 0.75
+    },
+    "L30": {
+     "n_years": 19,
+     "net_bp_per_bar": -0.2328,
+     "net_t": -0.7838,
+     "gross_bp_per_bar": 0.5824,
+     "gross_t": 1.9472
+    },
+    "L120": {
+     "n_years": 19,
+     "net_bp_per_bar": 0.1495,
+     "net_t": 0.7359,
+     "gross_bp_per_bar": 0.5435,
+     "gross_t": 2.7547
+    }
+   },
+   "pre": {
+    "L60": {
+     "n_years": 9,
+     "net_bp_per_bar": -0.4915,
+     "net_t": -1.3007,
+     "gross_bp_per_bar": 0.1022,
+     "gross_t": 0.3125,
+     "net_z": 0.0205,
+     "net_pct": 0.502
+    },
+    "L30": {
+     "n_years": 9,
+     "net_bp_per_bar": -0.7198,
+     "net_t": -2.573,
+     "gross_bp_per_bar": 0.0758,
+     "gross_t": 0.2651
+    },
+    "L120": {
+     "n_years": 9,
+     "net_bp_per_bar": -0.0268,
+     "net_t": -0.1538,
+     "gross_bp_per_bar": 0.3732,
+     "gross_t": 2.2596
+    }
+   },
+   "post": {
+    "L60": {
+     "n_years": 10,
+     "net_bp_per_bar": -0.1122,
+     "net_t": -0.254,
+     "gross_bp_per_bar": 0.4389,
+     "gross_t": 0.912,
+     "net_z": 1.1232,
+     "net_pct": 0.866
+    },
+    "L30": {
+     "n_years": 10,
+     "net_bp_per_bar": 0.2055,
+     "net_t": 0.4308,
+     "gross_bp_per_bar": 1.0384,
+     "gross_t": 2.1852
+    },
+    "L120": {
+     "n_years": 10,
+     "net_bp_per_bar": 0.3082,
+     "net_t": 0.8659,
+     "gross_bp_per_bar": 0.6969,
+     "gross_t": 2.0065
+    }
+   }
+  },
+  "ic": {
+   "L60": {
+    "mean_spearman": -0.0023,
+    "per_sym": {
+     "XAUUSD": 0.0037,
+     "XAGUSD": 0.004,
+     "WTI": -0.0013,
+     "UKOIL": -0.0035,
+     "US500": -0.0162,
+     "USTECH": -0.0051,
+     "BTCUSD": 0.0024
+    }
+   },
+   "L30": {
+    "mean_spearman": -0.0037,
+    "per_sym": {
+     "XAUUSD": -0.0021,
+     "XAGUSD": -0.0046,
+     "WTI": 0.0018,
+     "UKOIL": -0.0037,
+     "US500": -0.0119,
+     "USTECH": -0.0089,
+     "BTCUSD": 0.0033
+    }
+   },
+   "L120": {
+    "mean_spearman": 0.0008,
+    "per_sym": {
+     "XAUUSD": 0.0064,
+     "XAGUSD": 0.0022,
+     "WTI": 0.0077,
+     "UKOIL": 0.006,
+     "US500": -0.0221,
+     "USTECH": -0.0115,
+     "BTCUSD": 0.0168
+    }
+   }
+  }
+ },
+ "machine_verdict": "支持: trend7 全期間 純損益 t<2 または z<2（H4 には無い）",
+ "multiple_comparisons": "判定は主セル 60 本の全期間と前後半（3 本）。30・120 本と IC は記述。"
+}
