@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 160 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 161 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -100,6 +100,7 @@
 | [parameter-plateau-selection](./parameter-plateau-selection) | Q188 周辺パラメータの平均で選ぶ（台地選択）と最良1点で選ぶより標本外が良いか（ブログZenn2026e-2） | H0: 選び方では変わらない |
 | [parkinson-vol-forecast](./parkinson-vol-forecast) | Q222 Parkinson のレンジボラは終値ボラより翌日の実現ボラをよく予測するか（15 銘柄・QLIKE・HAR 型） | 支持: Parkinson のレンジは終値より翌日の実現ボラをよく予測する |
 | [parkinson-vol-targeting](./parkinson-vol-targeting) | Q232 Parkinson レンジボラでのボラ・ターゲティングは終値 σ60 版よりシャープが高いか（Q222 × Q205 の連鎖） | 棄却 |
+| [path-smoothness-tsmom-q346](./path-smoothness-tsmom-q346) | Q346 直前の経路が滑らか（R² 高・FIP 連続的）なほど翌月の時系列モメンタム純損益は大きいか（15 銘柄・Clenow／Da ほか 2014 の移植） | 棄却で機械判定と同じ |
 | [pbo-cscv-tsmom](./pbo-cscv-tsmom) | Q171 順張りの参照日数 60 通りの CSCV で測った過剰適合の確率 PBO は約 0.88（Bailey 2017） | 支持（過剰適合） |
 | [pbo-tsmom-grid](./pbo-tsmom-grid) | Q171 順張りの参照日数60通りの CSCV で過剰適合の確率 PBO はいくつか（Bailey 2017） | —（未実行） |
 | [permutation-null-stability](./permutation-null-stability) | Q146 並べ替え帰無の z は何回で安定するか（B と seed のぶれ。検証基盤の既定 B を決めるため） | — |

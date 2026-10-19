@@ -41,3 +41,8 @@ financial-engineering/common-perm-size-q321/results/calib_Q321.npz
 
 # Q333: 銘柄ごとの帰無の生の判定（計8MB）。要約は results/Q333_result_*.json
 financial-engineering/wfo-window-gate-q333/results/parts/
+
+# Q346: 試走・smoke・セル明細は除外（結果JSONとREADMEのみ）
+financial-engineering/path-smoothness-tsmom-q346/results/smoke_*
+financial-engineering/path-smoothness-tsmom-q346/results/_試走_B20/
+financial-engineering/path-smoothness-tsmom-q346/results/*_cells_*.csv
