@@ -29,3 +29,6 @@ financial-engineering/*/results/run_*.log
 
 # /lab が書く自動コミットの予約（tools/mac_auto_push.sh が読む）
 .lab_pending/
+
+# Q320: 実データ由来の校正ファイル（15MB）
+financial-engineering/null-zoo-size-q320/results/calib_Q320.npz
