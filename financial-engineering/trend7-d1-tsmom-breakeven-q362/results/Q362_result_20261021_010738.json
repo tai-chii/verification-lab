@@ -1,0 +1,495 @@
+{
+ "qid": "Q362",
+ "smoke": false,
+ "generated": "20261021_010738",
+ "question": "TREND7 D1 TSMOM(L=60) は段階1コストの何倍までコスト後に正か（本番で許されるコストの余裕）",
+ "spec": {
+  "qid": "Q362",
+  "question": "TREND7 D1 TSMOM(L=60) は段階1コストの何倍までコスト後に正か（本番で許されるコストの余裕）",
+  "hypothesis": "同じ合図規則でコストを {0, 0.5, 1, 2, 3}× 段階1 の 5 本に広げ、全期間の bp_net の正負を見る。main_param=1×（段階1そのもの）",
+  "reject_if": "3× でも bp>0 → 支持（余裕大）。2× で bp>0・3× で bp≤0 → 支持（限定）。1× で bp>0・2× で bp≤0 → 未確定（きつい）。1× で bp≤0 → 棄却",
+  "syms": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "L": 60,
+    "cost_mult": 0.0
+   },
+   {
+    "L": 60,
+    "cost_mult": 0.5
+   },
+   {
+    "L": 60,
+    "cost_mult": 1.0
+   },
+   {
+    "L": 60,
+    "cost_mult": 2.0
+   },
+   {
+    "L": 60,
+    "cost_mult": 3.0
+   }
+  ],
+  "main_param": 2,
+  "n_tests": 2,
+  "warmup": 60,
+  "per_year": 252,
+  "B": 500,
+  "split_year": 2017,
+  "start": "2012-02-01",
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 120,
+  "cost_rel": {},
+  "discarded": "コスト 5× 以上（現実のスプレッド拡大の目安を超える）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし",
+  "source": "戦略台帳 S01『粗利が保守的コストの 2 倍を超えない案は切る』、_基盤/CLAUDE.md のコスト 2 段階",
+  "data": "TREND7 7 銘柄 D1_fromH1、2012-02-01〜2024-06-30（封印）",
+  "measure": "5 水準の全期間 bp_net・t、ゼロ跨ぎの倍率、取引回数、年単位の値動き",
+  "null_desc": "合図の循環シフト（min_shift=120）B=500 → main=1× の年単位 bp の帰無。帰無は main でのみ計算（コスト倍率は帰無と独立）",
+  "prior_art": "Hurst et al. (2017) は TSMOM のコスト余裕を 2〜4× とした。本件は TREND7 封印前の実測",
+  "batch": "/lab-plan 10 案一括（2026-10-20）",
+  "designer": "Fable",
+  "coder": "Claude",
+  "settings": {},
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "UKOIL": {
+    "months": 187,
+    "missing_months": 7,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2012-09",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-05"
+    ],
+    "worst_ratio": 0.5116279069767442,
+    "n_gaps": 5,
+    "max_gap_h": 672.0,
+    "gaps": [
+     {
+      "from": "2011-10-18 00:00:00",
+      "to": "2011-11-15 00:00:00",
+      "hours": 672.0
+     },
+     {
+      "from": "2013-01-16 00:00:00",
+      "to": "2013-02-01 00:00:00",
+      "hours": 384.0
+     },
+     {
+      "from": "2012-12-14 00:00:00",
+      "to": "2012-12-28 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-05-01 00:00:00",
+      "to": "2013-05-15 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-02-13 00:00:00",
+      "to": "2013-02-26 00:00:00",
+      "hours": 312.0
+     }
+    ],
+    "first": "2010-12-02 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "main": {
+  "all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21208,
+   "bp_gross": 2.993,
+   "t_gross": 1.4949,
+   "bp_net": 2.4581,
+   "t_year": 1.2313,
+   "t_cluster": 1.6444,
+   "sharpe_net": 0.4225,
+   "sharpe_gross": 0.487,
+   "max_dd_net_bp": -6893.6766,
+   "exposure": 0.9802,
+   "gap_bars": 4,
+   "z": 1.3275,
+   "pct": 0.898,
+   "p_perm": 0.1038,
+   "null_degenerate": false,
+   "null_q025": -2.5474,
+   "null_q975": 3.3993
+  },
+  "pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7182,
+   "bp_gross": 1.031,
+   "t_gross": 0.9902,
+   "bp_net": 0.6426,
+   "t_year": 0.6079,
+   "t_cluster": 0.2529,
+   "sharpe_net": 0.1107,
+   "sharpe_gross": 0.1814,
+   "max_dd_net_bp": -1761.9265,
+   "exposure": 0.9514,
+   "gap_bars": 4,
+   "z": 0.2815,
+   "pct": 0.626,
+   "p_perm": 0.3752,
+   "null_degenerate": false,
+   "null_q025": -3.3893,
+   "null_q975": 3.7498,
+   "p_holm": 0.3752
+  },
+  "post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14026,
+   "bp_gross": 4.2193,
+   "t_gross": 1.3198,
+   "bp_net": 3.5928,
+   "t_year": 1.1236,
+   "t_cluster": 1.649,
+   "sharpe_net": 0.5173,
+   "sharpe_gross": 0.5836,
+   "max_dd_net_bp": -6893.6766,
+   "exposure": 0.9956,
+   "gap_bars": 0,
+   "z": 1.2743,
+   "pct": 0.898,
+   "p_perm": 0.1038,
+   "null_degenerate": false,
+   "null_q025": -3.8919,
+   "null_q975": 5.2884,
+   "p_holm": 0.2076
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21208,
+   "bp_gross": 2.993,
+   "t_gross": 1.4949,
+   "bp_net": 2.993,
+   "t_year": 1.4949,
+   "t_cluster": 1.8969,
+   "sharpe_net": 0.487,
+   "sharpe_gross": 0.487,
+   "max_dd_net_bp": -6643.0691,
+   "exposure": 0.9802,
+   "gap_bars": 4
+  },
+  "p0_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7182,
+   "bp_gross": 1.031,
+   "t_gross": 0.9902,
+   "bp_net": 1.031,
+   "t_year": 0.9902,
+   "t_cluster": 0.4154,
+   "sharpe_net": 0.1814,
+   "sharpe_gross": 0.1814,
+   "max_dd_net_bp": -1725.7568,
+   "exposure": 0.9514,
+   "gap_bars": 4
+  },
+  "p0_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14026,
+   "bp_gross": 4.2193,
+   "t_gross": 1.3198,
+   "bp_net": 4.2193,
+   "t_year": 1.3198,
+   "t_cluster": 1.8618,
+   "sharpe_net": 0.5836,
+   "sharpe_gross": 0.5836,
+   "max_dd_net_bp": -6643.0691,
+   "exposure": 0.9956,
+   "gap_bars": 0
+  },
+  "p1_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21208,
+   "bp_gross": 2.993,
+   "t_gross": 1.4949,
+   "bp_net": 2.7256,
+   "t_year": 1.3635,
+   "t_cluster": 1.7707,
+   "sharpe_net": 0.4547,
+   "sharpe_gross": 0.487,
+   "max_dd_net_bp": -6768.3728,
+   "exposure": 0.9802,
+   "gap_bars": 4
+  },
+  "p1_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7182,
+   "bp_gross": 1.031,
+   "t_gross": 0.9902,
+   "bp_net": 0.8368,
+   "t_year": 0.7978,
+   "t_cluster": 0.3341,
+   "sharpe_net": 0.146,
+   "sharpe_gross": 0.1814,
+   "max_dd_net_bp": -1730.0906,
+   "exposure": 0.9514,
+   "gap_bars": 4
+  },
+  "p1_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14026,
+   "bp_gross": 4.2193,
+   "t_gross": 1.3198,
+   "bp_net": 3.906,
+   "t_year": 1.2218,
+   "t_cluster": 1.7555,
+   "sharpe_net": 0.5504,
+   "sharpe_gross": 0.5836,
+   "max_dd_net_bp": -6768.3728,
+   "exposure": 0.9956,
+   "gap_bars": 0
+  },
+  "p2_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21208,
+   "bp_gross": 2.993,
+   "t_gross": 1.4949,
+   "bp_net": 2.4581,
+   "t_year": 1.2313,
+   "t_cluster": 1.6444,
+   "sharpe_net": 0.4225,
+   "sharpe_gross": 0.487,
+   "max_dd_net_bp": -6893.6766,
+   "exposure": 0.9802,
+   "gap_bars": 4
+  },
+  "p2_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7182,
+   "bp_gross": 1.031,
+   "t_gross": 0.9902,
+   "bp_net": 0.6426,
+   "t_year": 0.6079,
+   "t_cluster": 0.2529,
+   "sharpe_net": 0.1107,
+   "sharpe_gross": 0.1814,
+   "max_dd_net_bp": -1761.9265,
+   "exposure": 0.9514,
+   "gap_bars": 4
+  },
+  "p2_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14026,
+   "bp_gross": 4.2193,
+   "t_gross": 1.3198,
+   "bp_net": 3.5928,
+   "t_year": 1.1236,
+   "t_cluster": 1.649,
+   "sharpe_net": 0.5173,
+   "sharpe_gross": 0.5836,
+   "max_dd_net_bp": -6893.6766,
+   "exposure": 0.9956,
+   "gap_bars": 0
+  },
+  "p3_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21208,
+   "bp_gross": 2.993,
+   "t_gross": 1.4949,
+   "bp_net": 1.9231,
+   "t_year": 0.965,
+   "t_cluster": 1.3914,
+   "sharpe_net": 0.3578,
+   "sharpe_gross": 0.487,
+   "max_dd_net_bp": -7144.2841,
+   "exposure": 0.9802,
+   "gap_bars": 4
+  },
+  "p3_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7182,
+   "bp_gross": 1.031,
+   "t_gross": 0.9902,
+   "bp_net": 0.2541,
+   "t_year": 0.2364,
+   "t_cluster": 0.0912,
+   "sharpe_net": 0.04,
+   "sharpe_gross": 0.1814,
+   "max_dd_net_bp": -1894.8961,
+   "exposure": 0.9514,
+   "gap_bars": 4
+  },
+  "p3_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14026,
+   "bp_gross": 4.2193,
+   "t_gross": 1.3198,
+   "bp_net": 2.9663,
+   "t_year": 0.9266,
+   "t_cluster": 1.4357,
+   "sharpe_net": 0.4508,
+   "sharpe_gross": 0.5836,
+   "max_dd_net_bp": -7144.2841,
+   "exposure": 0.9956,
+   "gap_bars": 0
+  },
+  "p4_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21208,
+   "bp_gross": 2.993,
+   "t_gross": 1.4949,
+   "bp_net": 1.3882,
+   "t_year": 0.6969,
+   "t_cluster": 1.1385,
+   "sharpe_net": 0.2931,
+   "sharpe_gross": 0.487,
+   "max_dd_net_bp": -7394.8916,
+   "exposure": 0.9802,
+   "gap_bars": 4
+  },
+  "p4_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7182,
+   "bp_gross": 1.031,
+   "t_gross": 0.9902,
+   "bp_net": -0.1343,
+   "t_year": -0.1227,
+   "t_cluster": -0.0697,
+   "sharpe_net": -0.0307,
+   "sharpe_gross": 0.1814,
+   "max_dd_net_bp": -2116.7192,
+   "exposure": 0.9514,
+   "gap_bars": 4
+  },
+  "p4_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14026,
+   "bp_gross": 4.2193,
+   "t_gross": 1.3198,
+   "bp_net": 2.3398,
+   "t_year": 0.7295,
+   "t_cluster": 1.2221,
+   "sharpe_net": 0.3842,
+   "sharpe_gross": 0.5836,
+   "max_dd_net_bp": -7394.8916,
+   "exposure": 0.9956,
+   "gap_bars": 0
+  }
+ },
+ "multiple_comparisons": "判定は main_param=2・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 7.2,
+ "machine_verdict": "支持: 3× 段階1コストでも全期間 bp_net>0（本番のコスト余裕が大きい）（data_health に failed/gaps あり: 確定にする前に点検）"
+}
