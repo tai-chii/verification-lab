@@ -35,4 +35,21 @@ long が pre・post とも t≥2 かつ bp_net>0 → 支持（long-only で足�
 
 ## 結果
 
-未実行。
+実行日: 2026-10-21。B=500。結果ファイル: `results/Q361_result_20261021_010323.json`。
+
+| 設定 | all bp_net/t | pre(2012〜2016) bp_net/t | post(2017〜2024) bp_net/t |
+|---|---|---|---|
+| long-only | 4.09 / 1.82 | **-0.08 / -0.06** | **6.70 / 2.03** |
+| short-only | -1.64 / -1.35 | +0.72 / 0.45 | -3.11 / -2.01 |
+| both | 2.46 / 1.23 | +0.64 / 0.61 | 3.59 / 1.12 |
+
+- data_health: failed なし、gaps（WTI・UKOIL・US500・USTECH の初期欠損）。pre の gap_bars=4 のみ、post=0。影響軽微
+- long の Holm 補正後 p: pre=0.37、post=0.16（いずれも非有意）
+- null_degenerate: false（帰無は正常）
+
+**支持条件**（long が pre AND post 両方で t≥2 かつ bp>0）: pre の t=-0.06 で不成立。
+**棄却条件**（all t<1 または pre/post 両方 t<1）: post の t=2.03>1 で不成立。
+
+判定: **未確定**（機械判定と一致）
+
+**解釈**: long-only は post（2017〜2024）では t=2.03・bp_net=6.70 と機能するが、pre（2012〜2016）では t=-0.06 でほぼゼロ。short-only は post で悪化（t=-2.01）。前後半の非対称性が大きく、long-only が安定した担い手とは言えない。long-only 化によるコスト削減（short 側の取引除去）は post の結果だけでは正当化できない。

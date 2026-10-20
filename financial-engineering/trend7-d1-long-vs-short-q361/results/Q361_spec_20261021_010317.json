@@ -1,0 +1,56 @@
+{
+ "qid": "Q361",
+ "registered": "20261021_010317",
+ "B": 500,
+ "seed": 20261010,
+ "question": "TREND7 D1 TSMOM(L=60) を long-only と short-only に分けると、どちらが bp>0 を担うか（long-only で足りるか）",
+ "hypothesis": "合図を long（+1 のみ、−はゼロ）／short（−1 のみ、+はゼロ）／both（Q355 と同じ）の 3 設定で比べる。main_param=long。Holm m=2 の判定対象は long の pre/post",
+ "reject_if": "long が pre・post とも t≥2 かつ bp_net>0 → 支持（long-only で足りる）。long が全期間 t<1 もしくは pre/post とも t<1 → 棄却（short が担い手候補）。ほか → 未確定",
+ "syms": [
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "UKOIL",
+  "US500",
+  "USTECH",
+  "BTCUSD"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "L": 60,
+   "side": "long"
+  },
+  {
+   "L": 60,
+   "side": "short"
+  },
+  {
+   "L": 60,
+   "side": "both"
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 60,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": "2012-02-01",
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 120,
+ "cost_rel": {},
+ "discarded": "long/short の非対称な閾値（+1 と −1 で L を変える）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "なし",
+ "source": "戦略台帳 S01、知見 Q207/Q224（下落相場での危機アルファ=short の寄与）、Moskowitz et al. (2012) の long/short 分解",
+ "data": "TREND7 7 銘柄 D1_fromH1、2012-02-01〜2024-06-30（封印）",
+ "measure": "3 設定（long/short/both）の年単位 bp・t、各期間の bp と Sharpe、露出の違い",
+ "null_desc": "合図の循環シフト（min_shift=120）B=500 → long の年単位 bp の帰無",
+ "prior_art": "Moskowitz et al. (2012) Table 3 は long/short の寄与を分解。株式では short が公表後に減衰する例が多い（Mclean & Pontiff 2016）",
+ "batch": "/lab-plan 10 案一括（2026-10-20）",
+ "designer": "Fable",
+ "coder": "Claude",
+ "settings": {}
+}
