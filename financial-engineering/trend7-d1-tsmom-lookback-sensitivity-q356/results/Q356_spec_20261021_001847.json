@@ -1,0 +1,56 @@
+{
+ "qid": "Q356",
+ "registered": "20261021_001847",
+ "B": 500,
+ "seed": 20261010,
+ "question": "TREND7 D1 TSMOM の L ∈ {20,60,120,250} の掃引で、main（L=60）は Holm m=4 補正後も封印前の前後半で t≥2 を保つか（S01 の lookback 頑健性）",
+ "hypothesis": "同じ合図規則で L を 20/60/120/250 の 4 本に広げ、main_param=L=60 の pre/post 2 本に Holm m=4 を当てる。L=60 が結果を見てからの選択でないことを示す目的で、全 4 本の年単位 t を併記",
+ "reject_if": "main（L=60）が pre・post とも t≥2 かつ bp_net>0 → 支持（頑健）。全期間 t<1 もしくは pre/post とも t<1 → 棄却。ほか → 未確定",
+ "syms": [
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "UKOIL",
+  "US500",
+  "USTECH",
+  "BTCUSD"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "L": 20
+  },
+  {
+   "L": 60
+  },
+  {
+   "L": 120
+  },
+  {
+   "L": 250
+  }
+ ],
+ "main_param": 1,
+ "n_tests": 4,
+ "warmup": 250,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": "2012-02-01",
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 260,
+ "cost_rel": {},
+ "discarded": "L=10・L=500 を事前の文献範囲外として捨てた（Moskowitz 系の典型は 1〜12 か月）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "なし",
+ "source": "戦略台帳 S01、Moskowitz ほか (2012) の表3（1〜12m lookback の広がり）、Q355 の本体",
+ "data": "TREND7 7 銘柄 D1_fromH1、2012-02-01〜2024-06-30（封印）",
+ "measure": "4 本の年単位 bp・t、main の pre/post 2 本の perm_p・Holm、L × 期間の表",
+ "null_desc": "合図の循環シフト（min_shift=260）B=500 → main の年単位 bp の帰無分布 → Holm 補正",
+ "prior_art": "Moskowitz et al. (2012) は 1〜12m（約 20〜250 日）で広く効くことを示した。本件は TREND7・封印前への移植",
+ "batch": "/lab-plan 10 案一括（2026-10-20）",
+ "designer": "Fable",
+ "coder": "Claude",
+ "settings": {}
+}
