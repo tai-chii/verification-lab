@@ -1,0 +1,298 @@
+{
+ "qid": "Q360",
+ "smoke": false,
+ "generated": "20261021_010044",
+ "question": "TREND7 D1 TSMOM(L=60) を週次（月曜のみ）でリバランスしても、封印前の前後半で年単位 t≥2 を保つか（コスト低減の効果）",
+ "spec": {
+  "qid": "Q360",
+  "question": "TREND7 D1 TSMOM(L=60) を週次（月曜のみ）でリバランスしても、封印前の前後半で年単位 t≥2 を保つか（コスト低減の効果）",
+  "hypothesis": "raw[t]=tsmom_pos(L=60) を日次に計算し、各 ISO 週の最初の足で raw をラッチして次の週まで固定。段階1コスト後の年単位 bp が pre/post とも t≥2 で正",
+  "reject_if": "pre・post とも t≥2 かつ bp_net>0 → 支持。全期間 t<1 もしくは pre/post とも t<1 → 棄却。ほか → 未確定",
+  "syms": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "L": 60
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 70,
+  "per_year": 252,
+  "B": 500,
+  "split_year": 2017,
+  "start": "2012-02-01",
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 120,
+  "cost_rel": {},
+  "discarded": "月次リバランス（粗すぎて trend の変化に追従できない）、日中リバランス（コストで死ぬ）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし",
+  "source": "戦略台帳 S01、Moskowitz et al. (2012) は月次。日足で日次より粗いリバランスがコスト低減に効くかの検証",
+  "data": "TREND7 7 銘柄 D1_fromH1、2012-02-01〜2024-06-30（封印）",
+  "measure": "週次リバランスの年単位 bp、露出・取引回数、Q355（日次）との bp 差とコスト差",
+  "null_desc": "合図の循環シフト（min_shift=120）B=500 → 年単位 bp の帰無",
+  "prior_art": "Baltas & Kosowski (2013) は週次・月次でも TSMOM が効くとした。本件は TREND7 日足で日次との差を見る",
+  "batch": "/lab-plan 10 案一括（2026-10-20）",
+  "designer": "Fable",
+  "coder": "Claude",
+  "settings": {},
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "UKOIL": {
+    "months": 187,
+    "missing_months": 7,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2012-09",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-05"
+    ],
+    "worst_ratio": 0.5116279069767442,
+    "n_gaps": 5,
+    "max_gap_h": 672.0,
+    "gaps": [
+     {
+      "from": "2011-10-18 00:00:00",
+      "to": "2011-11-15 00:00:00",
+      "hours": 672.0
+     },
+     {
+      "from": "2013-01-16 00:00:00",
+      "to": "2013-02-01 00:00:00",
+      "hours": 384.0
+     },
+     {
+      "from": "2012-12-14 00:00:00",
+      "to": "2012-12-28 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-05-01 00:00:00",
+      "to": "2013-05-15 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-02-13 00:00:00",
+      "to": "2013-02-26 00:00:00",
+      "hours": 312.0
+     }
+    ],
+    "first": "2010-12-02 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "main": {
+  "all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21138,
+   "bp_gross": 2.1858,
+   "t_gross": 1.3255,
+   "bp_net": 1.9383,
+   "t_year": 1.1741,
+   "t_cluster": 1.4097,
+   "sharpe_net": 0.3624,
+   "sharpe_gross": 0.3858,
+   "max_dd_net_bp": -4592.0894,
+   "exposure": 0.9797,
+   "gap_bars": 4,
+   "z": 0.815,
+   "pct": 0.772,
+   "p_perm": 0.2295,
+   "null_degenerate": false,
+   "null_q025": -2.5339,
+   "null_q975": 3.7955
+  },
+  "pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7122,
+   "bp_gross": 0.6398,
+   "t_gross": 0.4401,
+   "bp_net": 0.4497,
+   "t_year": 0.3064,
+   "t_cluster": 0.1856,
+   "sharpe_net": 0.0789,
+   "sharpe_gross": 0.1147,
+   "max_dd_net_bp": -2356.994,
+   "exposure": 0.9501,
+   "gap_bars": 4,
+   "z": -0.0075,
+   "pct": 0.5,
+   "p_perm": 0.501,
+   "null_degenerate": false,
+   "null_q025": -2.9268,
+   "null_q975": 4.1652,
+   "p_holm": 0.501
+  },
+  "post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14016,
+   "bp_gross": 3.1521,
+   "t_gross": 1.2388,
+   "bp_net": 2.8686,
+   "t_year": 1.125,
+   "t_cluster": 1.4204,
+   "sharpe_net": 0.4467,
+   "sharpe_gross": 0.4684,
+   "max_dd_net_bp": -4592.0894,
+   "exposure": 0.9956,
+   "gap_bars": 0,
+   "z": 0.8883,
+   "pct": 0.788,
+   "p_perm": 0.2136,
+   "null_degenerate": false,
+   "null_q025": -3.8087,
+   "null_q975": 5.4212,
+   "p_holm": 0.4271
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 21138,
+   "bp_gross": 2.1858,
+   "t_gross": 1.3255,
+   "bp_net": 1.9383,
+   "t_year": 1.1741,
+   "t_cluster": 1.4097,
+   "sharpe_net": 0.3624,
+   "sharpe_gross": 0.3858,
+   "max_dd_net_bp": -4592.0894,
+   "exposure": 0.9797,
+   "gap_bars": 4
+  },
+  "p0_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 7122,
+   "bp_gross": 0.6398,
+   "t_gross": 0.4401,
+   "bp_net": 0.4497,
+   "t_year": 0.3064,
+   "t_cluster": 0.1856,
+   "sharpe_net": 0.0789,
+   "sharpe_gross": 0.1147,
+   "max_dd_net_bp": -2356.994,
+   "exposure": 0.9501,
+   "gap_bars": 4
+  },
+  "p0_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 14016,
+   "bp_gross": 3.1521,
+   "t_gross": 1.2388,
+   "bp_net": 2.8686,
+   "t_year": 1.125,
+   "t_cluster": 1.4204,
+   "sharpe_net": 0.4467,
+   "sharpe_gross": 0.4684,
+   "max_dd_net_bp": -4592.0894,
+   "exposure": 0.9956,
+   "gap_bars": 0
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 6.6,
+ "machine_verdict": "未確定（data_health に failed/gaps あり: 確定にする前に点検）"
+}

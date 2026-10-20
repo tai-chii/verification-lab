@@ -137,14 +137,14 @@
 | [trend-age-pnl](./trend-age-pnl) | Q253 トレンドの年齢（合図反転からの経過日数）が短いほど翌日の順張り損益は高いか（15銘柄） | 未確定 |
 | [trend-persistence-vs-tf-pnl](./trend-persistence-vs-tf-pnl) | Q136 トレンドの持続時間が長い期間ほど、順張りはコスト後に儲かるか | H1・H2 とも棄却 |
 | [trend-pnl-half-life](./trend-pnl-half-life) | Q143 順張りの純損益の減衰は指数か、それとも最初から0か（Feng 2026 の半減期を FX8・トレンド7 で） | 主 TSMOM20: FX8 は「未確定（Q063 と同じ）」／トレンド7 は「一定（減衰ではない）」（副 ドンチャン… |
-| [trend7-d1-long-vs-short-q361](./trend7-d1-long-vs-short-q361) | Q361 TREND7 D1 TSMOM(L=60) を long-only と short-only に分けると、どちらが bp>0 を担うか（long-only で足りるか） | — |
+| [trend7-d1-long-vs-short-q361](./trend7-d1-long-vs-short-q361) | Q361 TREND7 D1 TSMOM(L=60) を long-only と short-only に分けると、どちらが bp>0 を担うか（long-only で足りるか） | 未確定 |
 | [trend7-d1-moskowitz-skip1m-q358](./trend7-d1-moskowitz-skip1m-q358) | Q358 Moskowitz 原著の 12m-1m（L=252、skip=21）TSMOM は、TREND7 D1 で封印前の前後半とも年単位 t≥2 で正か | 未確定 |
 | [trend7-d1-sma200-vs-tsmom60-q364](./trend7-d1-sma200-vs-tsmom60-q364) | Q364 TREND7 D1 で TSMOM(L=60) と SMA200 の上下による順張りは、封印前の前後半で年単位 t≥2 を取る合図形式がどちらか | — |
-| [trend7-d1-tsmom-breakeven-q362](./trend7-d1-tsmom-breakeven-q362) | Q362 TREND7 D1 TSMOM(L=60) は段階1コストの何倍までコスト後に正か（本番で許されるコストの余裕） | — |
+| [trend7-d1-tsmom-breakeven-q362](./trend7-d1-tsmom-breakeven-q362) | Q362 TREND7 D1 TSMOM(L=60) は段階1コストの何倍までコスト後に正か（本番で許されるコストの余裕） | 支持（余裕大）: 3× 段階1コストでも全期間 bp_net>0（+1.39 bp）。ただし全期間 p_perm=0.… |
 | [trend7-d1-tsmom-core-q355](./trend7-d1-tsmom-core-q355) | Q355 TREND7 の D1 TSMOM 本体（L=60）は、封印前の前後半とも年単位 t≥2 で純損益がコスト後に正か（S01 の中央関門） | 未確定: pre t=0.61、post t=1.12 — 両方 t<2 のため S01 ゲート未通過 |
 | [trend7-d1-tsmom-ensemble-q363](./trend7-d1-tsmom-ensemble-q363) | Q363 TREND7 D1 で TSMOM 符号の等重みアンサンブル（L=20/60/120/250 の平均）は、単発 L=60 と比べて封印前の前後半で年単位 t≥2 を取りやすいか | — |
 | [trend7-d1-tsmom-lookback-sensitivity-q356](./trend7-d1-tsmom-lookback-sensitivity-q356) | Q356 TREND7 D1 TSMOM の L ∈ {20,60,120,250} の掃引で、main（L=60）は Holm m=4 補正後も封印前の前後半で t≥2 を保つか（S01 の lookback 頑健性） | 未確定 |
-| [trend7-d1-weekly-rebalance-q360](./trend7-d1-weekly-rebalance-q360) | Q360 TREND7 D1 TSMOM(L=60) を週次（月曜のみ）でリバランスしても、封印前の前後半で年単位 t≥2 を保つか（コスト低減の効果） | — |
+| [trend7-d1-weekly-rebalance-q360](./trend7-d1-weekly-rebalance-q360) | Q360 TREND7 D1 TSMOM(L=60) を週次（月曜のみ）でリバランスしても、封印前の前後半で年単位 t≥2 を保つか（コスト低減の効果） | 未確定 |
 | [trend7-h4-tsmom-wide-l-q359](./trend7-h4-tsmom-wide-l-q359) | Q359 TREND7 の H4 TSMOM で L を広げる（120/240/480 本 ≒ 20/40/80 日）と、Q261 の L=60（≒10 日）不支持は改善するか | 棄却: 広い L でも全期間 t<1 かつ前後半ともに t<2（H4 自体の問題。lookback 不足ではない） |
 | [trend7-subgroup-carrier-q357](./trend7-subgroup-carrier-q357) | Q357 TREND7 D1 TSMOM(L=60) の収益は商品 4（XAU/XAG/WTI/UKOIL）と株＋BTC 3（US500/USTECH/BTC）のどちらが担うか | 棄却 |
 | [tsmom-pnl-concentration](./tsmom-pnl-concentration) | Q230 順張りの純損益は上位 1% の日に集中しているか: 最大の k 日を除くと年単位の t が 2 を切るか（15 銘柄 D1） | 未確定: all15 の t_full が 2 未満の期間があり集中を問えない |
