@@ -26,6 +26,8 @@ financial-engineering/oshime-d1-yahoo-close-recheck/logs/
 financial-engineering/*/results_run_*.log
 financial-engineering/*/results/smoke_*
 financial-engineering/*/results/run_*.log
+financial-engineering/*/results/_smoke/
+financial-engineering/*/results/null_parts*/
 
 # /lab が書く自動コミットの予約（tools/mac_auto_push.sh が読む）
 .lab_pending/
