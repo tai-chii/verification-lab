@@ -35,4 +35,16 @@ pre・post とも年単位 t≥2 かつ bp_net>0 → 支持（S01 ゲート通�
 
 ## 結果
 
-未実行。
+実行日: 2026-10-21。結果ファイル: `results/Q355_result_20261021_001603.json`・`results/Q355_year_sym_20261021_001603.csv`
+
+| 期間 | bp_net/年 | t_year | t_cluster | Sharpe_net | z | p_perm(Holm) |
+|---|---|---|---|---|---|---|
+| pre (2012-16) | 0.64 | 0.61 | 0.25 | 0.11 | 0.29 | 0.36 |
+| post (2017-24.5) | 3.59 | 1.12 | 1.65 | 0.52 | 1.25 | 0.23 |
+| 全期間 | 2.46 | 1.23 | 1.64 | 0.42 | 1.24 | — |
+
+null_degenerate: false（pre/post とも）。years_dropped: []。gaps（WTI 2014-06・UKOIL 2012-13）あり、gap_bars=4(pre)/0(post)で実質影響なし。
+
+判定: **未確定: pre t=0.61、post t=1.12 — 両方 t<2 のため S01 ゲート未通過**（支持条件: pre/post とも t≥2 かつ bp_net>0）
+
+**解釈**: bp_net は pre/post ともわずかに正だが、pre が極めて弱い（t=0.61）。L=60 の TREND7 D1 TSMOM は全期間で緩い正のシグナルを示すものの、前後半の安定性が不十分で S01 の中央関門を通過しない。

@@ -141,7 +141,7 @@
 | [trend7-d1-moskowitz-skip1m-q358](./trend7-d1-moskowitz-skip1m-q358) | Q358 Moskowitz 原著の 12m-1m（L=252、skip=21）TSMOM は、TREND7 D1 で封印前の前後半とも年単位 t≥2 で正か | — |
 | [trend7-d1-sma200-vs-tsmom60-q364](./trend7-d1-sma200-vs-tsmom60-q364) | Q364 TREND7 D1 で TSMOM(L=60) と SMA200 の上下による順張りは、封印前の前後半で年単位 t≥2 を取る合図形式がどちらか | — |
 | [trend7-d1-tsmom-breakeven-q362](./trend7-d1-tsmom-breakeven-q362) | Q362 TREND7 D1 TSMOM(L=60) は段階1コストの何倍までコスト後に正か（本番で許されるコストの余裕） | — |
-| [trend7-d1-tsmom-core-q355](./trend7-d1-tsmom-core-q355) | Q355 TREND7 の D1 TSMOM 本体（L=60）は、封印前の前後半とも年単位 t≥2 で純損益がコスト後に正か（S01 の中央関門） | — |
+| [trend7-d1-tsmom-core-q355](./trend7-d1-tsmom-core-q355) | Q355 TREND7 の D1 TSMOM 本体（L=60）は、封印前の前後半とも年単位 t≥2 で純損益がコスト後に正か（S01 の中央関門） | 未確定: pre t=0.61、post t=1.12 — 両方 t<2 のため S01 ゲート未通過 |
 | [trend7-d1-tsmom-ensemble-q363](./trend7-d1-tsmom-ensemble-q363) | Q363 TREND7 D1 で TSMOM 符号の等重みアンサンブル（L=20/60/120/250 の平均）は、単発 L=60 と比べて封印前の前後半で年単位 t≥2 を取りやすいか | — |
 | [trend7-d1-tsmom-lookback-sensitivity-q356](./trend7-d1-tsmom-lookback-sensitivity-q356) | Q356 TREND7 D1 TSMOM の L ∈ {20,60,120,250} の掃引で、main（L=60）は Holm m=4 補正後も封印前の前後半で t≥2 を保つか（S01 の lookback 頑健性） | — |
 | [trend7-d1-weekly-rebalance-q360](./trend7-d1-weekly-rebalance-q360) | Q360 TREND7 D1 TSMOM(L=60) を週次（月曜のみ）でリバランスしても、封印前の前後半で年単位 t≥2 を保つか（コスト低減の効果） | — |
