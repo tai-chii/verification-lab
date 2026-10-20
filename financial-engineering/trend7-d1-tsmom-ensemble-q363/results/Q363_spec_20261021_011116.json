@@ -1,0 +1,52 @@
+{
+ "qid": "Q363",
+ "registered": "20261021_011116",
+ "B": 500,
+ "seed": 20261010,
+ "question": "TREND7 D1 で TSMOM 符号の等重みアンサンブル（L=20/60/120/250 の平均）は、単発 L=60 と比べて封印前の前後半で年単位 t≥2 を取りやすいか",
+ "hypothesis": "pos[t] = mean( sign(close[t]-close[t-L]) for L in {20,60,120,250} )。連続値（-1〜1）で等重み平均。段階1コスト後の年単位 bp が pre/post とも t≥2",
+ "reject_if": "pre・post とも t≥2 かつ bp_net>0 → 支持。全期間 t<1 もしくは pre/post とも t<1 → 棄却。ほか → 未確定",
+ "syms": [
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "UKOIL",
+  "US500",
+  "USTECH",
+  "BTCUSD"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "Ls": [
+    20,
+    60,
+    120,
+    250
+   ]
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 250,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": "2012-02-01",
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 260,
+ "cost_rel": {},
+ "discarded": "重みを lookback 長で変える（短期を重く／長期を重く）、符号ではなく z-score の平均",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "なし",
+ "source": "Baltas & Kosowski (2013) 'Momentum Strategies in Futures Markets and Trend-following Funds' — 複数頻度の平均。戦略台帳 S01",
+ "data": "TREND7 7 銘柄 D1_fromH1、2012-02-01〜2024-06-30（封印）",
+ "measure": "アンサンブルの年単位 bp・t・Sharpe、L=60 単発（Q355）に対する差、露出と取引回数",
+ "null_desc": "合図の循環シフト（min_shift=260）B=500 → 年単位 bp の帰無",
+ "prior_art": "Baltas & Kosowski (2013) は複数の lookback の平均で Sharpe が単発より高いと報告。Hurst et al. (2017) も同系統",
+ "batch": "/lab-plan 10 案一括（2026-10-20）",
+ "designer": "Fable",
+ "coder": "Claude",
+ "settings": {}
+}

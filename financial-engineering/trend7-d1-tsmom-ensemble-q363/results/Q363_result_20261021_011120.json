@@ -1,0 +1,311 @@
+{
+ "qid": "Q363",
+ "smoke": false,
+ "generated": "20261021_011120",
+ "question": "TREND7 D1 で TSMOM 符号の等重みアンサンブル（L=20/60/120/250 の平均）は、単発 L=60 と比べて封印前の前後半で年単位 t≥2 を取りやすいか",
+ "spec": {
+  "qid": "Q363",
+  "question": "TREND7 D1 で TSMOM 符号の等重みアンサンブル（L=20/60/120/250 の平均）は、単発 L=60 と比べて封印前の前後半で年単位 t≥2 を取りやすいか",
+  "hypothesis": "pos[t] = mean( sign(close[t]-close[t-L]) for L in {20,60,120,250} )。連続値（-1〜1）で等重み平均。段階1コスト後の年単位 bp が pre/post とも t≥2",
+  "reject_if": "pre・post とも t≥2 かつ bp_net>0 → 支持。全期間 t<1 もしくは pre/post とも t<1 → 棄却。ほか → 未確定",
+  "syms": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "Ls": [
+     20,
+     60,
+     120,
+     250
+    ]
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 250,
+  "per_year": 252,
+  "B": 500,
+  "split_year": 2017,
+  "start": "2012-02-01",
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 260,
+  "cost_rel": {},
+  "discarded": "重みを lookback 長で変える（短期を重く／長期を重く）、符号ではなく z-score の平均",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし",
+  "source": "Baltas & Kosowski (2013) 'Momentum Strategies in Futures Markets and Trend-following Funds' — 複数頻度の平均。戦略台帳 S01",
+  "data": "TREND7 7 銘柄 D1_fromH1、2012-02-01〜2024-06-30（封印）",
+  "measure": "アンサンブルの年単位 bp・t・Sharpe、L=60 単発（Q355）に対する差、露出と取引回数",
+  "null_desc": "合図の循環シフト（min_shift=260）B=500 → 年単位 bp の帰無",
+  "prior_art": "Baltas & Kosowski (2013) は複数の lookback の平均で Sharpe が単発より高いと報告。Hurst et al. (2017) も同系統",
+  "batch": "/lab-plan 10 案一括（2026-10-20）",
+  "designer": "Fable",
+  "coder": "Claude",
+  "settings": {},
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "UKOIL": {
+    "months": 187,
+    "missing_months": 7,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2012-09",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-05"
+    ],
+    "worst_ratio": 0.5116279069767442,
+    "n_gaps": 5,
+    "max_gap_h": 672.0,
+    "gaps": [
+     {
+      "from": "2011-10-18 00:00:00",
+      "to": "2011-11-15 00:00:00",
+      "hours": 672.0
+     },
+     {
+      "from": "2013-01-16 00:00:00",
+      "to": "2013-02-01 00:00:00",
+      "hours": 384.0
+     },
+     {
+      "from": "2012-12-14 00:00:00",
+      "to": "2012-12-28 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-05-01 00:00:00",
+      "to": "2013-05-15 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-02-13 00:00:00",
+      "to": "2013-02-26 00:00:00",
+      "hours": 312.0
+     }
+    ],
+    "first": "2010-12-02 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "main": {
+  "all": {
+   "n_years": 12,
+   "years_dropped": [
+    2012
+   ],
+   "n_bars": 19878,
+   "bp_gross": 2.2375,
+   "t_gross": 2.4163,
+   "bp_net": 1.707,
+   "t_year": 1.82,
+   "t_cluster": 1.9278,
+   "sharpe_net": 0.5026,
+   "sharpe_gross": 0.5901,
+   "max_dd_net_bp": -3540.0144,
+   "exposure": 0.6169,
+   "gap_bars": 4,
+   "z": 1.371,
+   "pct": 0.912,
+   "p_perm": 0.0898,
+   "null_degenerate": false,
+   "null_q025": -1.6781,
+   "null_q975": 2.2537
+  },
+  "pre": {
+   "n_years": 4,
+   "years_dropped": [
+    2012
+   ],
+   "n_bars": 6042,
+   "bp_gross": 2.1501,
+   "t_gross": 0.9119,
+   "bp_net": 1.6936,
+   "t_year": 0.7038,
+   "t_cluster": 0.7824,
+   "sharpe_net": 0.3872,
+   "sharpe_gross": 0.4948,
+   "max_dd_net_bp": -2202.152,
+   "exposure": 0.5957,
+   "gap_bars": 4,
+   "z": 1.1971,
+   "pct": 0.874,
+   "p_perm": 0.1277,
+   "null_degenerate": false,
+   "null_q025": -2.5264,
+   "null_q975": 2.5648,
+   "p_holm": 0.2555
+  },
+  "post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 13836,
+   "bp_gross": 2.2812,
+   "t_gross": 2.5054,
+   "bp_net": 1.7136,
+   "t_year": 1.8783,
+   "t_cluster": 1.7687,
+   "sharpe_net": 0.5461,
+   "sharpe_gross": 0.6324,
+   "max_dd_net_bp": -3540.0144,
+   "exposure": 0.6283,
+   "gap_bars": 0,
+   "z": 0.9295,
+   "pct": 0.806,
+   "p_perm": 0.1956,
+   "null_degenerate": false,
+   "null_q025": -2.0957,
+   "null_q975": 3.1354,
+   "p_holm": 0.2555
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 12,
+   "years_dropped": [
+    2012
+   ],
+   "n_bars": 19878,
+   "bp_gross": 2.2375,
+   "t_gross": 2.4163,
+   "bp_net": 1.707,
+   "t_year": 1.82,
+   "t_cluster": 1.9278,
+   "sharpe_net": 0.5026,
+   "sharpe_gross": 0.5901,
+   "max_dd_net_bp": -3540.0144,
+   "exposure": 0.6169,
+   "gap_bars": 4
+  },
+  "p0_all_pre": {
+   "n_years": 4,
+   "years_dropped": [
+    2012
+   ],
+   "n_bars": 6042,
+   "bp_gross": 2.1501,
+   "t_gross": 0.9119,
+   "bp_net": 1.6936,
+   "t_year": 0.7038,
+   "t_cluster": 0.7824,
+   "sharpe_net": 0.3872,
+   "sharpe_gross": 0.4948,
+   "max_dd_net_bp": -2202.152,
+   "exposure": 0.5957,
+   "gap_bars": 4
+  },
+  "p0_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 13836,
+   "bp_gross": 2.2812,
+   "t_gross": 2.5054,
+   "bp_net": 1.7136,
+   "t_year": 1.8783,
+   "t_cluster": 1.7687,
+   "sharpe_net": 0.5461,
+   "sharpe_gross": 0.6324,
+   "max_dd_net_bp": -3540.0144,
+   "exposure": 0.6283,
+   "gap_bars": 0
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 3.7,
+ "machine_verdict": "未確定（data_health に failed/gaps あり: 確定にする前に点検）"
+}
