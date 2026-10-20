@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 162 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 163 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -110,6 +110,7 @@
 | [pre-holiday-effect](./pre-holiday-effect) | Q239 休日前効果は SPX・NDX（2008〜2026）で残るか（祝日は欠損営業日から復元・Lakonishok・Smidt 1988 の型） | 棄却 |
 | [predictability-to-profit-conversion](./predictability-to-profit-conversion) | Q149 分散比で「予測できる」と出た組は、次の期間にコスト後で儲かるか（Alahmadi 2026 §3.4.1 の変換率） | 前後半とも (b) の t<2 で事前の規則どおり「変換されない」。点推定も前後半とも負で、予測できる組は予測できない… |
 | [profit-target-tsmom](./profit-target-tsmom) | Q252 利食い目標（k·ATR）は順張りの純損益を上げるか下げるか（15銘柄・Q204 の損切りの対） | Q204 と同じ「保険」型 |
+| [q160-endpoint-sensitivity](./q160-endpoint-sensitivity) | Q354 Q160 の確定は評価期間の端点を ±1 年ずらした 9 通りで何通り保たれるか（方法論・確定判定の端点感度） | 確定（Q160 の確定は端点依存。商品4 の買い側の上乗せは 9/9 で頑健だが、BTC 除外トレンド6 は最新の半年… |
 | [random-vs-chrono-split](./random-vs-chrono-split) | Q189 ランダム分割の交差検証は時系列分割より順張り選択の楽観をどれだけ膨らませるか（Roelofs 2019-2） | 符号は仮説と逆（ランダム分割の方が時系列分割より楽観が小さい）だが、有意ではない |
 | [ratio-pairs-mean-reversion](./ratio-pairs-mean-reversion) | Q233 金銀比・Brent−WTI の z スコア逆張り（ペアトレード）は 2015 年以降コスト後に残るか | 棄却: どの組も残らない |
 | [realized-skew-next-month](./realized-skew-next-month) | Q231 H1 から作る月次の実現歪度は翌月リターンを負に予測するか（Amaya ほか 2015 の型・15 銘柄） | 棄却 |
