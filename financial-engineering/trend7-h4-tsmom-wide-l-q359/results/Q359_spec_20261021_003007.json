@@ -1,0 +1,53 @@
+{
+ "qid": "Q359",
+ "registered": "20261021_003007",
+ "B": 500,
+ "seed": 20261010,
+ "question": "TREND7 の H4 TSMOM で L を広げる（120/240/480 本 ≒ 20/40/80 日）と、Q261 の L=60（≒10 日）不支持は改善するか",
+ "hypothesis": "pos[t]=sign(close[t]−close[t−L]) を H4 で L=120/240/480 の 3 本に広げ、main_param=L=240 の pre/post 2 本に Holm m=3 を当てる",
+ "reject_if": "main（L=240）が pre・post とも t≥2 かつ bp_net>0 → 支持（lookback 問題）。全期間 t<1 もしくは pre/post とも t<1 → 棄却（H4 の問題）。ほか → 未確定",
+ "syms": [
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "UKOIL",
+  "US500",
+  "USTECH",
+  "BTCUSD"
+ ],
+ "kind": "H1_dukascopy",
+ "params": [
+  {
+   "L": 120
+  },
+  {
+   "L": 240
+  },
+  {
+   "L": 480
+  }
+ ],
+ "main_param": 1,
+ "n_tests": 3,
+ "warmup": 480,
+ "per_year": 1512,
+ "split_year": 2017,
+ "start": "2012-02-01",
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 500,
+ "cost_rel": {},
+ "discarded": "L=60（Q261 で既に棄却）、L=960（180 日はほぼ日足と同じ）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "なし",
+ "source": "知見 Q261（H4 L=60 trend7 不支持）、戦略台帳 S01、Moskowitz et al. (2012)",
+ "data": "TREND7 7 銘柄 H4_dukascopy（4 時間足）を _load 上書きで直接読む。2012-02-01〜2024-06-30（封印）",
+ "measure": "3 本の年単位 bp・t、main の pre/post 2 本の perm_p・Holm、Sharpe・最大下落・露出",
+ "null_desc": "合図の循環シフト（min_shift=500）B=500 → main の年単位 bp の帰無",
+ "prior_art": "Hurst, Ooi & Pedersen (2017) の trend-following は日次〜週次。H4 の TSMOM 単独の実証は乏しい",
+ "batch": "/lab-plan 10 案一括（2026-10-20）",
+ "designer": "Fable",
+ "coder": "Claude",
+ "settings": {}
+}
