@@ -1,0 +1,769 @@
+{
+ "qid": "Q376",
+ "smoke": false,
+ "generated": "20261022_014257",
+ "question": "48 銘柄 D1 の翌 5 日実現ボラ予測（σ20・σ60・HAR・リッジ全特徴・GBM 全特徴）は QLIKE で σ60 に勝ち、σ̂ を size_weights に渡すと S07 TSMOM60 の規程モードで最大下落が浅くシャープが上がるか",
+ "spec": {
+  "qid": "Q376",
+  "question": "48 銘柄 D1 の翌 5 日実現ボラ予測（σ20・σ60・HAR・リッジ全特徴・GBM 全特徴）は QLIKE で σ60 に勝ち、σ̂ を size_weights に渡すと S07 TSMOM60 の規程モードで最大下落が浅くシャープが上がるか",
+  "hypothesis": "main=HAR（log vol_5/20/60 のリッジ）の log(RV5) 予測は QLIKE で σ60 素朴予測に勝ち、σ̂ を size_weights の σ に渡した S07 TSMOM60 規程モードは σ60 版より max_dd が浅く Sharpe が高い",
+  "reject_if": "支持: HAR の QLIKE 損失差（σ60−HAR）が年単位 t≥2 かつ nw_t≥2、かつ HAR サイジングの max_dd が σ60 版より浅く Sharpe が高く、σ̂ 並べ替え帰無の max_dd より浅い側 5% 以内。棄却: HAR の QLIKE が σ60 に勝たない（損失差 t<0）、または HAR サイジングの max_dd が σ60 版より深い。ほか → 未確定",
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "BRENT",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "BUND",
+   "USTBOND",
+   "UKGILT",
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "predictor": "naive20"
+   },
+   {
+    "predictor": "naive60"
+   },
+   {
+    "predictor": "har"
+   },
+   {
+    "predictor": "ridge_all"
+   },
+   {
+    "predictor": "gbm_all"
+   }
+  ],
+  "main_param": 2,
+  "n_tests": 2,
+  "warmup": 250,
+  "per_year": 252,
+  "B": 50,
+  "split_year": 2017,
+  "start": "2008-01-01",
+  "cutoff_hour": 0,
+  "null_kind": "none",
+  "null_block": 20,
+  "null_min_shift": 60,
+  "cost_rel": {},
+  "discarded": "2（Parkinson レンジ・k=20）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし（Fable 設計 → Sonnet 実行）",
+  "source": "[[検証/_基盤/戦略台帳]] S04b／知見 Q205（ボラ・ターゲティング）／知見 Q171 系（HAR-RV は木に勝つ）／Corsi 2009 HAR-RV",
+  "data": "wide48 D1_fromH1（2008-01〜、封印 2024-07-01）。ok<40 ならデータ待ちで exit 2。コスト: 段階1 COST_RT（価格単位）＋COST_RT に無い wide48 の 34 銘柄は _s04_common/s04ml.py の WIDE48_COST_REL（往復・比。知識から記載・実行者が 検証/_データ/raw/D1/spread_<sym>.csv と照合）。既定（fe_core）だとこの 34 銘柄は往復 30bp に落ちるので使わない",
+  "measure": "予測器 5 本の QLIKE（全体・年）、σ60 との損失差の年単位 t・nw_t（lag=5）。各 σ̂ で S07 TSMOM60 の規程モード（t_pre/t_post・mean_bp・max_dd・worst_day・stops・Sharpe）と σ60 版との差",
+  "null_desc": "(1) DM 型: 損失差の日次 nw_t。(2) σ̂ を銘柄ごとに年内で並べ替えた σ̂_perm で同じ損益 B=50 回 → max_dd・Sharpe の帰無分布",
+  "prior_art": "WebSearch 2026-10-22「machine learning realized volatility forecast volatility targeting trend following drawdown HAR comparison QLIKE」: HARd to Beat（arXiv 2406.08041・1455 株で ML は HAR に勝てない）、Fed 2025 サーベイ、HARNet。予測を size_weights に渡して順張りの最大下落を測る研究は見つからない",
+  "batch": "/lab-plan ターミナル版 2026-10-22・N=10 の 3 本目（S04b 本体）",
+  "designer": "Fable",
+  "coder": "Fable",
+  "settings": {},
+  "B_used": 50,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "US500",
+   "USTECH",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "BTCUSD"
+  ],
+  "no_data": [
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "BRENT",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "BUND",
+   "USTBOND",
+   "UKGILT",
+   "ETHUSD"
+  ],
+  "failed": {},
+  "gaps": {
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 3
+ },
+ "n_syms": 48,
+ "eval_start": "2012-01-01",
+ "k": 5,
+ "main_name": "har",
+ "main": {
+  "qlike_mean": 1.2097,
+  "loss_diff_vs_sig60_mean": 0.4341,
+  "loss_diff_nw_t": 12.9939,
+  "loss_diff_year_t": 8.3714,
+  "loss_diff_years": {
+   "2012": 0.2808,
+   "2013": 0.2208,
+   "2014": 0.3385,
+   "2015": 0.7052,
+   "2016": 0.5188,
+   "2017": 0.2698,
+   "2018": 0.4615,
+   "2019": 0.7496,
+   "2020": 0.5868,
+   "2021": 0.2009,
+   "2022": 0.5236,
+   "2023": 0.4142,
+   "2024": 0.2571
+  },
+  "sizing_fintokei": {
+   "t_all": -2.1284,
+   "t_pre": 0.3624,
+   "t_post": -4.2946,
+   "mean_bp": -0.9366,
+   "mean_bp_pre": 0.2375,
+   "mean_bp_post": -1.5353,
+   "n_years_pre": 5,
+   "n_years_post": 8,
+   "sigma_pct": 0.3964,
+   "sharpe": -0.375,
+   "max_dd": -0.3825,
+   "worst_day": -0.025,
+   "stops": 3,
+   "gross_median": 2.0,
+   "n_days": 3861
+  },
+  "sizing_gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": false,
+   "max_dd_within_6pct": false,
+   "pass": false
+  },
+  "dd_diff_vs_sig60": -0.0201,
+  "sharpe_diff_vs_sig60": -0.0423
+ },
+ "baseline_sig60": {
+  "none": {
+   "t_all": 0.5993,
+   "t_pre": -0.8032,
+   "t_post": 0.6544,
+   "mean_bp": 0.6914,
+   "mean_bp_pre": -0.3885,
+   "mean_bp_post": 1.2422,
+   "n_years_pre": 5,
+   "n_years_post": 8,
+   "sigma_pct": 1.4213,
+   "sharpe": 0.0772,
+   "max_dd": -0.6509,
+   "worst_day": -0.1444,
+   "stops": 0,
+   "gross_median": 1.0,
+   "n_days": 3861,
+   "years": [
+    {
+     "year": 2012,
+     "mean_bp": 0.1514223771150909,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 1.078811928085147,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -1.0950548581923116,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": -1.705460850140986,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": -0.37202439425177725,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 20.909318767510264,
+     "n": 291
+    },
+    {
+     "year": 2018,
+     "mean_bp": -10.145253448783752,
+     "n": 312
+    },
+    {
+     "year": 2019,
+     "mean_bp": 6.01794161815804,
+     "n": 313
+    },
+    {
+     "year": 2020,
+     "mean_bp": -7.823580999367445,
+     "n": 364
+    },
+    {
+     "year": 2021,
+     "mean_bp": -3.07971796229321,
+     "n": 365
+    },
+    {
+     "year": 2022,
+     "mean_bp": -2.8325047694136503,
+     "n": 365
+    },
+    {
+     "year": 2023,
+     "mean_bp": 0.6019470146883104,
+     "n": 365
+    },
+    {
+     "year": 2024,
+     "mean_bp": 17.359136950938826,
+     "n": 182
+    }
+   ],
+   "rules": {
+    "equal_weight": true,
+    "sym_cap": null,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": null,
+    "max_leverage": 1.0,
+    "daily_stop": null,
+    "vol_window": 60,
+    "port_vol_window": 60
+   }
+  },
+  "fintokei": {
+   "t_all": -1.7237,
+   "t_pre": 0.7771,
+   "t_post": -3.9644,
+   "mean_bp": -0.818,
+   "mean_bp_pre": 0.499,
+   "mean_bp_post": -1.4896,
+   "n_years_pre": 5,
+   "n_years_post": 8,
+   "sigma_pct": 0.3903,
+   "sharpe": -0.3327,
+   "max_dd": -0.3624,
+   "worst_day": -0.025,
+   "stops": 2,
+   "gross_median": 2.0,
+   "n_days": 3861,
+   "years": [
+    {
+     "year": 2012,
+     "mean_bp": 0.6729377404647754,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 2.417232746254432,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -1.5679102960275169,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": 0.8431323694981476,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": 0.12820128405603892,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 0.5914969934840443,
+     "n": 291
+    },
+    {
+     "year": 2018,
+     "mean_bp": -0.6273243889460776,
+     "n": 312
+    },
+    {
+     "year": 2019,
+     "mean_bp": -2.5492730548005467,
+     "n": 313
+    },
+    {
+     "year": 2020,
+     "mean_bp": -1.6931390589686461,
+     "n": 364
+    },
+    {
+     "year": 2021,
+     "mean_bp": -1.7745714548117288,
+     "n": 365
+    },
+    {
+     "year": 2022,
+     "mean_bp": -2.030427774476422,
+     "n": 365
+    },
+    {
+     "year": 2023,
+     "mean_bp": -1.320005096577581,
+     "n": 365
+    },
+    {
+     "year": 2024,
+     "mean_bp": -2.7503567019193897,
+     "n": 182
+    }
+   ],
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.005,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60
+   }
+  },
+  "gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": false,
+   "max_dd_within_6pct": false,
+   "pass": false
+  }
+ },
+ "null_sigma_perm": {
+  "B": 50,
+  "max_dd": {
+   "B": 50,
+   "q025": -0.5493399999999999,
+   "q500": -0.53105,
+   "q975": -0.49917249999999996,
+   "z": 11.301256138012034,
+   "pct": 1.0,
+   "p_perm": 0.0196078431372549,
+   "degenerate": false
+  },
+  "frac_null_dd_shallower": 0.0,
+  "sharpe": {
+   "B": 50,
+   "q025": -0.7309175,
+   "q500": -0.6811499999999999,
+   "q975": -0.586645,
+   "z": 9.281857151579553,
+   "pct": 1.0,
+   "p_perm": 0.0196078431372549,
+   "degenerate": false
+  }
+ },
+ "n_trials": 5,
+ "max_trials": 50,
+ "trials": [
+  {
+   "params": {
+    "predictor": "naive20"
+   },
+   "metric": 0.9593753116033316
+  },
+  {
+   "params": {
+    "predictor": "naive60"
+   },
+   "metric": 0.9575241875895307
+  },
+  {
+   "params": {
+    "predictor": "har"
+   },
+   "metric": 1.2096949801675512
+  },
+  {
+   "params": {
+    "predictor": "ridge_all"
+   },
+   "metric": 1.1165506307199708
+  },
+  {
+   "params": {
+    "predictor": "gbm_all"
+   },
+   "metric": 1.1929334651484778
+  }
+ ],
+ "trials_detail": {
+  "naive20": {
+   "qlike_mean": 0.9594,
+   "loss_diff_vs_sig60_mean": 0.1077,
+   "loss_diff_nw_t": 2.8172,
+   "loss_diff_year_t": 3.8056,
+   "loss_diff_years": {
+    "2012": 0.2328,
+    "2013": 0.0135,
+    "2014": 0.0658,
+    "2015": 0.1352,
+    "2016": 0.1548,
+    "2017": -0.0045,
+    "2018": 0.2126,
+    "2019": 0.2798,
+    "2020": 0.1541,
+    "2021": -0.0551,
+    "2022": 0.1334,
+    "2023": 0.0476,
+    "2024": 0.0198
+   },
+   "sizing_fintokei": {
+    "t_all": -2.45,
+    "t_pre": 0.0035,
+    "t_post": -4.0173,
+    "mean_bp": -0.9872,
+    "mean_bp_pre": 0.002,
+    "mean_bp_post": -1.4916,
+    "n_years_pre": 5,
+    "n_years_post": 8,
+    "sigma_pct": 0.377,
+    "sharpe": -0.4156,
+    "max_dd": -0.3897,
+    "worst_day": -0.025,
+    "stops": 2,
+    "gross_median": 2.0,
+    "n_days": 3861
+   },
+   "sizing_gate": {
+    "t_pre_ge2": false,
+    "t_post_ge2": false,
+    "max_dd_within_6pct": false,
+    "pass": false
+   },
+   "dd_diff_vs_sig60": -0.0273,
+   "sharpe_diff_vs_sig60": -0.0829
+  },
+  "naive60": {
+   "qlike_mean": 0.9575,
+   "loss_diff_vs_sig60_mean": 0.0,
+   "loss_diff_nw_t": null,
+   "loss_diff_year_t": null,
+   "loss_diff_years": {
+    "2012": 0.0,
+    "2013": 0.0,
+    "2014": 0.0,
+    "2015": 0.0,
+    "2016": 0.0,
+    "2017": 0.0,
+    "2018": 0.0,
+    "2019": 0.0,
+    "2020": 0.0,
+    "2021": 0.0,
+    "2022": 0.0,
+    "2023": 0.0,
+    "2024": 0.0
+   },
+   "sizing_fintokei": {
+    "t_all": -1.7237,
+    "t_pre": 0.7771,
+    "t_post": -3.9644,
+    "mean_bp": -0.818,
+    "mean_bp_pre": 0.499,
+    "mean_bp_post": -1.4896,
+    "n_years_pre": 5,
+    "n_years_post": 8,
+    "sigma_pct": 0.3903,
+    "sharpe": -0.3327,
+    "max_dd": -0.3624,
+    "worst_day": -0.025,
+    "stops": 2,
+    "gross_median": 2.0,
+    "n_days": 3861
+   },
+   "sizing_gate": {
+    "t_pre_ge2": false,
+    "t_post_ge2": false,
+    "max_dd_within_6pct": false,
+    "pass": false
+   },
+   "dd_diff_vs_sig60": 0.0,
+   "sharpe_diff_vs_sig60": 0.0
+  },
+  "har": {
+   "qlike_mean": 1.2097,
+   "loss_diff_vs_sig60_mean": 0.4341,
+   "loss_diff_nw_t": 12.9939,
+   "loss_diff_year_t": 8.3714,
+   "loss_diff_years": {
+    "2012": 0.2808,
+    "2013": 0.2208,
+    "2014": 0.3385,
+    "2015": 0.7052,
+    "2016": 0.5188,
+    "2017": 0.2698,
+    "2018": 0.4615,
+    "2019": 0.7496,
+    "2020": 0.5868,
+    "2021": 0.2009,
+    "2022": 0.5236,
+    "2023": 0.4142,
+    "2024": 0.2571
+   },
+   "sizing_fintokei": {
+    "t_all": -2.1284,
+    "t_pre": 0.3624,
+    "t_post": -4.2946,
+    "mean_bp": -0.9366,
+    "mean_bp_pre": 0.2375,
+    "mean_bp_post": -1.5353,
+    "n_years_pre": 5,
+    "n_years_post": 8,
+    "sigma_pct": 0.3964,
+    "sharpe": -0.375,
+    "max_dd": -0.3825,
+    "worst_day": -0.025,
+    "stops": 3,
+    "gross_median": 2.0,
+    "n_days": 3861
+   },
+   "sizing_gate": {
+    "t_pre_ge2": false,
+    "t_post_ge2": false,
+    "max_dd_within_6pct": false,
+    "pass": false
+   },
+   "dd_diff_vs_sig60": -0.0201,
+   "sharpe_diff_vs_sig60": -0.0423
+  },
+  "ridge_all": {
+   "qlike_mean": 1.1166,
+   "loss_diff_vs_sig60_mean": 0.4117,
+   "loss_diff_nw_t": 13.5425,
+   "loss_diff_year_t": 8.5194,
+   "loss_diff_years": {
+    "2012": 0.2508,
+    "2013": 0.2259,
+    "2014": 0.3507,
+    "2015": 0.6976,
+    "2016": 0.5345,
+    "2017": 0.2822,
+    "2018": 0.4128,
+    "2019": 0.687,
+    "2020": 0.5415,
+    "2021": 0.1953,
+    "2022": 0.4783,
+    "2023": 0.3742,
+    "2024": 0.2372
+   },
+   "sizing_fintokei": {
+    "t_all": -2.1471,
+    "t_pre": 0.3087,
+    "t_post": -4.1496,
+    "mean_bp": -0.9391,
+    "mean_bp_pre": 0.2018,
+    "mean_bp_post": -1.521,
+    "n_years_pre": 5,
+    "n_years_post": 8,
+    "sigma_pct": 0.3929,
+    "sharpe": -0.3794,
+    "max_dd": -0.383,
+    "worst_day": -0.025,
+    "stops": 4,
+    "gross_median": 2.0,
+    "n_days": 3861
+   },
+   "sizing_gate": {
+    "t_pre_ge2": false,
+    "t_post_ge2": false,
+    "max_dd_within_6pct": false,
+    "pass": false
+   },
+   "dd_diff_vs_sig60": -0.0206,
+   "sharpe_diff_vs_sig60": -0.0467
+  },
+  "gbm_all": {
+   "qlike_mean": 1.1929,
+   "loss_diff_vs_sig60_mean": 0.1889,
+   "loss_diff_nw_t": 2.572,
+   "loss_diff_year_t": 0.5277,
+   "loss_diff_years": {
+    "2012": -3.2093,
+    "2013": 0.2084,
+    "2014": 0.3267,
+    "2015": 0.7687,
+    "2016": 0.5213,
+    "2017": 0.2522,
+    "2018": 0.4674,
+    "2019": 0.7092,
+    "2020": 0.6172,
+    "2021": 0.2057,
+    "2022": 0.488,
+    "2023": 0.369,
+    "2024": 0.2293
+   },
+   "sizing_fintokei": {
+    "t_all": -2.2425,
+    "t_pre": 0.2132,
+    "t_post": -4.2288,
+    "mean_bp": -0.9959,
+    "mean_bp_pre": 0.1446,
+    "mean_bp_post": -1.5776,
+    "n_years_pre": 5,
+    "n_years_post": 8,
+    "sigma_pct": 0.3907,
+    "sharpe": -0.4047,
+    "max_dd": -0.3975,
+    "worst_day": -0.025,
+    "stops": 4,
+    "gross_median": 2.0,
+    "n_days": 3861
+   },
+   "sizing_gate": {
+    "t_pre_ge2": false,
+    "t_post_ge2": false,
+    "max_dd_within_6pct": false,
+    "pass": false
+   },
+   "dd_diff_vs_sig60": -0.0351,
+   "sharpe_diff_vs_sig60": -0.072
+  }
+ },
+ "multiple_comparisons": "判定は main=HAR の 2 本（QLIKE 損失差・サイジングの max_dd）。ほか 4 予測器は記述",
+ "elapsed_s": 9.4,
+ "machine_verdict": "棄却: HAR の QLIKE が σ60 に勝たない、または HAR サイジングの max_dd が σ60 版より深い（data_health に failed/gaps あり: 確定にする前に点検）"
+}

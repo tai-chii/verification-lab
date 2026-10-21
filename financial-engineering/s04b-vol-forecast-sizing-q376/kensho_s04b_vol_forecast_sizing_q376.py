@@ -97,7 +97,7 @@ def run(args, rng):
         ql = {s: qlike(p2.loc[m, s].to_numpy(), ev.loc[m, s].to_numpy()) for s in R.columns}
         ql_mean = float(np.nanmean(list(ql.values())))
         # 損失差 vs σ60（日次・銘柄平均 → nw_t、年単位 t）
-        l_this = (p2.loc[m] / ev.loc[m] - np.log(p2.loc[m] / ev.loc[m]) - 1); l_base = (sig60.loc[m] ** 2 / ev.loc[m] - np.log(sig60.loc[m] ** 2 / ev.loc[m]) - 1)
+        l_this = (ev.loc[m] / p2.loc[m] - np.log(ev.loc[m] / p2.loc[m]) - 1); l_base = (ev.loc[m] / sig60.loc[m] ** 2 - np.log(ev.loc[m] / sig60.loc[m] ** 2) - 1)
         diff = (l_base - l_this).mean(axis=1).dropna()
         yr = diff.groupby(diff.index.year).mean()
         # サイジング: σ̂（評価前は σ60 で埋める）
