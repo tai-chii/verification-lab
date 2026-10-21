@@ -1,0 +1,393 @@
+{
+ "qid": "Q370",
+ "smoke": false,
+ "generated": "20261022_013847",
+ "question": "48 銘柄 wide48 の D1 プレーン TSMOM L=250（約12ヶ月・ボラ正規化なし）は封印前の前後半とも年単位 t≥2 か",
+ "spec": {
+  "qid": "Q370",
+  "question": "48 銘柄 wide48 の D1 プレーン TSMOM L=250（約12ヶ月・ボラ正規化なし）は封印前の前後半とも年単位 t≥2 か",
+  "hypothesis": "pos[t] = sign(close[t]−close[t−250])。全48銘柄を等重みで束ね、pre（〜2016 末）・post（2017〜2024-06）とも年単位 t≥2",
+  "reject_if": "pre・post とも bp_net>0 かつ Holm 補正後 p<0.05 → 支持。全期間 z<1 → 棄却。ほか → 未確定",
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "BRENT",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "BUND",
+   "USTBOND",
+   "UKGILT",
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "L": 250
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 300,
+  "per_year": 252,
+  "B": 500,
+  "split_year": 2017,
+  "start": "2008-01-01",
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 300,
+  "cost_rel": {},
+  "discarded": "0（S07 の L 掃引3本の3本目。試行は本体＋L∈{60,120,250}＋横断の5本に固定）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし（Opus 設計 → Sonnet 実行）",
+  "source": "[[検証/_基盤/戦略台帳]] S07（2026-10-21・方針D）／主張カード [[Moskowitz2012-1_時系列モメンタムは12か月の予測力を持ち58先物のすべてで正]]",
+  "data": "48 銘柄 D1（FX22＋IDX13＋CMD8＋BOND3＋CRYPTO2）。既存 15 銘柄は 検証/学問/金融工学/作業/FX/システムトレード/、それ以外は 検証/_データ/raw/D1/。ok<40 ならデータ待ちで exit 2",
+  "measure": "全48銘柄プール（等重み）の年単位 bp・t・束ねた t・Sharpe・最大下落・露出",
+  "null_desc": "合図（±1/0）を循環シフト（min_shift=300・B=500）→ 全48銘柄プールの年単位 bp の帰無分布 → z・perm_p・Holm",
+  "prior_art": "WebSearch 2026-10-21「time-series momentum 12-month lookback long horizon trend following 250-day」。Moskowitz2012 原典が 12 ヶ月で全58銘柄で正の予測力を報告（最強ホライズン）。post-crisis（2009〜）の後続研究（AQR Insights、Hurst2017）でも 12 ヶ月は頑健。48 銘柄×2008〜2024-06×封印前の独立追試は見つからない",
+  "batch": "/lab-plan ターミナル版 2026-10-21・N=5 の 4 本目（S07 L=250）",
+  "designer": "Opus",
+  "coder": "Opus",
+  "settings": {},
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "US500",
+   "USTECH",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "BTCUSD"
+  ],
+  "no_data": [
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "BRENT",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "BUND",
+   "USTBOND",
+   "UKGILT",
+   "ETHUSD"
+  ],
+  "failed": {},
+  "gaps": {
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 3
+ },
+ "main": {
+  "all": {
+   "n_years": 18,
+   "years_dropped": [
+    2008
+   ],
+   "n_bars": 170976,
+   "bp_gross": 0.8099,
+   "t_gross": 1.2809,
+   "bp_net": 0.2349,
+   "t_year": 0.3542,
+   "t_cluster": 0.9911,
+   "sharpe_net": 0.2208,
+   "sharpe_gross": 0.2994,
+   "max_dd_net_bp": -7404.2316,
+   "exposure": 0.935,
+   "gap_bars": 16,
+   "z": 0.7174,
+   "pct": 0.744,
+   "p_perm": 0.2575,
+   "null_degenerate": false,
+   "null_q025": -0.9772,
+   "null_q975": 0.7192
+  },
+  "pre": {
+   "n_years": 8,
+   "years_dropped": [
+    2008
+   ],
+   "n_bars": 60976,
+   "bp_gross": 0.5236,
+   "t_gross": 0.5251,
+   "bp_net": 0.0445,
+   "t_year": 0.0422,
+   "t_cluster": -0.0618,
+   "sharpe_net": -0.0214,
+   "sharpe_gross": 0.1543,
+   "max_dd_net_bp": -1516.2894,
+   "exposure": 0.8576,
+   "gap_bars": 14,
+   "z": 0.7492,
+   "pct": 0.762,
+   "p_perm": 0.2395,
+   "null_degenerate": false,
+   "null_q025": -1.4751,
+   "null_q975": 0.7062,
+   "p_holm": 0.479
+  },
+  "post": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 110000,
+   "bp_gross": 1.0389,
+   "t_gross": 1.2181,
+   "bp_net": 0.3873,
+   "t_year": 0.4335,
+   "t_cluster": 1.0321,
+   "sharpe_net": 0.2931,
+   "sharpe_gross": 0.3626,
+   "max_dd_net_bp": -7404.2316,
+   "exposure": 0.9858,
+   "gap_bars": 2,
+   "z": 0.346,
+   "pct": 0.598,
+   "p_perm": 0.4032,
+   "null_degenerate": false,
+   "null_q025": -1.0665,
+   "null_q975": 1.3725,
+   "p_holm": 0.479
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 18,
+   "years_dropped": [
+    2008
+   ],
+   "n_bars": 170976,
+   "bp_gross": 0.8099,
+   "t_gross": 1.2809,
+   "bp_net": 0.2349,
+   "t_year": 0.3542,
+   "t_cluster": 0.9911,
+   "sharpe_net": 0.2208,
+   "sharpe_gross": 0.2994,
+   "max_dd_net_bp": -7404.2316,
+   "exposure": 0.935,
+   "gap_bars": 16
+  },
+  "p0_all_pre": {
+   "n_years": 8,
+   "years_dropped": [
+    2008
+   ],
+   "n_bars": 60976,
+   "bp_gross": 0.5236,
+   "t_gross": 0.5251,
+   "bp_net": 0.0445,
+   "t_year": 0.0422,
+   "t_cluster": -0.0618,
+   "sharpe_net": -0.0214,
+   "sharpe_gross": 0.1543,
+   "max_dd_net_bp": -1516.2894,
+   "exposure": 0.8576,
+   "gap_bars": 14
+  },
+  "p0_all_post": {
+   "n_years": 10,
+   "years_dropped": [],
+   "n_bars": 110000,
+   "bp_gross": 1.0389,
+   "t_gross": 1.2181,
+   "bp_net": 0.3873,
+   "t_year": 0.4335,
+   "t_cluster": 1.0321,
+   "sharpe_net": 0.2931,
+   "sharpe_gross": 0.3626,
+   "max_dd_net_bp": -7404.2316,
+   "exposure": 0.9858,
+   "gap_bars": 2
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 24.9,
+ "rule_mode": {
+  "none": {
+   "t_all": -1.816026015698207,
+   "t_pre": -0.3847401433462902,
+   "t_post": -1.8622415270303077,
+   "mean_bp": -2.525556319502473,
+   "sigma_pct": 1.1543154307398829,
+   "max_dd": -0.8454496366496734,
+   "worst_day": -0.12561702109510245,
+   "stops": 0,
+   "gross_median": 1.0,
+   "rules": {
+    "equal_weight": true,
+    "sym_cap": null,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": null,
+    "max_leverage": 1.0,
+    "daily_stop": null,
+    "vol_window": 60,
+    "port_vol_window": 60
+   }
+  },
+  "fintokei": {
+   "t_all": -3.9690716471829024,
+   "t_pre": -0.36268790069944845,
+   "t_post": -10.846110814458719,
+   "mean_bp": -4.1112045028437825,
+   "sigma_pct": 0.3979085064821113,
+   "max_dd": -0.9168161799522334,
+   "worst_day": -0.025,
+   "stops": 3,
+   "gross_median": 1.9999999999999991,
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.005,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60
+   }
+  },
+  "gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": false,
+   "max_dd_within_6pct": false,
+   "pass": false
+  }
+ },
+ "machine_verdict": "棄却: 全期間の z<1（data_health に failed/gaps あり: 確定にする前に点検）"
+}
