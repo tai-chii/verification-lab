@@ -174,9 +174,9 @@
 | [weekly-vs-daily-tsmom](./weekly-vs-daily-tsmom) | Q186 週足の順張りは日足より強いか（Neely 2003-3・15銘柄・2008〜2026） | 棄却（前後半のどちらかで ／t／<2） |
 | [wfo-window-gate-q333](./wfo-window-gate-q333) | Q333 WFO の「プラスの窓が60%以上」の関門は、腕のない順張りを何%通し、本物の優位を何%落とすか（Q331-C1） | 確定（使えない）。主因は検出力 |
 | [wide48-cross-sectional-mom60](./wide48-cross-sectional-mom60) | Q371 48 銘柄 wide48 の D1 横断モメンタム L=60（上位1/3買い・下位1/3売り）は封印前の前後半とも年単位 t≥2 か | — |
-| [wide48-tsmom-l120-plain](./wide48-tsmom-l120-plain) | Q369 48 銘柄 wide48 の D1 プレーン TSMOM L=120（約6ヶ月・ボラ正規化なし）は封印前の前後半とも年単位 t≥2 か | — |
+| [wide48-tsmom-l120-plain](./wide48-tsmom-l120-plain) | Q369 48 銘柄 wide48 の D1 プレーン TSMOM L=120（約6ヶ月・ボラ正規化なし）は封印前の前後半とも年単位 t≥2 か | 未確定 |
 | [wide48-tsmom-l250-plain](./wide48-tsmom-l250-plain) | Q370 48 銘柄 wide48 の D1 プレーン TSMOM L=250（約12ヶ月・ボラ正規化なし）は封印前の前後半とも年単位 t≥2 か | — |
-| [wide48-tsmom-l60-plain](./wide48-tsmom-l60-plain) | Q368 48 銘柄 wide48 の D1 プレーン TSMOM L=60（ボラ正規化なし・等重み）は封印前の前後半とも年単位 t≥2 か | — |
+| [wide48-tsmom-l60-plain](./wide48-tsmom-l60-plain) | Q368 48 銘柄 wide48 の D1 プレーン TSMOM L=60（ボラ正規化なし・等重み）は封印前の前後半とも年単位 t≥2 か | 棄却 |
 | [wide48-tsmom60-vol-target](./wide48-tsmom60-vol-target) | Q367 48 銘柄 wide48 の D1 TSMOM60（σ60 ボラ正規化・等リスク束）は封印前（〜2024-06）の前後半とも年単位 t≥2 か | 棄却 |
 | [window-pnl-vs-vol](./window-pnl-vs-vol) | Q184 2か月窓の順張り成績はその窓の実現ボラとドリフトで説明できるか（Rashid 2026-1・Q144 の続き） | Rashid の「ボラに左右される」は向きが違う |
 | [wrc-spa-disagreement](./wrc-spa-disagreement) | Q154 WRC・SPA(consistent)・SPA(conservative) の判定は同じルール群でどれだけ割れるか | 確定（棄却） |
