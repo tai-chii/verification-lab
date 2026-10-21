@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 192 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 196 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -120,20 +120,24 @@
 | [residual-momentum-fx](./residual-momentum-fx) | Q255 ドル因子を除いた残差の順張りは生の順張りより強いか（FX6・Blitz 2011 の残差モメンタムの移植） | 棄却: 差は見えない |
 | [rsi-rules-fx](./rsi-rules-fx) | Q180 RSI の族は先進国通貨の日足で2016年以降も補正後に残るか（Coakley 2016-2） | 棄却（確定） |
 | [rsi2-dip-highvol-indices](./rsi2-dip-highvol-indices) | Q271 US500・USTECH の RSI2 押し目買いは高ボラのときだけコスト後に残るか（QuanterLab 2026-3 の追試・CFD 日足） | 棄却: 2 指数とも全期間 z<1 |
-| [s02-tsmom60-sma200-timestop-wide48-q382](./s02-tsmom60-sma200-timestop-wide48-q382) | Q382 48 銘柄 D1 の TSMOM60 × SMA200 同符号ゲート × 時間ストップ 20 日の合成（部品は既存値で固定・掃引なし）は規程モードの封印前の前後半で t≥2 かつ最大下落 −6% 以内か | — |
+| [s02-tsmom60-sma200-timestop-wide48-q382](./s02-tsmom60-sma200-timestop-wide48-q382) | Q382 48 銘柄 D1 の TSMOM60 × SMA200 同符号ゲート × 時間ストップ 20 日の合成（部品は既存値で固定・掃引なし）は規程モードの封印前の前後半で t≥2 かつ最大下落 −6% 以内か | 棄却 |
 | [s04-target-horizon-q383](./s04-target-horizon-q383) | Q383 翌 k 日（k∈{1,5,20}）リターンのリッジ予測は地平線で IC・コスト後損益が変わるか（embargo=k・3 試行・S04a/c の k=5 の妥当性） | — |
 | [s04-train-window-length-q381](./s04-train-window-length-q381) | Q381 学習窓（4／6／10 年の固定長と拡張）で 48 銘柄プールのリッジ方向予測の年次 IC とコスト後損益は変わるか（6 試行・事前固定 4 年固定長の妥当性） | 支持（窓の長さは共通年の IC・コスト後損益に効かない。事前固定の 4 年固定長で可）。ただし 6 本とも損益は負で、… |
 | [s04a-meta-label-predictability-q375](./s04a-meta-label-predictability-q375) | Q375 48 銘柄 D1 の TSMOM60 メタラベル（k∈{5,10,20}）は族の切除（mom／vol／range／dow／全部）のリッジで AUC・IC がラベル並べ替え帰無より高いか（メタラベルはそもそも当てられるか） | 支持 |
 | [s04a-meta-label-tsmom60-wide48](./s04a-meta-label-tsmom60-wide48) | Q374 48 銘柄 D1 の TSMOM60 合図にメタラベリング（k=5・族 mom/vol/range/dow・リッジ→GBM・予測→規模 3 通り・格子 27）を重ねると、規程モードの封印前の前後半で S07 本体とゼロをコスト後に上回り年単位 t≥2 か | 棄却 |
 | [s04b-asymmetric-vol-sizing-q377](./s04b-asymmetric-vol-sizing-q377) | Q377 予測ボラを上振れだけ使う非対称サイジング（σ_used=max(σ̂_HAR, σ60)）は対称版・σ60 版より S07 TSMOM60 の規程モードで最大下落が浅く、シャープを落とさないか | — |
-| [s04b-vol-forecast-calibrated-q387](./s04b-vol-forecast-calibrated-q387) | Q387 48 銘柄 D1 の翌 5 日実現分散の予測を水準で学習する HAR-RV（銘柄別・Corsi 原型）・プール水準 HAR・EWMA λ0.94・log-HAR スミアリング補正は、較正（実現/予測の平均 0.8〜1.25）を満たした上で QLIKE で σ60 に勝つか（Q376 の中央値偏りの再設計） | — |
+| [s04b-vol-forecast-calibrated-q387](./s04b-vol-forecast-calibrated-q387) | Q387 48 銘柄 D1 の翌 5 日実現分散の予測を水準で学習する HAR-RV（銘柄別・Corsi 原型）・プール水準 HAR・EWMA λ0.94・log-HAR スミアリング補正は、較正（実現/予測の平均 0.8〜1.25）を満たした上で QLIKE で σ60 に勝つか（Q376 の中央値偏りの再設計） | 2015 年 1 年への依存が強く、残り 12 年では σ60 と差がない。平均 QLIKE の半減は 2015 の外… |
 | [s04b-vol-forecast-sizing-q376](./s04b-vol-forecast-sizing-q376) | Q376 48 銘柄 D1 の翌 5 日実現ボラ予測（σ20・σ60・HAR・リッジ全特徴・GBM 全特徴）は QLIKE で σ60 に勝ち、σ̂ を size_weights に渡すと S07 TSMOM60 の規程モードで最大下落が浅くシャープが上がるか | 棄却 |
-| [s04b-vol-sizing-calibrated-q388](./s04b-vol-sizing-calibrated-q388) | Q388 水準 HAR-RV（銘柄別 OLS）の σ̂ を size_weights の σ に渡した S07 TSMOM60 の規程モードは、σ60 版より最大下落が浅く Sharpe が高いか（較正を前提条件とし σ̂ 並べ替え帰無で判定。Q376 の偏りを除いた再判定・Q377 の前提） | — |
+| [s04b-vol-sizing-calibrated-q388](./s04b-vol-sizing-calibrated-q388) | Q388 水準 HAR-RV（銘柄別 OLS）の σ̂ を size_weights の σ に渡した S07 TSMOM60 の規程モードは、σ60 版より最大下落が浅く Sharpe が高いか（較正を前提条件とし σ̂ 並べ替え帰無で判定。Q376 の偏りを除いた再判定・Q377 の前提） | 棄却 |
 | [s04c-pooled-direction-wide48-q378](./s04c-pooled-direction-wide48-q378) | Q378 48 銘柄プールの翌 5 日リターン予測（リッジ→GBM・特徴量 3 組・変換 3 通り・格子 36・PBO）は規程モードの封印前の前後半で S07 本体とゼロをコスト後に上回り年単位 t≥2 か | ノイズ |
 | [s04c-pooled-vs-persym-q379](./s04c-pooled-vs-persym-q379) | Q379 翌 5 日リターン予測で 48 銘柄プール学習は銘柄別学習より IC・コスト後損益が高いか（リッジ・GBM × プール／銘柄別の 4 試行） | 未確定 |
 | [s04c-regression-vs-classification-q380](./s04c-regression-vs-classification-q380) | Q380 翌 5 日リターン予測で回帰目的（ret）と符号分類目的（sign）はどちらが IC・コスト後損益が高いか（リッジ回帰・GBM 回帰・GBM 分類・リッジ符号回帰の 4 試行） | 未確定（差は無い） |
-| [s08-crypto11-d1-tsmom-q386](./s08-crypto11-d1-tsmom-q386) | Q386 暗号資産 11 通貨の D1（H1→D1・UTC 0 時区切り・週末込み）TSMOM L∈{60,120} は規程モード（暗号版）で封印前の前半（〜2020）・後半（2021〜2024-06）とも年単位 t≥2 かつ最大下落 −6% 以内か | — |
-| [s08-crypto2-d1-tsmom-q385](./s08-crypto2-d1-tsmom-q385) | Q385 BTC＋ETH の D1（H1→D1・UTC 0 時区切り・週末込み）TSMOM L∈{60,120} は規程モード（暗号版）で封印前の前半（〜2020）・後半（2021〜2024-06）とも年単位 t≥2 かつ最大下落 −6% 以内か | — |
+| [s08-crypto11-d1-tsmom-q386](./s08-crypto11-d1-tsmom-q386) | Q386 暗号資産 11 通貨の D1（H1→D1・UTC 0 時区切り・週末込み）TSMOM L∈{60,120} は規程モード（暗号版）で封印前の前半（〜2020）・後半（2021〜2024-06）とも年単位 t≥2 かつ最大下落 −6% 以内か | 棄却 |
+| [s08-crypto2-d1-tsmom-q385](./s08-crypto2-d1-tsmom-q385) | Q385 BTC＋ETH の D1（H1→D1・UTC 0 時区切り・週末込み）TSMOM L∈{60,120} は規程モード（暗号版）で封印前の前半（〜2020）・後半（2021〜2024-06）とも年単位 t≥2 かつ最大下落 −6% 以内か | 未確定 |
+| [s09-fx22-carry-cross-sectional-q392](./s09-fx22-carry-cross-sectional-q392) | Q392 FX22 D1 の横断キャリー（政策金利差で 22 ペアを順位付け・上位 1/3 買い・下位 1/3 売り・スワップ込み）は時系列版（符号）より規程モードの封印前の前後半 t≥2 かつ最大下落 −6% 以内を通りやすいか | — |
+| [s09-fx22-carry-sign-q389](./s09-fx22-carry-sign-q389) | Q389 FX22 D1 のキャリー単独（政策金利差の符号で高金利通貨を買う・スワップ＝金利差 − 年 0.75% マークアップを損益に含む）は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | — |
+| [s09-fx22-carry-tsmom-composite-q391](./s09-fx22-carry-tsmom-composite-q391) | Q391 FX22 D1 でキャリー符号と TSMOM60 符号が一致したときだけ持つ合成（副: スワップ込み総収益指数の TSMOM60）は、キャリー単独・TSMOM 単独より規程モードの封印前の前後半 t≥2 かつ最大下落 −6% 以内を通りやすいか | — |
+| [s09-fx22-tsmom60-with-swap-q390](./s09-fx22-tsmom60-with-swap-q390) | Q390 FX22 D1 の TSMOM60 にスワップ（政策金利差 − 年 0.75% マークアップ）を損益に含めると、S07 のスワップなし（棄却）より規程モードの封印前の前後半 t・最大下落が改善し関門を通るか | — |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |
