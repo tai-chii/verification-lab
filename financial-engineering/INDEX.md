@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 188 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 192 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -126,10 +126,14 @@
 | [s04a-meta-label-predictability-q375](./s04a-meta-label-predictability-q375) | Q375 48 銘柄 D1 の TSMOM60 メタラベル（k∈{5,10,20}）は族の切除（mom／vol／range／dow／全部）のリッジで AUC・IC がラベル並べ替え帰無より高いか（メタラベルはそもそも当てられるか） | 支持 |
 | [s04a-meta-label-tsmom60-wide48](./s04a-meta-label-tsmom60-wide48) | Q374 48 銘柄 D1 の TSMOM60 合図にメタラベリング（k=5・族 mom/vol/range/dow・リッジ→GBM・予測→規模 3 通り・格子 27）を重ねると、規程モードの封印前の前後半で S07 本体とゼロをコスト後に上回り年単位 t≥2 か | 棄却 |
 | [s04b-asymmetric-vol-sizing-q377](./s04b-asymmetric-vol-sizing-q377) | Q377 予測ボラを上振れだけ使う非対称サイジング（σ_used=max(σ̂_HAR, σ60)）は対称版・σ60 版より S07 TSMOM60 の規程モードで最大下落が浅く、シャープを落とさないか | — |
+| [s04b-vol-forecast-calibrated-q387](./s04b-vol-forecast-calibrated-q387) | Q387 48 銘柄 D1 の翌 5 日実現分散の予測を水準で学習する HAR-RV（銘柄別・Corsi 原型）・プール水準 HAR・EWMA λ0.94・log-HAR スミアリング補正は、較正（実現/予測の平均 0.8〜1.25）を満たした上で QLIKE で σ60 に勝つか（Q376 の中央値偏りの再設計） | — |
 | [s04b-vol-forecast-sizing-q376](./s04b-vol-forecast-sizing-q376) | Q376 48 銘柄 D1 の翌 5 日実現ボラ予測（σ20・σ60・HAR・リッジ全特徴・GBM 全特徴）は QLIKE で σ60 に勝ち、σ̂ を size_weights に渡すと S07 TSMOM60 の規程モードで最大下落が浅くシャープが上がるか | 棄却 |
+| [s04b-vol-sizing-calibrated-q388](./s04b-vol-sizing-calibrated-q388) | Q388 水準 HAR-RV（銘柄別 OLS）の σ̂ を size_weights の σ に渡した S07 TSMOM60 の規程モードは、σ60 版より最大下落が浅く Sharpe が高いか（較正を前提条件とし σ̂ 並べ替え帰無で判定。Q376 の偏りを除いた再判定・Q377 の前提） | — |
 | [s04c-pooled-direction-wide48-q378](./s04c-pooled-direction-wide48-q378) | Q378 48 銘柄プールの翌 5 日リターン予測（リッジ→GBM・特徴量 3 組・変換 3 通り・格子 36・PBO）は規程モードの封印前の前後半で S07 本体とゼロをコスト後に上回り年単位 t≥2 か | — |
 | [s04c-pooled-vs-persym-q379](./s04c-pooled-vs-persym-q379) | Q379 翌 5 日リターン予測で 48 銘柄プール学習は銘柄別学習より IC・コスト後損益が高いか（リッジ・GBM × プール／銘柄別の 4 試行） | — |
 | [s04c-regression-vs-classification-q380](./s04c-regression-vs-classification-q380) | Q380 翌 5 日リターン予測で回帰目的（ret）と符号分類目的（sign）はどちらが IC・コスト後損益が高いか（リッジ回帰・GBM 回帰・GBM 分類・リッジ符号回帰の 4 試行） | — |
+| [s08-crypto11-d1-tsmom-q386](./s08-crypto11-d1-tsmom-q386) | Q386 暗号資産 11 通貨の D1（H1→D1・UTC 0 時区切り・週末込み）TSMOM L∈{60,120} は規程モード（暗号版）で封印前の前半（〜2020）・後半（2021〜2024-06）とも年単位 t≥2 かつ最大下落 −6% 以内か | — |
+| [s08-crypto2-d1-tsmom-q385](./s08-crypto2-d1-tsmom-q385) | Q385 BTC＋ETH の D1（H1→D1・UTC 0 時区切り・週末込み）TSMOM L∈{60,120} は規程モード（暗号版）で封印前の前半（〜2020）・後半（2021〜2024-06）とも年単位 t≥2 かつ最大下落 −6% 以内か | — |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |
