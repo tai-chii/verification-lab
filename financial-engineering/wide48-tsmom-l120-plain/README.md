@@ -35,4 +35,16 @@ pre・post とも bp_net>0 かつ Holm 補正後 p<0.05 → 支持。全期間 z
 
 ## 結果
 
-未実行。
+実行 2026-10-22（結果 `results/Q369_result_20261022_010434.json`。01:03 の初回と同一内容）。48 銘柄すべて計算（`missing: []`）。
+
+| 区間 | 年数 | bp_net | t_year | z | p_holm |
+|---|---|---|---|---|---|
+| 全期間 | 19 | 0.19 | 0.23 | 1.38 | — |
+| pre（〜2016） | 9 | 0.76 | 0.49 | 1.75 | 0.080 |
+| post（2017〜） | 10 | −0.32 | −0.47 | 0.02 | 0.505 |
+
+- gross は全期間 1.00bp（t_gross 1.34）で小さく、コスト後は pre・post とも t_year が 2 から遠い。帰無は退化なし（null_degenerate=false）、years_dropped なし、gap_bars は 16/175761。
+- **data_health の注意**: `fe_core.data.check_data_health` が `DATA_DIR` しか見ず（`data_path` を使わない）、`_データ/raw/D1` の 34 銘柄が `no_data` と出る。報告だけの不具合で、計算には全48が使われた（CSV の sym=48）。欠損月は別途確認: US500・USTECH・EUSTX50・HKG33・NLD25（46 か月）・USTBOND（12 か月）・WTI・BRENT・JPN225・SUI20・UK100 などに欠け。gap 行は損益から除かれている。`tools/fe_core/` は直さない決まりなので、修正は別行で。
+- 事前登録からの変更点: なし。
+
+判定: **未確定**（機械判定と同じ。規則上は「ほか」。実質は pre・post とも年単位 t≪2 で仮説の「両方 t≥2」は成り立たない。Q368 の L=60 と同様に、プレーン TSMOM の幅広プールは小さな gross を持つが検出力不足）
