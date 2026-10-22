@@ -1,0 +1,938 @@
+{
+ "qid": "Q394",
+ "smoke": false,
+ "generated": "20261022_143408",
+ "question": "株価指数 13＋債券 3 の D1 で、債券の 250 日リターン符号で株を持ち・株の 250 日リターンの逆符号で債券を持つクロスアセット TSMOM は規程モードで封印前の前後半（境 2021）とも年単位 t≥2 かつ最大下落 −6% 以内か",
+ "spec": {
+  "qid": "Q394",
+  "question": "株価指数 13＋債券 3 の D1 で、債券の 250 日リターン符号で株を持ち・株の 250 日リターンの逆符号で債券を持つクロスアセット TSMOM は規程モードで封印前の前後半（境 2021）とも年単位 t≥2 かつ最大下落 −6% 以内か",
+  "hypothesis": "Pitkäjärvi・Suominen・Vaittinen 2020 JFE: 20 か国で過去の債券リターンは株の将来リターンを正に、過去の株リターンは債券の将来リターンを負に予測し、クロスアセット TSMOM は TSMOM より Sharpe が 45% 高い（遅い資本の移動）。手元の 48 銘柄のうち指数 13・債券 3 で同じ向きが D1 でも出るなら、OHLCV のみで粗利 ≈0 だった S07 と違い、他市場の価格（債券↔株）という入力を 1 つ足した分だけ関門の数字が上がる。main=cross（相手の符号だけ）。副=catsmom（自分の TSMOM と相手の合図が一致したときだけ持つ）",
+  "reject_if": "支持: 規程モード（RULES_FINTOKEI・封印前・境 2021）の前後半とも年単位 t≥2 かつ max_dd≥−6%、かつ等金額（Runner main cross）の全期間 z≥2（循環シフト帰無）。棄却: 等金額の全期間 z<1、または規程モードの t_all<0。ほか → 未確定。債券 3 本は 2016-05（BUND）・2017-12（USTBOND・UKGILT）からで前半（〜2020）が 5 年未満のため、前半の t は記述扱い（判定の文は変えない。通らなければ未確定で止まり、前向き標本で再判定）。副 catsmom・銘柄別・指数のみ／債券のみは記述。S10 の族内試行は Q394・Q395 の 2 本×2 設定＝4",
+  "syms": [
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "BUND",
+   "USTBOND",
+   "UKGILT"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "L": 250,
+    "mode": "cross"
+   },
+   {
+    "L": 250,
+    "mode": "catsmom"
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 250,
+  "per_year": 252,
+  "B": 500,
+  "split_year": 2021,
+  "start": null,
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 120,
+  "cost_rel": {},
+  "discarded": "3（月次リバランス＝原著の形だが日次の方が手元の型に合う／L を 20〜250 で掃引＝原著の 1〜12 か月の中から 12 か月に固定／相手を複数の債券の平均にする＝国の対応が崩れる）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし（Fable 設計 → Sonnet 実行）",
+  "source": "[[検証/_基盤/戦略台帳]] 新 S10（他市場の価格＝入力基準改定後 2 つ目のデータ源）／Pitkäjärvi・Suominen・Vaittinen 2020 'Cross-asset signals and time series momentum' JFE 136(1) 63–85／Moskowitz・Ooi・Pedersen 2012／S07 Q367（指数・債券を含む 48 銘柄 TSMOM は棄却）",
+  "data": "指数 13（US500・UK100・JPN225 は 2010〜、GER40 等は 2013-09〜）＋債券 3（BUND 2016-05〜、USTBOND・UKGILT 2017-12〜）の D1_fromH1（_データ/raw/D1・封印 time<2024-07-01）。相手の割り当ては BOND_OF／EQUITY_OF（自国債券の無い指数は USTBOND を代理）。相手の終値は同じ UTC 0 時区切りの足を time で合わせる（先読みなし）。コスト: US500/USTECH は COST_RT、他は spread_<sym>.csv の中央値（Runner の既定）",
+  "measure": "等金額: 16 銘柄の年単位平均 bp（コスト 0／後）・年単位 t・束ねた t・Sharpe・最大下落・露出。規程モード（境 2021）: t_all/t_pre/t_post・nw_t・mean_bp・max_dd・worst_day・stops（全設定）。extra: 指数のみ／債券のみの年単位 bp と t（相手ごとの寄与）",
+  "null_desc": "合図の循環シフト（min_shift=120・B=500）→ 等金額の年単位 bp（net）の帰無分布（全期間・前半・後半）→ z・perm_p・Holm（m=2）",
+  "prior_art": "WebSearch 2026-10-22「cross-asset time series momentum bond returns predict equity index returns Pitkäjärvi Suominen Vaittinen 2020 Journal of Financial Economics international」: 原著（1980〜2016・20 か国・月次・Sharpe +45%）と alphaarchitect／quantpedia の紹介。2016 年以後の標本外・日次・CFD の債券先物・プロップ規程・封印つきの判定は未確認。紹介記事は根拠にしない",
+  "batch": "/lab-plan ターミナル版 2026-10-22 夜・N=10 の 1 本目（S10・クロスアセット）",
+  "designer": "Fable",
+  "coder": "Fable",
+  "settings": {
+   "seal": "2024-07-01",
+   "bond_of": {
+    "US500": "USTBOND",
+    "USTECH": "USTBOND",
+    "US30": "USTBOND",
+    "JPN225": "USTBOND",
+    "AUS200": "USTBOND",
+    "HKG33": "USTBOND",
+    "GER40": "BUND",
+    "FRA40": "BUND",
+    "ESP35": "BUND",
+    "EUSTX50": "BUND",
+    "NLD25": "BUND",
+    "SUI20": "BUND",
+    "UK100": "UKGILT"
+   },
+   "equity_of": {
+    "USTBOND": "US500",
+    "BUND": "EUSTX50",
+    "UKGILT": "UK100"
+   },
+   "s10_family_trials": "Q394・Q395 の 2 本×2 設定＝4",
+   "note_sample": "債券 3 本は 2016〜2017 開始。前半（〜2020）は 5 年未満で t は記述扱い"
+  },
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "BUND",
+   "USTBOND",
+   "UKGILT"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "GER40": {
+    "months": 148,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2013-09-30 00:00:00",
+    "last": "2025-12-31 00:00:00"
+   },
+   "JPN225": {
+    "months": 201,
+    "missing_months": 5,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2013-10"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "UK100": {
+    "months": 201,
+    "missing_months": 4,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 1,
+    "max_gap_h": 192.0,
+    "gaps": [
+     {
+      "from": "2013-05-15 00:00:00",
+      "to": "2013-05-23 00:00:00",
+      "hours": 192.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "FRA40": {
+    "months": 201,
+    "missing_months": 1,
+    "missing": [
+     "2013-06"
+    ],
+    "worst_ratio": 0.7441860465116279,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "EUSTX50": {
+    "months": 201,
+    "missing_months": 9,
+    "missing": [
+     "2012-01",
+     "2012-02",
+     "2012-03",
+     "2012-04",
+     "2012-05",
+     "2012-06",
+     "2012-07",
+     "2012-08",
+     "2012-12"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 5784.0,
+    "gaps": [
+     {
+      "from": "2011-12-30 00:00:00",
+      "to": "2012-08-27 00:00:00",
+      "hours": 5784.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "HKG33": {
+    "months": 201,
+    "missing_months": 10,
+    "missing": [
+     "2013-01",
+     "2013-02",
+     "2013-03",
+     "2013-04",
+     "2013-05",
+     "2017-04",
+     "2019-02",
+     "2022-02",
+     "2023-04",
+     "2026-02"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 3696.0,
+    "gaps": [
+     {
+      "from": "2012-12-31 00:00:00",
+      "to": "2013-06-03 00:00:00",
+      "hours": 3696.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "SUI20": {
+    "months": 201,
+    "missing_months": 6,
+    "missing": [
+     "2012-12",
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2018-12"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "NLD25": {
+    "months": 201,
+    "missing_months": 46,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2013-10",
+     "2014-01",
+     "2014-02",
+     "2014-03",
+     "2014-04",
+     "2014-05",
+     "2014-06",
+     "2014-07",
+     "2014-08",
+     "2014-09",
+     "2015-02",
+     "2015-03",
+     "2015-04",
+     "2015-05",
+     "2015-06",
+     "2015-07",
+     "2015-08",
+     "2015-09",
+     "2015-10",
+     "2015-11",
+     "2015-12",
+     "2016-01",
+     "2016-02",
+     "2016-05",
+     "2016-06",
+     "2016-07",
+     "2016-08",
+     "2016-09",
+     "2016-10",
+     "2016-11",
+     "2016-12",
+     "2017-01",
+     "2017-02",
+     "2017-03",
+     "2017-04",
+     "2017-05",
+     "2017-06",
+     "2017-07",
+     "2017-08",
+     "2017-09",
+     "2017-10",
+     "2017-11"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 5,
+    "max_gap_h": 13440.0,
+    "gaps": [
+     {
+      "from": "2016-05-20 00:00:00",
+      "to": "2017-12-01 00:00:00",
+      "hours": 13440.0
+     },
+     {
+      "from": "2015-03-18 00:00:00",
+      "to": "2016-02-24 00:00:00",
+      "hours": 8232.0
+     },
+     {
+      "from": "2013-12-31 00:00:00",
+      "to": "2014-09-22 00:00:00",
+      "hours": 6360.0
+     },
+     {
+      "from": "2015-02-12 00:00:00",
+      "to": "2015-03-18 00:00:00",
+      "hours": 816.0
+     },
+     {
+      "from": "2013-09-27 00:00:00",
+      "to": "2013-10-22 00:00:00",
+      "hours": 600.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "BUND": {
+    "months": 125,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2016-05-02 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "USTBOND": {
+    "months": 106,
+    "missing_months": 12,
+    "missing": [
+     "2018-01",
+     "2018-02",
+     "2018-03",
+     "2018-04",
+     "2018-05",
+     "2018-06",
+     "2018-07",
+     "2018-08",
+     "2018-09",
+     "2018-10",
+     "2018-11",
+     "2018-12"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 8496.0,
+    "gaps": [
+     {
+      "from": "2017-12-29 00:00:00",
+      "to": "2018-12-18 00:00:00",
+      "hours": 8496.0
+     }
+    ],
+    "first": "2017-12-18 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 12
+ },
+ "main": {
+  "all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 45079,
+   "bp_gross": 0.3018,
+   "t_gross": 0.4592,
+   "bp_net": 0.2629,
+   "t_year": 0.3997,
+   "t_cluster": 0.3089,
+   "sharpe_net": 0.0825,
+   "sharpe_gross": 0.0933,
+   "max_dd_net_bp": -3038.7935,
+   "exposure": 0.5097,
+   "gap_bars": 11,
+   "z": 0.402,
+   "pct": 0.662,
+   "p_perm": 0.3393,
+   "null_degenerate": false,
+   "null_q025": -3.1041,
+   "null_q975": 2.3923
+  },
+  "pre": {
+   "n_years": 11,
+   "years_dropped": [],
+   "n_bars": 30750,
+   "bp_gross": 0.9351,
+   "t_gross": 1.781,
+   "bp_net": 0.9071,
+   "t_year": 1.7504,
+   "t_cluster": 0.8407,
+   "sharpe_net": 0.2644,
+   "sharpe_gross": 0.2734,
+   "max_dd_net_bp": -3038.7935,
+   "exposure": 0.3076,
+   "gap_bars": 11,
+   "z": 0.6601,
+   "pct": 0.746,
+   "p_perm": 0.2555,
+   "null_degenerate": false,
+   "null_q025": -4.0883,
+   "null_q975": 3.382,
+   "p_holm": 0.511
+  },
+  "post": {
+   "n_years": 4,
+   "years_dropped": [],
+   "n_bars": 14329,
+   "bp_gross": -1.4398,
+   "t_gross": -0.7531,
+   "bp_net": -1.5086,
+   "t_year": -0.7857,
+   "t_cluster": -0.6204,
+   "sharpe_net": -0.3172,
+   "sharpe_gross": -0.3023,
+   "max_dd_net_bp": -2716.0888,
+   "exposure": 0.9999,
+   "gap_bars": 0,
+   "z": -2.6095,
+   "pct": 0.002,
+   "p_perm": 0.998,
+   "null_degenerate": false,
+   "null_q025": -1.2044,
+   "null_q975": 0.7886,
+   "p_holm": 0.998
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 45079,
+   "bp_gross": 0.3018,
+   "t_gross": 0.4592,
+   "bp_net": 0.2629,
+   "t_year": 0.3997,
+   "t_cluster": 0.3089,
+   "sharpe_net": 0.0825,
+   "sharpe_gross": 0.0933,
+   "max_dd_net_bp": -3038.7935,
+   "exposure": 0.5097,
+   "gap_bars": 11
+  },
+  "p0_all_pre": {
+   "n_years": 11,
+   "years_dropped": [],
+   "n_bars": 30750,
+   "bp_gross": 0.9351,
+   "t_gross": 1.781,
+   "bp_net": 0.9071,
+   "t_year": 1.7504,
+   "t_cluster": 0.8407,
+   "sharpe_net": 0.2644,
+   "sharpe_gross": 0.2734,
+   "max_dd_net_bp": -3038.7935,
+   "exposure": 0.3076,
+   "gap_bars": 11
+  },
+  "p0_all_post": {
+   "n_years": 4,
+   "years_dropped": [],
+   "n_bars": 14329,
+   "bp_gross": -1.4398,
+   "t_gross": -0.7531,
+   "bp_net": -1.5086,
+   "t_year": -0.7857,
+   "t_cluster": -0.6204,
+   "sharpe_net": -0.3172,
+   "sharpe_gross": -0.3023,
+   "max_dd_net_bp": -2716.0888,
+   "exposure": 0.9999,
+   "gap_bars": 0
+  },
+  "p1_all_all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 45079,
+   "bp_gross": 0.0079,
+   "t_gross": 0.0276,
+   "bp_net": -0.0366,
+   "t_year": -0.1271,
+   "t_cluster": -0.1689,
+   "sharpe_net": -0.0483,
+   "sharpe_gross": -0.0233,
+   "max_dd_net_bp": -1546.8387,
+   "exposure": 0.2315,
+   "gap_bars": 11
+  },
+  "p1_all_pre": {
+   "n_years": 11,
+   "years_dropped": [],
+   "n_bars": 30750,
+   "bp_gross": 0.0598,
+   "t_gross": 0.2354,
+   "bp_net": 0.027,
+   "t_year": 0.1066,
+   "t_cluster": -0.0141,
+   "sharpe_net": -0.0049,
+   "sharpe_gross": 0.0209,
+   "max_dd_net_bp": -1443.6799,
+   "exposure": 0.1537,
+   "gap_bars": 11
+  },
+  "p1_all_post": {
+   "n_years": 4,
+   "years_dropped": [],
+   "n_bars": 14329,
+   "bp_gross": -0.1348,
+   "t_gross": -0.1468,
+   "bp_net": -0.2113,
+   "t_year": -0.2295,
+   "t_cluster": -0.2168,
+   "sharpe_net": -0.1174,
+   "sharpe_gross": -0.0898,
+   "max_dd_net_bp": -1546.8387,
+   "exposure": 0.4204,
+   "gap_bars": 0
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 58.5,
+ "extra": {
+  "idx13": {
+   "all": {
+    "bp_net": 0.0807,
+    "t_year": 0.1027,
+    "n_years": 15,
+    "years_dropped": []
+   },
+   "pre": {
+    "bp_net": 0.9484,
+    "t_year": 1.7871,
+    "n_years": 11,
+    "years_dropped": []
+   },
+   "post": {
+    "bp_net": -2.3053,
+    "t_year": -0.97,
+    "n_years": 4,
+    "years_dropped": []
+   }
+  },
+  "bond3": {
+   "all": {
+    "bp_net": 2.0556,
+    "t_year": 2.343,
+    "n_years": 8,
+    "years_dropped": [
+     2016
+    ]
+   },
+   "pre": {
+    "bp_net": 2.1674,
+    "t_year": 1.207,
+    "n_years": 4,
+    "years_dropped": [
+     2016
+    ]
+   },
+   "post": {
+    "bp_net": 1.9437,
+    "t_year": 3.2441,
+    "n_years": 4,
+    "years_dropped": []
+   }
+  },
+  "per_sym_bp_net": {
+   "AUS200": -0.4474,
+   "BUND": -0.1846,
+   "ESP35": -0.5269,
+   "EUSTX50": 0.5089,
+   "FRA40": 0.1031,
+   "GER40": 2.7022,
+   "HKG33": 1.7095,
+   "JPN225": -0.1337,
+   "NLD25": 1.1254,
+   "SUI20": 1.3327,
+   "UK100": -0.8641,
+   "UKGILT": 3.7269,
+   "US30": -0.2683,
+   "US500": -0.39,
+   "USTBOND": 1.0509,
+   "USTECH": 0.3277
+  }
+ },
+ "rule_mode": {
+  "none": {
+   "t_all": 0.3484,
+   "t_pre": 1.7244,
+   "t_post": -0.8331,
+   "n_years_pre": 11,
+   "n_years_post": 4,
+   "nw_t_pre": 0.8756,
+   "nw_t_post": -0.5777,
+   "mean_bp": 0.3784,
+   "mean_bp_pre": 0.8842,
+   "mean_bp_post": -1.2129,
+   "sigma_pct": 0.5652,
+   "sharpe": 0.1063,
+   "max_dd": -0.273,
+   "worst_day": -0.0895,
+   "stops": 0,
+   "gross_median": 0.0,
+   "n_days": 3765,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2011,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 0.0,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2014,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2015,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2016,
+     "mean_bp": 0.0,
+     "n": 258
+    },
+    {
+     "year": 2017,
+     "mean_bp": -0.6535286449087205,
+     "n": 258
+    },
+    {
+     "year": 2018,
+     "mean_bp": 2.7562179222165066,
+     "n": 260
+    },
+    {
+     "year": 2019,
+     "mean_bp": 4.272328178810976,
+     "n": 260
+    },
+    {
+     "year": 2020,
+     "mean_bp": 3.3359872476059023,
+     "n": 260
+    },
+    {
+     "year": 2021,
+     "mean_bp": -0.6459372261921792,
+     "n": 260
+    },
+    {
+     "year": 2022,
+     "mean_bp": 3.3712566959723853,
+     "n": 259
+    },
+    {
+     "year": 2023,
+     "mean_bp": -4.902841561891608,
+     "n": 260
+    },
+    {
+     "year": 2024,
+     "mean_bp": -4.122670232848565,
+     "n": 129
+    }
+   ],
+   "rules": {
+    "equal_weight": true,
+    "sym_cap": null,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": null,
+    "max_leverage": 1.0,
+    "daily_stop": null,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.0
+   }
+  },
+  "fintokei": {
+   "t_all": 0.2077,
+   "t_pre": 1.1921,
+   "t_post": -0.9175,
+   "n_years_pre": 11,
+   "n_years_post": 4,
+   "nw_t_pre": 1.1571,
+   "nw_t_post": -0.6041,
+   "mean_bp": 0.3411,
+   "mean_bp_pre": 0.7703,
+   "mean_bp_post": -1.0095,
+   "sigma_pct": 0.3847,
+   "sharpe": 0.1407,
+   "max_dd": -0.1906,
+   "worst_day": -0.025,
+   "stops": 1,
+   "gross_median": 0.0,
+   "n_days": 3765,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2011,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 0.0,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2014,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2015,
+     "mean_bp": 0.0,
+     "n": 260
+    },
+    {
+     "year": 2016,
+     "mean_bp": 0.0,
+     "n": 258
+    },
+    {
+     "year": 2017,
+     "mean_bp": -1.4059314757462336,
+     "n": 258
+    },
+    {
+     "year": 2018,
+     "mean_bp": 4.971378149422951,
+     "n": 260
+    },
+    {
+     "year": 2019,
+     "mean_bp": 5.049660837100092,
+     "n": 260
+    },
+    {
+     "year": 2020,
+     "mean_bp": -0.1614874394954078,
+     "n": 260
+    },
+    {
+     "year": 2021,
+     "mean_bp": -0.3340645212191849,
+     "n": 260
+    },
+    {
+     "year": 2022,
+     "mean_bp": 2.4714062239112145,
+     "n": 259
+    },
+    {
+     "year": 2023,
+     "mean_bp": -2.882974442974607,
+     "n": 260
+    },
+    {
+     "year": 2024,
+     "mean_bp": -5.583757479573486,
+     "n": 129
+    }
+   ],
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.005,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.2
+   }
+  },
+  "gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": false,
+   "max_dd_within_6pct": false,
+   "pass": false
+  },
+  "split_year": 2021,
+  "seal": "2024-07-01",
+  "params": [
+   {
+    "param": 0,
+    "p": {
+     "L": 250,
+     "mode": "cross"
+    },
+    "fintokei": {
+     "t_all": 0.2077,
+     "t_pre": 1.1921,
+     "t_post": -0.9175,
+     "mean_bp": 0.3411,
+     "max_dd": -0.1906,
+     "sharpe": 0.1407,
+     "stops": 1
+    },
+    "none": {
+     "t_all": 0.3484,
+     "t_pre": 1.7244,
+     "t_post": -0.8331,
+     "mean_bp": 0.3784,
+     "max_dd": -0.273,
+     "sharpe": 0.1063
+    },
+    "gate": {
+     "t_pre_ge2": false,
+     "t_post_ge2": false,
+     "max_dd_within_6pct": false,
+     "pass": false
+    }
+   },
+   {
+    "param": 1,
+    "p": {
+     "L": 250,
+     "mode": "catsmom"
+    },
+    "fintokei": {
+     "t_all": 1.2022,
+     "t_pre": 1.4602,
+     "t_post": 0.1432,
+     "mean_bp": 0.5386,
+     "max_dd": -0.1434,
+     "sharpe": 0.2163,
+     "stops": 3
+    },
+    "none": {
+     "t_all": 0.4123,
+     "t_pre": 0.5725,
+     "t_post": 0.0539,
+     "mean_bp": 0.1495,
+     "max_dd": -0.2656,
+     "sharpe": 0.048
+    },
+    "gate": {
+     "t_pre_ge2": false,
+     "t_post_ge2": false,
+     "max_dd_within_6pct": false,
+     "pass": false
+    }
+   }
+  ]
+ },
+ "machine_verdict": "棄却: 等金額の全期間 z<1 または 規程モードの t_all<0（data_health に failed/gaps あり: 確定にする前に点検）"
+}
