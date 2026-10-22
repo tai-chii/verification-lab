@@ -1,0 +1,38 @@
+# Q399 FX22 D1 を政策金利差の 90 暦日変化で順位付けし上位 1/3 買い・下位 1/3 売り（横断金利モメンタム・スワップ込み）は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か
+
+事前登録: `検証/学問/金融工学/知識/文献/アイデア候補.md` の Q399 の行（Fable・/lab-plan ターミナル版 2026-10-22 夜・N=10 の 6 本目（S12・横断））。出典: [[検証/_基盤/戦略台帳]] 新 S12／Chung・Hong 2007 JAE／Lustig・Roussanov・Verdelhan 2011 RFS（横断ソートの型）／Q392（横断キャリー・未確定）・Q398（時系列版）
+
+- スクリプト: `kensho_s12_rate_momentum_xsec_q399.py`（`fe_core` Runner 型。事前登録の内容は `SPEC` に固定。`python3 kensho_s12_rate_momentum_xsec_q399.py --readme` でこの README を再生成）
+- データ: FX22 の D1_fromH1（2010-01〜・封印 time<2024-07-01）＋ 政策金利 policy_<CCY>.csv（BIS・8 通貨）。Δ90 は t−1 と t−91 暦日の金利差の差。スワップ・マークアップ・コストは S09 と同じ（`検証/学問/金融工学/作業/FX/システムトレード/data_*.csv`。無い銘柄は除いて JSON の `missing` に。欠損の点検は JSON の `data_health`）
+- 実行: `python3 kensho_s12_rate_momentum_xsec_q399.py`（B=500。pandas/numpy のみ）
+- 試走: `--B 10`。経路の確認だけなら `--smoke`（合成データ・結果は `results/smoke_*`。**判定には使わない**）
+- 結果: `results/Q399_spec_<日時>.json`（実行前に書かれる事前登録）・`results/Q399_result_<日時>.json`（設定・集計・`data_health`・機械判定 `machine_verdict`）・`results/Q399_year_sym_<日時>.csv`
+
+## 状態（2026-10-22）
+
+**設計（Fable）とコード（Fable）まで。実行と結果の解釈は未。** コードはクラウド側で `--smoke --B 5` の経路確認だけ済み（合成データ・判定には使わない）。****
+Sonnet／Opus が実行するときの手順:
+
+1. 標準手順H の 3「出口で検証するときの決まり」どおり、`SPEC`（仮説・判定・捨てた案の数・知識の締め切り・委託の確かめ方）を読んでから走らせる（変更しない）。
+2. `python3 kensho_s12_rate_momentum_xsec_q399.py` を Mac で実行。
+3. JSON の `machine_verdict` は事前固定の規則で機械的に付けたもの。**確定／ノイズ／未確定** の解釈は実行者が書く（下の「結果」の節に `判定: **…**` の形で）。`data_health` に failed／gaps があれば、該当銘柄・期間を除いた結果も見てから書く。`years_dropped`・`null_degenerate` も確かめる。
+4. 記録先: 知見ノート（＋知見一覧.jsonl）、出典の主張カードの `自分の検証`、アイデア候補の状態、FX 改善ログ（FX のとき）、検証キュー Q399 を完了へ、`gen_fe_index.py` で一覧を更新。
+
+## 方法（要点）
+
+- 仮説: Q398（時系列の符号）は変化 0 のペアを持たず露出が低い。横断なら変化の相対的な大きさで 22 ペアを並べ、最も引き締めに向いた通貨を買い・最も緩和に向いた通貨を売るので、各日に必ず 2/3 の露出を持つ。各日、Δ90 = diff[t] − diff[t−90] で順位付けし上位 ceil(n/3) を +1、下位 ceil(n/3) を −1。main=1/3、副=1/2
+- 測るもの: 等金額: 22 ペアの年単位 bp（スワップ込み net／抜き）・t・束ねた t・Sharpe・最大下落・露出（≈2/3）。規程モード: t_all/t_pre/t_post・max_dd・worst_day・stops（スワップ込み・no_swap）。分解
+- 帰無: 合図の循環シフト（min_shift=120・B=500）→ 等金額の年単位 bp（スワップ込み net）の帰無分布 → z・perm_p・Holm（m=2）。順位は政策変更のたびに入れ替わるので循環シフトで帰無が作れる（Q392 と違い符号反転は使わない）
+- 多重比較: 判定は 2 本（Holm で補正）。ほかの設定・群は記述
+- 先行研究チェック: WebSearch 2026-10-22「cross-sectional currency portfolio sorted on change in policy rate differential "interest rate momentum" FX returns」: Nomura の調達通貨選択（金利差の変化を併用・報道のみ）、Antolin-Diaz ほか（米国の金利サプライズ感応度でソート）、水準ソートの講義資料。変化でソートした横断ポートフォリオの判定は未確認。報道は根拠にしない
+- 捨てた案の数: 2（通貨レベル 8 通貨の順位をペアに写す＝一意でない／Δ の同順位（変化 0 が多数）を 0 にする＝順位 first で機械的に割る方が事前固定しやすい）
+- 知識の締め切り: Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない
+- 委託の確かめ方: なし（Fable 設計 → Sonnet 実行）
+
+## 判定（事前固定）
+
+支持: 規程モード（RULES_FINTOKEI・スワップ込み・封印前・境 2017）の前後半とも年単位 t≥2 かつ max_dd≥−6%、かつ等金額（Runner main frac 1/3・スワップ込み）の全期間 z≥2（循環シフト帰無）。棄却: 等金額の全期間 z<1、または規程モードの t_all<0。ほか → 未確定。Q398 との比較・frac 1/2・銘柄別は記述。S12 の族内試行は Q398・Q399 の 2 本×2 設定＝4
+
+## 結果
+
+未実行。
