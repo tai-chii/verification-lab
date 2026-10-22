@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 207 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 215 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -13,6 +13,7 @@
 | [asian-range-breakout](./asian-range-breakout) | Q220 アジア時間（0〜7 UTC）のレンジを欧州時間に抜けたら終値まで続くか（FX8 H1・ブレイクアウト） | 棄却 |
 | [atr-stop-loss-tsmom](./atr-stop-loss-tsmom) | Q204 ATR 倍の損切りは 15 銘柄の日足順張りの純損益と最大下落を改善するか（Kaminski・Lo 2014 の型） | 未確定（純損益の改善なし）／最大下落は確実に改善（記述） |
 | [bad-period-weighted-selection](./bad-period-weighted-selection) | Q141 悪い時期を重くする目的関数で選んだ順張りは、標本外の最大下落が小さいか（TradeGrad の CPRO の型） | 棄却（確定） |
+| [bars-per-year-audit-wide48-q418](./bars-per-year-audit-wide48-q418) | Q418 48 銘柄 D1_fromH1 の銘柄×年の足の本数の一覧と、本数 126 未満の年を年単位 t から除くと TSMOM60 等金額の前後半 t がどれだけ動くか（by_year_stats の min_rows 既定の見直し） | — |
 | [bbc-cv-optimism](./bbc-cv-optimism) | Q172 BBC-CV のブートストラップ補正は時系列の順張り選択の楽観を取り除くか（Tsamardinos 2018） | —（未実行） |
 | [bbc-cv-tsmom-optimism](./bbc-cv-tsmom-optimism) | Q172 BBC-CV のブートストラップ補正は時系列の順張り選択の楽観を取り除くか（Tsamardinos 2018） | 確定 |
 | [bid-ask-signal-fragility](./bid-ask-signal-fragility) | Q185 合図は bid か ask かで何割変わるか（XAUUSD 実測＋15銘柄の半スプレッドの擬似ずらし） | 未確定（機械判定）／解釈: 規則の型による |
@@ -63,6 +64,7 @@
 | [fx-roundnumber-bounce](./fx-roundnumber-bounce) | 為替のキリ番は「跳ね返る場所」ではなく「抜けやすい場所」 | 支持 |
 | [fx-shortterm-meanreversion](./fx-shortterm-meanreversion) | 為替の超短期平均回帰は2015年以降の1時間足では消えたか | 消えた（支持） |
 | [fx8-h1-triple-indicator](./fx8-h1-triple-indicator) | Q291 FX8 H1 の 3 指標（TSMOM24・SMA50・RSI14 符号）が同符号のときだけ売買すると、束ねた t はコスト後に単独 TSMOM24 を上回るか（Loubaris2026-2 の H1 移植） | 棄却 |
+| [gate-pass-probability-vs-sharpe-q416](./gate-pass-probability-vs-sharpe-q416) | Q416 関門（σ0.5%/日・14 年の最大下落 −6% 以内＋前後半 t≥2）は年率シャープ S がいくら以上の戦略を何割通すか（S07 規程モード損益の 20 日ブロック・ブートストラップで S を 0〜3 に合わせて測る） | — |
 | [gotobi-cross-jpy](./gotobi-cross-jpy) | Q179 五十日の仲値前の円安はクロス円でも出て2021年以降に消えたか（Bessho 2023） | 対立を支持: ドル固有 |
 | [h4-tsmom-trend7](./h4-tsmom-trend7) | Q261 トレンド7 の H4 順張り（TSMOM 30/60/120 本）はコスト後に残るか（為替で消えた H4 の条件の穴） | 支持: trend7 全期間 純損益 t<2 または z<2（H4 には無い） |
 | [halloween-effect](./halloween-effect) | Q238 「5 月に売れ」（ハロウィン効果）は 2008〜2026 の指数・商品 6 銘柄で残るか（6 か月ブロックの循環シフト帰無） | 棄却: 全期間の z < 2（手元の 18 年では見えない） |
@@ -89,6 +91,7 @@
 | [month-of-year-15](./month-of-year-15) | Q265 15銘柄の月別季節性（month-of-year）は Holm 後に前後半で同符号で残るか | 効果なし（支持＝月別の季節性は残らない） |
 | [nfp-m15-followthrough](./nfp-m15-followthrough) | Q219 米雇用統計（NFP）の直後 15 分の向きは次の 1〜4 時間に続くか反転するか（EURUSD・USDJPY M15・2021 年以降） | 棄却: 継続とも反転とも区別できない |
 | [nr7-breakout-continuation](./nr7-breakout-continuation) | Q217 NR7（直前 7 日で最小レンジ）の翌日は最初の 2 時間の向きに続くか（FX8＋金・H1 から日足） | 棄却 |
+| [null-center-bias-runner-results-q417](./null-center-bias-runner-results-q417) | Q417 Runner 型の既存結果 JSON を横断し、循環シフト帰無の中心（q025 と q975 の中点）が 0 から 0.5σ 以上ずれる割合と、そのずれが z と年単位 t の食い違いを説明するか | — |
 | [null-model-choice](./null-model-choice) | Q178 帰無モデルの選び方（並べ替え・AR(1)・GARCH型）で移動平均ルールの判定は変わるか（Brock 1992） | 確定（H1 支持: 帰無の選び方で判定はほぼ割れない） |
 | [null-zoo-size-q320](./null-zoo-size-q320) | Q320 手元の標準の判定は、15 銘柄の順張り損益の実際の ϕ1・歪度に合わせた腕なしの合成探索で名目 5% を守るか（Canli 2026 Null Zoo の移植・Q319-C1） | 歪みは確定。ただし原因は ϕ1・歪度（Null Zoo の筋）ではなく、銘柄間の相関を、銘柄ごとに別々の並べ替えで壊す… |
 | [one-month-reversal](./one-month-reversal) | Q215 1 か月の短期反転（直前 21 日の逆）は 15 銘柄の日足でコスト後に残るか（Jegadeesh 1990 の型・12-1 モメンタムと対比） | 棄却（粗利でも負・事前固定 z≥2 を通らず） |
@@ -149,6 +152,11 @@
 | [s13-idx13-pre-fomc-drift-q401](./s13-idx13-pre-fomc-drift-q401) | Q401 株価指数 13 の FOMC 前ドリフト（定例発表日の前日の足と当日の足の 2 本を買い持ち・年 8 回）は 2015 年以後も残り、規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 未確定 |
 | [s13-idx13-turn-of-month-q400](./s13-idx13-turn-of-month-q400) | Q400 株価指数 13 の D1 月替わり効果（各銘柄の足で数えた月の最終営業日と翌月の最初の 3 営業日の 4 本だけ買い持ち）は 2010 年以後も残り、規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 棄却 |
 | [s13-usd7-fomc-day-dollar-sell-q403](./s13-usd7-fomc-day-dollar-sell-q403) | Q403 対ドル 7 ペア（EURUSD・GBPUSD・AUDUSD・NZDUSD・USDJPY・USDCHF・USDCAD）で FOMC 定例発表日にドルを売る（当日の足 1 本・年 8 回）戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 2010〜2016 の標本外では Mueller ほか 2017 の発表日ドル安は出ず、2017 以後（とくに 202… |
+| [s14-tick-volume-information-q413](./s14-tick-volume-information-q413) | Q413 15 銘柄の日次 tick 出来高 z は高値安値レンジ z と冗長か（Spearman）、σ20 とレンジを条件づけても翌 5 日の ／ret／ を予測するか（出来高に OHLC 以外の情報があるか） | — |
+| [s14-volume-gate-tsmom60-all15-q411](./s14-volume-gate-tsmom60-all15-q411) | Q411 15 銘柄 H1→D1 の TSMOM60 を tick 出来高の増加（V20/V250 ≥ 1）の日だけ持つゲートは、ゲートなしより規程モードの前後半 t と最大下落を改善するか | — |
+| [s14-volume-weighted-tsmom60-all15-q412](./s14-volume-weighted-tsmom60-all15-q412) | Q412 15 銘柄 H1→D1 の出来高加重 TSMOM60（直近 60 日の Σ ret_i × v_i/v̄_250 の符号）は素の TSMOM60 より規程モードの前後半 t≥2・最大下落 −6% 以内に近づくか | — |
+| [s15-fomc-dollar-sell-hiking-regime-q414](./s15-fomc-dollar-sell-hiking-regime-q414) | Q414 対ドル 7 ペア（EURUSD・GBPUSD・AUDUSD・NZDUSD・USDJPY・USDCHF・USDCAD）の FOMC 定例発表日ドル売り（当日の足 1 本）を「米政策金利が直近 365 暦日に 1 回以上上がった」局面だけに限ると、Q403 で見えた後半（2022〜24）とは独立な第 1 サイクル（2015-12〜2019-07）でも規程モードの年単位 t≥2 か（前後半の境は 2020） | — |
+| [s15-wide48-tsmom60-global-hiking-q415](./s15-wide48-tsmom60-global-hiking-q415) | Q415 48 銘柄 D1 の TSMOM60 を「8 中銀（USD EUR JPY GBP AUD CAD CHF NZD）のうち直近 180 暦日に利上げした数が 4 以上」の局面だけ持つと、常時持つ S07 本体より規程モードの前後半 t と最大下落が改善するか | — |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |
