@@ -1,0 +1,63 @@
+{
+ "qid": "Q409_Q402",
+ "registered": "20261022_150651",
+ "B": 500,
+ "seed": 20261010,
+ "question": "[Q409 見直し: 穴跨ぎ足（前の足から 168h 超）の合図を 0] 株価指数 13 の FOMC サイクル偶数週（定例発表日を 0 として −1〜+3・+9〜+13・+19〜+23・+29〜+33 営業日）だけ買い持ちする戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か",
+ "hypothesis": "Cieslak・Morse・Vissing-Jorgensen 2019 JF: 1994〜2016 の株式プレミアムは FOMC サイクルの偶数週にだけ発生し（奇数週は ≈0）、3 つのサブ期間と米国外の株式市場でも成り立つ（Fed の非公式な情報流出の 2 週周期）。暦（FOMC 日程）だけで決まり判断時点に既知。13 指数・2010〜封印前で偶数週買い（露出 ≈1/2）が関門を通るか。main=偶数週だけ買い、副=偶数週買い・奇数週（4〜8・14〜18・24〜28）売り",
+ "reject_if": "支持: 規程モード（RULES_FINTOKEI・封印前・境 2017）の前後半とも年単位 t≥2 かつ max_dd≥−6%、かつ等金額（Runner main）の全期間 z≥2（循環シフト帰無）。棄却: 等金額の全期間 z<1、または規程モードの t_all<0。ほか → 未確定。副（long/short）・銘柄別・偶数週と奇数週の bp の差は記述。S13 の族内試行は Q400〜Q403 の 4 本×2 設定＝8",
+ "syms": [
+  "US500",
+  "USTECH",
+  "US30",
+  "GER40",
+  "JPN225",
+  "UK100",
+  "FRA40",
+  "ESP35",
+  "EUSTX50",
+  "AUS200",
+  "HKG33",
+  "SUI20",
+  "NLD25"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "mode": "long_even"
+  },
+  {
+   "mode": "long_even_short_odd"
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 0,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": "2010-01-01",
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 60,
+ "cost_rel": {},
+ "discarded": "2（週 0 を 0〜4 にずらす＝原著の −1〜3 に固定／偶数週のうち週 0 だけ＝Q401 と重なる）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "なし（Opus が実行・解釈）",
+ "source": "[[検証/_基盤/戦略台帳]] 新 S13（暦）／Cieslak・Morse・Vissing-Jorgensen 2019 'Stock returns over the FOMC cycle' JF 74(5)／Lucca・Moench 2015 JF／Q401（週 0 の前半）",
+ "data": "指数 13 の D1_fromH1（2010〜・封印 time<2024-07-01）。サイクル日は各銘柄の足で数えた直前の発表日からの営業日数（発表前日は −1）。コスト: US500/USTECH は COST_RT、他は spread_<sym>.csv の中央値（週ごとの出入りで年 ≈16 往復）",
+ "measure": "等金額: 13 指数の年単位平均 bp（コスト 0／後）・年単位 t・束ねた t・Sharpe・最大下落・露出（≈1/2）。規程モード: t_all/t_pre/t_post・max_dd・worst_day・stops（全設定）。extra: 偶数週・奇数週それぞれの平均日次リターン（bp）",
+ "null_desc": "合図の循環シフト（min_shift=60・B=500）→ 等金額の年単位 bp（net）の帰無分布（全期間・前半・後半）→ z・perm_p・Holm（m=2）",
+ "prior_art": "WebSearch 2026-10-22「FOMC cycle even weeks stock returns Cieslak Morse Vissing-Jorgensen out-of-sample after 2015 replication」: 原著（1994〜2016・国際にも）、AEA 2021 の派生（週の機構）。2016 年以後の標本外・国際 13 指数・日次 CFD・規程つきの判定は未確認（独立の追試は見つからず）",
+ "batch": "/lab-plan ターミナル版 2026-10-22 夜・N=10 の 9 本目（S13・FOMC サイクル）",
+ "designer": "Fable",
+ "coder": "Fable",
+ "settings": {
+  "seal": "2024-07-01",
+  "fomc_source": "s1x.FOMC_DATES（知識から記載・要照合）",
+  "fomc_override_arg": "--fomc-csv",
+  "s13_family_trials": "Q400〜Q403 の 4 本×2 設定＝8",
+  "gap_rule": "足 j が gap（dt_prev_h>168）なら pos[j−1]=0。帰無は循環シフトの後に同じ規則",
+  "orig_qid": "Q402"
+ }
+}

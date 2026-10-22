@@ -1,0 +1,3 @@
+wrote results/Q409_Q402_result_20261022_150808.json
+wrote results/Q409_Q402_year_sym_20261022_150808.csv
+machine_verdict: 棄却: 等金額の全期間 z<1 または 規程モードの t_all<0（data_health に failed/gaps あり: 確定にする前に点検）
