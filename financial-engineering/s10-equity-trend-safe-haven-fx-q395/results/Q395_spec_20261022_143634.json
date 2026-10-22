@@ -1,0 +1,52 @@
+{
+ "qid": "Q395",
+ "registered": "20261022_143634",
+ "B": 500,
+ "seed": 20261010,
+ "question": "US500 の TSMOM60 符号が負の日は円・フランを買い（USDJPY/USDCHF/AUDJPY/NZDJPY/CADJPY 売り）正の日は逆、のリスクオフ・レジーム戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か",
+ "hypothesis": "Ranaldo・Söderlind 2010: 株安局面で円・フランは対ドル・対資源国通貨で上がる（安全通貨）。この同時相関が株の順張り状態（US500 の 60 日リターン符号）を通じて翌日以降の為替に持ち越されるなら、他市場の価格（株価指数）を 1 つ足した合図が FX 単独の順張り（S07 FX22 ≈0）より関門に近づく。pos = −sign(US500 close[t] − close[t−L])（全 5 ペア共通）。main L=60、副 L=20",
+ "reject_if": "支持: 規程モード（RULES_FINTOKEI・封印前・境 2017）の前後半とも年単位 t≥2 かつ max_dd≥−6%、かつ等金額（Runner main L=60）の全期間 z≥2（循環シフト帰無）。棄却: 等金額の全期間 z<1、または規程モードの t_all<0。ほか → 未確定。副 L=20・銘柄別は記述。S10 の族内試行は Q394・Q395 の 2 本×2 設定＝4",
+ "syms": [
+  "USDJPY",
+  "USDCHF",
+  "AUDJPY",
+  "NZDJPY",
+  "CADJPY"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "L": 60
+  },
+  {
+   "L": 20
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 60,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": "2010-01-01",
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 120,
+ "cost_rel": {},
+ "discarded": "3（VIX を状態変数にする＝手元に無い／US500 の実現ボラ水準で切る＝ボラは S04b で扱い済み／対ドル 7 ペア全部に同じ合図＝安全通貨の論点から外れる）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "なし（Fable 設計 → Sonnet 実行）",
+ "source": "[[検証/_基盤/戦略台帳]] 新 S10（他市場の価格）／Ranaldo・Söderlind 2010 'Safe haven currencies' Review of Finance／Habib・Stracca 2012 JIE／危機アルファ Q207・Q224（順張りは株安局面で正）",
+ "data": "USDJPY・USDCHF・AUDJPY・NZDJPY・CADJPY の D1_fromH1（2010-01〜・封印 time<2024-07-01。AUDJPY 等 3 本は _データ/raw/D1）。合図の元は US500 の D1_fromH1（同じ UTC 0 時区切り・time で合わせる・先読みなし）。コスト: USDJPY/USDCHF は COST_RT、クロス円 3 本は spread_<sym>.csv の中央値",
+ "measure": "等金額: 5 ペアの年単位平均 bp（コスト 0／後）・年単位 t・束ねた t・Sharpe・最大下落・露出。規程モード: t_all/t_pre/t_post・nw_t・mean_bp・max_dd・worst_day・stops（全設定）。extra: US500 合図が負の日だけ／正の日だけの bp（安全通貨買いの側が効いているか）",
+ "null_desc": "合図の循環シフト（min_shift=120・B=500）→ 等金額の年単位 bp（net）の帰無分布（全期間・前半・後半）→ z・perm_p・Holm（m=2）",
+ "prior_art": "WebSearch 2026-10-22「equity market trend predicts safe haven currency returns JPY CHF daily out-of-sample trading strategy risk-off regime」: 学術は Ranaldo・Söderlind（同時相関）の要約のみ、ほかは市場解説（BNY・Continuum・Saxo）。株の順張り状態を合図にした予測型の D1 戦略の判定は未確認。解説記事は根拠にしない",
+ "batch": "/lab-plan ターミナル版 2026-10-22 夜・N=10 の 2 本目（S10・安全通貨）",
+ "designer": "Fable",
+ "coder": "Fable",
+ "settings": {
+  "seal": "2024-07-01",
+  "driver": "US500",
+  "s10_family_trials": "Q394・Q395 の 2 本×2 設定＝4"
+ }
+}
