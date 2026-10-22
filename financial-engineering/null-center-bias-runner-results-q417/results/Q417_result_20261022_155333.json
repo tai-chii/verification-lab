@@ -1,0 +1,125 @@
+{
+ "qid": "Q417",
+ "smoke": false,
+ "generated": "20261022_155333",
+ "question": "Runner 型の既存結果 JSON を横断し、循環シフト帰無の中心（q025 と q975 の中点）が 0 から 0.5σ 以上ずれる割合と、そのずれが z と年単位 t の食い違いを説明するか。",
+ "n_files": 199,
+ "n_runner_results": 44,
+ "n_rows": 128,
+ "frac_abs_r_ge_0_5": {
+  "all_rows": 0.4531,
+  "all": 0.4186,
+  "post": 0.5116,
+  "pre": 0.4286
+ },
+ "r_quantiles": {
+  "0.05": -5.1033,
+  "0.25": -0.7907,
+  "0.5": -0.154,
+  "0.75": 0.1665,
+  "0.95": 1.2885
+ },
+ "spearman_r_vs_z_minus_t": -0.7766,
+ "perm_p_two_sided": 0.0005,
+ "B": 2000,
+ "spearman_abs_r_vs_exposure": -0.1308,
+ "by_null_kind": {
+  "circ_shift": {
+   "n": 128,
+   "frac": 0.4531
+  }
+ },
+ "top10": [
+  {
+   "qid": "Q298_r2",
+   "period": "post",
+   "r": -22.456,
+   "z": -5.154,
+   "t_year": -9.681,
+   "exposure": 1.0,
+   "bp_net": -4.133
+  },
+  {
+   "qid": "Q290",
+   "period": "post",
+   "r": -18.65,
+   "z": -5.247,
+   "t_year": -10.218,
+   "exposure": 0.991,
+   "bp_net": -3.506
+  },
+  {
+   "qid": "Q291",
+   "period": "all",
+   "r": -12.392,
+   "z": -0.141,
+   "t_year": -11.851,
+   "exposure": 0.802,
+   "bp_net": -0.156
+  },
+  {
+   "qid": "Q291",
+   "period": "post",
+   "r": -10.976,
+   "z": -1.508,
+   "t_year": -11.03,
+   "exposure": 0.802,
+   "bp_net": -0.175
+  },
+  {
+   "qid": "Q291",
+   "period": "pre",
+   "r": -7.388,
+   "z": 0.924,
+   "t_year": -6.758,
+   "exposure": 0.802,
+   "bp_net": -0.134
+  },
+  {
+   "qid": "Q298_r2",
+   "period": "all",
+   "r": -6.614,
+   "z": -0.808,
+   "t_year": -9.922,
+   "exposure": 1.0,
+   "bp_net": -4.432
+  },
+  {
+   "qid": "Q290",
+   "period": "all",
+   "r": -5.789,
+   "z": 0.517,
+   "t_year": -10.528,
+   "exposure": 0.99,
+   "bp_net": -2.993
+  },
+  {
+   "qid": "Q361",
+   "period": "post",
+   "r": 4.522,
+   "z": 1.38,
+   "t_year": 2.031,
+   "exposure": 0.618,
+   "bp_net": 6.701
+  },
+  {
+   "qid": "Q409_Q402",
+   "period": "post",
+   "r": 4.267,
+   "z": -3.634,
+   "t_year": 0.088,
+   "exposure": 0.522,
+   "bp_net": 0.165
+  },
+  {
+   "qid": "Q361",
+   "period": "all",
+   "r": 4.228,
+   "z": 1.426,
+   "t_year": 1.822,
+   "exposure": 0.578,
+   "bp_net": 4.094
+  }
+ ],
+ "machine_verdict": "支持（仕組みの変更が要る）: 帰無の中心のずれ |r|≥0.5 が 2 割以上、または r と z−t の相関 ≥0.5 で有意"
+}
