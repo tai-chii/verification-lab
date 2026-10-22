@@ -1,0 +1,542 @@
+{
+ "qid": "Q403",
+ "smoke": false,
+ "generated": "20261022_145954",
+ "question": "対ドル 7 ペア（EURUSD・GBPUSD・AUDUSD・NZDUSD・USDJPY・USDCHF・USDCAD）で FOMC 定例発表日にドルを売る（当日の足 1 本・年 8 回）戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か",
+ "spec": {
+  "qid": "Q403",
+  "question": "対ドル 7 ペア（EURUSD・GBPUSD・AUDUSD・NZDUSD・USDJPY・USDCHF・USDCAD）で FOMC 定例発表日にドルを売る（当日の足 1 本・年 8 回）戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か",
+  "hypothesis": "Mueller・Tahbaz-Salehi・Vedolin 2017 JF: ドル売り・他通貨買いは定例 FOMC 発表日に有意に大きい超過収益を得る（金融政策の不確実性への対価。金利差の大きい通貨・緩和局面でさらに大きい）。暦だけで決まる 1 日の建玉で、年 8 回しか出入りしないのでコストは小さい。main=当日の足 1 本（前日終値→当日終値）、副=前日と当日の 2 本",
+  "reject_if": "支持: 規程モード（RULES_FINTOKEI・封印前・境 2017）の前後半とも年単位 t≥2 かつ max_dd≥−6%、かつ等金額（Runner main）の全期間 z≥2（循環シフト帰無）。棄却: 等金額の全期間 z<1、または規程モードの t_all<0。ほか → 未確定。副 2 本・銘柄別は記述。S13 の族内試行は Q400〜Q403 の 4 本×2 設定＝8",
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "NZDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "offsets": [
+     0
+    ]
+   },
+   {
+    "offsets": [
+     -1,
+     0
+    ]
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 0,
+  "per_year": 252,
+  "B": 500,
+  "split_year": 2017,
+  "start": "2010-01-01",
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 60,
+  "cost_rel": {},
+  "discarded": "3（金利差で重みを付ける＝S09 の部品を混ぜない／H1 で 14:00 ET 前後を切る＝対ドル 7 ペアの H1 は FX8 分しか無く NZDUSD が欠ける／スワップ込み＝1 日の保有では無視できる）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし（Fable 設計 → Sonnet 実行）。FOMC の暦は Claude の知識から記載（s1x.FOMC_DATES）。**実行者は federalreserve.gov と照合し、違えば --fomc-csv で差し替える**",
+  "source": "[[検証/_基盤/戦略台帳]] 新 S13（暦）／Mueller・Tahbaz-Salehi・Vedolin 2017 'Exchange rates and monetary policy uncertainty' JF 72(3)／Lucca・Moench 2015 JF／Q401（株側）",
+  "data": "対ドル 7 ペアの D1_fromH1（2010〜・封印 time<2024-07-01。NZDUSD は _データ/raw/D1）。USD が quote のペア（EURUSD 等）は +1、USD が base のペア（USDJPY 等）は −1。コスト: FX8 の 6 本は COST_RT（往復 2 pips）、NZDUSD は spread_<sym>.csv の中央値",
+  "measure": "等金額: 7 ペアの年単位平均 bp（コスト 0／後）・年単位 t・束ねた t・Sharpe・最大下落・露出（≈8/252）。規程モード: t_all/t_pre/t_post・max_dd・worst_day・stops（全設定）",
+  "null_desc": "合図の循環シフト（min_shift=60・B=500）→ 等金額の年単位 bp（net）の帰無分布（全期間・前半・後半）→ z・perm_p・Holm（m=2）",
+  "prior_art": "WebSearch 2026-10-22「dollar depreciates on FOMC announcement days currency excess returns Mueller Tahbaz-Salehi Vedolin after 2015」: 原著（JF 2017・LSE/Warwick の版）。標本期間の末尾と 2015 年以後の有無は要旨から確認できず、7 ペア・2010〜・D1・規程つきの判定は未確認",
+  "batch": "/lab-plan ターミナル版 2026-10-22 夜・N=10 の 10 本目（S13・FOMC 日のドル売り）",
+  "designer": "Fable",
+  "coder": "Fable",
+  "settings": {
+   "seal": "2024-07-01",
+   "fomc_source": "s1x.FOMC_DATES（知識から記載・要照合）",
+   "fomc_override_arg": "--fomc-csv",
+   "usd_is_quote": {
+    "EURUSD": true,
+    "GBPUSD": true,
+    "AUDUSD": true,
+    "NZDUSD": true,
+    "USDJPY": false,
+    "USDCHF": false,
+    "USDCAD": false
+   },
+   "s13_family_trials": "Q400〜Q403 の 4 本×2 設定＝8"
+  },
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "NZDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {},
+  "n_dup": {},
+  "n_gap_syms": 0
+ },
+ "main": {
+  "all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 26453,
+   "bp_gross": 0.3594,
+   "t_gross": 2.0549,
+   "bp_net": 0.3008,
+   "t_year": 1.7202,
+   "t_cluster": 1.5651,
+   "sharpe_net": 0.4026,
+   "sharpe_gross": 0.4886,
+   "max_dd_net_bp": -649.1759,
+   "exposure": 0.0304,
+   "gap_bars": 0,
+   "z": 5.736,
+   "pct": 1.0,
+   "p_perm": 0.002,
+   "null_degenerate": false,
+   "null_q025": -0.1982,
+   "null_q975": 0.055
+  },
+  "pre": {
+   "n_years": 7,
+   "years_dropped": [],
+   "n_bars": 12775,
+   "bp_gross": 0.0292,
+   "t_gross": 0.1027,
+   "bp_net": -0.0293,
+   "t_year": -0.1031,
+   "t_cluster": -0.1066,
+   "sharpe_net": -0.0396,
+   "sharpe_gross": 0.0393,
+   "max_dd_net_bp": -649.1759,
+   "exposure": 0.0307,
+   "gap_bars": 0,
+   "z": 0.495,
+   "pct": 0.682,
+   "p_perm": 0.3194,
+   "null_degenerate": false,
+   "null_q025": -0.3041,
+   "null_q975": 0.1199,
+   "p_holm": 0.3194
+  },
+  "post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 13678,
+   "bp_gross": 0.6484,
+   "t_gross": 3.8336,
+   "bp_net": 0.5895,
+   "t_year": 3.4853,
+   "t_cluster": 2.5906,
+   "sharpe_net": 0.9174,
+   "sharpe_gross": 1.0095,
+   "max_dd_net_bp": -158.7998,
+   "exposure": 0.0302,
+   "gap_bars": 0,
+   "z": 8.2089,
+   "pct": 1.0,
+   "p_perm": 0.002,
+   "null_degenerate": false,
+   "null_q025": -0.2197,
+   "null_q975": 0.0922,
+   "p_holm": 0.004
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 26453,
+   "bp_gross": 0.3594,
+   "t_gross": 2.0549,
+   "bp_net": 0.3008,
+   "t_year": 1.7202,
+   "t_cluster": 1.5651,
+   "sharpe_net": 0.4026,
+   "sharpe_gross": 0.4886,
+   "max_dd_net_bp": -649.1759,
+   "exposure": 0.0304,
+   "gap_bars": 0
+  },
+  "p0_all_pre": {
+   "n_years": 7,
+   "years_dropped": [],
+   "n_bars": 12775,
+   "bp_gross": 0.0292,
+   "t_gross": 0.1027,
+   "bp_net": -0.0293,
+   "t_year": -0.1031,
+   "t_cluster": -0.1066,
+   "sharpe_net": -0.0396,
+   "sharpe_gross": 0.0393,
+   "max_dd_net_bp": -649.1759,
+   "exposure": 0.0307,
+   "gap_bars": 0
+  },
+  "p0_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 13678,
+   "bp_gross": 0.6484,
+   "t_gross": 3.8336,
+   "bp_net": 0.5895,
+   "t_year": 3.4853,
+   "t_cluster": 2.5906,
+   "sharpe_net": 0.9174,
+   "sharpe_gross": 1.0095,
+   "max_dd_net_bp": -158.7998,
+   "exposure": 0.0302,
+   "gap_bars": 0
+  },
+  "p1_all_all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 26453,
+   "bp_gross": 0.2944,
+   "t_gross": 1.4545,
+   "bp_net": 0.2357,
+   "t_year": 1.1647,
+   "t_cluster": 1.2184,
+   "sharpe_net": 0.2988,
+   "sharpe_gross": 0.3719,
+   "max_dd_net_bp": -813.6749,
+   "exposure": 0.0609,
+   "gap_bars": 0
+  },
+  "p1_all_pre": {
+   "n_years": 7,
+   "years_dropped": [],
+   "n_bars": 12775,
+   "bp_gross": 0.0215,
+   "t_gross": 0.063,
+   "bp_net": -0.0369,
+   "t_year": -0.1081,
+   "t_cluster": -0.1124,
+   "sharpe_net": -0.0405,
+   "sharpe_gross": 0.0239,
+   "max_dd_net_bp": -813.6749,
+   "exposure": 0.0614,
+   "gap_bars": 0
+  },
+  "p1_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 13678,
+   "bp_gross": 0.5332,
+   "t_gross": 2.4171,
+   "bp_net": 0.4743,
+   "t_year": 2.1492,
+   "t_cluster": 2.1963,
+   "sharpe_net": 0.7193,
+   "sharpe_gross": 0.8049,
+   "max_dd_net_bp": -201.3392,
+   "exposure": 0.0604,
+   "gap_bars": 0
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 16.8,
+ "rule_mode": {
+  "none": {
+   "t_all": 1.7202,
+   "t_pre": -0.1031,
+   "t_post": 3.4853,
+   "n_years_pre": 7,
+   "n_years_post": 8,
+   "nw_t_pre": -0.1066,
+   "nw_t_post": 2.5906,
+   "mean_bp": 0.2707,
+   "mean_bp_pre": -0.0294,
+   "mean_bp_post": 0.5509,
+   "sigma_pct": 0.1067,
+   "sharpe": 0.4026,
+   "max_dd": -0.0634,
+   "worst_day": -0.0151,
+   "stops": 0,
+   "gross_median": 0.0,
+   "n_days": 3779,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 0.7549804522234301,
+     "n": 261
+    },
+    {
+     "year": 2011,
+     "mean_bp": -0.4208505620727541,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 0.43967297173648945,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": -0.33665445284893003,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -1.4149536365860949,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": 0.24712563094970705,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": 0.5257847451390172,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 0.5326979682202895,
+     "n": 260
+    },
+    {
+     "year": 2018,
+     "mean_bp": 0.025121055088083745,
+     "n": 261
+    },
+    {
+     "year": 2019,
+     "mean_bp": 0.4495009492419002,
+     "n": 261
+    },
+    {
+     "year": 2020,
+     "mean_bp": 0.7715652967901284,
+     "n": 262
+    },
+    {
+     "year": 2021,
+     "mean_bp": -0.021775598784289845,
+     "n": 260
+    },
+    {
+     "year": 2022,
+     "mean_bp": 0.4881622541247119,
+     "n": 260
+    },
+    {
+     "year": 2023,
+     "mean_bp": 1.3033738307869638,
+     "n": 260
+    },
+    {
+     "year": 2024,
+     "mean_bp": 1.1675787040577934,
+     "n": 130
+    }
+   ],
+   "rules": {
+    "equal_weight": true,
+    "sym_cap": null,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": null,
+    "max_leverage": 1.0,
+    "daily_stop": null,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.0
+   }
+  },
+  "fintokei": {
+   "t_all": 1.6332,
+   "t_pre": -0.1688,
+   "t_post": 3.3215,
+   "n_years_pre": 7,
+   "n_years_post": 8,
+   "nw_t_pre": -0.1734,
+   "nw_t_post": 2.4395,
+   "mean_bp": 0.4738,
+   "mean_bp_pre": -0.0884,
+   "mean_bp_post": 0.999,
+   "sigma_pct": 0.2008,
+   "sharpe": 0.3746,
+   "max_dd": -0.1164,
+   "worst_day": -0.025,
+   "stops": 1,
+   "gross_median": 0.0,
+   "n_days": 3779,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 1.179141628546749,
+     "n": 261
+    },
+    {
+     "year": 2011,
+     "mean_bp": -0.7109769703816466,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 0.7193851985308,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": -0.6095199678671588,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -2.725210536802961,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": 0.5199610188045464,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": 1.0102619219736566,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 1.0545450380445835,
+     "n": 260
+    },
+    {
+     "year": 2018,
+     "mean_bp": 0.08813926488026551,
+     "n": 261
+    },
+    {
+     "year": 2019,
+     "mean_bp": 0.9099466768194514,
+     "n": 261
+    },
+    {
+     "year": 2020,
+     "mean_bp": 1.171992149371892,
+     "n": 262
+    },
+    {
+     "year": 2021,
+     "mean_bp": -0.16414491210705917,
+     "n": 260
+    },
+    {
+     "year": 2022,
+     "mean_bp": 0.8505213218360281,
+     "n": 260
+    },
+    {
+     "year": 2023,
+     "mean_bp": 2.4577641210225964,
+     "n": 260
+    },
+    {
+     "year": 2024,
+     "mean_bp": 2.252047191748816,
+     "n": 130
+    }
+   ],
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.005,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.2
+   }
+  },
+  "gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": true,
+   "max_dd_within_6pct": false,
+   "pass": false
+  },
+  "split_year": 2017,
+  "seal": "2024-07-01",
+  "params": [
+   {
+    "param": 0,
+    "p": {
+     "offsets": [
+      0
+     ]
+    },
+    "fintokei": {
+     "t_all": 1.6332,
+     "t_pre": -0.1688,
+     "t_post": 3.3215,
+     "mean_bp": 0.4738,
+     "max_dd": -0.1164,
+     "sharpe": 0.3746,
+     "stops": 1
+    },
+    "none": {
+     "t_all": 1.7202,
+     "t_pre": -0.1031,
+     "t_post": 3.4853,
+     "mean_bp": 0.2707,
+     "max_dd": -0.0634,
+     "sharpe": 0.4026
+    },
+    "gate": {
+     "t_pre_ge2": false,
+     "t_post_ge2": true,
+     "max_dd_within_6pct": false,
+     "pass": false
+    }
+   },
+   {
+    "param": 1,
+    "p": {
+     "offsets": [
+      -1,
+      0
+     ]
+    },
+    "fintokei": {
+     "t_all": 1.3552,
+     "t_pre": 0.1217,
+     "t_post": 2.1172,
+     "mean_bp": 0.5187,
+     "max_dd": -0.14,
+     "sharpe": 0.3437,
+     "stops": 1
+    },
+    "none": {
+     "t_all": 1.1647,
+     "t_pre": -0.1081,
+     "t_post": 2.1492,
+     "mean_bp": 0.2401,
+     "max_dd": -0.079,
+     "sharpe": 0.2995
+    },
+    "gate": {
+     "t_pre_ge2": false,
+     "t_post_ge2": true,
+     "max_dd_within_6pct": false,
+     "pass": false
+    }
+   }
+  ]
+ },
+ "machine_verdict": "未確定"
+}
