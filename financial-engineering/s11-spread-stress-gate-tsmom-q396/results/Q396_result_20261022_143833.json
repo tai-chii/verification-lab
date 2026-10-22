@@ -1,0 +1,1031 @@
+{
+ "qid": "Q396",
+ "smoke": false,
+ "generated": "20261022_143833",
+ "question": "48 銘柄 D1 の TSMOM60 に実測スプレッドの z（250 日）>2 の日は休む流動性ゲートを足すと、ゲートなし（S07 本体と同じ合図）より規程モードの最大下落が浅く前後半の t が高いか",
+ "spec": {
+  "qid": "Q396",
+  "question": "48 銘柄 D1 の TSMOM60 に実測スプレッドの z（250 日）>2 の日は休む流動性ゲートを足すと、ゲートなし（S07 本体と同じ合図）より規程モードの最大下落が浅く前後半の t が高いか",
+  "hypothesis": "Brunnermeier・Pedersen 2009: 資金流動性と市場流動性は危機で同時に枯れ、スプレッドの急拡大はその印。スプレッドは実運用で判断時点に見える定量データ（入力基準で明示的に可）で OHLCV に無い情報を持つ。スプレッド（往復・価格比）の当日値を直近 250 日の平均・標準偏差で z 化し、z>2 の日は建玉 0、ほかは TSMOM60。ゲートなし（param 1）との差が問い。合図は S07 本体と同じなので粗利は小さいが、下落（−95%）が流動性の枯れた日に集中しているなら max_dd と t が上がる",
+  "reject_if": "支持: 規程モード（RULES_FINTOKEI・封印前・境 2017）でゲートあり（main）が前後半とも年単位 t≥2 かつ max_dd≥−6%、かつ ゲートあり の max_dd がゲートなし（param 1）より浅く t_all も高く、等金額（Runner main）の全期間 z≥2（循環シフト帰無）。棄却: 等金額の全期間 z<1、または規程モードのゲートありの t_all がゲートなし以下（ゲートが効かない）。ほか → 未確定。銘柄別・ゲート日の割合は記述。S11 の族内試行は Q396（2 設定）・Q397（1 本）＝3",
+  "syms": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "BRENT",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "BUND",
+   "USTBOND",
+   "UKGILT",
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "L": 60,
+    "gate": 2.0
+   },
+   {
+    "L": 60,
+    "gate": null
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 250,
+  "per_year": 252,
+  "B": 500,
+  "split_year": 2017,
+  "start": "2010-01-01",
+  "cutoff_hour": 0,
+  "null_kind": "circ_shift",
+  "null_block": 20,
+  "null_min_shift": 120,
+  "cost_rel": {},
+  "discarded": "3（z の閾値を 1〜3 で掃引＝2 に固定／建玉を 1/(1+z) で連続に縮める＝規程モードは符号しか受けないので主設定にしない／5 日平均の z＝当日値の方が「今の枯れ」を見る）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし（Fable 設計 → Sonnet 実行）",
+  "source": "[[検証/_基盤/戦略台帳]] 新 S11（スプレッド＝入力基準で明示的に可のデータ源）／Brunnermeier・Pedersen 2009 'Market liquidity and funding liquidity' RFS／BIS WP 1229（スプレッドの歪度の上昇）／S07 Q367（48 銘柄 TSMOM60 本体: 規程モード max_dd −95%）",
+  "data": "48 銘柄 wide48 の D1_fromH1（2010-01〜・封印 time<2024-07-01）＋ _データ/raw/D1/spread_<sym>.csv（日次 bid/ask 終値から往復スプレッド／価格比）。スプレッドの無い銘柄は z=NaN でゲートが掛からない（extra に記録）。コスト: Runner の既定（COST_RT／スプレッド中央値／暗号 30 bp）",
+  "measure": "等金額: 48 銘柄の年単位平均 bp（コスト 0／後）・年単位 t・束ねた t・Sharpe・最大下落・露出（ゲートで下がる）。規程モード: t_all/t_pre/t_post・max_dd・worst_day・stops（ゲートあり・なしの両設定＝rule_mode.params）。extra: 銘柄ごとのゲート日の割合、スプレッドの無い銘柄",
+  "null_desc": "合図の循環シフト（min_shift=120・B=500）→ 等金額の年単位 bp（net）の帰無分布（全期間・前半・後半）→ z・perm_p・Holm（m=2）",
+  "prior_art": "WebSearch 2026-10-22「bid-ask spread widening liquidity stress filter trend following exposure futures FX drawdown reduction study」: BIS WP 1229（流動性の脆弱性・スプレッド歪度と収益の侵食の模擬）、FEDS Notes 2020（3 月の Treasury・FX のスプレッド拡大）。スプレッド z を順張りの建玉ゲートにした判定は未確認",
+  "batch": "/lab-plan ターミナル版 2026-10-22 夜・N=10 の 3 本目（S11・スプレッドゲート）",
+  "designer": "Fable",
+  "coder": "Fable",
+  "settings": {
+   "seal": "2024-07-01",
+   "z_window": 250,
+   "z_min_periods": 120,
+   "s11_family_trials": "Q396（2 設定）・Q397（1 本）＝3"
+  },
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "BRENT",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "BUND",
+   "USTBOND",
+   "UKGILT",
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "GER40": {
+    "months": 148,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2013-09-30 00:00:00",
+    "last": "2025-12-31 00:00:00"
+   },
+   "JPN225": {
+    "months": 201,
+    "missing_months": 5,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2013-10"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "UK100": {
+    "months": 201,
+    "missing_months": 4,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 1,
+    "max_gap_h": 192.0,
+    "gaps": [
+     {
+      "from": "2013-05-15 00:00:00",
+      "to": "2013-05-23 00:00:00",
+      "hours": 192.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "FRA40": {
+    "months": 201,
+    "missing_months": 1,
+    "missing": [
+     "2013-06"
+    ],
+    "worst_ratio": 0.7441860465116279,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "EUSTX50": {
+    "months": 201,
+    "missing_months": 9,
+    "missing": [
+     "2012-01",
+     "2012-02",
+     "2012-03",
+     "2012-04",
+     "2012-05",
+     "2012-06",
+     "2012-07",
+     "2012-08",
+     "2012-12"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 5784.0,
+    "gaps": [
+     {
+      "from": "2011-12-30 00:00:00",
+      "to": "2012-08-27 00:00:00",
+      "hours": 5784.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "HKG33": {
+    "months": 201,
+    "missing_months": 10,
+    "missing": [
+     "2013-01",
+     "2013-02",
+     "2013-03",
+     "2013-04",
+     "2013-05",
+     "2017-04",
+     "2019-02",
+     "2022-02",
+     "2023-04",
+     "2026-02"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 3696.0,
+    "gaps": [
+     {
+      "from": "2012-12-31 00:00:00",
+      "to": "2013-06-03 00:00:00",
+      "hours": 3696.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "SUI20": {
+    "months": 201,
+    "missing_months": 6,
+    "missing": [
+     "2012-12",
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2018-12"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "NLD25": {
+    "months": 201,
+    "missing_months": 46,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2013-10",
+     "2014-01",
+     "2014-02",
+     "2014-03",
+     "2014-04",
+     "2014-05",
+     "2014-06",
+     "2014-07",
+     "2014-08",
+     "2014-09",
+     "2015-02",
+     "2015-03",
+     "2015-04",
+     "2015-05",
+     "2015-06",
+     "2015-07",
+     "2015-08",
+     "2015-09",
+     "2015-10",
+     "2015-11",
+     "2015-12",
+     "2016-01",
+     "2016-02",
+     "2016-05",
+     "2016-06",
+     "2016-07",
+     "2016-08",
+     "2016-09",
+     "2016-10",
+     "2016-11",
+     "2016-12",
+     "2017-01",
+     "2017-02",
+     "2017-03",
+     "2017-04",
+     "2017-05",
+     "2017-06",
+     "2017-07",
+     "2017-08",
+     "2017-09",
+     "2017-10",
+     "2017-11"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 5,
+    "max_gap_h": 13440.0,
+    "gaps": [
+     {
+      "from": "2016-05-20 00:00:00",
+      "to": "2017-12-01 00:00:00",
+      "hours": 13440.0
+     },
+     {
+      "from": "2015-03-18 00:00:00",
+      "to": "2016-02-24 00:00:00",
+      "hours": 8232.0
+     },
+     {
+      "from": "2013-12-31 00:00:00",
+      "to": "2014-09-22 00:00:00",
+      "hours": 6360.0
+     },
+     {
+      "from": "2015-02-12 00:00:00",
+      "to": "2015-03-18 00:00:00",
+      "hours": 816.0
+     },
+     {
+      "from": "2013-09-27 00:00:00",
+      "to": "2013-10-22 00:00:00",
+      "hours": 600.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "BRENT": {
+    "months": 190,
+    "missing_months": 5,
+    "missing": [
+     "2012-09",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-05"
+    ],
+    "worst_ratio": 0.5581395348837209,
+    "n_gaps": 4,
+    "max_gap_h": 360.0,
+    "gaps": [
+     {
+      "from": "2013-01-17 00:00:00",
+      "to": "2013-02-01 00:00:00",
+      "hours": 360.0
+     },
+     {
+      "from": "2012-12-14 00:00:00",
+      "to": "2012-12-28 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-05-01 00:00:00",
+      "to": "2013-05-15 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-02-13 00:00:00",
+      "to": "2013-02-26 00:00:00",
+      "hours": 312.0
+     }
+    ],
+    "first": "2010-12-02 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "BUND": {
+    "months": 125,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2016-05-02 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "USTBOND": {
+    "months": 106,
+    "missing_months": 12,
+    "missing": [
+     "2018-01",
+     "2018-02",
+     "2018-03",
+     "2018-04",
+     "2018-05",
+     "2018-06",
+     "2018-07",
+     "2018-08",
+     "2018-09",
+     "2018-10",
+     "2018-11",
+     "2018-12"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 8496.0,
+    "gaps": [
+     {
+      "from": "2017-12-29 00:00:00",
+      "to": "2018-12-18 00:00:00",
+      "hours": 8496.0
+     }
+    ],
+    "first": "2017-12-18 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 14
+ },
+ "main": {
+  "all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 146522,
+   "bp_gross": 0.3816,
+   "t_gross": 0.6327,
+   "bp_net": -0.0745,
+   "t_year": -0.1238,
+   "t_cluster": -0.1041,
+   "sharpe_net": -0.0258,
+   "sharpe_gross": 0.089,
+   "max_dd_net_bp": -8899.0444,
+   "exposure": 0.9265,
+   "gap_bars": 16,
+   "z": -0.0985,
+   "pct": 0.448,
+   "p_perm": 0.5529,
+   "null_degenerate": false,
+   "null_q025": -1.1196,
+   "null_q975": 1.0891
+  },
+  "pre": {
+   "n_years": 7,
+   "years_dropped": [],
+   "n_bars": 57908,
+   "bp_gross": 0.0086,
+   "t_gross": 0.0085,
+   "bp_net": -0.3655,
+   "t_year": -0.3583,
+   "t_cluster": -0.4231,
+   "sharpe_net": -0.1702,
+   "sharpe_gross": 0.0135,
+   "max_dd_net_bp": -1230.0772,
+   "exposure": 0.9084,
+   "gap_bars": 14,
+   "z": -0.2017,
+   "pct": 0.392,
+   "p_perm": 0.6088,
+   "null_degenerate": false,
+   "null_q025": -2.1992,
+   "null_q975": 1.664,
+   "p_holm": 0.9741
+  },
+  "post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 88614,
+   "bp_gross": 0.7079,
+   "t_gross": 0.9521,
+   "bp_net": 0.1802,
+   "t_year": 0.2414,
+   "t_cluster": -0.0231,
+   "sharpe_net": -0.0073,
+   "sharpe_gross": 0.1135,
+   "max_dd_net_bp": -8899.0444,
+   "exposure": 0.9402,
+   "gap_bars": 2,
+   "z": 0.0989,
+   "pct": 0.514,
+   "p_perm": 0.487,
+   "null_degenerate": false,
+   "null_q025": -1.192,
+   "null_q975": 1.3309,
+   "p_holm": 0.9741
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 146522,
+   "bp_gross": 0.3816,
+   "t_gross": 0.6327,
+   "bp_net": -0.0745,
+   "t_year": -0.1238,
+   "t_cluster": -0.1041,
+   "sharpe_net": -0.0258,
+   "sharpe_gross": 0.089,
+   "max_dd_net_bp": -8899.0444,
+   "exposure": 0.9265,
+   "gap_bars": 16
+  },
+  "p0_all_pre": {
+   "n_years": 7,
+   "years_dropped": [],
+   "n_bars": 57908,
+   "bp_gross": 0.0086,
+   "t_gross": 0.0085,
+   "bp_net": -0.3655,
+   "t_year": -0.3583,
+   "t_cluster": -0.4231,
+   "sharpe_net": -0.1702,
+   "sharpe_gross": 0.0135,
+   "max_dd_net_bp": -1230.0772,
+   "exposure": 0.9084,
+   "gap_bars": 14
+  },
+  "p0_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 88614,
+   "bp_gross": 0.7079,
+   "t_gross": 0.9521,
+   "bp_net": 0.1802,
+   "t_year": 0.2414,
+   "t_cluster": -0.0231,
+   "sharpe_net": -0.0073,
+   "sharpe_gross": 0.1135,
+   "max_dd_net_bp": -8899.0444,
+   "exposure": 0.9402,
+   "gap_bars": 2
+  },
+  "p1_all_all": {
+   "n_years": 15,
+   "years_dropped": [],
+   "n_bars": 146522,
+   "bp_gross": -0.0097,
+   "t_gross": -0.0154,
+   "bp_net": -0.3042,
+   "t_year": -0.4743,
+   "t_cluster": -0.0596,
+   "sharpe_net": -0.0147,
+   "sharpe_gross": 0.0455,
+   "max_dd_net_bp": -8706.4222,
+   "exposure": 0.9814,
+   "gap_bars": 16
+  },
+  "p1_all_pre": {
+   "n_years": 7,
+   "years_dropped": [],
+   "n_bars": 57908,
+   "bp_gross": 0.0592,
+   "t_gross": 0.0522,
+   "bp_net": -0.1722,
+   "t_year": -0.1498,
+   "t_cluster": -0.3594,
+   "sharpe_net": -0.1428,
+   "sharpe_gross": -0.0368,
+   "max_dd_net_bp": -1220.6126,
+   "exposure": 0.9624,
+   "gap_bars": 14
+  },
+  "p1_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 88614,
+   "bp_gross": -0.07,
+   "t_gross": -0.0966,
+   "bp_net": -0.4198,
+   "t_year": -0.5669,
+   "t_cluster": 0.0097,
+   "sharpe_net": 0.0031,
+   "sharpe_gross": 0.0649,
+   "max_dd_net_bp": -8706.4222,
+   "exposure": 0.9958,
+   "gap_bars": 2
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 61.1,
+ "extra": {
+  "gated_frac": {
+   "EURUSD": 0.0643,
+   "GBPUSD": 0.0635,
+   "AUDUSD": 0.064,
+   "USDJPY": 0.0595,
+   "USDCHF": 0.0688,
+   "USDCAD": 0.0654,
+   "EURJPY": 0.0487,
+   "GBPJPY": 0.0352,
+   "NZDUSD": 0.0675,
+   "EURGBP": 0.0561,
+   "AUDJPY": 0.0651,
+   "CADJPY": 0.0611,
+   "CHFJPY": 0.0453,
+   "NZDJPY": 0.0521,
+   "EURAUD": 0.0611,
+   "EURCAD": 0.0627,
+   "EURCHF": 0.0648,
+   "GBPAUD": 0.0675,
+   "GBPCAD": 0.0558,
+   "GBPCHF": 0.0437,
+   "AUDNZD": 0.0389,
+   "AUDCAD": 0.0609,
+   "US500": 0.0344,
+   "USTECH": 0.0184,
+   "US30": 0.0183,
+   "GER40": 0.0278,
+   "JPN225": 0.0389,
+   "UK100": 0.0217,
+   "FRA40": 0.0618,
+   "ESP35": 0.0685,
+   "EUSTX50": 0.0435,
+   "AUS200": 0.0692,
+   "HKG33": 0.0533,
+   "SUI20": 0.0427,
+   "NLD25": 0.0636,
+   "XAUUSD": 0.0524,
+   "XAGUSD": 0.0481,
+   "WTI": 0.0796,
+   "BRENT": 0.0527,
+   "COPPER": 0.0417,
+   "NATGAS": 0.0801,
+   "XPDUSD": 0.0051,
+   "XPTUSD": 0.0087,
+   "BUND": 0.0442,
+   "USTBOND": 0.0859,
+   "UKGILT": 0.089,
+   "BTCUSD": 0.0928,
+   "ETHUSD": 0.0901
+  },
+  "no_spread": []
+ },
+ "rule_mode": {
+  "none": {
+   "t_all": 0.7457,
+   "t_pre": -2.1409,
+   "t_post": 1.0113,
+   "n_years_pre": 7,
+   "n_years_post": 8,
+   "nw_t_pre": -0.8415,
+   "nw_t_post": 0.476,
+   "mean_bp": 0.5386,
+   "mean_bp_pre": -0.6672,
+   "mean_bp_post": 1.3992,
+   "sigma_pct": 1.1481,
+   "sharpe": 0.0745,
+   "max_dd": -0.4881,
+   "worst_day": -0.1444,
+   "stops": 0,
+   "gross_median": 1.0,
+   "n_days": 4382,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 0.2931588660151852,
+     "n": 261
+    },
+    {
+     "year": 2011,
+     "mean_bp": -1.602260673454887,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 0.346468720967179,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": -0.19378421368579724,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -1.5103262467363492,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": -1.2272489330031637,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": -0.7801422177970798,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": -0.31710756635084697,
+     "n": 291
+    },
+    {
+     "year": 2018,
+     "mean_bp": 0.7154312378749509,
+     "n": 312
+    },
+    {
+     "year": 2019,
+     "mean_bp": 7.624631026755201,
+     "n": 313
+    },
+    {
+     "year": 2020,
+     "mean_bp": -3.2575161811089637,
+     "n": 364
+    },
+    {
+     "year": 2021,
+     "mean_bp": -3.70880054159895,
+     "n": 365
+    },
+    {
+     "year": 2022,
+     "mean_bp": 2.0637988379374437,
+     "n": 365
+    },
+    {
+     "year": 2023,
+     "mean_bp": -0.47395853734905663,
+     "n": 365
+    },
+    {
+     "year": 2024,
+     "mean_bp": 16.590363516737785,
+     "n": 182
+    }
+   ],
+   "rules": {
+    "equal_weight": true,
+    "sym_cap": null,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": null,
+    "max_leverage": 1.0,
+    "daily_stop": null,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.0
+   }
+  },
+  "fintokei": {
+   "t_all": -2.2468,
+   "t_pre": 0.1495,
+   "t_post": -4.1076,
+   "n_years_pre": 7,
+   "n_years_post": 8,
+   "nw_t_pre": 0.0618,
+   "nw_t_post": -2.2155,
+   "mean_bp": -0.8111,
+   "mean_bp_pre": 0.0644,
+   "mean_bp_post": -1.436,
+   "sigma_pct": 0.3829,
+   "sharpe": -0.3363,
+   "max_dd": -0.3776,
+   "worst_day": -0.0241,
+   "stops": 0,
+   "gross_median": 1.97,
+   "n_days": 4382,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 0.23770332727170343,
+     "n": 261
+    },
+    {
+     "year": 2011,
+     "mean_bp": -0.5824468844871871,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 0.7646979640651169,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 1.8723240294274195,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -1.7441098742698258,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": 0.2284324326129615,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": -0.3297083358001876,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 0.42324254795785865,
+     "n": 291
+    },
+    {
+     "year": 2018,
+     "mean_bp": -0.4908501234809163,
+     "n": 312
+    },
+    {
+     "year": 2019,
+     "mean_bp": -2.481469865362165,
+     "n": 313
+    },
+    {
+     "year": 2020,
+     "mean_bp": -1.6992509523406687,
+     "n": 364
+    },
+    {
+     "year": 2021,
+     "mean_bp": -1.7939643071995752,
+     "n": 365
+    },
+    {
+     "year": 2022,
+     "mean_bp": -1.4070715783463035,
+     "n": 365
+    },
+    {
+     "year": 2023,
+     "mean_bp": -1.635477980117588,
+     "n": 365
+    },
+    {
+     "year": 2024,
+     "mean_bp": -2.6447784032326207,
+     "n": 182
+    }
+   ],
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.005,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.2
+   }
+  },
+  "gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": false,
+   "max_dd_within_6pct": false,
+   "pass": false
+  },
+  "split_year": 2017,
+  "seal": "2024-07-01",
+  "params": [
+   {
+    "param": 0,
+    "p": {
+     "L": 60,
+     "gate": 2.0
+    },
+    "fintokei": {
+     "t_all": -2.2468,
+     "t_pre": 0.1495,
+     "t_post": -4.1076,
+     "mean_bp": -0.8111,
+     "max_dd": -0.3776,
+     "sharpe": -0.3363,
+     "stops": 0
+    },
+    "none": {
+     "t_all": 0.7457,
+     "t_pre": -2.1409,
+     "t_post": 1.0113,
+     "mean_bp": 0.5386,
+     "max_dd": -0.4881,
+     "sharpe": 0.0745
+    },
+    "gate": {
+     "t_pre_ge2": false,
+     "t_post_ge2": false,
+     "max_dd_within_6pct": false,
+     "pass": false
+    }
+   },
+   {
+    "param": 1,
+    "p": {
+     "L": 60,
+     "gate": null
+    },
+    "fintokei": {
+     "t_all": -1.5363,
+     "t_pre": 1.0622,
+     "t_post": -4.3426,
+     "mean_bp": -0.6329,
+     "max_dd": -0.3455,
+     "sharpe": -0.2611,
+     "stops": 0
+    },
+    "none": {
+     "t_all": 0.1876,
+     "t_pre": -0.9321,
+     "t_post": 0.3161,
+     "mean_bp": -0.3639,
+     "max_dd": -0.6018,
+     "sharpe": -0.0476
+    },
+    "gate": {
+     "t_pre_ge2": false,
+     "t_post_ge2": false,
+     "max_dd_within_6pct": false,
+     "pass": false
+    }
+   }
+  ]
+ },
+ "machine_verdict": "棄却: 等金額の全期間 z<1 または ゲートありの t_all がゲートなし以下（data_health に failed/gaps あり: 確定にする前に点検）"
+}
