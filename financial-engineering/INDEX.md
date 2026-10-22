@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 218 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 220 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -14,6 +14,7 @@
 | [atr-stop-loss-tsmom](./atr-stop-loss-tsmom) | Q204 ATR 倍の損切りは 15 銘柄の日足順張りの純損益と最大下落を改善するか（Kaminski・Lo 2014 の型） | 未確定（純損益の改善なし）／最大下落は確実に改善（記述） |
 | [bad-period-weighted-selection](./bad-period-weighted-selection) | Q141 悪い時期を重くする目的関数で選んだ順張りは、標本外の最大下落が小さいか（TradeGrad の CPRO の型） | 棄却（確定） |
 | [bars-per-year-audit-wide48-q418](./bars-per-year-audit-wide48-q418) | Q418 48 銘柄 D1_fromH1 の銘柄×年の足の本数の一覧と、本数 126 未満の年を年単位 t から除くと TSMOM60 等金額の前後半 t がどれだけ動くか（by_year_stats の min_rows 既定の見直し） | 支持 |
+| [bb-squeeze-vol-increment-wide48-q451](./bb-squeeze-vol-increment-wide48-q451) | Q451 BB幅収縮度のボラ予測への増分（wide48 D1） | 実質的に増分なし |
 | [bbc-cv-optimism](./bbc-cv-optimism) | Q172 BBC-CV のブートストラップ補正は時系列の順張り選択の楽観を取り除くか（Tsamardinos 2018） | —（未実行） |
 | [bbc-cv-tsmom-optimism](./bbc-cv-tsmom-optimism) | Q172 BBC-CV のブートストラップ補正は時系列の順張り選択の楽観を取り除くか（Tsamardinos 2018） | 確定 |
 | [bid-ask-signal-fragility](./bid-ask-signal-fragility) | Q185 合図は bid か ask かで何割変わるか（XAUUSD 実測＋15銘柄の半スプレッドの擬似ずらし） | 未確定（機械判定）／解釈: 規則の型による |
@@ -214,6 +215,7 @@
 | [weekly-vs-daily-tsmom](./weekly-vs-daily-tsmom) | Q186 週足の順張りは日足より強いか（Neely 2003-3・15銘柄・2008〜2026） | 棄却（前後半のどちらかで ／t／<2） |
 | [wfo-window-gate-q333](./wfo-window-gate-q333) | Q333 WFO の「プラスの窓が60%以上」の関門は、腕のない順張りを何%通し、本物の優位を何%落とすか（Q331-C1） | 確定（使えない）。主因は検出力 |
 | [wide48-cross-sectional-mom60](./wide48-cross-sectional-mom60) | Q371 48 銘柄 wide48 の D1 横断モメンタム L=60（上位1/3買い・下位1/3売り）は封印前の前後半とも年単位 t≥2 か | 未確定 |
+| [wide48-regime-hitrate-baserate](./wide48-regime-hitrate-baserate) | Q449 wide48 D1 の高ボラ局面の方向的中率の上乗せは基準率と MRS 平滑化ラベルの先読みで説明されるか | ノイズ |
 | [wide48-tsmom-l120-plain](./wide48-tsmom-l120-plain) | Q369 48 銘柄 wide48 の D1 プレーン TSMOM L=120（約6ヶ月・ボラ正規化なし）は封印前の前後半とも年単位 t≥2 か | 未確定 |
 | [wide48-tsmom-l250-plain](./wide48-tsmom-l250-plain) | Q370 48 銘柄 wide48 の D1 プレーン TSMOM L=250（約12ヶ月・ボラ正規化なし）は封印前の前後半とも年単位 t≥2 か | 棄却 |
 | [wide48-tsmom-l60-plain](./wide48-tsmom-l60-plain) | Q368 48 銘柄 wide48 の D1 プレーン TSMOM L=60（ボラ正規化なし・等重み）は封印前の前後半とも年単位 t≥2 か | 棄却 |
