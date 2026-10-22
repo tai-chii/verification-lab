@@ -1,0 +1,239 @@
+{
+ "question": "関門（σ0.5%/日・14 年の最大下落 −6% 以内＋前後半 t≥2）は年率シャープ S がいくら以上の戦略を何割通すか（S07 規程モード損益の 20 日ブロック・ブートストラップで S を 0〜3 に合わせて測る）。",
+ "syms": [
+  "EURUSD",
+  "GBPUSD",
+  "AUDUSD",
+  "USDJPY",
+  "USDCHF",
+  "USDCAD",
+  "EURJPY",
+  "GBPJPY",
+  "NZDUSD",
+  "EURGBP",
+  "AUDJPY",
+  "CADJPY",
+  "CHFJPY",
+  "NZDJPY",
+  "EURAUD",
+  "EURCAD",
+  "EURCHF",
+  "GBPAUD",
+  "GBPCAD",
+  "GBPCHF",
+  "AUDNZD",
+  "AUDCAD",
+  "US30",
+  "ESP35",
+  "AUS200",
+  "XAUUSD",
+  "XAGUSD",
+  "COPPER",
+  "NATGAS",
+  "XPDUSD",
+  "XPTUSD",
+  "UKGILT",
+  "BTCUSD",
+  "ETHUSD"
+ ],
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US30",
+   "ESP35",
+   "AUS200",
+   "XAUUSD",
+   "XAGUSD",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "UKGILT",
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {},
+  "n_dup": {},
+  "n_gap_syms": 0
+ },
+ "seal": "2024-07-01",
+ "observed_s07_fintokei": {
+  "sharpe": -0.2523,
+  "mean_bp": -0.6211,
+  "sigma_pct": 0.3908,
+  "max_dd": -0.3473,
+  "t_all": -1.3052,
+  "t_pre": 1.2336,
+  "t_post": -5.275,
+  "n_days": 4318,
+  "first": "2010-04-01",
+  "last": "2024-06-30",
+  "stops": 0
+ },
+ "table": {
+  "block": {
+   "0.0": {
+    "p_dd_ok": 0.0,
+    "p_t_ok": 0.001,
+    "p_pass": 0.0,
+    "dd_median": -0.243,
+    "dd_q10": -0.3885,
+    "t_pre_median": -0.007
+   },
+   "0.5": {
+    "p_dd_ok": 0.0,
+    "p_t_ok": 0.137,
+    "p_pass": 0.0,
+    "dd_median": -0.1403,
+    "dd_q10": -0.2105,
+    "t_pre_median": 1.4702
+   },
+   "1.0": {
+    "p_dd_ok": 0.0045,
+    "p_t_ok": 0.7105,
+    "p_pass": 0.0045,
+    "dd_median": -0.1021,
+    "dd_q10": -0.1403,
+    "t_pre_median": 2.9477
+   },
+   "1.5": {
+    "p_dd_ok": 0.07,
+    "p_t_ok": 0.9775,
+    "p_pass": 0.07,
+    "dd_median": -0.0803,
+    "dd_q10": -0.1081,
+    "t_pre_median": 4.4629
+   },
+   "2.0": {
+    "p_dd_ok": 0.271,
+    "p_t_ok": 1.0,
+    "p_pass": 0.271,
+    "dd_median": -0.0674,
+    "dd_q10": -0.0902,
+    "t_pre_median": 5.9906
+   },
+   "2.5": {
+    "p_dd_ok": 0.5385,
+    "p_t_ok": 1.0,
+    "p_pass": 0.5385,
+    "dd_median": -0.059,
+    "dd_q10": -0.0774,
+    "t_pre_median": 7.4912
+   },
+   "3.0": {
+    "p_dd_ok": 0.7455,
+    "p_t_ok": 1.0,
+    "p_pass": 0.7455,
+    "dd_median": -0.0527,
+    "dd_q10": -0.0683,
+    "t_pre_median": 8.9914
+   }
+  },
+  "iid": {
+   "0.0": {
+    "p_dd_ok": 0.0,
+    "p_t_ok": 0.0025,
+    "p_pass": 0.0,
+    "dd_median": -0.2638,
+    "dd_q10": -0.4078,
+    "t_pre_median": 0.0011
+   },
+   "0.5": {
+    "p_dd_ok": 0.0,
+    "p_t_ok": 0.1055,
+    "p_pass": 0.0,
+    "dd_median": -0.1588,
+    "dd_q10": -0.2387,
+    "t_pre_median": 1.3602
+   },
+   "1.0": {
+    "p_dd_ok": 0.0015,
+    "p_t_ok": 0.6265,
+    "p_pass": 0.0015,
+    "dd_median": -0.1151,
+    "dd_q10": -0.1651,
+    "t_pre_median": 2.757
+   },
+   "1.5": {
+    "p_dd_ok": 0.0175,
+    "p_t_ok": 0.9435,
+    "p_pass": 0.0175,
+    "dd_median": -0.0917,
+    "dd_q10": -0.1269,
+    "t_pre_median": 4.1548
+   },
+   "2.0": {
+    "p_dd_ok": 0.113,
+    "p_t_ok": 0.998,
+    "p_pass": 0.113,
+    "dd_median": -0.0766,
+    "dd_q10": -0.1036,
+    "t_pre_median": 5.5649
+   },
+   "2.5": {
+    "p_dd_ok": 0.324,
+    "p_t_ok": 1.0,
+    "p_pass": 0.324,
+    "dd_median": -0.0661,
+    "dd_q10": -0.0884,
+    "t_pre_median": 6.9916
+   },
+   "3.0": {
+    "p_dd_ok": 0.571,
+    "p_t_ok": 1.0,
+    "p_pass": 0.571,
+    "dd_median": -0.0578,
+    "dd_q10": -0.077,
+    "t_pre_median": 8.4125
+   }
+  }
+ },
+ "required_sharpe": {
+  "block": {
+   "S_for_p50": 2.428,
+   "S_for_p90": null
+  },
+  "iid": {
+   "S_for_p50": 2.8563,
+   "S_for_p90": null
+  }
+ },
+ "B_paths": 2000,
+ "block": 20,
+ "rules": {
+  "sym_cap": 0.015,
+  "sym_sigma_mult": 3.0,
+  "port_sigma_target": 0.005,
+  "max_leverage": 2.0,
+  "daily_stop": -0.025,
+  "vol_window": 60,
+  "port_vol_window": 60,
+  "rebalance_band": 0.2
+ },
+ "machine_verdict": "棄却（関門が律速）: ブロック版で P(通過 | S=1.5) < 0.5",
+ "note": "S は年率シャープ（m_S=S·sd/√252 を偏差に足す）。P は B 経路の割合。IID 版はボラのクラスタを消した比較"
+}
