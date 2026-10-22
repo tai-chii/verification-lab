@@ -140,7 +140,7 @@
 | [s09-fx22-tsmom60-with-swap-q390](./s09-fx22-tsmom60-with-swap-q390) | Q390 FX22 D1 の TSMOM60 にスワップ（政策金利差 − 年 0.75% マークアップ）を損益に含めると、S07 のスワップなし（棄却）より規程モードの封印前の前後半 t・最大下落が改善し関門を通るか | 棄却 |
 | [s10-equity-trend-safe-haven-fx-q395](./s10-equity-trend-safe-haven-fx-q395) | Q395 US500 の TSMOM60 符号が負の日は円・フランを買い（USDJPY/USDCHF/AUDJPY/NZDJPY/CADJPY 売り）正の日は逆、のリスクオフ・レジーム戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 未確定 |
 | [s10-xasset-bond-equity-tsmom-q394](./s10-xasset-bond-equity-tsmom-q394) | Q394 株価指数 13＋債券 3 の D1 で、債券の 250 日リターン符号で株を持ち・株の 250 日リターンの逆符号で債券を持つクロスアセット TSMOM は規程モードで封印前の前後半（境 2021）とも年単位 t≥2 かつ最大下落 −6% 以内か | 棄却 |
-| [s11-spread-predicts-relative-vol-q397](./s11-spread-predicts-relative-vol-q397) | Q397 48 銘柄 D1 で実測スプレッドの 5 日平均 z は翌 5 日の実現ボラ／σ60 の比を予測するか（σ60 に無い情報・年単位 IC の t） | — |
+| [s11-spread-predicts-relative-vol-q397](./s11-spread-predicts-relative-vol-q397) | Q397 48 銘柄 D1 で実測スプレッドの 5 日平均 z は翌 5 日の実現ボラ／σ60 の比を予測するか（σ60 に無い情報・年単位 IC の t） | 未確定 |
 | [s11-spread-stress-gate-tsmom-q396](./s11-spread-stress-gate-tsmom-q396) | Q396 48 銘柄 D1 の TSMOM60 に実測スプレッドの z（250 日）>2 の日は休む流動性ゲートを足すと、ゲートなし（S07 本体と同じ合図）より規程モードの最大下落が浅く前後半の t が高いか | 棄却 |
 | [s12-fx22-rate-momentum-sign-q398](./s12-fx22-rate-momentum-sign-q398) | Q398 FX22 D1 で政策金利差（base − quote）の 90 暦日変化の符号で持つ（金利モメンタム・スワップ込み）戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 棄却 |
 | [s12-fx22-rate-momentum-xsec-q399](./s12-fx22-rate-momentum-xsec-q399) | Q399 FX22 D1 を政策金利差の 90 暦日変化で順位付けし上位 1/3 買い・下位 1/3 売り（横断金利モメンタム・スワップ込み）は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 棄却 |
@@ -148,7 +148,7 @@
 | [s13-idx13-fomc-cycle-even-weeks-q402](./s13-idx13-fomc-cycle-even-weeks-q402) | Q402 株価指数 13 の FOMC サイクル偶数週（定例発表日を 0 として −1〜+3・+9〜+13・+19〜+23・+29〜+33 営業日）だけ買い持ちする戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 棄却 |
 | [s13-idx13-pre-fomc-drift-q401](./s13-idx13-pre-fomc-drift-q401) | Q401 株価指数 13 の FOMC 前ドリフト（定例発表日の前日の足と当日の足の 2 本を買い持ち・年 8 回）は 2015 年以後も残り、規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 未確定 |
 | [s13-idx13-turn-of-month-q400](./s13-idx13-turn-of-month-q400) | Q400 株価指数 13 の D1 月替わり効果（各銘柄の足で数えた月の最終営業日と翌月の最初の 3 営業日の 4 本だけ買い持ち）は 2010 年以後も残り、規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 棄却 |
-| [s13-usd7-fomc-day-dollar-sell-q403](./s13-usd7-fomc-day-dollar-sell-q403) | Q403 対ドル 7 ペア（EURUSD・GBPUSD・AUDUSD・NZDUSD・USDJPY・USDCHF・USDCAD）で FOMC 定例発表日にドルを売る（当日の足 1 本・年 8 回）戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 未確定 |
+| [s13-usd7-fomc-day-dollar-sell-q403](./s13-usd7-fomc-day-dollar-sell-q403) | Q403 対ドル 7 ペア（EURUSD・GBPUSD・AUDUSD・NZDUSD・USDJPY・USDCHF・USDCAD）で FOMC 定例発表日にドルを売る（当日の足 1 本・年 8 回）戦略は規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か | 2010〜2016 の標本外では Mueller ほか 2017 の発表日ドル安は出ず、2017 以後（とくに 202… |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |
