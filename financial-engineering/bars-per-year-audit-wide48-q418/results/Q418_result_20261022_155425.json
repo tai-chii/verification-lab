@@ -1,0 +1,721 @@
+{
+ "qid": "Q418",
+ "smoke": false,
+ "generated": "20261022_155425",
+ "question": "48 銘柄 D1_fromH1 の銘柄×年の足の本数の一覧と、本数 126 未満の年を年単位 t から除くと TSMOM60 等金額の前後半 t がどれだけ動くか（by_year_stats の min_rows 既定の見直し）。",
+ "syms": [
+  "EURUSD",
+  "GBPUSD",
+  "AUDUSD",
+  "USDJPY",
+  "USDCHF",
+  "USDCAD",
+  "EURJPY",
+  "GBPJPY",
+  "NZDUSD",
+  "EURGBP",
+  "AUDJPY",
+  "CADJPY",
+  "CHFJPY",
+  "NZDJPY",
+  "EURAUD",
+  "EURCAD",
+  "EURCHF",
+  "GBPAUD",
+  "GBPCAD",
+  "GBPCHF",
+  "AUDNZD",
+  "AUDCAD",
+  "US500",
+  "USTECH",
+  "US30",
+  "GER40",
+  "JPN225",
+  "UK100",
+  "FRA40",
+  "ESP35",
+  "EUSTX50",
+  "AUS200",
+  "HKG33",
+  "SUI20",
+  "NLD25",
+  "XAUUSD",
+  "XAGUSD",
+  "WTI",
+  "BRENT",
+  "COPPER",
+  "NATGAS",
+  "XPDUSD",
+  "XPTUSD",
+  "BUND",
+  "USTBOND",
+  "UKGILT",
+  "BTCUSD",
+  "ETHUSD"
+ ],
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "NZDUSD",
+   "EURGBP",
+   "AUDJPY",
+   "CADJPY",
+   "CHFJPY",
+   "NZDJPY",
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "AUDNZD",
+   "AUDCAD",
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "EUSTX50",
+   "AUS200",
+   "HKG33",
+   "SUI20",
+   "NLD25",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "BRENT",
+   "COPPER",
+   "NATGAS",
+   "XPDUSD",
+   "XPTUSD",
+   "BUND",
+   "USTBOND",
+   "UKGILT",
+   "BTCUSD",
+   "ETHUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "GER40": {
+    "months": 148,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2013-09-30 00:00:00",
+    "last": "2025-12-31 00:00:00"
+   },
+   "JPN225": {
+    "months": 201,
+    "missing_months": 5,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2013-10"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "UK100": {
+    "months": 201,
+    "missing_months": 4,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 1,
+    "max_gap_h": 192.0,
+    "gaps": [
+     {
+      "from": "2013-05-15 00:00:00",
+      "to": "2013-05-23 00:00:00",
+      "hours": 192.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "FRA40": {
+    "months": 201,
+    "missing_months": 1,
+    "missing": [
+     "2013-06"
+    ],
+    "worst_ratio": 0.7441860465116279,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "EUSTX50": {
+    "months": 201,
+    "missing_months": 9,
+    "missing": [
+     "2012-01",
+     "2012-02",
+     "2012-03",
+     "2012-04",
+     "2012-05",
+     "2012-06",
+     "2012-07",
+     "2012-08",
+     "2012-12"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 5784.0,
+    "gaps": [
+     {
+      "from": "2011-12-30 00:00:00",
+      "to": "2012-08-27 00:00:00",
+      "hours": 5784.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "HKG33": {
+    "months": 201,
+    "missing_months": 10,
+    "missing": [
+     "2013-01",
+     "2013-02",
+     "2013-03",
+     "2013-04",
+     "2013-05",
+     "2017-04",
+     "2019-02",
+     "2022-02",
+     "2023-04",
+     "2026-02"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 3696.0,
+    "gaps": [
+     {
+      "from": "2012-12-31 00:00:00",
+      "to": "2013-06-03 00:00:00",
+      "hours": 3696.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "SUI20": {
+    "months": 201,
+    "missing_months": 6,
+    "missing": [
+     "2012-12",
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2018-12"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "NLD25": {
+    "months": 201,
+    "missing_months": 46,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2013-10",
+     "2014-01",
+     "2014-02",
+     "2014-03",
+     "2014-04",
+     "2014-05",
+     "2014-06",
+     "2014-07",
+     "2014-08",
+     "2014-09",
+     "2015-02",
+     "2015-03",
+     "2015-04",
+     "2015-05",
+     "2015-06",
+     "2015-07",
+     "2015-08",
+     "2015-09",
+     "2015-10",
+     "2015-11",
+     "2015-12",
+     "2016-01",
+     "2016-02",
+     "2016-05",
+     "2016-06",
+     "2016-07",
+     "2016-08",
+     "2016-09",
+     "2016-10",
+     "2016-11",
+     "2016-12",
+     "2017-01",
+     "2017-02",
+     "2017-03",
+     "2017-04",
+     "2017-05",
+     "2017-06",
+     "2017-07",
+     "2017-08",
+     "2017-09",
+     "2017-10",
+     "2017-11"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 5,
+    "max_gap_h": 13440.0,
+    "gaps": [
+     {
+      "from": "2016-05-20 00:00:00",
+      "to": "2017-12-01 00:00:00",
+      "hours": 13440.0
+     },
+     {
+      "from": "2015-03-18 00:00:00",
+      "to": "2016-02-24 00:00:00",
+      "hours": 8232.0
+     },
+     {
+      "from": "2013-12-31 00:00:00",
+      "to": "2014-09-22 00:00:00",
+      "hours": 6360.0
+     },
+     {
+      "from": "2015-02-12 00:00:00",
+      "to": "2015-03-18 00:00:00",
+      "hours": 816.0
+     },
+     {
+      "from": "2013-09-27 00:00:00",
+      "to": "2013-10-22 00:00:00",
+      "hours": 600.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "BRENT": {
+    "months": 190,
+    "missing_months": 5,
+    "missing": [
+     "2012-09",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-05"
+    ],
+    "worst_ratio": 0.5581395348837209,
+    "n_gaps": 4,
+    "max_gap_h": 360.0,
+    "gaps": [
+     {
+      "from": "2013-01-17 00:00:00",
+      "to": "2013-02-01 00:00:00",
+      "hours": 360.0
+     },
+     {
+      "from": "2012-12-14 00:00:00",
+      "to": "2012-12-28 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-05-01 00:00:00",
+      "to": "2013-05-15 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-02-13 00:00:00",
+      "to": "2013-02-26 00:00:00",
+      "hours": 312.0
+     }
+    ],
+    "first": "2010-12-02 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "BUND": {
+    "months": 125,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2016-05-02 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "USTBOND": {
+    "months": 106,
+    "missing_months": 12,
+    "missing": [
+     "2018-01",
+     "2018-02",
+     "2018-03",
+     "2018-04",
+     "2018-05",
+     "2018-06",
+     "2018-07",
+     "2018-08",
+     "2018-09",
+     "2018-10",
+     "2018-11",
+     "2018-12"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 8496.0,
+    "gaps": [
+     {
+      "from": "2017-12-29 00:00:00",
+      "to": "2018-12-18 00:00:00",
+      "hours": 8496.0
+     }
+    ],
+    "first": "2017-12-18 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 14
+ },
+ "seal": "2024-07-01",
+ "n_cells": 651,
+ "n_short": {
+  "126": 20,
+  "200": 68
+ },
+ "frac_short": {
+  "126": 0.0307,
+  "200": 0.1045
+ },
+ "short_cells_126": [
+  {
+   "sym": "BRENT",
+   "year": 2010,
+   "n_bars": 21,
+   "gap_bars": 0,
+   "mean_bp": null
+  },
+  {
+   "sym": "ETHUSD",
+   "year": 2017,
+   "n_bars": 15,
+   "gap_bars": 0,
+   "mean_bp": null
+  },
+  {
+   "sym": "EUSTX50",
+   "year": 2012,
+   "n_bars": 87,
+   "gap_bars": 1,
+   "mean_bp": 14.34
+  },
+  {
+   "sym": "GER40",
+   "year": 2013,
+   "n_bars": 67,
+   "gap_bars": 0,
+   "mean_bp": 10.68
+  },
+  {
+   "sym": "HKG33",
+   "year": 2024,
+   "n_bars": 121,
+   "gap_bars": 0,
+   "mean_bp": 3.89
+  },
+  {
+   "sym": "NATGAS",
+   "year": 2012,
+   "n_bars": 85,
+   "gap_bars": 0,
+   "mean_bp": -59.63
+  },
+  {
+   "sym": "NLD25",
+   "year": 2014,
+   "n_bars": 71,
+   "gap_bars": 1,
+   "mean_bp": -24.22
+  },
+  {
+   "sym": "NLD25",
+   "year": 2015,
+   "n_bars": 32,
+   "gap_bars": 1,
+   "mean_bp": 50.8
+  },
+  {
+   "sym": "NLD25",
+   "year": 2016,
+   "n_bars": 62,
+   "gap_bars": 1,
+   "mean_bp": -25.51
+  },
+  {
+   "sym": "NLD25",
+   "year": 2017,
+   "n_bars": 19,
+   "gap_bars": 1,
+   "mean_bp": 132.08
+  },
+  {
+   "sym": "SUI20",
+   "year": 2024,
+   "n_bars": 122,
+   "gap_bars": 0,
+   "mean_bp": 6.84
+  },
+  {
+   "sym": "UKGILT",
+   "year": 2017,
+   "n_bars": 3,
+   "gap_bars": 0,
+   "mean_bp": null
+  },
+  {
+   "sym": "UKGILT",
+   "year": 2024,
+   "n_bars": 124,
+   "gap_bars": 0,
+   "mean_bp": -6.27
+  },
+  {
+   "sym": "US30",
+   "year": 2013,
+   "n_bars": 65,
+   "gap_bars": 0,
+   "mean_bp": 33.16
+  },
+  {
+   "sym": "US500",
+   "year": 2011,
+   "n_bars": 4,
+   "gap_bars": 0,
+   "mean_bp": null
+  },
+  {
+   "sym": "USTBOND",
+   "year": 2017,
+   "n_bars": 9,
+   "gap_bars": 0,
+   "mean_bp": null
+  },
+  {
+   "sym": "USTBOND",
+   "year": 2018,
+   "n_bars": 9,
+   "gap_bars": 1,
+   "mean_bp": null
+  },
+  {
+   "sym": "USTECH",
+   "year": 2011,
+   "n_bars": 4,
+   "gap_bars": 0,
+   "mean_bp": null
+  },
+  {
+   "sym": "WTI",
+   "year": 2011,
+   "n_bars": 38,
+   "gap_bars": 1,
+   "mean_bp": null
+  },
+  {
+   "sym": "XPTUSD",
+   "year": 2021,
+   "n_bars": 45,
+   "gap_bars": 0,
+   "mean_bp": null
+  }
+ ],
+ "t_all_cells": {
+  "all": {
+   "n_years": 15,
+   "mean": -0.2666,
+   "t": -0.412,
+   "min_rows_in_year": 6257,
+   "years_dropped": []
+  },
+  "pre": {
+   "n_years": 7,
+   "mean": -1.0082,
+   "t": -1.5616,
+   "min_rows_in_year": 6535,
+   "years_dropped": []
+  },
+  "post": {
+   "n_years": 8,
+   "mean": 0.3822,
+   "t": 0.3597,
+   "min_rows_in_year": 6257,
+   "years_dropped": []
+  }
+ },
+ "t_excluding": {
+  "126": {
+   "all": {
+    "n_years": 15,
+    "mean": -0.4707,
+    "t": -0.9517,
+    "min_rows_in_year": 5890,
+    "years_dropped": []
+   },
+   "pre": {
+    "n_years": 7,
+    "mean": -1.0008,
+    "t": -1.7368,
+    "min_rows_in_year": 6535,
+    "years_dropped": []
+   },
+   "post": {
+    "n_years": 8,
+    "mean": -0.0068,
+    "t": -0.0087,
+    "min_rows_in_year": 5890,
+    "years_dropped": []
+   }
+  },
+  "200": {
+   "all": {
+    "n_years": 14,
+    "mean": -0.4269,
+    "t": -0.787,
+    "min_rows_in_year": 6535,
+    "years_dropped": []
+   },
+   "pre": {
+    "n_years": 7,
+    "mean": -0.9651,
+    "t": -1.6144,
+    "min_rows_in_year": 6535,
+    "years_dropped": []
+   },
+   "post": {
+    "n_years": 7,
+    "mean": 0.1113,
+    "t": 0.1229,
+    "min_rows_in_year": 10713,
+    "years_dropped": []
+   }
+  }
+ },
+ "delta_t": {
+  "126": {
+   "all": -0.5397,
+   "pre": -0.1752,
+   "post": -0.3684
+  },
+  "200": {
+   "all": -0.375,
+   "pre": -0.0528,
+   "post": -0.2368
+  }
+ },
+ "abs_mean_bp_ratio_short_vs_all": 8.4746,
+ "gap_bars_total": 16,
+ "machine_verdict": "支持（既定を変える）: 本数<126 のセルが 3% 以上で前半または後半の |Δt|≥0.3（data_health に gaps あり: 監査なので記述）"
+}
