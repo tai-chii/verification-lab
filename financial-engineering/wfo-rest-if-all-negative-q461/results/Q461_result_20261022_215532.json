@@ -1,0 +1,420 @@
+{
+ "qid": "Q461",
+ "smoke": false,
+ "generated": "20261022_215532",
+ "question": "選び直す WFO で全候補が負なら休むと標本外の純損益・最大下落は良くなるか",
+ "settings": {
+  "LS": "5..300 step5 (60)",
+  "SEL_DAYS": 756,
+  "FREQ": 21,
+  "seal": "2024-07-01",
+  "B": 300,
+  "seed": 20261022,
+  "min_days_year": 100,
+  "split_year": 2017
+ },
+ "data_health": {
+  "ok": [
+   "EURUSD",
+   "GBPUSD",
+   "AUDUSD",
+   "USDJPY",
+   "USDCHF",
+   "USDCAD",
+   "EURJPY",
+   "GBPJPY",
+   "XAUUSD",
+   "XAGUSD",
+   "WTI",
+   "UKOIL",
+   "US500",
+   "USTECH",
+   "BTCUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "WTI": {
+    "months": 178,
+    "missing_months": 3,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2014-06"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 1152.0,
+    "gaps": [
+     {
+      "from": "2011-09-23 00:00:00",
+      "to": "2011-11-10 00:00:00",
+      "hours": 1152.0
+     }
+    ],
+    "first": "2011-09-23 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "UKOIL": {
+    "months": 187,
+    "missing_months": 7,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2012-09",
+     "2012-12",
+     "2013-01",
+     "2013-02",
+     "2013-05"
+    ],
+    "worst_ratio": 0.5116279069767442,
+    "n_gaps": 5,
+    "max_gap_h": 672.0,
+    "gaps": [
+     {
+      "from": "2011-10-18 00:00:00",
+      "to": "2011-11-15 00:00:00",
+      "hours": 672.0
+     },
+     {
+      "from": "2013-01-16 00:00:00",
+      "to": "2013-02-01 00:00:00",
+      "hours": 384.0
+     },
+     {
+      "from": "2012-12-14 00:00:00",
+      "to": "2012-12-28 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-05-01 00:00:00",
+      "to": "2013-05-15 00:00:00",
+      "hours": 336.0
+     },
+     {
+      "from": "2013-02-13 00:00:00",
+      "to": "2013-02-26 00:00:00",
+      "hours": 312.0
+     }
+    ],
+    "first": "2010-12-02 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 4
+ },
+ "missing": [],
+ "years_kept": [
+  2011,
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024
+ ],
+ "years_dropped": [],
+ "selections": {
+  "EURUSD": {
+   "n_sel": 169,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 3545
+  },
+  "GBPUSD": {
+   "n_sel": 169,
+   "n_rest": 1,
+   "rest_days": 21,
+   "oos_days": 3545
+  },
+  "AUDUSD": {
+   "n_sel": 169,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 3543
+  },
+  "USDJPY": {
+   "n_sel": 168,
+   "n_rest": 9,
+   "rest_days": 189,
+   "oos_days": 3522
+  },
+  "USDCHF": {
+   "n_sel": 169,
+   "n_rest": 42,
+   "rest_days": 882,
+   "oos_days": 3545
+  },
+  "USDCAD": {
+   "n_sel": 169,
+   "n_rest": 6,
+   "rest_days": 126,
+   "oos_days": 3545
+  },
+  "EURJPY": {
+   "n_sel": 169,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 3545
+  },
+  "GBPJPY": {
+   "n_sel": 169,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 3545
+  },
+  "XAUUSD": {
+   "n_sel": 164,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 3442
+  },
+  "XAGUSD": {
+   "n_sel": 169,
+   "n_rest": 2,
+   "rest_days": 42,
+   "oos_days": 3529
+  },
+  "WTI": {
+   "n_sel": 120,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 2510
+  },
+  "UKOIL": {
+   "n_sel": 128,
+   "n_rest": 8,
+   "rest_days": 167,
+   "oos_days": 2673
+  },
+  "US500": {
+   "n_sel": 118,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 2469
+  },
+  "USTECH": {
+   "n_sel": 117,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 2448
+  },
+  "BTCUSD": {
+   "n_sel": 80,
+   "n_rest": 0,
+   "rest_days": 0,
+   "oos_days": 1679
+  }
+ },
+ "summary": {
+  "all15_all": {
+   "n_years": 14,
+   "A_mean": 0.1919,
+   "A_t": 0.2605,
+   "B_mean": 0.169,
+   "B_t": 0.2419,
+   "diff_mean": -0.0229,
+   "diff_t": -0.4117,
+   "null": {
+    "B": 300,
+    "q025": -0.11645021125438022,
+    "q500": -0.007538861779574795,
+    "q975": 0.09957609505896069,
+    "z": -0.28364802010702506,
+    "pct": 0.4,
+    "p_perm": 0.6013289036544851,
+    "degenerate": false
+   },
+   "null_q95": 0.0876,
+   "rest_frac": 0.0303,
+   "mdd_A": -4571.5,
+   "mdd_B": -4578.4,
+   "mdd_B_minus_A": -6.9,
+   "sharpe_A": 0.3042,
+   "sharpe_B": 0.3016
+  },
+  "all15_pre": {
+   "n_years": 6,
+   "A_mean": 0.6125,
+   "A_t": 0.6968,
+   "B_mean": 0.5502,
+   "B_t": 0.6923,
+   "diff_mean": -0.0623,
+   "diff_t": -0.6676,
+   "rest_frac": 0.0303
+  },
+  "all15_post": {
+   "n_years": 8,
+   "A_mean": -0.1236,
+   "A_t": -0.1077,
+   "B_mean": -0.1169,
+   "B_t": -0.1058,
+   "diff_mean": 0.0066,
+   "diff_t": 0.0931,
+   "rest_frac": 0.0303
+  },
+  "fx8_all": {
+   "n_years": 14,
+   "A_mean": -0.3333,
+   "A_t": -1.0371,
+   "B_mean": -0.2799,
+   "B_t": -1.0009,
+   "diff_mean": 0.0534,
+   "diff_t": 0.7702,
+   "null": {
+    "B": 300,
+    "q025": 0.08759916001759764,
+    "q500": 0.18888217357886222,
+    "q975": 0.26361726960048326,
+    "z": -2.990535958614831,
+    "pct": 0.0033333333333333335,
+    "p_perm": 0.9966777408637874,
+    "degenerate": false
+   },
+   "null_q95": 0.2527,
+   "rest_frac": 0.043,
+   "mdd_A": -2327.3,
+   "mdd_B": -2110.8,
+   "mdd_B_minus_A": 216.5,
+   "sharpe_A": -0.1965,
+   "sharpe_B": -0.1683
+  },
+  "fx8_pre": {
+   "n_years": 6,
+   "A_mean": -0.0707,
+   "A_t": -0.1258,
+   "B_mean": -0.0324,
+   "B_t": -0.0637,
+   "diff_mean": 0.0383,
+   "diff_t": 0.4645,
+   "rest_frac": 0.043
+  },
+  "fx8_post": {
+   "n_years": 8,
+   "A_mean": -0.5303,
+   "A_t": -1.3528,
+   "B_mean": -0.4655,
+   "B_t": -1.4431,
+   "diff_mean": 0.0648,
+   "diff_t": 0.5925,
+   "rest_frac": 0.043
+  },
+  "trend7_all": {
+   "n_years": 14,
+   "A_mean": 1.2175,
+   "A_t": 0.7609,
+   "B_mean": 1.0615,
+   "B_t": 0.6842,
+   "diff_mean": -0.156,
+   "diff_t": -1.3541,
+   "null": {
+    "B": 300,
+    "q025": -0.6873454765785714,
+    "q500": -0.4360660830229557,
+    "q975": -0.07332591187698544,
+    "z": 1.3695870493759574,
+    "pct": 0.8733333333333333,
+    "p_perm": 0.12956810631229235,
+    "degenerate": false
+   },
+   "null_q95": -0.1117,
+   "rest_frac": 0.0111,
+   "mdd_A": -4937.9,
+   "mdd_B": -4937.9,
+   "mdd_B_minus_A": 0.0,
+   "sharpe_A": 0.3713,
+   "sharpe_B": 0.3571
+  },
+  "trend7_pre": {
+   "n_years": 6,
+   "A_mean": 2.4016,
+   "A_t": 1.0727,
+   "B_mean": 2.1341,
+   "B_t": 1.024,
+   "diff_mean": -0.2675,
+   "diff_t": -1.0,
+   "rest_frac": 0.0111
+  },
+  "trend7_post": {
+   "n_years": 8,
+   "A_mean": 0.3295,
+   "A_t": 0.1421,
+   "B_mean": 0.2572,
+   "B_t": 0.1119,
+   "diff_mean": -0.0723,
+   "diff_t": -1.4614,
+   "rest_frac": 0.0111
+  },
+  "all15_ex_gaps_all": {
+   "n_years": 14,
+   "A_mean": 0.059,
+   "A_t": 0.0998,
+   "B_mean": 0.0786,
+   "B_t": 0.1451,
+   "diff_mean": 0.0196,
+   "diff_t": 0.3204,
+   "excluded": [
+    "UKOIL",
+    "US500",
+    "USTECH",
+    "WTI"
+   ]
+  }
+ },
+ "machine_verdict": "棄却: 休んでも純損益は変わらない（または前後半で割れる）",
+ "n_tests": 1,
+ "multiple_comparisons": "判定は all15_all の B−A（t・前後半の符号・帰無 95 点）の 1 本。群別・最大下落・gaps 除外は記述。",
+ "null_degenerate": false
+}

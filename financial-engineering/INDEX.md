@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 221 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 222 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -213,6 +213,7 @@
 | [weekend-gap-reversal-15](./weekend-gap-reversal-15) | Q296 15 銘柄 D1 の月曜ギャップ逆張り（金曜終値→月曜始値のギャップと逆方向に月曜のみ ±1、火曜以降 0）は all15 の年単位平均 bp（コスト後）が前後半とも正か（Dao2016-2 の 15 銘柄移植） | 棄却 |
 | [weekend-variance-ratio](./weekend-variance-ratio) | Q272 月曜（週末跨ぎ）のリターン分散は他の曜日の何倍か（取引時間 vs 暦時間・French・Roll 1986・15銘柄） | 支持: all15 の log R の年単位平均が log1.3 未満かつ log3 に対し t≤−2（取引時間仮説） |
 | [weekly-vs-daily-tsmom](./weekly-vs-daily-tsmom) | Q186 週足の順張りは日足より強いか（Neely 2003-3・15銘柄・2008〜2026） | 棄却（前後半のどちらかで ／t／<2） |
+| [wfo-rest-if-all-negative-q461](./wfo-rest-if-all-negative-q461) | Q461 選び直す WFO で直前窓の全候補が負なら休むと、常に最良を選ぶより標本外は良くなるか | 全候補が負なら休む規則は、15 銘柄の日足 TSMOM の選び直し WFO では純損益も最大下落もほとんど変えない（B… |
 | [wfo-window-gate-q333](./wfo-window-gate-q333) | Q333 WFO の「プラスの窓が60%以上」の関門は、腕のない順張りを何%通し、本物の優位を何%落とすか（Q331-C1） | 確定（使えない）。主因は検出力 |
 | [wide48-cross-sectional-mom60](./wide48-cross-sectional-mom60) | Q371 48 銘柄 wide48 の D1 横断モメンタム L=60（上位1/3買い・下位1/3売り）は封印前の前後半とも年単位 t≥2 か | 未確定 |
 | [wide48-regime-hitrate-baserate](./wide48-regime-hitrate-baserate) | Q449 wide48 D1 の高ボラ局面の方向的中率の上乗せは基準率と MRS 平滑化ラベルの先読みで説明されるか | ノイズ |
