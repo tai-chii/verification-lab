@@ -9,7 +9,7 @@ import warnings
 import numpy as np
 import pandas as pd
 
-from ._paths import DATA_DIR, SEED
+from ._paths import DATA_DIR, SEED, data_path
 
 # 足種ごとの「これより長い空白は欠け」の目安 [時間]。週末（約 48h）は空白と数えない
 _GAP_HOURS = {"H1": 96, "M15": 96, "H4": 96, "D1": 24 * 7}  # 週末＋祝日（年末年始は 73h）は空白と数えない
@@ -61,7 +61,7 @@ def load_d1(sym, smoke=False, rng=None):
     if smoke:
         df = _smoke_ohlc(sym, rng, n=2600, freq="D", start="2015-01-01")
     else:
-        df = _read(os.path.join(DATA_DIR, f"data_{sym}_D1_fromH1.csv"))
+        df = _read(data_path(sym, "D1_fromH1"))
     df = df[df["high"] != df["low"]].reset_index(drop=True)
     df["ret"] = df["close"].pct_change()
     df["year"] = df["time"].dt.year
@@ -145,7 +145,7 @@ def exists_sym(sym, kind="D1_fromH1"):
     禁止: 無い銘柄を黙って飛ばさない（JSON の missing に書く）
     段階: 読み込み
     """
-    return os.path.exists(os.path.join(DATA_DIR, f"data_{sym}_{kind}.csv"))
+    return os.path.exists(data_path(sym, kind))
 
 
 def syms_available(syms, kind="D1_fromH1", smoke=False):
@@ -211,7 +211,7 @@ def health(syms, kind="H1_dukascopy", bar=None, min_ratio=0.8, gap_hours=None):
     bar = (bar or _bar_of(kind)).upper()
     out = {"ok": [], "no_data": [], "failed": {}, "gaps": {}, "n_dup": {}}
     for s in syms:
-        p = os.path.join(DATA_DIR, f"data_{s}_{kind}.csv")
+        p = data_path(s, kind)  # 2026-10-22: load_* と同じ解決順（DATA_DIR → DATA_DIR2）。wide48 の 34 銘柄が no_data に誤報されていた
         if not os.path.exists(p):
             out["no_data"].append(s); continue
         try:

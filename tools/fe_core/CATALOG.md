@@ -10,17 +10,20 @@
 |---|---|---|---|
 | `WS` | `os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..'))` | fe_core/ → tools/ → verification-lab/ → 検証/ → ワークスペース | `_paths.py:8` |
 | `DATA_DIR` | `_p('検証', '学問', '金融工学', '作業', 'FX', 'システムトレード')` |  | `_paths.py:37` |
-| `FX8` | `['EURUSD', 'GBPUSD', 'AUDUSD', 'USDJPY', 'USDCHF', 'USDCAD', 'EURJPY', 'GBPJPY']` |  | `_paths.py:38` |
-| `FX6` | `['EURUSD', 'GBPUSD', 'AUDUSD', 'USDJPY', 'USDCHF', 'USDCAD']` | ドル建て先進国（Q019・Q054 と同じ） | `_paths.py:39` |
-| `TREND7` | `['XAUUSD', 'XAGUSD', 'WTI', 'UKOIL', 'US500', 'USTECH', 'BTCUSD']` |  | `_paths.py:40` |
-| `SYMS` | `FX8 + TREND7` |  | `_paths.py:41` |
-| `CRYPTO` | `['BTCUSD', 'ETHUSD', 'XRPUSD', 'LTCUSD', 'ADAUSD', 'BCHUSD', 'XLMUSD', 'EOSUSD', 'LNKUSD', 'DOTUSD', 'SOLUSD']` |  | `_paths.py:42` |
-| `SPLIT_YEAR` | `2017` |  | `_paths.py:43` |
-| `SEED` | `20261010` |  | `_paths.py:44` |
-| `GROUPS` | `{'all15': SYMS, 'fx8': FX8, 'trend7': TREND7}` |  | `_paths.py:45` |
+| `FX8` | `['EURUSD', 'GBPUSD', 'AUDUSD', 'USDJPY', 'USDCHF', 'USDCAD', 'EURJPY', 'GBPJPY']` |  | `_paths.py:56` |
+| `FX6` | `['EURUSD', 'GBPUSD', 'AUDUSD', 'USDJPY', 'USDCHF', 'USDCAD']` | ドル建て先進国（Q019・Q054 と同じ） | `_paths.py:57` |
+| `TREND7` | `['XAUUSD', 'XAGUSD', 'WTI', 'UKOIL', 'US500', 'USTECH', 'BTCUSD']` |  | `_paths.py:58` |
+| `SYMS` | `FX8 + TREND7` |  | `_paths.py:59` |
+| `CRYPTO` | `['BTCUSD', 'ETHUSD', 'XRPUSD', 'LTCUSD', 'ADAUSD', 'BCHUSD', 'XLMUSD', 'EOSUSD', 'LNKUSD', 'DOTUSD', 'SOLUSD']` |  | `_paths.py:60` |
+| `SPLIT_YEAR` | `2017` |  | `_paths.py:61` |
+| `SEED` | `20261010` |  | `_paths.py:62` |
+| `GROUPS` | `{'all15': SYMS, 'fx8': FX8, 'trend7': TREND7, 'wide48': WIDE48, 'fx22': FX22, 'idx13': IDX13, 'cmd8': CMD8, 'bond3': BOND3}` |  | `_paths.py:70` |
 | `COST_RT` | `{'EURUSD': 0.0002, 'GBPUSD': 0.0002, 'AUDUSD': 0.0002, 'USDCHF': 0.0002, 'USDCAD': 0.0002, 'USDJPY': 0.02, 'EURJPY': 0.02, 'GBPJPY': 0.02, 'XAUUSD': 0.6, 'XA...` | 往復コスト（価格単位・段階1の保守値。Q136〜Q190 と同じ表） | `costs.py:8` |
 | `CRYPTO_COST_RT_REL` | `0.003` | 暗号資産: 往復 30bp の仮置き（Q152 と同じ） | `costs.py:11` |
 | `f` | `fmt` | 雛形との互換（91 本が f() を使う） | `metrics.py:162` |
+| `FEATURE_FAMILIES` | `('mom', 'vol', 'range', 'dow', 'xsec')` |  | `ml.py:10` |
+| `RULES_FINTOKEI` | `dict(sym_cap=0.015, sym_sigma_mult=3.0, port_sigma_target=0.005, max_leverage=2.0, daily_stop=-0.025, vol_window=60, port_vol_window=60, rebalance_band=0.2)` |  | `risk.py:9` |
+| `RULES_NONE` | `dict(equal_weight=True, sym_cap=None, sym_sigma_mult=3.0, port_sigma_target=None, max_leverage=1.0, daily_stop=None, vol_window=60, port_vol_window=60, rebal...` | 比較用: 等金額 ±1/N・総建玉 1 | `risk.py:11` |
 
 ## 段階: 共通
 
@@ -68,7 +71,7 @@
 | 返り値 | dataclass |
 | 禁止 | 結果を見てから hypothesis・reject_if・n_tests・main_param・B を変えない |
 
-### `class Runner`  — `runner.py:96`
+### `class Runner`  — `runner.py:97`
 
 ポジション型の検証の固定された流れ。strategy(df, p, sym) -> pos（長さ len(df) の ±1/0。shift しない）だけを外から受ける。
 
@@ -240,6 +243,95 @@ RSI（Wilder の指数平滑、alpha=1/n）。
 | 禁止 | 返り値を shift しない。pos[t] に RSI[t] を使ってよい（pnl_bp が 1 本ずらす）。下落が無い区間は NaN になる（100 ではない） |
 
 
+## 段階: 特徴量
+
+### `make_features(df, mom_L=(5, 20, 60, 120, 250), vol_W=(20, 60), range_N=(20, 60), dow=True)`  — `ml.py:13`
+
+1 銘柄の OHLCV（load_d1 の DataFrame）から、t までの情報だけで作る特徴量の表。
+
+| | |
+|---|---|
+| 使う場面 | S04 の全案。族（mom/vol/range/dow）の外の特徴量はここに足してから使う（CATALOG に載る） |
+| 入力 | df: time/open/high/low/close/ret を持つ DataFrame、各族の窓 |
+| 返り値 | DataFrame（index=time）。列名は <族>_<窓>。NaN は先頭の窓ぶんだけ |
+| 禁止 | 未来の値（shift(-k)）を使わない。終値以外の当日値（high/low）は t の足が確定した後なので使ってよい |
+
+### `panel(frames)`  — `ml.py:66`
+
+銘柄ごとの (X, y) を縦に積む。列 sym を足す。
+
+| | |
+|---|---|
+| 使う場面 | 多銘柄プール学習（S04c） |
+| 入力 | frames: {sym: (X DataFrame, y Series)} |
+| 返り値 | (X_all, y_all, meta DataFrame[time, sym]) |
+| 禁止 | 銘柄ごとの標準化を全期間で行わない（未来を混ぜる）。必要なら学習窓の中で |
+
+
+## 段階: 目的変数
+
+### `make_target(df, k=5, kind='ret')`  — `ml.py:40`
+
+目的変数: t の終値から t+k の終値までのリターン（比）または符号。
+
+| | |
+|---|---|
+| 使う場面 | 方向予測（S04c）・メタラベリング（S04a。signal と掛ける） |
+| 入力 | df、k: 先の本数、kind: "ret" | "sign" |
+| 返り値 | Series（index=time）。末尾 k 本は NaN |
+| 禁止 | k=1 以外で日次に並べると重なり（overlap）があるので、評価の t 値は nw_t か非重複で |
+
+### `meta_label(df, signal, k=5)`  — `ml.py:53`
+
+メタラベル: 合図 signal（±1、t で決めたもの）に乗ったときの t→t+k の損益が正なら 1、負なら 0。合図 0 の行は NaN。
+
+| | |
+|---|---|
+| 使う場面 | S04a。モデルは「乗るか・規模」を学び、方向は合図に従う |
+| 入力 | df、signal: 長さ n の ±1/0、k |
+| 返り値 | Series（index=time） |
+| 禁止 | signal を未来で作らない（tsmom_pos はそのままで可） |
+
+
+## 段階: 分割
+
+### `walk_forward(times, train_years=6, test_years=1, embargo_days=10, start_year=None, end=None)`  — `ml.py:81`
+
+年次ウォークフォワードの (学習 mask, 評価 mask) の列。学習窓は転がす（固定長）。
+
+| | |
+|---|---|
+| 使う場面 | すべての ML 案。評価は常に未来側 |
+| 入力 | times: 各行の時刻（DatetimeIndex か Series）、学習年数、評価年数、embargo（学習の終わりと評価の始まりの間に空ける日数。目的変数の k 以上）、start_year、end（封印の始まり。既定 2024-07-01 より前だけ） |
+| 返り値 | list of (train_mask, test_mask, test_year) |
+| 禁止 | 評価窓を封印（2024-07〜）に入れない。embargo を k 未満にしない |
+
+
+## 段階: モデル
+
+### `ridge_fit_predict(Xtr, ytr, Xte, alpha=1.0)`  — `ml.py:100`
+
+リッジ回帰（numpy だけ）。学習窓の平均・標準偏差で標準化してから当てはめ、評価窓にも同じ変換。
+
+| | |
+|---|---|
+| 使う場面 | ML の最初の 1 本。線形で消える信号は非線形でも大抵消える |
+| 入力 | 配列、alpha |
+| 返り値 | 評価窓の予測（1 次元配列） |
+| 禁止 | 標準化を全期間で行わない |
+
+### `gbm_fit_predict(Xtr, ytr, Xte, classify=False, **kw)`  — `ml.py:117`
+
+勾配ブースティング（sklearn の HistGradientBoosting。無ければ ImportError）。既定は浅く・少なく。
+
+| | |
+|---|---|
+| 使う場面 | リッジの後。パラメータは格子に入れて数える |
+| 入力 | 配列、classify: 分類か、kw: max_depth/learning_rate/max_iter など |
+| 返り値 | 評価窓の予測（回帰は値、分類は正クラス確率） |
+| 禁止 | 格子を事前宣言せずに増やさない |
+
+
 ## 段階: 損益
 
 ### `cost_bp_oneway(sym, close, rel=None)`  — `costs.py:17`
@@ -263,6 +355,28 @@ RSI（Wilder の指数平滑、alpha=1/n）。
 | 入力 | pos: 長さ n の ±1/0（t の終値で決めた値をそのまま）、close: 長さ n、cost_oneway_bp: 長さ n [bp]（cost_bp_oneway の返り値） |
 | 返り値 | 長さ n の損益 [bp]。pnl[t+1] = pos[t]*ret[t+1]*1e4 − |pos[t]−pos[t−1]|*片道[bp]。先頭は 0 |
 | 禁止 | pos 側で shift しない（ここで 1 本ずらすので二重にずれる）。close に未来の値を混ぜない。「保有なし」を NaN で表さない（0 にする。NaN は 0 に置き換えて警告する） |
+
+### `size_weights(pos, ret, rules=RULES_FINTOKEI, sigma=None)`  — `risk.py:14`
+
+合図 → 資金比の建玉（weights）。t の情報だけで t の建玉を決める（pnl 側で 1 本ずらす）。
+
+| | |
+|---|---|
+| 使う場面 | 規程モードの損益の前。pos は ±1/0 でも予測スコアでもよい（符号と相対的な大きさだけ使う） |
+| 入力 | pos: DataFrame(date×sym)（±1 でも連続スコアでもよい。大きさは相対的な規模）、ret: 同じ形の日次リターン（比）、rules: RULES_FINTOKEI など、sigma: 省略で実現ボラ（rolling）。S04b は予測ボラ σ̂ を渡す |
+| 返り値 | weights DataFrame（同じ形。各要素は資金比、符号つき。rebalance_band>0 なら帯の中では前日の建玉を保つ） |
+| 禁止 | ret・sigma に未来を混ぜない。rules を結果に書かずに比べない。天井（sym_cap・port_sigma_target・max_leverage）を学習で動かさない |
+
+### `simulate_portfolio(weights, ret, cost_oneway, rules=RULES_FINTOKEI, hold_cost=None)`  — `risk.py:59`
+
+建玉（資金比）と日次リターンから、コストと日次停止を含むポートフォリオ損益（資金比）。
+
+| | |
+|---|---|
+| 使う場面 | 規程モードの判定。年単位の t・最大下落・停止回数を結果 JSON に書く |
+| 入力 | weights: DataFrame(date×sym)、ret: 同じ形、cost_oneway: 片道コスト（比。sym ごとのスカラーの dict か同じ形の DataFrame）、rules、hold_cost: 保有コスト（年率・比）の dict sym→rate（2026-10-23・S17 用。|建玉|×rate/252 を毎日引く。CFD の金利・スワップの近似。None で 0） |
+| 返り値 | dict(port: Series（日次損益・資金比）, gross: Series（コスト前）, cost: Series, stops: int, stop_days: DatetimeIndex, max_dd: float, worst_day: float) |
+| 禁止 | 停止の日の損益を停止値に丸めた上で翌日も建玉を持たない（規程どおり翌日は新規なし）。weights を未来で作らない |
 
 
 ## 段階: 統計
@@ -366,6 +480,17 @@ QLIKE 損失（分散予測の評価。小さいほど良い）。
 | 返り値 | {"t", "n_clusters", "mean"} |
 | 禁止 | 銘柄 × 日の行をそのまま tstat に入れない（独立でない） |
 
+### `yearly_t(port)`  — `risk.py:96`
+
+年ごとの平均日次損益（bp）の t（年単位・iid）。関門の「前後半とも t≥2」用。
+
+| | |
+|---|---|
+| 使う場面 | simulate_portfolio の port から |
+| 入力 | port: Series（日次・資金比） |
+| 返り値 | (t, DataFrame[year, mean_bp, n]) |
+| 禁止 | 日次でそのまま t を取らない（自己相関） |
+
 
 ## 段階: 帰無
 
@@ -447,6 +572,31 @@ block 本ごとの塊を並べ替える（塊の中の順序は保つ）。
 | 禁止 | 短い系列（n<10×min_shift）で使わない |
 
 
+## 段階: 多重比較
+
+### `pbo_cscv(M, S=8)`  — `ml.py:132`
+
+CSCV の過剰適合確率 PBO。M: (T, N) 日次損益の行列（N 通りの試行）。S ブロックに切り、半分の組合せで IS 最良が OS で中央値未満になる割合。
+
+| | |
+|---|---|
+| 使う場面 | 1 つの ML 案の格子（N 通り）全体に対して必ず 1 回 |
+| 入力 | M、S（偶数） |
+| 返り値 | dict(pbo, n_combos, N, T) |
+| 禁止 | N=1 で呼ばない（格子が 1 なら PBO は定義されない。試行数 1 と記録する） |
+
+### `class TrialLog`  — `ml.py:154`
+
+試行の記録。格子の 1 点＝1 試行。上限を超えたら raise（新しい ID で続ける）。
+
+| | |
+|---|---|
+| 使う場面 | すべての ML 案の run の中。結果 JSON に n_trials と一覧を書く |
+| 入力 | max_trials |
+| 返り値 | — |
+| 禁止 | 上限を黙って引き上げない（spec に書く） |
+
+
 ## 段階: 判定
 
 ### `holm(pvals)`  — `multiple.py:133`
@@ -471,7 +621,7 @@ holm の補正後 p と有意フラグの両方を返す（旧 q147・q153 の�
 | 返り値 | (adj, sig)。sig は bool 配列（NaN は False） |
 | 禁止 | alpha を事前登録の値以外にしない |
 
-### `default_judge(res, spec)`  — `runner.py:76`
+### `default_judge(res, spec)`  — `runner.py:77`
 
 既定の 3 分岐。main_param のコスト後 bp（all15・年単位）が前後半とも >0 かつ holm 補正後 p<0.05 → 支持。全期間の z<1 → 棄却。ほか → 未確定。
 

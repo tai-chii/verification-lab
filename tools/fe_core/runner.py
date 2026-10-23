@@ -50,6 +50,7 @@ class Spec:
     B: int = 500
     split_year: int = P.SPLIT_YEAR
     start: str = None
+    end: str = "2024-07-01"   # 2026-10-23: 封印（ホールドアウト 2024-07〜2026-06）。この日以降の足は読み込みで落とす。None で解除（フォワード段階の専用スクリプトだけ）
     cutoff_hour: int = 0
     null_kind: str = "circ_shift"
     null_block: int = 20
@@ -122,12 +123,23 @@ class Runner:
             raise ValueError(f"kind が不明: {k}")
         if self.spec.start:
             df = df[df["time"] >= pd.Timestamp(self.spec.start)].reset_index(drop=True)
+        if getattr(self.spec, "end", None):   # 2026-10-23: 封印。Q367〜Q415 の Runner 型は post に 2025〜26 を含んでいた（要対応 2026-10-23）
+            df = df[df["time"] < pd.Timestamp(self.spec.end)].reset_index(drop=True)
         return df
 
     def _cost(self, sym, close):
+        """片道コスト [bp] の列。優先順: spec.cost_rel → COST_RT（既存 15 銘柄）→ スプレッド実測の中央値（_データ/raw/D1/spread_<sym>.csv、往復とみなす）→ 暗号は 30 bp → 既定 4 bp（往復）。
+        2026-10-22: それまでは COST_RT に無い銘柄が全部 30 bp になっており、S07（wide48）の FX クロス・債券に 15 倍のコストが掛かっていた。"""
         rel = self.spec.cost_rel.get(sym)
         if rel is None and sym not in COST_RT:
-            rel = CRYPTO_COST_RT_REL
+            sp = os.path.join(P.DATA_DIR2, f"spread_{sym}.csv")
+            if os.path.exists(sp):
+                try:
+                    df = pd.read_csv(sp); med = float(np.nanmedian(df["spread"])); px = float(np.nanmedian(df["bid_close"]))
+                    if med > 0 and px > 0: rel = med / px
+                except Exception: rel = None
+            if rel is None:
+                rel = CRYPTO_COST_RT_REL if sym[:3] in ("BTC", "ETH", "XRP", "LTC", "ADA", "BCH", "XLM", "EOS", "LNK", "DOT", "SOL") else 4e-4
         return cost_bp_oneway(sym, close, rel=rel)
 
     # ------------------------------------------------------------------ 合図 → 損益
@@ -143,6 +155,9 @@ class Runner:
                 if null:
                     pos = self._null_pos(rng, pos, df, p, sym)
                 g, n = pnl_bp(pos, c, zero), pnl_bp(pos, c, cb)
+                hc = float(self.spec.settings.get("holding_cost_annual", {}).get(sym, 0.0))   # 2026-10-23: 保有コスト（年率）。買い持ち系（S17）の金利・スワップ近似。pnl_net にだけ効く
+                if hc:
+                    n = n - np.abs(np.r_[0.0, pos[:-1]]) * hc / 252.0 * 1e4
                 if self.spec.warmup:
                     g[: self.spec.warmup + 1] = np.nan; n[: self.spec.warmup + 1] = np.nan
                 frames.append(pd.DataFrame({"time": df["time"].values, "year": df["year"].values, "sym": sym, "param": i,
@@ -197,6 +212,37 @@ class Runner:
         return out
 
     # ------------------------------------------------------------------ 実行
+    def _rule_mode(self, dfs):
+        """main_param の合図で、等金額（RULES_NONE）と規程モード（RULES_FINTOKEI）のポートフォリオ損益を出す。
+        返り値: {"none": {...}, "fintokei": {...}} 各 {t_all, t_pre, t_post, mean_bp, sigma_pct, max_dd, worst_day, stops, gross_median}。関門は fintokei 側の t_pre/t_post≥2 かつ max_dd ≥ −0.06。入力は合図の符号のみ（連続スコアで規模を学ぶ案は size_weights を直接呼ぶ）"""
+        from .risk import size_weights, simulate_portfolio, yearly_t, RULES_FINTOKEI, RULES_FINTOKEI_C1, RULES_NONE
+        spec = self.spec; p = spec.params[spec.main_param]
+        rule_set = spec.settings.get("rule_set", "fintokei")   # 2026-10-23 ★C1: S17 以降は settings={"rule_set": "fintokei_c1"}（σ 目標 0.25%/日）。省略は従来の 0.5%
+        RULES_GATE = {"fintokei": RULES_FINTOKEI, "fintokei_c1": RULES_FINTOKEI_C1}[rule_set]
+        pos, close, cost = {}, {}, {}
+        for sym, df in dfs.items():
+            idx = pd.to_datetime(df["time"]); c = df["close"].values
+            a = np.asarray(self.strategy(df, p, sym), float)
+            if spec.warmup: a[: spec.warmup + 1] = 0.0
+            a = np.sign(np.nan_to_num(a))   # 2026-10-22: 規程モードは合図の「向き」だけを受け取る（規模は規程が決める）。戦略側のボラ正規化と二重にならないように
+            pos[sym] = pd.Series(a, index=idx); close[sym] = pd.Series(c, index=idx)
+            cost[sym] = pd.Series(self._cost(sym, c) / 1e4, index=idx)  # 片道 bp → 比
+        POS = pd.DataFrame(pos).sort_index().fillna(0.0); C = pd.DataFrame(close).sort_index().ffill()
+        R = C.pct_change(fill_method=None); COST = pd.DataFrame(cost).sort_index().ffill().fillna(0.0)
+        out = {}
+        for name, rules in (("none", RULES_NONE), ("fintokei", RULES_GATE)):
+            W = size_weights(POS, R, rules); sim = simulate_portfolio(W, R, COST, rules, hold_cost=spec.settings.get("holding_cost_annual") or None); port = sim["port"]
+            t_all, _ = yearly_t(port); t_pre, _ = yearly_t(port[port.index.year < P.SPLIT_YEAR]); t_post, _ = yearly_t(port[port.index.year >= P.SPLIT_YEAR])
+            out[name] = {"t_all": t_all, "t_pre": t_pre, "t_post": t_post, "mean_bp": float(port.mean() * 1e4), "sigma_pct": float(port.std() * 100),
+                         "max_dd": sim["max_dd"], "worst_day": sim["worst_day"], "stops": sim["stops"], "gross_median": float(W.abs().sum(axis=1).median()),
+                         "rules": {k: v for k, v in rules.items()}}
+        f = out["fintokei"]; out["rule_set"] = rule_set
+        out["gate"] = {"t_pre_ge2": bool(f["t_pre"] >= 2) if f["t_pre"] == f["t_pre"] else False,
+                       "t_post_ge2": bool(f["t_post"] >= 2) if f["t_post"] == f["t_post"] else False,
+                       "max_dd_within_6pct": bool(f["max_dd"] >= -0.06) if f["max_dd"] == f["max_dd"] else False}
+        out["gate"]["pass"] = all(out["gate"].values())
+        return out
+
     def run(self, args, rng):
         """計算して (res, csvs) を返す。write はしない（execute が行う）。"""
         spec = self.spec; t0 = _time.time()
@@ -244,6 +290,11 @@ class Runner:
                "elapsed_s": round(_time.time() - t0, 1)}
         if self.summarize_extra is not None:
             res["extra"] = sanitize(self.summarize_extra(cells, spec))
+        # 規程モード（2026-10-21・運用規程 第 8 条）: main_param の合図を資金比の建玉にして、σ 目標・1 銘柄上限・日次停止込みの損益。失敗しても本体は出す
+        try:
+            res["rule_mode"] = sanitize(self._rule_mode(dfs))
+        except Exception as e:  # noqa: BLE001
+            res["rule_mode"] = {"error": str(e)[:200]}
         res["machine_verdict"] = self.judge(res, spec)
         if dh and (dh["failed"] or dh["gaps"]):
             res["machine_verdict"] += "（data_health に failed/gaps あり: 確定にする前に点検）"

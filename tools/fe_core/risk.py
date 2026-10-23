@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+"""規程モードの損益（2026-10-21・運用規程 第 1 条／第 8 条 Fintokei）。
+合図（±1 や予測スコア）を「資金に対する比率の建玉」に直し、1 銘柄上限・ポートフォリオ σ 目標・レバ上限・日次停止を当てて、
+ポートフォリオの日次損益（資金比）を返す。検証と本番で同じ関数を使う。
+既定値は Fintokei の内側: sym_cap=1.5%（3σ）、port_sigma_target=0.5%/日、max_leverage=2、daily_stop=−2.5%。"""
+import numpy as np
+import pandas as pd
+
+RULES_FINTOKEI = dict(sym_cap=0.015, sym_sigma_mult=3.0, port_sigma_target=0.005, max_leverage=2.0, daily_stop=-0.025, vol_window=60, port_vol_window=60, rebalance_band=0.2)
+RULES_FINTOKEI_C1 = dict(RULES_FINTOKEI, port_sigma_target=0.0025)  # ★C1（taichi 決定 2026-10-23）: S17 以降の関門用。σ 目標 0.25%/日・他は同じ。過去 S01〜S16 の当て直しには使わない（事後の掃引）
+RULES_NONE = dict(equal_weight=True, sym_cap=None, sym_sigma_mult=3.0, port_sigma_target=None, max_leverage=1.0, daily_stop=None, vol_window=60, port_vol_window=60, rebalance_band=0.0)  # 比較用: 等金額 ±1/N・総建玉 1
+
+
+def size_weights(pos, ret, rules=RULES_FINTOKEI, sigma=None):
+    """合図 → 資金比の建玉（weights）。t の情報だけで t の建玉を決める（pnl 側で 1 本ずらす）。
+    使う場面: 規程モードの損益の前。pos は ±1/0 でも予測スコアでもよい（符号と相対的な大きさだけ使う）
+    入力: pos: DataFrame(date×sym)（±1 でも連続スコアでもよい。大きさは相対的な規模）、ret: 同じ形の日次リターン（比）、rules: RULES_FINTOKEI など、sigma: 省略で実現ボラ（rolling）。S04b は予測ボラ σ̂ を渡す
+    返り値: weights DataFrame（同じ形。各要素は資金比、符号つき。rebalance_band>0 なら帯の中では前日の建玉を保つ）
+    禁止: ret・sigma に未来を混ぜない。rules を結果に書かずに比べない。天井（sym_cap・port_sigma_target・max_leverage）を学習で動かさない
+    段階: 損益
+    """
+    pos = pos.astype(float).fillna(0.0); W = int(rules["vol_window"])
+    if rules.get("equal_weight"):   # 比較用の素朴版: 建玉のある銘柄で等金額、総建玉 = max_leverage（既定 1）
+        n = pos.abs().sum(axis=1).replace(0, np.nan)
+        return pos.div(n, axis=0).fillna(0.0) * float(rules.get("max_leverage") or 1.0)
+    sig = ret.rolling(W, min_periods=W // 2).std() if sigma is None else sigma.reindex_like(pos)   # sigma: 予測ボラ σ̂（S04b）。t までの情報で作ること
+    # 1) 1 銘柄: 等リスク（1/σ）を基準に、1 銘柄上限 sym_cap/(k·σ) で頭打ち
+    w = pos / sig.replace(0, np.nan)
+    if rules.get("sym_cap"):
+        cap = rules["sym_cap"] / (rules["sym_sigma_mult"] * sig)
+        w = np.sign(w) * np.minimum(w.abs(), cap)
+    w = w.replace([np.inf, -np.inf], np.nan).fillna(0.0)
+    # 2) ポートフォリオ σ 目標: 直近の「仮の損益」の σ で全体を規模調整（相関込み。t までの情報）
+    if rules.get("port_sigma_target"):
+        prov = (w.shift(1) * ret).sum(axis=1)
+        psig = prov.rolling(int(rules["port_vol_window"]), min_periods=int(rules["port_vol_window"]) // 2).std()
+        scale = (rules["port_sigma_target"] / psig).replace([np.inf, -np.inf], np.nan).fillna(0.0).clip(upper=50)
+        w = w.mul(scale, axis=0)
+    # 3) レバ上限（総建玉）
+    if rules.get("max_leverage"):
+        gross = w.abs().sum(axis=1)
+        over = gross > rules["max_leverage"]
+        w.loc[over] = w.loc[over].div(gross[over], axis=0) * rules["max_leverage"]
+    w = w.fillna(0.0)
+    # 4) リバランス帯（2026-10-22）: 目標建玉との差が |目標|×band 未満なら建て直さない（σ の揺れだけで回転しない）。符号が変わる／0 になる／0 から建てるときは必ず建て直す
+    band = float(rules.get("rebalance_band") or 0.0)
+    if band > 0:
+        W = w.to_numpy(); H = np.zeros_like(W); prev = np.zeros(W.shape[1])
+        for t in range(W.shape[0]):
+            tgt = W[t]; cur = prev.copy()
+            sign_change = (np.sign(tgt) != np.sign(cur)) | (tgt == 0)
+            far = np.abs(tgt - cur) >= band * np.abs(tgt)
+            cur = np.where(sign_change | far, tgt, cur)
+            H[t] = cur; prev = cur
+        w = pd.DataFrame(H, index=w.index, columns=w.columns)
+    return w
+
+
+def simulate_portfolio(weights, ret, cost_oneway, rules=RULES_FINTOKEI, hold_cost=None):
+    """建玉（資金比）と日次リターンから、コストと日次停止を含むポートフォリオ損益（資金比）。
+    使う場面: 規程モードの判定。年単位の t・最大下落・停止回数を結果 JSON に書く
+    入力: weights: DataFrame(date×sym)、ret: 同じ形、cost_oneway: 片道コスト（比。sym ごとのスカラーの dict か同じ形の DataFrame）、rules、hold_cost: 保有コスト（年率・比）の dict sym→rate（2026-10-23・S17 用。|建玉|×rate/252 を毎日引く。CFD の金利・スワップの近似。None で 0）
+    返り値: dict(port: Series（日次損益・資金比）, gross: Series（コスト前）, cost: Series, stops: int, stop_days: DatetimeIndex, max_dd: float, worst_day: float)
+    禁止: 停止の日の損益を停止値に丸めた上で翌日も建玉を持たない（規程どおり翌日は新規なし）。weights を未来で作らない
+    段階: 損益
+    """
+    w = weights.fillna(0.0); r = ret.fillna(0.0)
+    if isinstance(cost_oneway, dict):
+        c = pd.DataFrame({s: np.full(len(w), float(cost_oneway.get(s, 0.0))) for s in w.columns}, index=w.index)
+    else:
+        c = cost_oneway.reindex_like(w).fillna(0.0)
+    w_prev = w.shift(1).fillna(0.0)
+    gross = (w_prev * r).sum(axis=1)                      # t−1 の建玉が t のリターンに効く
+    turn = (w - w_prev).abs(); cost = (turn * c).sum(axis=1)
+    if hold_cost:
+        hc = pd.Series({s_: float(hold_cost.get(s_, 0.0)) for s_ in w.columns})
+        cost = cost + (w_prev.abs() * (hc / 252.0)).sum(axis=1)
+    port = gross - cost
+    stops = 0; stop_days = []
+    stop = rules.get("daily_stop")
+    if stop:
+        port = port.copy(); dates = port.index; i = 0; n = len(port)
+        # 停止日: 損益を停止値に丸め（場中に閉じたとみなす）、翌日は建玉ゼロ（= 翌日の gross を 0、翌日に建て直すコストは翌々日に発生する近似）
+        skip_next = False
+        for i in range(n):
+            if skip_next:
+                port.iloc[i] = -(turn.iloc[i] * c.iloc[i]).sum() * 0.0   # 新規なし: 損益 0（建て直しは翌日扱い）
+                skip_next = False; continue
+            if port.iloc[i] < stop:
+                port.iloc[i] = stop; stops += 1; stop_days.append(dates[i]); skip_next = True
+    eq = (1 + port).cumprod(); dd = eq / eq.cummax() - 1
+    return dict(port=port, gross=gross, cost=cost, stops=stops, stop_days=pd.DatetimeIndex(stop_days),
+                max_dd=float(dd.min()) if len(dd) else float("nan"), worst_day=float(port.min()) if len(port) else float("nan"))
+
+
+def yearly_t(port):
+    """年ごとの平均日次損益（bp）の t（年単位・iid）。関門の「前後半とも t≥2」用。
+    使う場面: simulate_portfolio の port から
+    入力: port: Series（日次・資金比）
+    返り値: (t, DataFrame[year, mean_bp, n])
+    禁止: 日次でそのまま t を取らない（自己相関）
+    段階: 統計
+    """
+    df = pd.DataFrame({"p": port * 1e4}); df["year"] = df.index.year
+    y = df.groupby("year")["p"].agg(["mean", "count"]).rename(columns={"mean": "mean_bp", "count": "n"})
+    y = y[y["n"] >= 20]; x = y["mean_bp"].to_numpy(float)
+    t = float(x.mean() / x.std(ddof=1) * np.sqrt(len(x))) if len(x) > 1 and x.std(ddof=1) > 0 else float("nan")
+    return t, y.reset_index()
