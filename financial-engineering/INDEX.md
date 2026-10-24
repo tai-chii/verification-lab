@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 224 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 225 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -163,6 +163,7 @@
 | [s16-three-family-equal-risk-composite-q425](./s16-three-family-equal-risk-composite-q425) | Q425 弱い正の 3 族（キャリー符号 FX22・BTC/ETH TSMOM60・FX22 TSMOM60）を事前固定の等リスク 1/3 合成にした 1 本は、規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か（S16 本体・合成 1 本のみ・掃引しない） | 未確定 |
 | [s17-long-only-risk-premia-idx-bond-gold-q468](./s17-long-only-risk-premia-idx-bond-gold-q468) | Q468 S17 多資産ロングオンリー（株価指数 10＋債券 2＋金）の等リスク買い持ちは、保有コスト年 4% 込みで C1 関門（規程モード σ0.25%/日・封印前の前後半 t≥2・max_dd −6% 以内）を通るか | 株価指数＋債券＋金の買い持ちプレミアムは等金額ならコスト後も正（1.5 bp/日・年率 約 3.8%・Sharpe 0… |
 | [s18-four-family-equal-risk-composite-c1-q469](./s18-four-family-equal-risk-composite-c1-q469) | Q469 S18 低相関 4 族（キャリー符号 FX22・BTC/ETH TSMOM60・FX22 TSMOM60・株価指数 10 の買い持ち β）の事前固定 1/4 等リスク合成は、規程モード C1（σ0.25%/日）で封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か（合成 1 本のみ） | 初めて max_dd の関門（−6%）を通り、等金額の z も 2 を超えたが、年単位 t が前半 0.97・後半 1… |
+| [s19-vix-riskoff-gate-index-beta-c1-q473](./s19-vix-riskoff-gate-index-beta-c1-q473) | Q473 S19 VIX リスクオフ・ゲート: 株価指数 10 の買い持ち β を VIX（t−1）が直近 250 観測の 80 分位以下の日だけ持つと、常時買い持ち（Q468 params 1）より規程 C1 で t_all・max_dd が良くなり、C1 関門（前後半 t≥2・max_dd −6%）を通るか | VIX の水準ゲートは株価指数の買い持ちを改善しない。むしろ高 VIX 日を外すことで平均リターンの高い日を捨て、t … |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |

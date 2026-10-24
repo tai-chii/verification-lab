@@ -1,0 +1,87 @@
+{
+ "qid": "Q473",
+ "registered": "20261024_110915",
+ "B": 500,
+ "seed": 20261010,
+ "question": "S19 VIX リスクオフ・ゲート: 株価指数 10 の買い持ち β を VIX（t−1）が直近 250 観測の 80 分位以下の日だけ持つと、常時買い持ち（Q468 params 1）より規程 C1 で t_all・max_dd が良くなり、C1 関門（前後半 t≥2・max_dd −6%）を通るか",
+ "hypothesis": "pos[t]=1{VIX[t−1] ≤ Q80(VIX[t−251..t−1])}（指数 10 に同じゲート）。高 VIX 局面は株式のボラが高く平均リターンが低い（Moreira・Muir 2017 のボラ管理）ので、リスクオフ局面を外すと規程 C1（σ60 で規模化・保有コスト 4%）の下で t が上がり max_dd が浅くなる。封印前 2012-02〜2024-06・境 2017",
+ "reject_if": "判定は規程モード C1（保有コスト 4% 込み）の main_param=0（ゲートあり）。支持: gate.pass（t_pre≥2 かつ t_post≥2 かつ max_dd≥−6%）かつ ゲートありが params 1（ゲートなし・同じ実行）より t_all と max_dd の両方で良い。棄却: ゲートありの規程 t_all が ゲートなし以下、または 等金額 z<1。ほか → 未確定。params 2（分位 0.9）・3（窓 120）は記述で判定に使わない",
+ "syms": [
+  "US500",
+  "USTECH",
+  "US30",
+  "GER40",
+  "JPN225",
+  "UK100",
+  "FRA40",
+  "ESP35",
+  "AUS200",
+  "SUI20"
+ ],
+ "kind": "D1_fromH1",
+ "params": [
+  {
+   "win": 250,
+   "q": 0.8,
+   "gate": true
+  },
+  {
+   "win": 250,
+   "q": 0.8,
+   "gate": false
+  },
+  {
+   "win": 250,
+   "q": 0.9,
+   "gate": true
+  },
+  {
+   "win": 120,
+   "q": 0.8,
+   "gate": true
+  }
+ ],
+ "main_param": 0,
+ "n_tests": 2,
+ "warmup": 60,
+ "per_year": 252,
+ "split_year": 2017,
+ "start": "2012-02-01",
+ "end": "2024-07-01",
+ "cutoff_hour": 0,
+ "null_kind": "circ_shift",
+ "null_block": 20,
+ "null_min_shift": 120,
+ "cost_rel": {},
+ "discarded": "3（族内の試行は params のゲート 3 本〔main・分位 0.9・窓 120〕に固定）。捨てた案: FX22 TSMOM60 と BTC/ETH TSMOM60 に同じゲート（β で効けば別 ID）、キャリー族への VIX ゲート（Brunnermeier ほか 2008 の線。スワップ実装が要るので別 ID）、VIX 水準で連続的に規模を変える（Moreira・Muir の 1/σ² は S04b 系で σ60 と差が無かった）",
+ "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+ "delegation": "なし（Fable 設計・実行 → Opus 見直し）。実行者は VIX の asof（t−1）が未来を見ていないことを spec の point_in_time で確かめる",
+ "source": "[[検証/_基盤/戦略台帳]] S19（★ A・2026-10-24）／Q468（S17 β: C1 単独 t 1.41・max_dd −9.3%・指数のみ Sharpe 0.38）／Moreira・Muir 2017「Volatility-Managed Portfolios」(JF)／Brunnermeier・Nagel・Pedersen 2008「Carry Trades and Currency Crashes」（VIX 上昇とキャリー崩れ）",
+ "data": "指数 10 の D1（_データ/raw/D1・2012-02-01〜2024-06-30）＋ VIX 日次終値（_データ/raw/vol/VIX.csv・FRED VIXCLS）。保有コスト年 4%（Q468 と同じ）",
+ "measure": "規程 C1 の t（all/pre/post）・mean_bp・max_dd・worst_day・stops（判定）、ゲートなし（params 1）との差。等金額の年単位 bp・t・z。extra: ゲートが閉じていた日の比率・年別、ゲート閉中の指数リターン平均（記述）",
+ "null_desc": "ゲート（0/1）の循環シフト（min_shift=120・B=500）→ 等金額の年単位 bp の帰無分布 → z・perm_p。ゲートの「位置」に情報が無ければ観測は帰無の中央",
+ "prior_art": "WebSearch 2026-10-24「VIX threshold timing equity index exposure risk-off filter backtest out-of-sample evidence volatility managed portfolios Moreira Muir」: Moreira・Muir 2017（前月の実現分散の逆数で規模を変えると株式などでシャープが上がる）、追試の学位論文・WP（ミューチュアルファンドでは効果が弱い）。VIX の rolling 分位の 0/1 ゲートを CFD 保有コスト・固定最大損失・σ0.25% の下で、2012〜2024-06 の前後半で見た追試は見当たらない。itiger 等のニュースは根拠にしない",
+ "batch": "/lab-plan 2026-10-24（Fable・★ A の 1 源・N=1）",
+ "designer": "Fable",
+ "coder": "Fable",
+ "settings": {
+  "rule_set": "fintokei_c1",
+  "holding_cost_annual": {
+   "US500": 0.04,
+   "USTECH": 0.04,
+   "US30": 0.04,
+   "GER40": 0.04,
+   "JPN225": 0.04,
+   "UK100": 0.04,
+   "FRA40": 0.04,
+   "ESP35": 0.04,
+   "AUS200": 0.04,
+   "SUI20": 0.04
+  },
+  "family": "リスクプレミアム（買い持ち）×ボラ局面ゲート",
+  "family_trials": 3,
+  "data_source_added": "CBOE VIX（FRED VIXCLS・_データ/raw/vol/VIX.csv・1990〜）",
+  "gate": "C1 σ0.25%/日・max_dd −6%・前後半 t≥2",
+  "point_in_time": "VIX は t−1 暦日の終値（US 16:15 ET 確定）。閾値は t−1 までの rolling 分位"
+ }
+}
