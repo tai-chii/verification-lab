@@ -1,0 +1,13 @@
+{
+ "qid": "Q513",
+ "smoke": false,
+ "generated": "20261025_030342",
+ "status": "データ待ち",
+ "n_ok_fx": 22,
+ "missing": [
+  "HY_OAS"
+ ],
+ "rates_missing": [],
+ "missing_idx": [],
+ "note": "S20 データガード: FX22 の D1（20 本以上）・BTC/ETH の H1・政策金利 8 通貨・指数 10（8 本以上）・HY_OAS（_データ/raw/credit/HY_OAS.csv。fetch_fred_credit.py で取得）のどれかが足りないため本番を実行しない。"
+}

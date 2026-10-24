@@ -1,0 +1,153 @@
+{
+ "registered": "20261025_030342",
+ "B": 500,
+ "seed": 20261010,
+ "qid": "Q513",
+ "question": "S18 と同じ 4 族・同じ重みで、キャリーと指数 β の 2 族だけを HY OAS の 20 営業日拡大（risk-off）の間 0 にした合成は、規程 C1 で封印前の前後半とも年単位 t≥2 かつ max_dd≥−6% か（合成 1 本のみ・掃引しない）",
+ "hypothesis": "S18 と同じ 4 族・同じ重み（1/4 固定・再正規化しない）で、キャリーと指数 β の 2 族だけを「HY OAS が直近 20 営業日で拡大しているとき（risk-off）は 0」にすると、封印前の規程 C1 の年単位 t が前後半とも 2 以上になり、max_dd −6% 以内を保つ。順張り 2 族（暗号 TSMOM60・FX22 TSMOM60）は触らない（順張りはリスクオフで儲ける側なので）。捨てる予想: 変化ゲートも S19 と同じく「戻りを捨てる」側に働き、t_pre は 0.97 から上がらない",
+ "reject_if": "支持: 規程 C1 合成が封印前の前後半とも年単位 t ≥ 2、かつ max_dd ≥ −6%、かつ 等金額の循環シフト帰無に対して z ≥ 2（ゲートのタイミングに意味がある）。棄却: 規程 C1 合成の t_pre が S18 再現値（0.97）以下、または ゲート 0 の日のキャリー＋β の平均リターンが正（＝S19 と同じ「戻りを捨てている」）。未確定: それ以外（t_pre は上がったが 2 に届かない等）。未確定なら S20 は閉じ、変化の窓・閾値の掃引はしない（事後の掃引）。残る独立標本は封印後の前向きのみ",
+ "families": {
+  "carry": {
+   "syms": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCHF",
+    "USDCAD",
+    "EURJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "EURGBP",
+    "AUDJPY",
+    "CADJPY",
+    "CHFJPY",
+    "NZDJPY",
+    "EURAUD",
+    "EURCAD",
+    "EURCHF",
+    "GBPAUD",
+    "GBPCAD",
+    "GBPCHF",
+    "AUDNZD",
+    "AUDCAD"
+   ],
+   "signal": "sign(policy_rate_diff, lag 1 暦日) × g",
+   "swap": "金利差 − 年 0.75% マークアップ",
+   "ref": "Q389 main"
+  },
+  "crypto": {
+   "syms": [
+    "BTCUSD",
+    "ETHUSD"
+   ],
+   "signal": "tsmom L=60（ゲートなし）",
+   "kind": "H1→D1 cutoff 0（土日込み）",
+   "cost": "往復 30 bp",
+   "ref": "Q385 main"
+  },
+  "tsmom": {
+   "syms": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCHF",
+    "USDCAD",
+    "EURJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "EURGBP",
+    "AUDJPY",
+    "CADJPY",
+    "CHFJPY",
+    "NZDJPY",
+    "EURAUD",
+    "EURCAD",
+    "EURCHF",
+    "GBPAUD",
+    "GBPCAD",
+    "GBPCHF",
+    "AUDNZD",
+    "AUDCAD"
+   ],
+   "signal": "tsmom L=60（ゲートなし）",
+   "swap": "なし（Q367 の定義）",
+   "ref": "Q367 FX 族"
+  },
+  "beta": {
+   "syms": [
+    "US500",
+    "USTECH",
+    "US30",
+    "GER40",
+    "JPN225",
+    "UK100",
+    "FRA40",
+    "ESP35",
+    "AUS200",
+    "SUI20"
+   ],
+   "signal": "常時 +1 × g",
+   "start": "2012-02-01",
+   "hold_cost_annual": 0.04,
+   "ref": "Q468 params 1（指数のみ）"
+  }
+ },
+ "gate": {
+  "source": "FRED BAMLH0A0HYM2",
+  "lag_days": 2,
+  "window": 20,
+  "threshold": 0.0
+ },
+ "baseline": "Q469",
+ "null_kind": "ゲート系列の循環シフト min_shift=21（キャリー・β に掛け直す）",
+ "weights": {
+  "carry": 0.25,
+  "crypto": 0.25,
+  "tsmom": 0.25,
+  "beta": 0.25
+ },
+ "renormalize_when_missing": false,
+ "seal": "2024-07-01",
+ "start": "2010-01-01",
+ "split_year": 2017,
+ "warmup": 120,
+ "rule_set": "fintokei_c1",
+ "rules_fintokei": {
+  "sym_cap": 0.015,
+  "sym_sigma_mult": 3.0,
+  "port_sigma_target": 0.0025,
+  "max_leverage": 2.0,
+  "daily_stop": -0.025,
+  "vol_window": 60,
+  "port_vol_window": 60,
+  "rebalance_band": 0.2
+ },
+ "rules_none": {
+  "equal_weight": true,
+  "sym_cap": null,
+  "sym_sigma_mult": 3.0,
+  "port_sigma_target": null,
+  "max_leverage": 1.0,
+  "daily_stop": null,
+  "vol_window": 60,
+  "port_vol_window": 60,
+  "rebalance_band": 0.0
+ },
+ "n_tests": 1,
+ "family_trials_inherited": {
+  "S07": 5,
+  "S08": 2,
+  "S09": 4,
+  "S17": 1,
+  "S19": 1
+ },
+ "trials_this": 1,
+ "discarded": "5（夜間プレミアム／キャリー精密化／COT／VIX 水準ゲートの合成適用／MOVE）",
+ "knowledge_cutoff": "設計者（Fable）の知識は 2026-06。FRED の系列 ID・更新遅れは 2026-10-25 時点の知識。実行者は fetch 後に manifest.json の first/last と遅れを原典と照合する",
+ "delegation": "Fable 設計・Sonnet コード（lab_code）・lab 実行",
+ "designer": "Fable",
+ "coder": "Sonnet",
+ "batch": "週次設計 2026-10-25（Fable・最小ループの 1 回目）"
+}
