@@ -48,3 +48,7 @@ financial-engineering/wfo-window-gate-q333/results/parts/
 financial-engineering/path-smoothness-tsmom-q346/results/smoke_*
 financial-engineering/path-smoothness-tsmom-q346/results/_試走_B20/
 financial-engineering/path-smoothness-tsmom-q346/results/*_cells_*.csv
+
+# Q514: 実行ログ・日次系列
+financial-engineering/s20b-baa10y-riskoff-gate-composite-c1-q514/run.log
+financial-engineering/s20b-baa10y-riskoff-gate-composite-c1-q514/results/*daily_composite*.csv
