@@ -1,0 +1,1788 @@
+{
+ "qid": "Q514",
+ "smoke": false,
+ "generated": "20261025_041056",
+ "question": "S18 と同じ 4 族・同じ重みで、キャリーと指数 β の 2 族だけを BAA10Y（Moody's Baa−10 年債） の 20 営業日拡大（risk-off）の間 0 にした合成は、規程 C1 で封印前の前後半とも年単位 t≥2 かつ max_dd≥−6% か（合成 1 本のみ・掃引しない）",
+ "spec": {
+  "qid": "Q514",
+  "question": "S18 と同じ 4 族・同じ重みで、キャリーと指数 β の 2 族だけを BAA10Y（Moody's Baa−10 年債） の 20 営業日拡大（risk-off）の間 0 にした合成は、規程 C1 で封印前の前後半とも年単位 t≥2 かつ max_dd≥−6% か（合成 1 本のみ・掃引しない）",
+  "hypothesis": "S18 と同じ 4 族・同じ重み（1/4 固定・再正規化しない）で、キャリーと指数 β の 2 族だけを「BAA10Y（Moody's Baa−10 年債） が直近 20 営業日で拡大しているとき（risk-off）は 0」にすると、封印前の規程 C1 の年単位 t が前後半とも 2 以上になり、max_dd −6% 以内を保つ。順張り 2 族（暗号 TSMOM60・FX22 TSMOM60）は触らない（順張りはリスクオフで儲ける側なので）。捨てる予想: 変化ゲートも S19 と同じく「戻りを捨てる」側に働き、t_pre は 0.97 から上がらない",
+  "reject_if": "支持: 規程 C1 合成が封印前の前後半とも年単位 t ≥ 2、かつ max_dd ≥ −6%、かつ 等金額の循環シフト帰無に対して z ≥ 2（ゲートのタイミングに意味がある）。棄却: 規程 C1 合成の t_pre が S18 再現値（0.97）以下、または ゲート 0 の日のキャリー＋β の平均リターンが正（＝S19 と同じ「戻りを捨てている」）。未確定: それ以外（t_pre は上がったが 2 に届かない等）。未確定なら S20 は閉じ、変化の窓・閾値の掃引はしない（事後の掃引）。残る独立標本は封印後の前向きのみ",
+  "families": {
+   "carry": {
+    "syms": [
+     "EURUSD",
+     "GBPUSD",
+     "AUDUSD",
+     "USDJPY",
+     "USDCHF",
+     "USDCAD",
+     "EURJPY",
+     "GBPJPY",
+     "NZDUSD",
+     "EURGBP",
+     "AUDJPY",
+     "CADJPY",
+     "CHFJPY",
+     "NZDJPY",
+     "EURAUD",
+     "EURCAD",
+     "EURCHF",
+     "GBPAUD",
+     "GBPCAD",
+     "GBPCHF",
+     "AUDNZD",
+     "AUDCAD"
+    ],
+    "signal": "sign(policy_rate_diff, lag 1 暦日) × g",
+    "swap": "金利差 − 年 0.75% マークアップ",
+    "ref": "Q389 main"
+   },
+   "crypto": {
+    "syms": [
+     "BTCUSD",
+     "ETHUSD"
+    ],
+    "signal": "tsmom L=60（ゲートなし）",
+    "kind": "H1→D1 cutoff 0（土日込み）",
+    "cost": "往復 30 bp",
+    "ref": "Q385 main"
+   },
+   "tsmom": {
+    "syms": [
+     "EURUSD",
+     "GBPUSD",
+     "AUDUSD",
+     "USDJPY",
+     "USDCHF",
+     "USDCAD",
+     "EURJPY",
+     "GBPJPY",
+     "NZDUSD",
+     "EURGBP",
+     "AUDJPY",
+     "CADJPY",
+     "CHFJPY",
+     "NZDJPY",
+     "EURAUD",
+     "EURCAD",
+     "EURCHF",
+     "GBPAUD",
+     "GBPCAD",
+     "GBPCHF",
+     "AUDNZD",
+     "AUDCAD"
+    ],
+    "signal": "tsmom L=60（ゲートなし）",
+    "swap": "なし（Q367 の定義）",
+    "ref": "Q367 FX 族"
+   },
+   "beta": {
+    "syms": [
+     "US500",
+     "USTECH",
+     "US30",
+     "GER40",
+     "JPN225",
+     "UK100",
+     "FRA40",
+     "ESP35",
+     "AUS200",
+     "SUI20"
+    ],
+    "signal": "常時 +1 × g",
+    "start": "2012-02-01",
+    "hold_cost_annual": 0.04,
+    "ref": "Q468 params 1（指数のみ）"
+   }
+  },
+  "gate": {
+   "source": "FRED BAA10Y",
+   "lag_days": 2,
+   "window": 20,
+   "threshold": 0.0
+  },
+  "replaces": "Q513",
+  "baseline": "Q469",
+  "null_kind": "ゲート系列の循環シフト min_shift=21（キャリー・β に掛け直す）",
+  "weights": {
+   "carry": 0.25,
+   "crypto": 0.25,
+   "tsmom": 0.25,
+   "beta": 0.25
+  },
+  "renormalize_when_missing": false,
+  "seal": "2024-07-01",
+  "start": "2010-01-01",
+  "split_year": 2017,
+  "warmup": 120,
+  "rule_set": "fintokei_c1",
+  "rules_fintokei": {
+   "sym_cap": 0.015,
+   "sym_sigma_mult": 3.0,
+   "port_sigma_target": 0.0025,
+   "max_leverage": 2.0,
+   "daily_stop": -0.025,
+   "vol_window": 60,
+   "port_vol_window": 60,
+   "rebalance_band": 0.2
+  },
+  "rules_none": {
+   "equal_weight": true,
+   "sym_cap": null,
+   "sym_sigma_mult": 3.0,
+   "port_sigma_target": null,
+   "max_leverage": 1.0,
+   "daily_stop": null,
+   "vol_window": 60,
+   "port_vol_window": 60,
+   "rebalance_band": 0.0
+  },
+  "B": 500,
+  "n_tests": 1,
+  "family_trials_inherited": {
+   "S07": 5,
+   "S08": 2,
+   "S09": 4,
+   "S17": 1,
+   "S19": 1
+  },
+  "trials_this": 1,
+  "discarded": "5（夜間プレミアム／キャリー精密化／COT／VIX 水準ゲートの合成適用／MOVE）",
+  "knowledge_cutoff": "設計者（Fable）の知識は 2026-06。FRED の系列 ID・更新遅れは 2026-10-25 時点の知識。実行者は fetch 後に manifest.json の first/last と遅れを原典と照合する",
+  "delegation": "Fable 設計・Sonnet コード（lab_code）・lab 実行",
+  "designer": "Fable",
+  "coder": "Sonnet",
+  "batch": "週次設計 2026-10-25（Fable・最小ループの 1 回目）",
+  "B_used": 500,
+  "seed": 20261010
+ },
+ "gate_mode": "on",
+ "missing": [],
+ "data_health": {
+  "fx22_D1": {
+   "ok": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCHF",
+    "USDCAD",
+    "EURJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "EURGBP",
+    "AUDJPY",
+    "CADJPY",
+    "CHFJPY",
+    "NZDJPY",
+    "EURAUD",
+    "EURCAD",
+    "EURCHF",
+    "GBPAUD",
+    "GBPCAD",
+    "GBPCHF",
+    "AUDNZD",
+    "AUDCAD"
+   ],
+   "no_data": [],
+   "failed": {},
+   "gaps": {},
+   "n_dup": {},
+   "n_gap_syms": 0
+  },
+  "crypto_H1": {
+   "ok": [
+    "BTCUSD",
+    "ETHUSD"
+   ],
+   "no_data": [],
+   "failed": {},
+   "gaps": {},
+   "n_dup": {},
+   "n_gap_syms": 0
+  },
+  "idx10_D1": {
+   "ok": [
+    "US500",
+    "USTECH",
+    "US30",
+    "GER40",
+    "JPN225",
+    "UK100",
+    "FRA40",
+    "ESP35",
+    "AUS200",
+    "SUI20"
+   ],
+   "no_data": [],
+   "failed": {},
+   "gaps": {
+    "US500": {
+     "months": 178,
+     "missing_months": 4,
+     "missing": [
+      "2011-10",
+      "2011-11",
+      "2011-12",
+      "2012-01"
+     ],
+     "worst_ratio": 0.0,
+     "n_gaps": 1,
+     "max_gap_h": 2784.0,
+     "gaps": [
+      {
+       "from": "2011-09-22 00:00:00",
+       "to": "2012-01-16 00:00:00",
+       "hours": 2784.0
+      }
+     ],
+     "first": "2011-09-19 00:00:00",
+     "last": "2026-06-30 00:00:00"
+    },
+    "USTECH": {
+     "months": 178,
+     "missing_months": 4,
+     "missing": [
+      "2011-10",
+      "2011-11",
+      "2011-12",
+      "2012-01"
+     ],
+     "worst_ratio": 0.0,
+     "n_gaps": 1,
+     "max_gap_h": 2856.0,
+     "gaps": [
+      {
+       "from": "2011-09-22 00:00:00",
+       "to": "2012-01-19 00:00:00",
+       "hours": 2856.0
+      }
+     ],
+     "first": "2011-09-19 00:00:00",
+     "last": "2026-06-30 00:00:00"
+    },
+    "GER40": {
+     "months": 148,
+     "missing_months": 1,
+     "missing": [
+      "2018-12"
+     ],
+     "worst_ratio": 0.7906976744186046,
+     "n_gaps": 0,
+     "max_gap_h": 0.0,
+     "gaps": [],
+     "first": "2013-09-30 00:00:00",
+     "last": "2025-12-31 00:00:00"
+    },
+    "JPN225": {
+     "months": 201,
+     "missing_months": 5,
+     "missing": [
+      "2013-04",
+      "2013-05",
+      "2013-06",
+      "2013-08",
+      "2013-10"
+     ],
+     "worst_ratio": 0.6976744186046512,
+     "n_gaps": 0,
+     "max_gap_h": 0.0,
+     "gaps": [],
+     "first": "2010-01-04 00:00:00",
+     "last": "2026-09-30 00:00:00"
+    },
+    "UK100": {
+     "months": 201,
+     "missing_months": 4,
+     "missing": [
+      "2013-04",
+      "2013-05",
+      "2013-06",
+      "2013-08"
+     ],
+     "worst_ratio": 0.6976744186046512,
+     "n_gaps": 1,
+     "max_gap_h": 192.0,
+     "gaps": [
+      {
+       "from": "2013-05-15 00:00:00",
+       "to": "2013-05-23 00:00:00",
+       "hours": 192.0
+      }
+     ],
+     "first": "2010-01-04 00:00:00",
+     "last": "2026-09-30 00:00:00"
+    },
+    "FRA40": {
+     "months": 201,
+     "missing_months": 1,
+     "missing": [
+      "2013-06"
+     ],
+     "worst_ratio": 0.7441860465116279,
+     "n_gaps": 0,
+     "max_gap_h": 0.0,
+     "gaps": [],
+     "first": "2010-01-04 00:00:00",
+     "last": "2026-09-30 00:00:00"
+    },
+    "SUI20": {
+     "months": 201,
+     "missing_months": 6,
+     "missing": [
+      "2012-12",
+      "2013-04",
+      "2013-05",
+      "2013-06",
+      "2013-08",
+      "2018-12"
+     ],
+     "worst_ratio": 0.6976744186046512,
+     "n_gaps": 0,
+     "max_gap_h": 0.0,
+     "gaps": [],
+     "first": "2010-01-04 00:00:00",
+     "last": "2026-09-30 00:00:00"
+    }
+   },
+   "n_dup": {},
+   "n_gap_syms": 7
+  }
+ },
+ "main": {
+  "all": {
+   "n_years": 15,
+   "bp": 2.1715,
+   "t_year": 1.8775,
+   "nw_t": 1.8084,
+   "n_days": 4058,
+   "bp_gross": 2.6535,
+   "t_year_gross": 2.2807,
+   "z": -0.1151,
+   "pct": 0.458,
+   "p_perm": 0.5429,
+   "null_degenerate": false,
+   "null_q025": 1.867,
+   "null_q500": 2.193,
+   "null_q975": 2.5805,
+   "sharpe_net": 0.4749,
+   "max_dd_net_bp": -4674.8542
+  },
+  "pre": {
+   "n_years": 7,
+   "bp": 0.3005,
+   "t_year": 0.7304,
+   "nw_t": 0.7551,
+   "n_days": 1704,
+   "bp_gross": 0.5768,
+   "t_year_gross": 1.3257,
+   "z": 0.1045,
+   "pct": 0.552,
+   "p_perm": 0.4491,
+   "null_degenerate": false,
+   "null_q025": -0.1405,
+   "null_q500": 0.262,
+   "null_q975": 0.7705,
+   "sharpe_net": 0.2955,
+   "max_dd_net_bp": -634.5907
+  },
+  "post": {
+   "n_years": 8,
+   "bp": 3.8087,
+   "t_year": 1.8881,
+   "nw_t": 1.7223,
+   "n_days": 2354,
+   "bp_gross": 4.4706,
+   "t_year_gross": 2.257,
+   "z": -0.2405,
+   "pct": 0.438,
+   "p_perm": 0.5629,
+   "null_degenerate": false,
+   "null_q025": 3.4315,
+   "null_q500": 3.8524,
+   "null_q975": 4.4186,
+   "sharpe_net": 0.5935,
+   "max_dd_net_bp": -4674.8542
+  },
+  "family_eq": {
+   "carry": {
+    "all": {
+     "n_years": 15,
+     "bp": 0.2784,
+     "t_year": 1.0083,
+     "nw_t": 0.645,
+     "n_days": 3658
+    },
+    "pre": {
+     "n_years": 7,
+     "bp": 0.2348,
+     "t_year": 0.6792,
+     "nw_t": 0.4076,
+     "n_days": 1704
+    },
+    "post": {
+     "n_years": 8,
+     "bp": 0.3166,
+     "t_year": 0.7154,
+     "nw_t": 0.5378,
+     "n_days": 1954
+    }
+   },
+   "crypto": {
+    "all": {
+     "n_years": 8,
+     "bp": 36.8881,
+     "t_year": 1.4171,
+     "nw_t": 1.7789,
+     "n_days": 2134
+    },
+    "pre": {
+     "n_years": 0,
+     "bp": null,
+     "t_year": null,
+     "nw_t": null,
+     "n_days": 0
+    },
+    "post": {
+     "n_years": 8,
+     "bp": 36.8881,
+     "t_year": 1.4171,
+     "nw_t": 1.7789,
+     "n_days": 2134
+    }
+   },
+   "tsmom": {
+    "all": {
+     "n_years": 15,
+     "bp": -0.409,
+     "t_year": -1.3922,
+     "nw_t": -0.9449,
+     "n_days": 3658
+    },
+    "pre": {
+     "n_years": 7,
+     "bp": 0.0197,
+     "t_year": 0.0373,
+     "nw_t": 0.0359,
+     "n_days": 1704
+    },
+    "post": {
+     "n_years": 8,
+     "bp": -0.7842,
+     "t_year": -2.9075,
+     "nw_t": -1.5067,
+     "n_days": 1954
+    }
+   },
+   "beta": {
+    "all": {
+     "n_years": 13,
+     "bp": 1.057,
+     "t_year": 0.86,
+     "nw_t": 0.6633,
+     "n_days": 3101
+    },
+    "pre": {
+     "n_years": 5,
+     "bp": 1.9281,
+     "t_year": 1.1337,
+     "nw_t": 0.8539,
+     "n_days": 1155
+    },
+    "post": {
+     "n_years": 8,
+     "bp": 0.5125,
+     "t_year": 0.2927,
+     "nw_t": 0.1947,
+     "n_days": 1946
+    }
+   }
+  }
+ },
+ "rule_mode": {
+  "none": {
+   "t_all": 1.8342,
+   "t_pre": 0.728,
+   "t_post": 1.8345,
+   "n_years_pre": 7,
+   "n_years_post": 8,
+   "nw_t_pre": 0.769,
+   "nw_t_post": 1.6831,
+   "mean_bp": 2.1488,
+   "mean_bp_pre": 0.2971,
+   "mean_bp_post": 3.5844,
+   "sigma_pct": 0.7444,
+   "sharpe": 0.4582,
+   "sharpe_pre": 0.2858,
+   "sharpe_post": 0.58,
+   "max_dd": -0.3879,
+   "max_dd_pre": -0.0617,
+   "worst_day": -0.102,
+   "n_days": 4179,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 0.09029736099755688,
+     "n": 261
+    },
+    {
+     "year": 2011,
+     "mean_bp": -0.5826380026742162,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 1.3248918878320055,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 2.204211550460302,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -0.596665101652671,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": -0.4975742277393471,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": 0.1330604478150643,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 9.455216636449812,
+     "n": 260
+    },
+    {
+     "year": 2018,
+     "mean_bp": 5.5949494851324575,
+     "n": 261
+    },
+    {
+     "year": 2019,
+     "mean_bp": 7.646794905133663,
+     "n": 261
+    },
+    {
+     "year": 2020,
+     "mean_bp": -5.937191164918303,
+     "n": 296
+    },
+    {
+     "year": 2021,
+     "mean_bp": 10.15536714032486,
+     "n": 364
+    },
+    {
+     "year": 2022,
+     "mean_bp": -2.99623639564717,
+     "n": 365
+    },
+    {
+     "year": 2023,
+     "mean_bp": 3.2011792894292794,
+     "n": 365
+    },
+    {
+     "year": 2024,
+     "mean_bp": 2.7980427004615533,
+     "n": 182
+    }
+   ],
+   "stops": 0,
+   "rules": {
+    "equal_weight": true,
+    "sym_cap": null,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": null,
+    "max_leverage": 1.0,
+    "daily_stop": null,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.0
+   },
+   "composite_days_below_daily_stop": 46,
+   "stops_note": "stops は族ごとの日次停止の合計（族ごとに規程を当てる設計）。composite_days_below_daily_stop は合成が −2.5% を割った日数（記述）"
+  },
+  "fintokei": {
+   "t_all": 1.7185,
+   "t_pre": 1.0383,
+   "t_post": 1.328,
+   "n_years_pre": 7,
+   "n_years_post": 8,
+   "nw_t_pre": 1.0317,
+   "nw_t_post": 0.8176,
+   "mean_bp": 0.2828,
+   "mean_bp_pre": 0.3319,
+   "mean_bp_post": 0.2447,
+   "sigma_pct": 0.1404,
+   "sharpe": 0.3198,
+   "sharpe_pre": 0.3878,
+   "sharpe_post": 0.2702,
+   "max_dd": -0.0553,
+   "max_dd_pre": -0.0472,
+   "worst_day": -0.0116,
+   "n_days": 4179,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": -0.10486856161995496,
+     "n": 261
+    },
+    {
+     "year": 2011,
+     "mean_bp": -0.43472202058159787,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 1.600260558557303,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 1.3915323265888622,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -0.5213344642881159,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": 0.2212961040286371,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": 0.16730121377951104,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 1.217901115043271,
+     "n": 260
+    },
+    {
+     "year": 2018,
+     "mean_bp": -0.08385200093512221,
+     "n": 261
+    },
+    {
+     "year": 2019,
+     "mean_bp": 0.31822663694186737,
+     "n": 261
+    },
+    {
+     "year": 2020,
+     "mean_bp": 0.4896343526021925,
+     "n": 296
+    },
+    {
+     "year": 2021,
+     "mean_bp": 0.49747423389514434,
+     "n": 364
+    },
+    {
+     "year": 2022,
+     "mean_bp": -1.0315566240841163,
+     "n": 365
+    },
+    {
+     "year": 2023,
+     "mean_bp": 0.20514227289852627,
+     "n": 365
+    },
+    {
+     "year": 2024,
+     "mean_bp": 0.955650248915133,
+     "n": 182
+    }
+   ],
+   "stops": 2,
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.0025,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.2
+   },
+   "composite_days_below_daily_stop": 0,
+   "stops_note": "stops は族ごとの日次停止の合計（族ごとに規程を当てる設計）。composite_days_below_daily_stop は合成が −2.5% を割った日数（記述）"
+  },
+  "gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": false,
+   "max_dd_within_6pct": true,
+   "pass": false
+  },
+  "rule_set": "fintokei_c1",
+  "split_year": 2017,
+  "seal": "2024-07-01",
+  "weights": {
+   "carry": 0.25,
+   "crypto": 0.25,
+   "tsmom": 0.25,
+   "beta": 0.25
+  },
+  "baseline_gate_off": {
+   "t_all": 2.0851,
+   "t_pre": 0.9663,
+   "t_post": 1.9205,
+   "n_years_pre": 7,
+   "n_years_post": 8,
+   "nw_t_pre": 1.0855,
+   "nw_t_post": 1.5935,
+   "mean_bp": 0.4067,
+   "mean_bp_pre": 0.3219,
+   "mean_bp_post": 0.4725,
+   "sigma_pct": 0.1348,
+   "sharpe": 0.479,
+   "sharpe_pre": 0.409,
+   "sharpe_post": 0.5283,
+   "max_dd": -0.0463,
+   "max_dd_pre": -0.0463,
+   "worst_day": -0.0113,
+   "n_days": 4179,
+   "years": [
+    {
+     "year": 2010,
+     "mean_bp": 0.11614757100079488,
+     "n": 261
+    },
+    {
+     "year": 2011,
+     "mean_bp": -0.3079808815193748,
+     "n": 260
+    },
+    {
+     "year": 2012,
+     "mean_bp": 1.7597911752788413,
+     "n": 261
+    },
+    {
+     "year": 2013,
+     "mean_bp": 1.2609846215034377,
+     "n": 261
+    },
+    {
+     "year": 2014,
+     "mean_bp": -0.004418181455177673,
+     "n": 261
+    },
+    {
+     "year": 2015,
+     "mean_bp": -0.7411481934118566,
+     "n": 261
+    },
+    {
+     "year": 2016,
+     "mean_bp": 0.16696680342901069,
+     "n": 260
+    },
+    {
+     "year": 2017,
+     "mean_bp": 1.5996264124784143,
+     "n": 260
+    },
+    {
+     "year": 2018,
+     "mean_bp": -0.32388129855244535,
+     "n": 261
+    },
+    {
+     "year": 2019,
+     "mean_bp": 1.079849773079394,
+     "n": 261
+    },
+    {
+     "year": 2020,
+     "mean_bp": -0.37234103586203793,
+     "n": 296
+    },
+    {
+     "year": 2021,
+     "mean_bp": 0.9795522090370122,
+     "n": 364
+    },
+    {
+     "year": 2022,
+     "mean_bp": -0.21681709384822875,
+     "n": 365
+    },
+    {
+     "year": 2023,
+     "mean_bp": 0.270094326961297,
+     "n": 365
+    },
+    {
+     "year": 2024,
+     "mean_bp": 1.281754014677182,
+     "n": 182
+    }
+   ],
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.0025,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.2
+   },
+   "gate": {
+    "t_pre_ge2": false,
+    "t_post_ge2": false,
+    "max_dd_within_6pct": true,
+    "pass": false
+   }
+  },
+  "baseline_q469_match": {
+   "file": "Q469_result_20261024_105657.json",
+   "diffs": {
+    "t_all": 0.0,
+    "t_pre": 0.0,
+    "t_post": 0.0,
+    "crypto.t_all": 0.0,
+    "crypto.t_pre": null,
+    "crypto.t_post": 0.0,
+    "tsmom.t_all": 0.0,
+    "tsmom.t_pre": 0.0,
+    "tsmom.t_post": 0.0
+   },
+   "match": true,
+   "note": "t で ±0.05 を超えたら実装の誤り（ゲート以外を変えている）。実行者は release で止める"
+  },
+  "rule_mode": "fintokei_c1"
+ },
+ "extra": {
+  "gate0": {
+   "fraction_oas_days": 0.4384,
+   "fraction_composite_days": 0.38,
+   "fraction_in_30_55": true,
+   "by_family_ungated_eq": {
+    "carry": {
+     "mean_bp": 0.3486,
+     "mean_bp_gate1": 0.6311,
+     "n_days_gate0": 1463
+    },
+    "beta": {
+     "mean_bp": 3.8999,
+     "mean_bp_gate1": 1.6497,
+     "n_days_gate0": 1181
+    }
+   },
+   "carry_beta_mean_bp": 4.2485,
+   "note": "ゲート 0 の日（翌日の損益）にゲート無しのキャリー・β が稼いだ平均 bp（等金額・コスト後）。正なら戻りを捨てている。30〜50% を外れたら差分の向き・遅れを疑う"
+  },
+  "family_alone": {
+   "fintokei": {
+    "carry": {
+     "t_all": 0.5223,
+     "t_pre": 0.3525,
+     "t_post": 0.3713,
+     "n_years_pre": 7,
+     "n_years_post": 8,
+     "nw_t_pre": 0.2639,
+     "nw_t_post": 0.0366,
+     "mean_bp": 0.0859,
+     "mean_bp_pre": 0.1572,
+     "mean_bp_post": 0.0192,
+     "sigma_pct": 0.2521,
+     "sharpe": 0.0541,
+     "sharpe_pre": 0.0947,
+     "sharpe_post": 0.0126,
+     "max_dd": -0.1216,
+     "max_dd_pre": -0.0961,
+     "worst_day": -0.0179,
+     "n_days": 3779,
+     "years": [
+      {
+       "year": 2010,
+       "mean_bp": 0.034339313714062,
+       "n": 261
+      },
+      {
+       "year": 2011,
+       "mean_bp": -0.9203472513216546,
+       "n": 260
+      },
+      {
+       "year": 2012,
+       "mean_bp": 2.5833193152003227,
+       "n": 261
+      },
+      {
+       "year": 2013,
+       "mean_bp": -0.12121266994976407,
+       "n": 261
+      },
+      {
+       "year": 2014,
+       "mean_bp": -0.9124422473394364,
+       "n": 261
+      },
+      {
+       "year": 2015,
+       "mean_bp": 0.25236351589410394,
+       "n": 261
+      },
+      {
+       "year": 2016,
+       "mean_bp": 0.18060282096000604,
+       "n": 260
+      },
+      {
+       "year": 2017,
+       "mean_bp": 0.1442114009077599,
+       "n": 260
+      },
+      {
+       "year": 2018,
+       "mean_bp": -0.41733009844953534,
+       "n": 261
+      },
+      {
+       "year": 2019,
+       "mean_bp": -0.6690612164759643,
+       "n": 261
+      },
+      {
+       "year": 2020,
+       "mean_bp": 0.5670143888400053,
+       "n": 262
+      },
+      {
+       "year": 2021,
+       "mean_bp": 0.3725711180875183,
+       "n": 260
+      },
+      {
+       "year": 2022,
+       "mean_bp": -2.633223896211958,
+       "n": 260
+      },
+      {
+       "year": 2023,
+       "mean_bp": 1.1813109562060726,
+       "n": 260
+      },
+      {
+       "year": 2024,
+       "mean_bp": 3.1969263377306167,
+       "n": 130
+      }
+     ],
+     "stops": 0,
+     "gross_median": 1.116
+    },
+    "crypto": {
+     "t_all": 2.4083,
+     "t_pre": null,
+     "t_post": 2.4083,
+     "n_years_pre": 0,
+     "n_years_post": 8,
+     "nw_t_pre": null,
+     "nw_t_post": 2.7853,
+     "mean_bp": 2.0133,
+     "mean_bp_pre": null,
+     "mean_bp_post": 2.0133,
+     "sigma_pct": 0.3055,
+     "sharpe": 1.0462,
+     "sharpe_pre": null,
+     "sharpe_post": 1.0462,
+     "max_dd": -0.0815,
+     "max_dd_pre": null,
+     "worst_day": -0.0219,
+     "n_days": 2255,
+     "years": [
+      {
+       "year": 2017,
+       "mean_bp": 9.073465530047534,
+       "n": 168
+      },
+      {
+       "year": 2018,
+       "mean_bp": 2.5830566628407805,
+       "n": 259
+      },
+      {
+       "year": 2019,
+       "mean_bp": 3.136231920489593,
+       "n": 259
+      },
+      {
+       "year": 2020,
+       "mean_bp": 0.8383853889062581,
+       "n": 295
+      },
+      {
+       "year": 2021,
+       "mean_bp": 1.9814467955115838,
+       "n": 364
+      },
+      {
+       "year": 2022,
+       "mean_bp": -0.3134883940002556,
+       "n": 365
+      },
+      {
+       "year": 2023,
+       "mean_bp": 1.4013696230237893,
+       "n": 364
+      },
+      {
+       "year": 2024,
+       "mean_bp": 0.939693839912906,
+       "n": 181
+      }
+     ],
+     "stops": 0,
+     "gross_median": 0.074
+    },
+    "tsmom": {
+     "t_all": -0.5887,
+     "t_pre": 1.3672,
+     "t_post": -2.0027,
+     "n_years_pre": 7,
+     "n_years_post": 8,
+     "nw_t_pre": 0.8742,
+     "nw_t_post": -1.3222,
+     "mean_bp": -0.1343,
+     "mean_bp_pre": 0.5394,
+     "mean_bp_post": -0.7635,
+     "sigma_pct": 0.2656,
+     "sharpe": -0.0803,
+     "sharpe_pre": 0.3126,
+     "sharpe_post": -0.4706,
+     "max_dd": -0.1684,
+     "max_dd_pre": -0.0682,
+     "worst_day": -0.0155,
+     "n_days": 3779,
+     "years": [
+      {
+       "year": 2010,
+       "mean_bp": -0.453813560193882,
+       "n": 261
+      },
+      {
+       "year": 2011,
+       "mean_bp": -0.818540831004737,
+       "n": 260
+      },
+      {
+       "year": 2012,
+       "mean_bp": 0.8063324504326713,
+       "n": 261
+      },
+      {
+       "year": 2013,
+       "mean_bp": 2.381452791937181,
+       "n": 261
+      },
+      {
+       "year": 2014,
+       "mean_bp": 0.30338040032945957,
+       "n": 261
+      },
+      {
+       "year": 2015,
+       "mean_bp": 0.9455033421426786,
+       "n": 261
+      },
+      {
+       "year": 2016,
+       "mean_bp": 0.6065068966110619,
+       "n": 260
+      },
+      {
+       "year": 2017,
+       "mean_bp": -1.5236607273057927,
+       "n": 260
+      },
+      {
+       "year": 2018,
+       "mean_bp": -0.5685680451687442,
+       "n": 261
+      },
+      {
+       "year": 2019,
+       "mean_bp": -0.34640399897929425,
+       "n": 261
+      },
+      {
+       "year": 2020,
+       "mean_bp": -0.9366887655246763,
+       "n": 262
+      },
+      {
+       "year": 2021,
+       "mean_bp": -0.2713616462333331,
+       "n": 260
+      },
+      {
+       "year": 2022,
+       "mean_bp": 1.3604006273803007,
+       "n": 260
+      },
+      {
+       "year": 2023,
+       "mean_bp": -2.4440657544835394,
+       "n": 260
+      },
+      {
+       "year": 2024,
+       "mean_bp": -1.9936373338757742,
+       "n": 130
+      }
+     ],
+     "stops": 0,
+     "gross_median": 1.2138
+    },
+    "beta": {
+     "t_all": 0.4009,
+     "t_pre": 0.9448,
+     "t_post": -0.26,
+     "n_years_pre": 5,
+     "n_years_post": 8,
+     "nw_t_pre": 0.9377,
+     "nw_t_post": -0.5964,
+     "mean_bp": 0.1148,
+     "mean_bp_pre": 0.9015,
+     "mean_bp_post": -0.4014,
+     "sigma_pct": 0.3106,
+     "sharpe": 0.0587,
+     "sharpe_pre": 0.4316,
+     "sharpe_post": -0.2153,
+     "max_dd": -0.2027,
+     "max_dd_pre": -0.0944,
+     "worst_day": -0.025,
+     "n_days": 3223,
+     "years": [
+      {
+       "year": 2012,
+       "mean_bp": 3.2885895912285066,
+       "n": 239
+      },
+      {
+       "year": 2013,
+       "mean_bp": 3.318604142769447,
+       "n": 260
+      },
+      {
+       "year": 2014,
+       "mean_bp": -1.481953994796881,
+       "n": 260
+      },
+      {
+       "year": 2015,
+       "mean_bp": -0.3138850666988585,
+       "n": 260
+      },
+      {
+       "year": 2016,
+       "mean_bp": -0.11881885363483063,
+       "n": 258
+      },
+      {
+       "year": 2017,
+       "mean_bp": 0.3912084320174608,
+       "n": 258
+      },
+      {
+       "year": 2018,
+       "mean_bp": -1.9201298044909958,
+       "n": 260
+      },
+      {
+       "year": 2019,
+       "mean_bp": -0.8269962969448956,
+       "n": 260
+      },
+      {
+       "year": 2020,
+       "mean_bp": 1.6509925786347446,
+       "n": 260
+      },
+      {
+       "year": 2021,
+       "mean_bp": -0.08937927575759361,
+       "n": 260
+      },
+      {
+       "year": 2022,
+       "mean_bp": -4.095426090565581,
+       "n": 259
+      },
+      {
+       "year": 2023,
+       "mean_bp": 0.4527900892435782,
+       "n": 260
+      },
+      {
+       "year": 2024,
+       "mean_bp": 2.8620250053089245,
+       "n": 129
+      }
+     ],
+     "stops": 2,
+     "gross_median": 0.2916
+    }
+   },
+   "none": {
+    "carry": {
+     "t_all": 0.9513,
+     "t_pre": 0.5593,
+     "t_post": 0.7305,
+     "n_years_pre": 7,
+     "n_years_post": 8,
+     "nw_t_pre": 0.4038,
+     "nw_t_post": 0.5476,
+     "mean_bp": 0.1904,
+     "mean_bp_pre": 0.2026,
+     "mean_bp_post": 0.1789,
+     "sigma_pct": 0.1896,
+     "sharpe": 0.1593,
+     "sharpe_pre": 0.1454,
+     "sharpe_post": 0.1837,
+     "max_dd": -0.0745,
+     "max_dd_pre": -0.0664,
+     "worst_day": -0.0153,
+     "n_days": 3779,
+     "years": [
+      {
+       "year": 2010,
+       "mean_bp": 0.3744777414895262,
+       "n": 261
+      },
+      {
+       "year": 2011,
+       "mean_bp": -0.8528382456630855,
+       "n": 260
+      },
+      {
+       "year": 2012,
+       "mean_bp": 2.113935472865542,
+       "n": 261
+      },
+      {
+       "year": 2013,
+       "mean_bp": 0.25796148522487744,
+       "n": 261
+      },
+      {
+       "year": 2014,
+       "mean_bp": -0.5354685798787375,
+       "n": 261
+      },
+      {
+       "year": 2015,
+       "mean_bp": 0.2035605133630792,
+       "n": 261
+      },
+      {
+       "year": 2016,
+       "mean_bp": -0.14893894490472778,
+       "n": 260
+      },
+      {
+       "year": 2017,
+       "mean_bp": 0.043789894073376356,
+       "n": 260
+      },
+      {
+       "year": 2018,
+       "mean_bp": -0.4229193114238666,
+       "n": 261
+      },
+      {
+       "year": 2019,
+       "mean_bp": -0.5587505930452901,
+       "n": 261
+      },
+      {
+       "year": 2020,
+       "mean_bp": 0.5959486151447247,
+       "n": 262
+      },
+      {
+       "year": 2021,
+       "mean_bp": 0.3966940521267285,
+       "n": 260
+      },
+      {
+       "year": 2022,
+       "mean_bp": -1.4988615149051663,
+       "n": 260
+      },
+      {
+       "year": 2023,
+       "mean_bp": 1.54070056460085,
+       "n": 260
+      },
+      {
+       "year": 2024,
+       "mean_bp": 2.494778843067023,
+       "n": 130
+      }
+     ],
+     "stops": 0,
+     "gross_median": 1.0
+    },
+    "crypto": {
+     "t_all": 1.8079,
+     "t_pre": null,
+     "t_post": 1.8079,
+     "n_years_pre": 0,
+     "n_years_post": 8,
+     "nw_t_pre": null,
+     "nw_t_post": 1.7452,
+     "mean_bp": 15.2994,
+     "mean_bp_pre": null,
+     "mean_bp_post": 15.2994,
+     "sigma_pct": 3.9013,
+     "sharpe": 0.6225,
+     "sharpe_pre": null,
+     "sharpe_post": 0.6225,
+     "max_dd": -0.8961,
+     "max_dd_pre": null,
+     "worst_day": -0.4196,
+     "n_days": 2255,
+     "years": [
+      {
+       "year": 2017,
+       "mean_bp": 59.05866277928939,
+       "n": 168
+      },
+      {
+       "year": 2018,
+       "mean_bp": 23.571122618946,
+       "n": 259
+      },
+      {
+       "year": 2019,
+       "mean_bp": 33.798089927266965,
+       "n": 259
+      },
+      {
+       "year": 2020,
+       "mean_bp": -29.566679355475234,
+       "n": 295
+      },
+      {
+       "year": 2021,
+       "mean_bp": 39.41231104876376,
+       "n": 364
+      },
+      {
+       "year": 2022,
+       "mean_bp": -4.332771489846334,
+       "n": 365
+      },
+      {
+       "year": 2023,
+       "mean_bp": 11.981706947729878,
+       "n": 364
+      },
+      {
+       "year": 2024,
+       "mean_bp": 7.270299597472027,
+       "n": 181
+      }
+     ],
+     "stops": 0,
+     "gross_median": 1.0
+    },
+    "tsmom": {
+     "t_all": -1.3888,
+     "t_pre": 0.0426,
+     "t_post": -2.9083,
+     "n_years_pre": 7,
+     "n_years_post": 8,
+     "nw_t_pre": 0.036,
+     "nw_t_post": -1.5062,
+     "mean_bp": -0.3822,
+     "mean_bp_pre": 0.023,
+     "mean_bp_post": -0.7606,
+     "sigma_pct": 0.2554,
+     "sharpe": -0.2375,
+     "sharpe_pre": 0.0129,
+     "sharpe_post": -0.5346,
+     "max_dd": -0.1968,
+     "max_dd_pre": -0.0799,
+     "worst_day": -0.0166,
+     "n_days": 3779,
+     "years": [
+      {
+       "year": 2010,
+       "mean_bp": -0.013288297499298883,
+       "n": 261
+      },
+      {
+       "year": 2011,
+       "mean_bp": -1.477713765033779,
+       "n": 260
+      },
+      {
+       "year": 2012,
+       "mean_bp": 0.6290462574354112,
+       "n": 261
+      },
+      {
+       "year": 2013,
+       "mean_bp": 2.3352776306382004,
+       "n": 261
+      },
+      {
+       "year": 2014,
+       "mean_bp": 0.19020994781082948,
+       "n": 261
+      },
+      {
+       "year": 2015,
+       "mean_bp": -1.8497621428796107,
+       "n": 261
+      },
+      {
+       "year": 2016,
+       "mean_bp": 0.3428927788462187,
+       "n": 260
+      },
+      {
+       "year": 2017,
+       "mean_bp": -1.176707269981458,
+       "n": 260
+      },
+      {
+       "year": 2018,
+       "mean_bp": -0.42430341105185426,
+       "n": 261
+      },
+      {
+       "year": 2019,
+       "mean_bp": -0.7275710956175231,
+       "n": 261
+      },
+      {
+       "year": 2020,
+       "mean_bp": -1.4588561056457567,
+       "n": 262
+      },
+      {
+       "year": 2021,
+       "mean_bp": -0.3645908797788815,
+       "n": 260
+      },
+      {
+       "year": 2022,
+       "mean_bp": 0.7054132795173435,
+       "n": 260
+      },
+      {
+       "year": 2023,
+       "mean_bp": -1.6806699367999813,
+       "n": 260
+      },
+      {
+       "year": 2024,
+       "mean_bp": -1.1464247425839507,
+       "n": 130
+      }
+     ],
+     "stops": 0,
+     "gross_median": 1.0
+    },
+    "beta": {
+     "t_all": 0.6806,
+     "t_pre": 0.9699,
+     "t_post": 0.2512,
+     "n_years_pre": 5,
+     "n_years_post": 8,
+     "nw_t_pre": 0.876,
+     "nw_t_post": 0.1407,
+     "mean_bp": 0.6652,
+     "mean_bp_pre": 1.3759,
+     "mean_bp_post": 0.1988,
+     "sigma_pct": 0.5934,
+     "sharpe": 0.178,
+     "sharpe_pre": 0.3952,
+     "sharpe_post": 0.051,
+     "max_dd": -0.3044,
+     "max_dd_pre": -0.161,
+     "worst_day": -0.064,
+     "n_days": 3223,
+     "years": [
+      {
+       "year": 2012,
+       "mean_bp": 2.7919200807032003,
+       "n": 239
+      },
+      {
+       "year": 2013,
+       "mean_bp": 6.247544036308816,
+       "n": 260
+      },
+      {
+       "year": 2014,
+       "mean_bp": -2.0492533198294782,
+       "n": 260
+      },
+      {
+       "year": 2015,
+       "mean_bp": -0.3454187248310149,
+       "n": 260
+      },
+      {
+       "year": 2016,
+       "mean_bp": 0.3409103445848033,
+       "n": 258
+      },
+      {
+       "year": 2017,
+       "mean_bp": 0.7989475686949111,
+       "n": 258
+      },
+      {
+       "year": 2018,
+       "mean_bp": -0.1641090971637156,
+       "n": 260
+      },
+      {
+       "year": 2019,
+       "mean_bp": -1.6720055748523321,
+       "n": 260
+      },
+      {
+       "year": 2020,
+       "mean_bp": 7.379299358127667,
+       "n": 260
+      },
+      {
+       "year": 2021,
+       "mean_bp": 1.6607173452020918,
+       "n": 260
+      },
+      {
+       "year": 2022,
+       "mean_bp": -9.987440164672286,
+       "n": 259
+      },
+      {
+       "year": 2023,
+       "mean_bp": 1.3414325783263343,
+       "n": 260
+      },
+      {
+       "year": 2024,
+       "mean_bp": 4.230735083184302,
+       "n": 129
+      }
+     ],
+     "stops": 0,
+     "gross_median": 1.0
+    }
+   }
+  },
+  "family_corr_daily": {
+   "carry": {
+    "carry": 1.0,
+    "crypto": -0.0215,
+    "tsmom": 0.0692,
+    "beta": 0.4361
+   },
+   "crypto": {
+    "carry": -0.0215,
+    "crypto": 1.0,
+    "tsmom": 0.0145,
+    "beta": 0.064
+   },
+   "tsmom": {
+    "carry": 0.0692,
+    "crypto": 0.0145,
+    "tsmom": 1.0,
+    "beta": 0.0287
+   },
+   "beta": {
+    "carry": 0.4361,
+    "crypto": 0.064,
+    "tsmom": 0.0287,
+    "beta": 1.0
+   }
+  },
+  "family_corr_monthly": {
+   "carry": {
+    "carry": 1.0,
+    "crypto": -0.05,
+    "tsmom": 0.1107,
+    "beta": 0.3373
+   },
+   "crypto": {
+    "carry": -0.05,
+    "crypto": 1.0,
+    "tsmom": 0.0147,
+    "beta": 0.2017
+   },
+   "tsmom": {
+    "carry": 0.1107,
+    "crypto": 0.0147,
+    "tsmom": 1.0,
+    "beta": -0.0015
+   },
+   "beta": {
+    "carry": 0.3373,
+    "crypto": 0.2017,
+    "tsmom": -0.0015,
+    "beta": 1.0
+   }
+  },
+  "contribution_fintokei": {
+   "carry": {
+    "mean_bp_weighted": 0.0194,
+    "n_days": 3779,
+    "first": "2010-01-01",
+    "last": "2024-06-28"
+   },
+   "crypto": {
+    "mean_bp_weighted": 0.2716,
+    "n_days": 2255,
+    "first": "2017-05-08",
+    "last": "2024-06-30"
+   },
+   "tsmom": {
+    "mean_bp_weighted": -0.0304,
+    "n_days": 3779,
+    "first": "2010-01-01",
+    "last": "2024-06-28"
+   },
+   "beta": {
+    "mean_bp_weighted": 0.0221,
+    "n_days": 3223,
+    "first": "2012-02-01",
+    "last": "2024-06-28"
+   }
+  },
+  "n_syms": {
+   "carry": 22,
+   "crypto": 2,
+   "tsmom": 22,
+   "beta": 10
+  },
+  "guard": {
+   "ok_fx": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCHF",
+    "USDCAD",
+    "EURJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "EURGBP",
+    "AUDJPY",
+    "CADJPY",
+    "CHFJPY",
+    "NZDJPY",
+    "EURAUD",
+    "EURCAD",
+    "EURCHF",
+    "GBPAUD",
+    "GBPCAD",
+    "GBPCHF",
+    "AUDNZD",
+    "AUDCAD"
+   ],
+   "missing_fx": [],
+   "ok_crypto": [
+    "BTCUSD",
+    "ETHUSD"
+   ],
+   "missing_crypto": [],
+   "rates_missing": [],
+   "ok_idx": [
+    "US500",
+    "USTECH",
+    "US30",
+    "GER40",
+    "JPN225",
+    "UK100",
+    "FRA40",
+    "ESP35",
+    "AUS200",
+    "SUI20"
+   ],
+   "missing_idx": [],
+   "oas_missing": []
+  },
+  "oas_span": {
+   "first": "2010-01-04",
+   "last": "2024-06-28",
+   "n": 3622
+  }
+ },
+ "baseline_q469_match": {
+  "file": "Q469_result_20261024_105657.json",
+  "diffs": {
+   "t_all": 0.0,
+   "t_pre": 0.0,
+   "t_post": 0.0,
+   "crypto.t_all": 0.0,
+   "crypto.t_pre": null,
+   "crypto.t_post": 0.0,
+   "tsmom.t_all": 0.0,
+   "tsmom.t_pre": 0.0,
+   "tsmom.t_post": 0.0
+  },
+  "match": true,
+  "note": "t で ±0.05 を超えたら実装の誤り（ゲート以外を変えている）。実行者は release で止める"
+ },
+ "null_summary": {
+  "z": -0.1151,
+  "pct": 0.458,
+  "p_perm": 0.5429,
+  "null_q025": 1.867,
+  "null_q500": 2.193,
+  "null_q975": 2.5805,
+  "null_degenerate": false
+ },
+ "perm_p": 0.5429,
+ "z": -0.1151,
+ "max_dd": -0.0553,
+ "worst_day": -0.0116,
+ "stops": 2,
+ "rule_mode_name": "fintokei_c1",
+ "gate_result": {
+  "t_pre_ge2": false,
+  "t_post_ge2": false,
+  "max_dd_within_6pct": true,
+  "pass": false
+ },
+ "n_trials": {
+  "composite": 3,
+  "inherited": 13,
+  "inherited_detail": {
+   "S07": 5,
+   "S08": 2,
+   "S09": 4,
+   "S17": 1,
+   "S19": 1
+  },
+  "this": 1
+ },
+ "multiple_comparisons": "判定は合成 1 本（n_tests=1・Holm 不要）。合成の試行 3（S16・S18・S20）、族内の引き継ぎ 13",
+ "elapsed_s": 28.5,
+ "machine_verdict": "棄却: 規程 C1 合成の t_pre が S18 再現値（0.97）以下、またはゲート 0 の日のキャリー＋β の平均リターンが正（戻りを捨てている）（data_health に failed/gaps あり: 確定にする前に点検）"
+}

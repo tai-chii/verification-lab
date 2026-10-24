@@ -1,0 +1,5 @@
+wrote results/Q514_result_20261025_041056.json
+wrote results/Q514_year_family_20261025_041056.csv
+wrote results/Q514_daily_composite_20261025_041056.csv
+machine_verdict: 棄却: 規程 C1 合成の t_pre が S18 再現値（0.97）以下、またはゲート 0 の日のキャリー＋β の平均リターンが正（戻りを捨てている）（data_health に failed/gaps あり: 確定にする前に点検）
+wrote /Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/s20b-baa10y-riskoff-gate-composite-c1-q514/results/Q514_result_20261025_041056.json
