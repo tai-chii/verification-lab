@@ -161,7 +161,7 @@
 | [s15-fomc-dollar-sell-hiking-regime-q414](./s15-fomc-dollar-sell-hiking-regime-q414) | Q414 対ドル 7 ペア（EURUSD・GBPUSD・AUDUSD・NZDUSD・USDJPY・USDCHF・USDCAD）の FOMC 定例発表日ドル売り（当日の足 1 本）を「米政策金利が直近 365 暦日に 1 回以上上がった」局面だけに限ると、Q403 で見えた後半（2022〜24）とは独立な第 1 サイクル（2015-12〜2019-07）でも規程モードの年単位 t≥2 か（前後半の境は 2020） | 未確定 |
 | [s15-wide48-tsmom60-global-hiking-q415](./s15-wide48-tsmom60-global-hiking-q415) | Q415 48 銘柄 D1 の TSMOM60 を「8 中銀（USD EUR JPY GBP AUD CAD CHF NZD）のうち直近 180 暦日に利上げした数が 4 以上」の局面だけ持つと、常時持つ S07 本体より規程モードの前後半 t と最大下落が改善するか | 棄却 |
 | [s16-three-family-equal-risk-composite-q425](./s16-three-family-equal-risk-composite-q425) | Q425 弱い正の 3 族（キャリー符号 FX22・BTC/ETH TSMOM60・FX22 TSMOM60）を事前固定の等リスク 1/3 合成にした 1 本は、規程モードで封印前の前後半とも年単位 t≥2 かつ最大下落 −6% 以内か（S16 本体・合成 1 本のみ・掃引しない） | 未確定 |
-| [s17-long-only-risk-premia-idx-bond-gold-q468](./s17-long-only-risk-premia-idx-bond-gold-q468) | Q468 S17 多資産ロングオンリー（株価指数 10＋債券 2＋金）の等リスク買い持ちは、保有コスト年 4% 込みで C1 関門（規程モード σ0.25%/日・封印前の前後半 t≥2・max_dd −6% 以内）を通るか | — |
+| [s17-long-only-risk-premia-idx-bond-gold-q468](./s17-long-only-risk-premia-idx-bond-gold-q468) | Q468 S17 多資産ロングオンリー（株価指数 10＋債券 2＋金）の等リスク買い持ちは、保有コスト年 4% 込みで C1 関門（規程モード σ0.25%/日・封印前の前後半 t≥2・max_dd −6% 以内）を通るか | 株価指数＋債券＋金の買い持ちプレミアムは等金額ならコスト後も正（1.5 bp/日・年率 約 3.8%・Sharpe 0… |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |

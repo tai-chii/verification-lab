@@ -23,12 +23,12 @@ from .multiple import z_of, perm_p, null_summary, null_degenerate, perm_within, 
 from .io import parse_args, write_result, sanitize, _json_default
 from .runner import Spec, Runner, default_judge
 from .readme import render_readme, render_idea_row
-from .risk import size_weights, simulate_portfolio, yearly_t, RULES_FINTOKEI, RULES_NONE
+from .risk import size_weights, simulate_portfolio, yearly_t, RULES_FINTOKEI, RULES_FINTOKEI_C1, RULES_NONE
 from .ml import make_features, make_target, meta_label, panel, walk_forward, ridge_fit_predict, gbm_fit_predict, pbo_cscv, TrialLog, FEATURE_FAMILIES
 
 __version__ = "0.2.0"  # 2026-10-13 Opus レビュー反映・固定
 __all__ = [
-    "size_weights", "simulate_portfolio", "yearly_t", "RULES_FINTOKEI", "RULES_NONE",
+    "size_weights", "simulate_portfolio", "yearly_t", "RULES_FINTOKEI", "RULES_FINTOKEI_C1", "RULES_NONE",
     "make_features", "make_target", "meta_label", "panel", "walk_forward", "ridge_fit_predict", "gbm_fit_predict", "pbo_cscv", "TrialLog", "FEATURE_FAMILIES",
     "WS", "_p", "DATA_DIR", "FX8", "FX6", "TREND7", "SYMS", "CRYPTO", "SPLIT_YEAR", "SEED", "GROUPS", "script_dir",
     "COST_RT", "CRYPTO_COST_RT_REL", "cost_bp_oneway", "pnl_bp",

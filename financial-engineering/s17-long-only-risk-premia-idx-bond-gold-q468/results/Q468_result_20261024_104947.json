@@ -1,0 +1,620 @@
+{
+ "qid": "Q468",
+ "smoke": false,
+ "generated": "20261024_104947",
+ "question": "S17 多資産ロングオンリー（株価指数 10＋債券 2＋金）の等リスク買い持ちは、保有コスト年 4% 込みで C1 関門（規程モード σ0.25%/日・封印前の前後半 t≥2・max_dd −6% 以内）を通るか",
+ "spec": {
+  "qid": "Q468",
+  "question": "S17 多資産ロングオンリー（株価指数 10＋債券 2＋金）の等リスク買い持ちは、保有コスト年 4% 込みで C1 関門（規程モード σ0.25%/日・封印前の前後半 t≥2・max_dd −6% 以内）を通るか",
+  "hypothesis": "pos[t]=+1（常時買い持ち）。規模は規程モード（size_weights: σ60 で 1 銘柄 3σ=1.5% 上限・ポート σ 目標 0.25%/日・レバ 2・日次 −2.5% 停止）が決める。株式・債券・金のリスクプレミアムは正で、等リスク束は分散で下落が浅くなる（Harvey ほか 2018 のボラ目標、Boyd ほかの株・債券・金）。封印前（2012-02〜2024-06）の前後半（境 2017）とも規程モード年単位 t≥2、max_dd ≥ −6%",
+  "reject_if": "判定は規程モード（rule_set=fintokei_c1・保有コスト 4% 込み）の main_param=0 のみ。gate.pass（t_pre≥2 かつ t_post≥2 かつ max_dd≥−6%）→ 支持。規程モード t_all<1 または max_dd<−10% → 棄却。ほか → 未確定。等金額（RULES_NONE）の数字・params 1〜2（指数のみ／指数＋金）・保有コスト 7% は記述で判定に使わない。帰無は none（常時買い持ちは循環シフトで変わらないため）。年単位 t が検定",
+  "syms": [
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "AUS200",
+   "SUI20",
+   "BUND",
+   "UKGILT",
+   "XAUUSD"
+  ],
+  "kind": "D1_fromH1",
+  "params": [
+   {
+    "set": "idx_bond_gold"
+   },
+   {
+    "set": "idx"
+   },
+   {
+    "set": "idx_gold"
+   }
+  ],
+  "main_param": 0,
+  "n_tests": 2,
+  "warmup": 60,
+  "per_year": 252,
+  "B": 0,
+  "split_year": 2017,
+  "start": "2012-02-01",
+  "end": "2024-07-01",
+  "cutoff_hour": 0,
+  "null_kind": "none",
+  "null_block": 20,
+  "null_min_shift": 60,
+  "cost_rel": {},
+  "discarded": "3（族内の試行は params の 3 本に固定・掃引しない）。捨てた案: 全 48 銘柄の買い持ち（FX・商品は無条件の正のプレミアムが無い）、NLD25/EUSTX50/HKG33/USTBOND を含める（穴が年 ±20〜165 bp を作る・S13 の記録）、2010 年開始（US500/USTECH の 2011-12 の穴を跨ぐ）",
+  "knowledge_cutoff": "Claude の知識の締め切りはおよそ 2026-06。規則は固定で相場観は使わない",
+  "delegation": "なし（Fable 設計 → Sonnet 実行 → Opus 見直し）。実行者は data_health の gaps と year_sym の 2012〜13 を見て穴の混入が無いことだけ点検する",
+  "source": "[[検証/_基盤/戦略台帳]] S17（2026-10-23・★C1 後の最初の S・族は新規「リスクプレミアム」）／Harvey・Hoyle・Korgaonkar・Rattray・Sargaison・van Hemert 2018「The Impact of Volatility Targeting」(JPM)／Boyd ほか「Simple Dynamic Stock/Bond/Gold Portfolios」(Stanford)／Q416・Q428（C1 の通過確率）",
+  "data": "13 銘柄 D1（検証/_データ/raw/D1 の IDX10＋BUND・UKGILT、XAUUSD は既存 15 銘柄）。2012-02-01〜2024-06-30（封印は Spec.end で切る・2026-10-23 実装）。債券 2 本は 2016-05／2017-12 開始なので前半はほぼ指数＋金だけ（記述に残す）",
+  "measure": "規程モード C1 の年単位 t（all/pre/post）・mean_bp・σ・max_dd・worst_day・stops（判定）。等金額の年単位 bp・t・Sharpe（記述）。extra: 族別（idx/bond/gold）の年単位 bp と t、保有コスト 7% は --hold 0.07 で別 JSON",
+  "null_desc": "none。常時 +1 の合図は循環シフトで不変なので帰無分布を作らない。検定は年単位 t（pre 5 年・post 7.5 年）",
+  "prior_art": "WebSearch 2026-10-23「multi-asset long-only risk parity equity bond gold volatility targeting Sharpe ratio 2010-2024 evidence」: Harvey ほか 2018（ボラ目標は株式・クレジットでシャープを上げ、債券・商品では効果が小さい）、Boyd ほか（株・債券・金の単純な動的配分）。未確認: CFD の保有コスト込み・プロップの固定最大損失（−6%）の下での通過可否、および 2012〜2024-06 の前後半分割での再現。ブログ（Quantpedia 要約）は根拠にしない",
+  "batch": "/lab-plan 2026-10-23（Fable・★C1 決定後・N=1）",
+  "designer": "Fable",
+  "coder": "Fable",
+  "settings": {
+   "rule_set": "fintokei_c1",
+   "holding_cost_annual": {
+    "US500": 0.04,
+    "USTECH": 0.04,
+    "US30": 0.04,
+    "GER40": 0.04,
+    "JPN225": 0.04,
+    "UK100": 0.04,
+    "FRA40": 0.04,
+    "ESP35": 0.04,
+    "AUS200": 0.04,
+    "SUI20": 0.04,
+    "BUND": 0.04,
+    "UKGILT": 0.04,
+    "XAUUSD": 0.04
+   },
+   "family": "リスクプレミアム（買い持ち）",
+   "family_trials": 3,
+   "gate": "C1 σ0.25%/日・max_dd −6%・前後半 t≥2"
+  },
+  "B_used": 0,
+  "seed": 20261010
+ },
+ "missing": [],
+ "data_health": {
+  "ok": [
+   "US500",
+   "USTECH",
+   "US30",
+   "GER40",
+   "JPN225",
+   "UK100",
+   "FRA40",
+   "ESP35",
+   "AUS200",
+   "SUI20",
+   "BUND",
+   "UKGILT",
+   "XAUUSD"
+  ],
+  "no_data": [],
+  "failed": {},
+  "gaps": {
+   "US500": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2784.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-16 00:00:00",
+      "hours": 2784.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "USTECH": {
+    "months": 178,
+    "missing_months": 4,
+    "missing": [
+     "2011-10",
+     "2011-11",
+     "2011-12",
+     "2012-01"
+    ],
+    "worst_ratio": 0.0,
+    "n_gaps": 1,
+    "max_gap_h": 2856.0,
+    "gaps": [
+     {
+      "from": "2011-09-22 00:00:00",
+      "to": "2012-01-19 00:00:00",
+      "hours": 2856.0
+     }
+    ],
+    "first": "2011-09-19 00:00:00",
+    "last": "2026-06-30 00:00:00"
+   },
+   "GER40": {
+    "months": 148,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2013-09-30 00:00:00",
+    "last": "2025-12-31 00:00:00"
+   },
+   "JPN225": {
+    "months": 201,
+    "missing_months": 5,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2013-10"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "UK100": {
+    "months": 201,
+    "missing_months": 4,
+    "missing": [
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 1,
+    "max_gap_h": 192.0,
+    "gaps": [
+     {
+      "from": "2013-05-15 00:00:00",
+      "to": "2013-05-23 00:00:00",
+      "hours": 192.0
+     }
+    ],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "FRA40": {
+    "months": 201,
+    "missing_months": 1,
+    "missing": [
+     "2013-06"
+    ],
+    "worst_ratio": 0.7441860465116279,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "SUI20": {
+    "months": 201,
+    "missing_months": 6,
+    "missing": [
+     "2012-12",
+     "2013-04",
+     "2013-05",
+     "2013-06",
+     "2013-08",
+     "2018-12"
+    ],
+    "worst_ratio": 0.6976744186046512,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2010-01-04 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   },
+   "BUND": {
+    "months": 125,
+    "missing_months": 1,
+    "missing": [
+     "2018-12"
+    ],
+    "worst_ratio": 0.7906976744186046,
+    "n_gaps": 0,
+    "max_gap_h": 0.0,
+    "gaps": [],
+    "first": "2016-05-02 00:00:00",
+    "last": "2026-09-30 00:00:00"
+   }
+  },
+  "n_dup": {},
+  "n_gap_syms": 8
+ },
+ "main": {
+  "all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 37052,
+   "bp_gross": 3.4346,
+   "t_gross": 3.1137,
+   "bp_net": 1.8473,
+   "t_year": 1.6747,
+   "t_cluster": 1.1777,
+   "sharpe_net": 0.3303,
+   "sharpe_gross": 0.6549,
+   "max_dd_net_bp": -2928.3197,
+   "exposure": 0.9997,
+   "gap_bars": 1,
+   "z": null,
+   "pct": null,
+   "p_perm": null,
+   "null_degenerate": null,
+   "null_q025": null,
+   "null_q975": null
+  },
+  "pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 12342,
+   "bp_gross": 3.9697,
+   "t_gross": 2.3749,
+   "bp_net": 2.3824,
+   "t_year": 1.4253,
+   "t_cluster": 0.7629,
+   "sharpe_net": 0.3465,
+   "sharpe_gross": 0.671,
+   "max_dd_net_bp": -2311.1565,
+   "exposure": 0.9991,
+   "gap_bars": 1,
+   "z": null,
+   "pct": null,
+   "p_perm": null,
+   "null_degenerate": null,
+   "null_q025": null,
+   "null_q975": null,
+   "p_holm": null
+  },
+  "post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 24710,
+   "bp_gross": 3.1001,
+   "t_gross": 2.0223,
+   "bp_net": 1.5128,
+   "t_year": 0.9868,
+   "t_cluster": 0.8977,
+   "sharpe_net": 0.3201,
+   "sharpe_gross": 0.6446,
+   "max_dd_net_bp": -2928.3197,
+   "exposure": 1.0,
+   "gap_bars": 0,
+   "z": null,
+   "pct": null,
+   "p_perm": null,
+   "null_degenerate": null,
+   "null_q025": null,
+   "null_q975": null,
+   "p_holm": null
+  }
+ },
+ "summary": {
+  "p0_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 37052,
+   "bp_gross": 3.4346,
+   "t_gross": 3.1137,
+   "bp_net": 1.8473,
+   "t_year": 1.6747,
+   "t_cluster": 1.1777,
+   "sharpe_net": 0.3303,
+   "sharpe_gross": 0.6549,
+   "max_dd_net_bp": -2928.3197,
+   "exposure": 0.9997,
+   "gap_bars": 1
+  },
+  "p0_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 12342,
+   "bp_gross": 3.9697,
+   "t_gross": 2.3749,
+   "bp_net": 2.3824,
+   "t_year": 1.4253,
+   "t_cluster": 0.7629,
+   "sharpe_net": 0.3465,
+   "sharpe_gross": 0.671,
+   "max_dd_net_bp": -2311.1565,
+   "exposure": 0.9991,
+   "gap_bars": 1
+  },
+  "p0_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 24710,
+   "bp_gross": 3.1001,
+   "t_gross": 2.0223,
+   "bp_net": 1.5128,
+   "t_year": 0.9868,
+   "t_cluster": 0.8977,
+   "sharpe_net": 0.3201,
+   "sharpe_gross": 0.6446,
+   "max_dd_net_bp": -2928.3197,
+   "exposure": 1.0,
+   "gap_bars": 0
+  },
+  "p1_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 37052,
+   "bp_gross": 3.4192,
+   "t_gross": 3.2133,
+   "bp_net": 2.1167,
+   "t_year": 2.0014,
+   "t_cluster": 1.3797,
+   "sharpe_net": 0.3809,
+   "sharpe_gross": 0.6485,
+   "max_dd_net_bp": -2851.4757,
+   "exposure": 0.8163,
+   "gap_bars": 1
+  },
+  "p1_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 12342,
+   "bp_gross": 4.1908,
+   "t_gross": 2.257,
+   "bp_net": 2.7782,
+   "t_year": 1.5017,
+   "t_cluster": 0.9231,
+   "sharpe_net": 0.4187,
+   "sharpe_gross": 0.7058,
+   "max_dd_net_bp": -2311.7193,
+   "exposure": 0.8883,
+   "gap_bars": 1
+  },
+  "p1_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 24710,
+   "bp_gross": 2.937,
+   "t_gross": 2.1672,
+   "bp_net": 1.7033,
+   "t_year": 1.259,
+   "t_cluster": 1.0266,
+   "sharpe_net": 0.3569,
+   "sharpe_gross": 0.6121,
+   "max_dd_net_bp": -2851.4757,
+   "exposure": 0.7783,
+   "gap_bars": 0
+  },
+  "p2_all_all": {
+   "n_years": 13,
+   "years_dropped": [],
+   "n_bars": 37052,
+   "bp_gross": 3.5503,
+   "t_gross": 3.3947,
+   "bp_net": 2.1149,
+   "t_year": 2.0316,
+   "t_cluster": 1.3665,
+   "sharpe_net": 0.3795,
+   "sharpe_gross": 0.6756,
+   "max_dd_net_bp": -2905.5079,
+   "exposure": 0.9014,
+   "gap_bars": 1
+  },
+  "p2_all_pre": {
+   "n_years": 5,
+   "years_dropped": [],
+   "n_bars": 12342,
+   "bp_gross": 3.9908,
+   "t_gross": 2.3948,
+   "bp_net": 2.43,
+   "t_year": 1.4634,
+   "t_cluster": 0.7735,
+   "sharpe_net": 0.3511,
+   "sharpe_gross": 0.6733,
+   "max_dd_net_bp": -2311.1565,
+   "exposure": 0.9858,
+   "gap_bars": 1
+  },
+  "p2_all_post": {
+   "n_years": 8,
+   "years_dropped": [],
+   "n_bars": 24710,
+   "bp_gross": 3.275,
+   "t_gross": 2.3003,
+   "bp_net": 1.9179,
+   "t_year": 1.3496,
+   "t_cluster": 1.1318,
+   "sharpe_net": 0.3972,
+   "sharpe_gross": 0.6768,
+   "max_dd_net_bp": -2905.5079,
+   "exposure": 0.8568,
+   "gap_bars": 0
+  }
+ },
+ "multiple_comparisons": "判定は main_param=0・all の前後半 2 本（宣言 n_tests=2、Holm で補正）。ほかの設定・群は記述。",
+ "elapsed_s": 0.3,
+ "extra": {
+  "p0_idx10_all": {
+   "n_years": 13,
+   "n_syms": 10,
+   "bp_net": 2.5228,
+   "t_year": 1.9663
+  },
+  "p0_idx10_pre": {
+   "n_years": 5,
+   "n_syms": 10,
+   "bp_net": 3.0847,
+   "t_year": 1.5194
+  },
+  "p0_idx10_post": {
+   "n_years": 8,
+   "n_syms": 10,
+   "bp_net": 2.1716,
+   "t_year": 1.2399
+  },
+  "p1_idx10_all": {
+   "n_years": 13,
+   "n_syms": 10,
+   "bp_net": 2.5228,
+   "t_year": 1.9663
+  },
+  "p1_idx10_pre": {
+   "n_years": 5,
+   "n_syms": 10,
+   "bp_net": 3.0847,
+   "t_year": 1.5194
+  },
+  "p1_idx10_post": {
+   "n_years": 8,
+   "n_syms": 10,
+   "bp_net": 2.1716,
+   "t_year": 1.2399
+  },
+  "p2_idx10_all": {
+   "n_years": 13,
+   "n_syms": 10,
+   "bp_net": 2.5228,
+   "t_year": 1.9663
+  },
+  "p2_idx10_pre": {
+   "n_years": 5,
+   "n_syms": 10,
+   "bp_net": 3.0847,
+   "t_year": 1.5194
+  },
+  "p2_idx10_post": {
+   "n_years": 8,
+   "n_syms": 10,
+   "bp_net": 2.1716,
+   "t_year": 1.2399
+  },
+  "p0_bond2_all": {
+   "n_years": 9,
+   "n_syms": 2,
+   "bp_net": -2.7646,
+   "t_year": -2.3517
+  },
+  "p0_bond2_pre": {
+   "n_years": 1,
+   "n_syms": 2,
+   "bp_net": -2.8549,
+   "t_year": null
+  },
+  "p0_bond2_post": {
+   "n_years": 8,
+   "n_syms": 2,
+   "bp_net": -2.7533,
+   "t_year": -2.0656
+  },
+  "p0_gold_all": {
+   "n_years": 13,
+   "n_syms": 1,
+   "bp_net": 0.2374,
+   "t_year": 0.1471
+  },
+  "p0_gold_pre": {
+   "n_years": 5,
+   "n_syms": 1,
+   "bp_net": -3.7901,
+   "t_year": -1.408
+  },
+  "p0_gold_post": {
+   "n_years": 8,
+   "n_syms": 1,
+   "bp_net": 2.7546,
+   "t_year": 1.8106
+  },
+  "p2_gold_all": {
+   "n_years": 13,
+   "n_syms": 1,
+   "bp_net": 0.2374,
+   "t_year": 0.1471
+  },
+  "p2_gold_pre": {
+   "n_years": 5,
+   "n_syms": 1,
+   "bp_net": -3.7901,
+   "t_year": -1.408
+  },
+  "p2_gold_post": {
+   "n_years": 8,
+   "n_syms": 1,
+   "bp_net": 2.7546,
+   "t_year": 1.8106
+  },
+  "holding_cost_annual": 0.04
+ },
+ "rule_mode": {
+  "none": {
+   "t_all": 1.7671045000631855,
+   "t_pre": 2.201104203331767,
+   "t_post": 1.1479294672947966,
+   "mean_bp": 1.5091403457479968,
+   "sigma_pct": 0.7676787983010618,
+   "max_dd": -0.2642161027580435,
+   "worst_day": -0.0892276436746992,
+   "stops": 0,
+   "gross_median": 0.9999999999999998,
+   "rules": {
+    "equal_weight": true,
+    "sym_cap": null,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": null,
+    "max_leverage": 1.0,
+    "daily_stop": null,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.0
+   }
+  },
+  "fintokei": {
+   "t_all": -0.0990005277192517,
+   "t_pre": -0.981595155254322,
+   "t_post": 0.42514368820888,
+   "mean_bp": -0.12241483207624404,
+   "sigma_pct": 0.276887046004919,
+   "max_dd": -0.12180504603162734,
+   "worst_day": -0.020380131730184055,
+   "stops": 0,
+   "gross_median": 0.48044416559129416,
+   "rules": {
+    "sym_cap": 0.015,
+    "sym_sigma_mult": 3.0,
+    "port_sigma_target": 0.0025,
+    "max_leverage": 2.0,
+    "daily_stop": -0.025,
+    "vol_window": 60,
+    "port_vol_window": 60,
+    "rebalance_band": 0.2
+   }
+  },
+  "rule_set": "fintokei_c1",
+  "gate": {
+   "t_pre_ge2": false,
+   "t_post_ge2": false,
+   "max_dd_within_6pct": false,
+   "pass": false
+  }
+ },
+ "machine_verdict": "棄却: 規程モード t_all=-0.099<1 または max_dd=-0.1218<−10%（data_health に failed/gaps あり: 確定にする前に点検）"
+}
