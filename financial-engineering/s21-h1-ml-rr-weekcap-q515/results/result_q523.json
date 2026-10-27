@@ -1,0 +1,71 @@
+{
+ "Q519本体(WF)": {
+  "stat": {
+   "n": 24052,
+   "ambiguous": 84,
+   "to_tp": 33,
+   "kept_sl": 48,
+   "undecidable": 3
+  },
+  "before": {
+   "mean_R": 0.0285,
+   "win": 0.3781,
+   "t": 2.87,
+   "max_dd_pct": -5.82,
+   "total_pct": 35.94
+  },
+  "after": {
+   "mean_R": 0.0322,
+   "win": 0.3795,
+   "t": 3.21,
+   "max_dd_pct": -5.7,
+   "total_pct": 40.22
+  }
+ },
+ "Q521(WF)": {
+  "stat": {
+   "n": 23448,
+   "ambiguous": 89,
+   "to_tp": 37,
+   "kept_sl": 49,
+   "undecidable": 3
+  },
+  "before": {
+   "mean_R": 0.0373,
+   "win": 0.3814,
+   "t": 3.7,
+   "max_dd_pct": -6.61,
+   "total_pct": 46.27
+  },
+  "after": {
+   "mean_R": 0.0415,
+   "win": 0.3829,
+   "t": 4.07,
+   "max_dd_pct": -6.17,
+   "total_pct": 50.98
+  }
+ },
+ "Q522(仮判断)": {
+  "stat": {
+   "n": 5419,
+   "ambiguous": 21,
+   "to_tp": 8,
+   "kept_sl": 13,
+   "undecidable": 0
+  },
+  "before": {
+   "mean_R": 0.0254,
+   "win": 0.3787,
+   "t": 1.33,
+   "max_dd_pct": -5.36,
+   "total_pct": 6.72
+  },
+  "after": {
+   "mean_R": 0.0295,
+   "win": 0.3801,
+   "t": 1.51,
+   "max_dd_pct": -5.36,
+   "total_pct": 7.65
+  }
+ }
+}

@@ -1,0 +1,22 @@
+データ準備 済
+r=0.00044 学習行=448473 取引 15:2493 円クロス4:330
+Traceback (most recent call last):
+  File "/home/claude/s21/kensho_s21_final_q527.py", line 75, in <module>
+    main()
+    ~~~~^^
+  File "/home/claude/s21/kensho_s21_final_q527.py", line 58, in main
+    allS = stat(TR)
+  File "/home/claude/s21/kensho_s21_final_q527.py", line 55, in stat
+    p = K.daily(X.assign(R=X["R_m1"]), S0, S1, r)
+  File "/home/claude/s21/kensho_s21_h1_ml_rr_q515.py", line 175, in daily
+    p = tr.assign(day=tr["exit"].dt.tz_convert(None).dt.normalize()).groupby("day")["R"].sum() * r
+                      ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pandas/core/generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pandas/core/accessor.py", line 230, in __get__
+    return self._accessor(obj)
+           ~~~~~~~~~~~~~~^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pandas/core/indexes/accessors.py", line 698, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values. Did you mean: 'at'?

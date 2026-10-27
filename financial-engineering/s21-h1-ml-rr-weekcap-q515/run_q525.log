@@ -1,0 +1,215 @@
+15 銘柄
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  EURAUD: {'h1': 103321, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4361, 'spr_R': 0.0722}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  EURCAD: {'h1': 103342, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4361, 'spr_R': 0.0923}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  EURCHF: {'h1': 103329, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4361, 'spr_R': 0.1123}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  GBPAUD: {'h1': 103286, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4361, 'spr_R': 0.0894}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  GBPCAD: {'h1': 103242, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4165, 'spr_R': 0.121}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  GBPCHF: {'h1': 103286, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4361, 'spr_R': 0.1115}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  AUDNZD: {'h1': 103325, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4361, 'spr_R': 0.1383}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  AUDCAD: {'h1': 103330, 'start': '2010-01-03 22:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4361, 'spr_R': 0.1311}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  UK100: {'h1': 71643, 'start': '2010-11-15 08:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4021, 'spr_R': 0.172}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  FRA40: {'h1': 56635, 'start': '2010-11-15 07:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4046, 'spr_R': 0.0403}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  EUSTX50: {'h1': 28890, 'start': '2010-11-15 07:00:00+00:00', 'level_ratio': 0.9985, 'n_days': 1924, 'spr_R': 0.0991}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  AUS200: {'h1': 86302, 'start': '2010-11-15 06:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4076, 'spr_R': 0.074}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  HKG33: {'h1': 51097, 'start': '2010-11-15 06:00:00+00:00', 'level_ratio': 1.0, 'n_days': 3794, 'spr_R': 0.0769}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  WTI: {'h1': 77985, 'start': '2010-11-15 01:00:00+00:00', 'level_ratio': 1.0, 'n_days': 3432, 'spr_R': 0.0949}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  BRENT: {'h1': 86877, 'start': '2010-11-15 01:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4032, 'spr_R': 0.1395}
+/home/claude/s21/kensho_s21f_new16_q525.py:26: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([hd.rename("hd"), d1.set_index("time")["close"].rename("dk")], axis=1).dropna()
+  XAGUSD: {'h1': 98813, 'start': '2010-01-03 23:00:00+00:00', 'level_ratio': 1.0, 'n_days': 4344, 'spr_R': 0.2178}
+2014-10〜2015-09: 16銘柄 n=1109 R=-0.0259 | FXクロス:561件 +0.001 商品:117件 -0.005 指数:431件 -0.066 | 69s
+2015-10〜2016-09: 16銘柄 n=926 R=0.0060 | FXクロス:477件 +0.013 商品:68件 +0.051 指数:381件 -0.011 | 75s
+2016-10〜2017-09: 16銘柄 n=1021 R=0.0161 | FXクロス:646件 +0.019 商品:82件 -0.039 指数:293件 +0.025 | 82s
+2017-10〜2018-09: 16銘柄 n=980 R=-0.0902 | FXクロス:649件 -0.070 商品:75件 -0.116 指数:256件 -0.133 | 89s
+2018-10〜2019-09: 16銘柄 n=937 R=-0.2045 | FXクロス:563件 -0.234 商品:125件 -0.126 指数:249件 -0.178 | 99s
+2019-10〜2020-09: 16銘柄 n=1176 R=-0.0132 | FXクロス:639件 -0.059 商品:151件 +0.252 指数:386件 -0.041 | 104s
+2020-10〜2021-09: 16銘柄 n=1179 R=-0.0319 | FXクロス:586件 -0.060 商品:193件 -0.027 指数:400件 +0.006 | 114s
+2021-10〜2022-09: 16銘柄 n=976 R=-0.0037 | FXクロス:453件 -0.038 商品:224件 +0.104 指数:299件 -0.032 | 120s
+2022-10〜2023-09: 16銘柄 n=933 R=-0.0790 | FXクロス:460件 -0.236 商品:187件 +0.086 指数:286件 +0.065 | 129s
+2023-10〜2024-09: 16銘柄 n=757 R=-0.1050 | FXクロス:324件 -0.194 商品:102件 -0.188 指数:331件 +0.008 | 133s
+2024-10〜2025-09: 16銘柄 n=785 R=-0.0525 | FXクロス:289件 -0.066 商品:81件 -0.032 指数:415件 -0.047 | 142s
+{
+ "total": {
+  "n": 10779,
+  "mean_R": -0.04797119520770734,
+  "win": 0.3467854160868355,
+  "t": -2.8388253567106716,
+  "pos_years": 3,
+  "n_years": 11,
+  "max_dd_pct": -27.447643134377863,
+  "total_pct": -24.06840175242275,
+  "verdict": "棄却"
+ },
+ "groups": {
+  "FXクロス": {
+   "n": 5647,
+   "mean_R": -0.07573831163391978,
+   "win": 0.3348680715424119,
+   "t": -3.286894810365301,
+   "pos_years": 2,
+   "n_years": 11,
+   "max_dd_pct": -21.93296999541266,
+   "total_pct": -19.14621837885041,
+   "verdict": "棄却"
+  },
+  "指数": {
+   "n": 3727,
+   "mean_R": -0.03217007551283456,
+   "win": 0.35578213039978535,
+   "t": -1.3203790784801381,
+   "pos_years": 4,
+   "n_years": 11,
+   "max_dd_pct": -8.620638454579794,
+   "total_pct": -6.535180590340812,
+   "verdict": "棄却"
+  },
+  "商品": {
+   "n": 1405,
+   "mean_R": 0.02171573244783069,
+   "win": 0.3708185053380783,
+   "t": 0.5982217137082808,
+   "pos_years": 5,
+   "n_years": 11,
+   "max_dd_pct": -1.9737702927786027,
+   "total_pct": 1.6129972167684685,
+   "verdict": "未確定"
+  }
+ },
+ "null": {
+  "z": 3.956379217256761,
+  "mean": -0.10485700847729686,
+  "sd": 0.014378250957710897
+ },
+ "by_sym": [
+  {
+   "sym": "AUDCAD",
+   "count": 387,
+   "mean": -0.0693
+  },
+  {
+   "sym": "AUDNZD",
+   "count": 434,
+   "mean": 0.0143
+  },
+  {
+   "sym": "AUS200",
+   "count": 1022,
+   "mean": -0.0239
+  },
+  {
+   "sym": "BRENT",
+   "count": 443,
+   "mean": -0.012
+  },
+  {
+   "sym": "EURAUD",
+   "count": 1063,
+   "mean": -0.0284
+  },
+  {
+   "sym": "EURCAD",
+   "count": 903,
+   "mean": -0.0428
+  },
+  {
+   "sym": "EURCHF",
+   "count": 643,
+   "mean": -0.1324
+  },
+  {
+   "sym": "EUSTX50",
+   "count": 313,
+   "mean": 0.0588
+  },
+  {
+   "sym": "FRA40",
+   "count": 1076,
+   "mean": -0.0349
+  },
+  {
+   "sym": "GBPAUD",
+   "count": 834,
+   "mean": -0.1418
+  },
+  {
+   "sym": "GBPCAD",
+   "count": 660,
+   "mean": -0.0964
+  },
+  {
+   "sym": "GBPCHF",
+   "count": 723,
+   "mean": -0.0984
+  },
+  {
+   "sym": "HKG33",
+   "count": 866,
+   "mean": -0.0178
+  },
+  {
+   "sym": "UK100",
+   "count": 450,
+   "mean": -0.1352
+  },
+  {
+   "sym": "WTI",
+   "count": 702,
+   "mean": 0.08
+  },
+  {
+   "sym": "XAGUSD",
+   "count": 260,
+   "mean": -0.0784
+  }
+ ],
+ "unconditional_R": {
+  "EURAUD": -0.0887,
+  "EURCAD": -0.1093,
+  "EURCHF": -0.165,
+  "GBPAUD": -0.1156,
+  "GBPCAD": -0.1396,
+  "GBPCHF": -0.1394,
+  "AUDNZD": -0.1922,
+  "AUDCAD": -0.1676,
+  "UK100": -0.2247,
+  "FRA40": -0.1086,
+  "EUSTX50": -0.2281,
+  "AUS200": -0.1078,
+  "HKG33": -0.1089,
+  "WTI": -0.1278,
+  "BRENT": -0.1677,
+  "XAGUSD": -0.2813
+ },
+ "adopt_groups_for_final": []
+}
+done

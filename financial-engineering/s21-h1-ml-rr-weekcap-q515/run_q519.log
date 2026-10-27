@@ -1,0 +1,42 @@
+ラベル・特徴量
+  EURUSD: 104455 本, 5.9s
+  GBPUSD: 104444 本, 6.0s
+  AUDUSD: 104392 本, 6.1s
+  NZDUSD: 104424 本, 5.9s
+  USDJPY: 104452 本, 6.3s
+  USDCHF: 104443 本, 6.3s
+  USDCAD: 104443 本, 6.4s
+  EURJPY: 104454 本, 6.1s
+  GBPJPY: 104447 本, 6.1s
+  EURGBP: 104444 本, 5.9s
+  XAUUSD: 100140 本, 5.8s
+  US500: 73880 本, 4.3s
+  USTECH: 74200 本, 4.4s
+  GER40: 69040 本, 4.2s
+  JPN225: 76033 本, 4.4s
+[W-exp] 2014-10〜2015-09: r=0.00055 n=2517 R=0.0680 t=2.00 dd=-3.68 | 内側 n=2539 t=2.96 | 54s
+[W-exp] 2015-10〜2016-09: r=0.00049 n=2462 R=0.0212 t=0.73 dd=-1.92 | 内側 n=2517 t=2.00 | 59s
+[W-exp] 2016-10〜2017-09: r=0.00050 n=2446 R=0.0583 t=1.86 dd=-1.85 | 内側 n=2462 t=0.73 | 66s
+[W-exp] 2017-10〜2018-09: r=0.00050 n=2484 R=0.0258 t=0.84 dd=-3.32 | 内側 n=2446 t=1.86 | 70s
+[W-exp] 2018-10〜2019-09: r=0.00055 n=2705 R=-0.0124 t=-0.39 dd=-5.48 | 内側 n=2484 t=0.84 | 75s
+[W-exp] 2019-10〜2020-09: r=0.00051 n=2943 R=0.0929 t=3.03 dd=-2.42 | 内側 n=2705 t=-0.39 | 80s
+[W-exp] 2020-10〜2021-09: r=0.00045 n=2942 R=-0.0039 t=-0.16 dd=-5.24 | 内側 n=2943 t=3.03 | 87s
+[W-exp] 2021-10〜2022-09: r=0.00045 n=2821 R=0.0157 t=0.55 dd=-3.01 | 内側 n=2942 t=-0.16 | 92s
+[W-exp] 2022-10〜2023-09: r=0.00042 n=2732 R=-0.0060 t=-0.09 dd=-5.46 | 内側 n=2821 t=0.55 | 96s
+/home/claude/s21/kensho_s21d_relthr_wf_q519.py:71: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([P.rename("p"), ir.rename("m")], axis=1).dropna()
+W-exp {"t": 2.867968508856587, "mean_daily_pct": 0.015306640969357976, "max_dd_pct": -5.822699813417459, "total_pct": 35.939992996052524, "n": 24052, "mean_R": 0.028548653463548408, "pos_years": 6, "alpha_t_nw": 2.488441803736563, "beta": 0.04250546246931027, "null": {"z": 9.916389751554167, "mean": -0.05313323015258886, "sd": 0.008237058613326034}, "late_2018_22_mean_daily_pct": 0.010252858397638516, "groups": {"円以外FX": {"n": 11208, "mean_R": 0.0225, "t": 1.78}, "円絡み": {"n": 6689, "mean_R": 0.0486, "t": 2.94}, "指数": {"n": 5012, "mean_R": 0.023, "t": 1.18}, "金": {"n": 1143, "mean_R": -0.0055, "t": -0.14}}, "criteria": {"t_ge_2": true, "pos_years_ge_6": true, "alpha_t_ge_2": true, "dd_ok": true}, "verdict": "支持"}
+[W-5y] 2014-10〜2015-09: r=0.00055 n=2517 R=0.0680 t=2.00 dd=-3.68 | 内側 n=2539 t=2.96 | 54s
+[W-5y] 2015-10〜2016-09: r=0.00049 n=2434 R=-0.0054 t=-0.11 dd=-4.26 | 内側 n=2517 t=2.00 | 58s
+[W-5y] 2016-10〜2017-09: r=0.00052 n=2354 R=0.0056 t=0.18 dd=-4.08 | 内側 n=2434 t=-0.11 | 62s
+[W-5y] 2017-10〜2018-09: r=0.00053 n=2306 R=0.0392 t=1.25 dd=-2.62 | 内側 n=2354 t=0.18 | 58s
+[W-5y] 2018-10〜2019-09: r=0.00056 n=2631 R=-0.0261 t=-0.86 dd=-5.44 | 内側 n=2306 t=1.25 | 60s
+[W-5y] 2019-10〜2020-09: r=0.00052 n=3050 R=0.0988 t=3.34 dd=-2.21 | 内側 n=2631 t=-0.86 | 57s
+[W-5y] 2020-10〜2021-09: r=0.00046 n=2893 R=-0.0028 t=-0.00 dd=-3.37 | 内側 n=3050 t=3.34 | 58s
+[W-5y] 2021-10〜2022-09: r=0.00047 n=2665 R=-0.0217 t=-0.51 dd=-5.29 | 内側 n=2893 t=-0.00 | 63s
+[W-5y] 2022-10〜2023-09: r=0.00043 n=2646 R=-0.0154 t=-0.37 dd=-6.85 | 内側 n=2665 t=-0.51 | 62s
+/home/claude/s21/kensho_s21d_relthr_wf_q519.py:71: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([P.rename("p"), ir.rename("m")], axis=1).dropna()
+W-5y {"t": 1.7977056986136117, "mean_daily_pct": 0.00947327861790555, "max_dd_pct": -7.509602697555421, "total_pct": 22.24325819484223, "n": 23496, "mean_R": 0.01650039360899364, "pos_years": 4, "alpha_t_nw": 1.3324062383115733, "beta": 0.042796523154670224, "null": {"z": 8.742453477220854, "mean": -0.054677773215490735, "sd": 0.008141669499293836}, "late_2018_22_mean_daily_pct": 0.006113557862532988, "groups": {"円以外FX": {"n": 11111, "mean_R": 0.011, "t": 0.86}, "円絡み": {"n": 6257, "mean_R": 0.0458, "t": 2.67}, "指数": {"n": 4932, "mean_R": 0.0033, "t": 0.17}, "金": {"n": 1196, "mean_R": -0.0315, "t": -0.81}}, "criteria": {"t_ge_2": false, "pos_years_ge_6": false, "alpha_t_ge_2": false, "dd_ok": false}, "verdict": "棄却"}
+verdict 支持
+done

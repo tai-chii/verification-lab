@@ -1,0 +1,62 @@
+ラベル・特徴量
+  EURUSD
+  GBPUSD
+  AUDUSD
+  NZDUSD
+  USDJPY
+  USDCHF
+  USDCAD
+  EURJPY
+  GBPJPY
+  EURGBP
+  XAUUSD
+  US500
+  USTECH
+  GER40
+  JPN225
+{
+ "r": 0.00042054419658890197,
+ "all": {
+  "n_trades": 5419,
+  "mean_R": 0.02542702271958727,
+  "win": 0.3786676508580919,
+  "t_daily": 1.3270481941225198,
+  "mean_daily_pct": 0.012882580732296513,
+  "sigma_daily_pct": 0.2217948352810605,
+  "max_dd_pct": -5.359792724552363,
+  "total_pct": 6.724707142258779
+ },
+ "year1": {
+  "n_trades": 2691,
+  "mean_R": 0.011929404025444665,
+  "win": 0.37383872166480864,
+  "t_daily": 0.5179445270224525,
+  "mean_daily_pct": 0.007254700430406899,
+  "sigma_daily_pct": 0.22628537655599484,
+  "max_dd_pct": -2.371817254386324,
+  "total_pct": 1.8934768123362007
+ },
+ "year2": {
+  "n_trades": 2728,
+  "mean_R": 0.03874157253847941,
+  "win": 0.38343108504398826,
+  "t_daily": 1.399230095806075,
+  "mean_daily_pct": 0.01884628652771539,
+  "sigma_daily_pct": 0.21759900517811331,
+  "max_dd_pct": -4.1494919679939235,
+  "total_pct": 4.918880783733717
+ },
+ "null": {
+  "z": 5.56726517267679,
+  "mean": -0.0659842931771454,
+  "sd": 0.016419429120309227
+ },
+ "gate": {
+  "t_ge_2": false,
+  "both_years_pos": true,
+  "dd_ok": true,
+  "null_z_ge_2": true
+ },
+ "passed": false
+}
+done

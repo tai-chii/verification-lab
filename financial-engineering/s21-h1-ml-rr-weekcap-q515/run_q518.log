@@ -1,0 +1,63 @@
+ラベル・特徴量
+  EURUSD: 104455 本, 6.3s
+  GBPUSD: 104444 本, 6.0s
+  AUDUSD: 104392 本, 5.8s
+  NZDUSD: 104424 本, 6.1s
+  USDJPY: 104452 本, 6.1s
+  USDCHF: 104443 本, 6.1s
+  USDCAD: 104443 本, 6.1s
+  EURJPY: 104454 本, 5.6s
+  GBPJPY: 104447 本, 6.2s
+  EURGBP: 104444 本, 6.6s
+  XAUUSD: 100140 本, 5.6s
+  US500: 73880 本, 4.1s
+  USTECH: 74200 本, 4.0s
+  GER40: 69040 本, 4.0s
+  JPN225: 76033 本, 4.1s
+2014-10〜2015-09: θ=0.3 r=0.00083 | V1 n=1059 R=0.07973108748010754 t=1.71 | V2 t=1.47 | V4 t=1.97 | 64s
+2015-10〜2016-09: θ=0.2 r=0.00045 | V1 n=2136 R=0.012701337432334807 t=0.47 | V2 t=0.76 | V4 t=0.73 | 72s
+2016-10〜2017-09: θ=0.3 r=0.00109 | V1 n=374 R=0.12008258349723008 t=1.82 | V2 t=1.40 | V4 t=2.02 | 76s
+2017-10〜2018-09: θ=0.2 r=0.00073 | V1 n=1187 R=0.04570866411648998 t=1.04 | V2 t=1.15 | V4 t=0.85 | 83s
+2018-10〜2019-09: θ=0.15 r=0.00059 | V1 n=1928 R=-0.012498942587127596 t=-0.33 | V2 t=-0.23 | V4 t=-0.39 | 92s
+2019-10〜2020-09: θ=0.3 r=0.00205 | V1 n=159 R=0.17056705325096902 t=1.34 | V2 t=1.43 | V4 t=2.97 | 96s
+2020-10〜2021-09: θ=0.2 r=0.00083 | V1 n=806 R=-0.013225771129848426 t=-0.24 | V2 t=-0.52 | V4 t=-0.02 | 101s
+2021-10〜2022-09: θ=0.1 r=0.00042 | V1 n=3288 R=0.016135375590606297 t=0.62 | V2 t=0.51 | V4 t=0.48 | 108s
+2022-10〜2023-09: θ=0.2 r=0.00079 | V1 n=566 R=-0.035940267817791804 t=-0.48 | V2 t=-0.83 | V4 t=-0.23 | 112s
+/home/claude/s21/kensho_s21_walkforward_q518.py:48: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  return pd.concat(rs, axis=1).mean(axis=1, skipna=True)
+/home/claude/s21/kensho_s21_walkforward_q518.py:89: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  j = pd.concat([P1.rename("p"), ir.rename("m")], axis=1).dropna()
+{
+ "V1": {
+  "t": 2.0202392498053823,
+  "mean_daily_pct": 0.00980952830346909,
+  "max_dd_pct": -5.614862207594282,
+  "n": 11503,
+  "mean_R": 0.020499478476610124,
+  "pos_years": 6,
+  "alpha_t_nw": 1.6695204013285792,
+  "beta_to_idx": 0.03337659146654815,
+  "null": {
+   "z": 6.234103862991501,
+   "mean": -0.05025034945557598,
+   "sd": 0.01134883689573886
+  }
+ },
+ "V2_exidx": {
+  "t": 1.8828692145476973,
+  "mean_daily_pct": 0.007814912681435582,
+  "max_dd_pct": -5.194205474114974
+ },
+ "V4_rollq": {
+  "t": 3.5582590169115322,
+  "mean_daily_pct": 0.03883130568059087,
+  "max_dd_pct": -12.687648036618082
+ },
+ "criteria": {
+  "t_ge_2": true,
+  "pos_years_ge_6": true,
+  "alpha_t_ge_2": false
+ },
+ "verdict": "未確定"
+}
+done
