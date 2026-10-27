@@ -1,0 +1,25 @@
+{
+ "snapshot_utc": "2026-10-27 19:36:24 UTC",
+ "elapsed_min": 1.9,
+ "days": 90,
+ "ctx": {
+  "block90": {
+   "Polygon": 91097292,
+   "Optimism": 154876089,
+   "Scroll": 34515036,
+   "Gnosis": 47455410,
+   "Linea": 31559989,
+   "BSC": 112868731,
+   "Arbitrum": 489037623,
+   "Avalanche": 91538906
+  },
+  "native": {
+   "xdai": 0.9998043708764154,
+   "avalanche-2": 8.874377491161187,
+   "polygon-ecosystem-token": 0.09241489938562561,
+   "binancecoin": 747.5380590048218,
+   "mantle": 0.5164292298674891,
+   "ethereum": 2340.768353349923
+  }
+ }
+}

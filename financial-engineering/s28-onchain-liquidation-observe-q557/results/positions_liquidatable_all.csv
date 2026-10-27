@@ -1,0 +1,3 @@
+chain,slug,contract,user,hf,debt_usd,coll_usd,bonus,cf,net_usd,blocked,profitable,collateral,debt
+Optimism,aave-v3,0x794a61…14ad,0x6c4a72…45bb,0.980189491159558,0.004977038977160536,0.005877640123499125,1.05,0.5,-0.0015158124170022308,1,0,WETH,DAI/WBTC
+BSC,demeter,0x3632e7…4379,0xfefec5…2f3e,,1.9974e-18,0,1.09,0.5,-0.026149825030359657,0,0,,dmUSDT
