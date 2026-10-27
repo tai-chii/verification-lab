@@ -31,3 +31,11 @@
 - 限界: 借り手を 90 日に絞った（事前登録どおり）。365 日に広げた版は走らせていない。Base の 4 セルは見ていない。
 
 **解釈: 棄却（S28 の「静的に放置された貸付けを拾う」形は閉じる。RealT の件だけ、許可型の担保の清算の決まりを文書で確かめる価値がある）**
+
+## 追記（Q558・2026-10-28・文書の確認。判定は変えない）
+- **RealT RMM v3 の清算は、KYC を済ませたホワイトリストの住所だけができる。** LlamaRisk（Aave ガバナンスフォーラム、2025-07-03）は「This allows whitelisted addresses (which must have completed KYC with RealT) to acquire 50%」と書いている。https://governance.aave.com/t/temp-check-add-armmwxdai-realt-rmm-xdai-deposit-token-to-aave-v3-gnosis/22378
+- 担保の `RTW` は RealToken をまとめた包み（「allows users to lock their various RealTokens in exchange for `RTW-1-usd`」）。RealToken は「available only to non-US KYC'd users」。価格は鑑定で更新され、鑑定は「discretionary and not guaranteed to occur at regular intervals」。（同じ出典）
+- RealT 自身のガバナンス RIP00038（2026-02-21 提案・否決 434K 対 855K）は「Liquidatable unpaid loans (HF < 1) represent a debt of $2,358,051 (as of Sunday, February 15, 2026…)」「Daily liquidations are negligible: $114/day…」と書き、清算ボーナスを 10% から 30% に上げる案を出していた。つまり**清算の放置は運営も知っている既知の状態**で、原因は誘因の不足と、清算者の制限。https://www.tally.xyz/gov/realtoken-ecosystem-governance/proposal/19298587768033104745565651921982972376376322195387053377988034262742159470150
+- 参考（報道・二次）: RealT は 2026-07 に任意清算を発表し、資産の売却を予定している（cryptoactu 2026-07-04・cryptobriefing 2026-07-28）。担保の出口がさらに細っている。
+- 検索語（2026-10-28）: "RealT RMM v3 RTW-USD-01 token"・"RealT RMM liquidation whitelist KYC liquidators RealTokens"・"RealT RMM v3 migration docs liquidation"・"RealT gitbook RMM v3 oracle price RealToken liquidation docs"・"RealT RMM v3 RIP governance 2026 liquidation oracle RTW bad debt" ほか。GitHub・Discord・監査の PDF は見ていない。
+- **結論: 副A の RealT 130 件は、誰でも動かせる bot では清算できない（許可制）。S28 は閉じる。**
