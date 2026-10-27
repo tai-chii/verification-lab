@@ -27,13 +27,30 @@ def find_source(inv_id):
         sys.exit(f"入荷台帳に ID {inv_id} が無い")
     title = row["タイトル"]
     import re as _re
-    stop = {"with", "from", "that", "this", "does", "when", "where", "which", "their", "into", "about", "under", "over", "between"}
+    stop = {"with", "from", "that", "this", "does", "when", "where", "which", "their", "into", "about", "under", "over", "between",
+            # 2026-10-27: 分野の一般語は当たりの根拠にしない（ID194 が intraday・trading だけで Neely-Weller 1999 に、ID161 が strategy・selection で Zenn 記事に当たっていた）
+            "trading", "trade", "market", "markets", "strategy", "strategie", "financial", "finance", "intraday", "backtest",
+            "test", "live", "data", "stock", "research", "study", "forecasting", "forecast", "selection", "returns", "return", "evidence"}
     words = [w for w in _re.findall(r"[A-Za-z][A-Za-z\-]{3,}", title) if w.lower() not in stop]  # 4 文字以上・略語（HSAT 等）も拾う
+    words = [w[:-1] if len(w) > 4 and w.lower().endswith("s") else w for w in words]  # 複数形の s を落とす（tests → test）
+    # 2026-10-27: 著者の姓で加点（ID87 が題の語「reality check」だけで White 2000 の PDF に当たった。要対応 2026-10-17）
+    head = (row.get("要旨") or "")[:160]
+    authors = [a for a in _re.findall(r"\b([A-Z][a-z]{3,})\b", head.split("20")[0]) if a.lower() not in stop]
+    # arXiv の行は、ファイル名に arXiv の番号が入っているものだけを本文とみなす（無ければ URL から取らせる）
+    ax = _re.search(r"arxiv\.org/(?:abs|pdf)/(\d{4}\.\d{4,5})", row.get("URL", ""))
+    if ax:
+        hit = [f for sub in ("PDF", "Web保存") for f in glob.glob(os.path.join(BUNKEN, sub, "*")) if ax.group(1) in os.path.basename(f)]
+        mp = os.path.join(BUNKEN, "_ローカルLLM", "_sources.json")
+        m = json.load(open(mp, encoding="utf-8")).get(str(inv_id)) if os.path.exists(mp) else None
+        if m and os.path.exists(os.path.join(WS, m)):
+            return row, os.path.join(WS, m)
+        return row, (hit[0] if hit else None)
     cands = []
     for sub in ("PDF", "Web保存"):
         for f in glob.glob(os.path.join(BUNKEN, sub, "*")):
-            base = os.path.basename(f).lower()
-            score = sum(w.lower().replace("-", "") in base.replace("-", "").replace("_", "") for w in words)
+            base = os.path.basename(f).lower().replace("-", "").replace("_", "")
+            score = sum(w.lower().replace("-", "") in base for w in words)
+            score += 2 * sum(a.lower() in base for a in authors)
             if score:
                 cands.append((score, f))
     cands.sort(reverse=True)
@@ -43,7 +60,8 @@ def find_source(inv_id):
         m = json.load(open(mp, encoding="utf-8")).get(str(inv_id))
         if m and os.path.exists(os.path.join(WS, m)):
             return row, os.path.join(WS, m)
-    if not cands or cands[0][0] < 2:
+    tie = len(cands) > 1 and cands[0][0] == cands[1][0]  # 1 位が並ぶときは選ばない（取り違えを防ぐ）
+    if not cands or cands[0][0] < 2 or tie:
         if row.get("URL", "").startswith("http"):
             return row, None  # 本文は Mac 側の loop が URL から取る
         print("本文ファイルを特定できない。候補:", [os.path.basename(c[1]) for c in cands[:5]])
