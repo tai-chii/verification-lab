@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 239 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 240 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -178,6 +178,7 @@
 | [s25-t10y2y-steepening-gate-composite-c1-q535](./s25-t10y2y-steepening-gate-composite-c1-q535) | Q535 S25: 米国債 2s10s（T10Y2Y）のスティープ化ゲート付き 4 族合成（C1） | 棄却 |
 | [s26-crypto-funding-gate-q551](./s26-crypto-funding-gate-q551) | Q551 S26：資金調達率で「買いが混みすぎた日」の S23 を休む | — |
 | [s27-realyield-gold-q552](./s27-realyield-gold-q552) | Q552 S27：米国の実質金利の変化で金（XAUUSD）の向きを決める | — |
+| [s28-onchain-liquidation-observe-q557](./s28-onchain-liquidation-observe-q557) | （README なし） | — |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |
