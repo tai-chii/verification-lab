@@ -11,8 +11,9 @@
 - 2 回目からは保存済みファイルの最後の足から先だけ取り足す（毎日回しても速い）。
 - 業者の銘柄名の違い（USDJPY# / USDJPY.f / US500→SP500 など）は自動で探す。見つからなければ --map で指定。
 - 時刻: MT5 の time は「サーバー時間」。time_server（そのまま）と time（UTC）の 2 列を書く。
-  UTC への直し方は --tz で選ぶ（既定 auto: 今のずれが +2/+3 なら「NY 引け基準」
-  ＝米国夏時間中 +3・それ以外 +2 とみなして過去にも当てる。多くの業者がこれ）。
+  UTC への直し方は --tz で選ぶ（auto / nyclose / eet / server / 整数）。既定 auto: 今のずれが +2/+3 なら、
+  米国と EU の夏時間が食い違う時期（3 月・10〜11 月の数週）に、どちらに従っているかを判定して保存し、過去にも当てる
+  （XM は 2026-10-28 の実測で EU 側＝eet）。判別できない時期は保存済みの判定、無ければ nyclose を仮に使う。
 - 出力: 既定は %USERPROFILE%\\mt5_data\\<口座のサーバー名>\\<TF>\\<銘柄>.parquet
 """
 import argparse, datetime as dt, os, re, sys, time
@@ -74,6 +75,26 @@ def us_dst(t):
     return start <= t < end
 
 
+def eu_dst(t):
+    """EU 夏時間か（3 月最終日曜〜10 月最終日曜）。XM などはこちらで +2/+3 を切り替える"""
+    y = t.year
+    mar = dt.datetime(y, 3, 31); start = mar - dt.timedelta(days=(mar.weekday() + 1) % 7)
+    octo = dt.datetime(y, 10, 31); end = octo - dt.timedelta(days=(octo.weekday() + 1) % 7)
+    return start <= t < end
+
+
+def pick_mode(cur_off, now=None):
+    """auto のとき: 今のずれから NY 引け基準（米国の夏時間）か EET（EU の夏時間）かを決める。
+    両者が食い違う時期（3 月・10〜11 月の数週）なら判別できる。同じ時期なら前回の判定（保存）を使う。"""
+    if cur_off not in (2, 3):
+        return None
+    now = now or dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+    us, eu = (3 if us_dst(now) else 2), (3 if eu_dst(now) else 2)
+    if us != eu:
+        return "nyclose" if cur_off == us else "eet"
+    return "same"
+
+
 def detect_offset(sym):
     """今のサーバー時間と UTC のずれ（時間）。市場が閉まっていると測れないので None。"""
     tick = mt5.symbol_info_tick(sym)
@@ -89,8 +110,10 @@ def to_utc(server_times, mode, cur_off):
     s = pd.to_datetime(server_times, unit="s")        # サーバー時間（naive）
     if mode == "server":
         off = pd.Series(0, index=s.index)
-    elif mode == "nyclose" or (mode == "auto" and cur_off in (2, 3, None)):
+    elif mode == "nyclose":
         off = s.map(lambda t: 3 if us_dst(t) else 2)
+    elif mode == "eet":
+        off = s.map(lambda t: 3 if eu_dst(t) else 2)
     elif mode == "auto":
         off = pd.Series(cur_off, index=s.index)
     else:
@@ -119,7 +142,7 @@ def main():
     ap.add_argument("--from", dest="f", default="2018-01-01", help="開始日（初回のみ使う。既定 2018-01-01）")
     ap.add_argument("--to", default=None, help="終了日（既定 今）")
     ap.add_argument("--out", default=os.path.join(os.path.expanduser("~"), "mt5_data"))
-    ap.add_argument("--tz", default="auto", help="auto / nyclose / server / 整数（固定のずれ・時間）")
+    ap.add_argument("--tz", default="auto", help="auto / nyclose / eet / server / 整数（固定のずれ・時間）")
     ap.add_argument("--map", default="", help="名前の手動指定 例: US500=SPX500.cash,GER40=DE40")
     ap.add_argument("--full", action="store_true", help="保存済みを無視して最初から取り直す")
     ap.add_argument("--csv", action="store_true", help="CSV も書く")
@@ -128,7 +151,16 @@ def main():
     ap.add_argument("--login", type=int); ap.add_argument("--password"); ap.add_argument("--server")
     a = ap.parse_args()
 
-    kw = {k: v for k, v in dict(path=a.path, login=a.login, password=a.password, server=a.server).items() if v}
+    # 再配布の防止: 業者のデータは個人利用のみ。Git リポジトリの中（GitHub に上がりうる場所）には保存しない
+    p = os.path.abspath(a.out)
+    while True:
+        if os.path.exists(os.path.join(p, ".git")):
+            sys.exit(f"--out が Git リポジトリ（{p}）の中です。業者のデータを GitHub に上げないよう、リポジトリの外を指定してください。")
+        if os.path.dirname(p) == p:
+            break
+        p = os.path.dirname(p)
+
+    kw ={k: v for k, v in dict(path=a.path, login=a.login, password=a.password, server=a.server).items() if v}
     if not mt5.initialize(**kw):
         sys.exit(f"MT5 に接続できません: {mt5.last_error()}\n→ MT5 を起動して口座にログインしてから、もう一度。")
     acc, info = mt5.account_info(), mt5.terminal_info()
@@ -154,18 +186,33 @@ def main():
     t_from0 = dt.datetime.fromisoformat(a.f).replace(tzinfo=dt.timezone.utc)
     srv = re.sub(r'[\\/:*?"<>|]', "_", acc.server)
 
-    cur_off, missing, ok = None, [], 0
+    cur_off, mode, missing, ok = None, None, [], 0
     for name in want:
         real = resolve(name, all_names, manual)
         if real is None:
             print(f"[{name}] 見つからない → python mt5_fetch.py --list {name[:3]} で名前を探し、--map {name}=<名前>")
             missing.append(name); continue
         mt5.symbol_select(real, True)
-        if cur_off is None:
+        if mode is None:
             cur_off = detect_offset(real)
+            mode = a.tz
             if a.tz == "auto":
-                how = "NY 引け基準（夏+3/冬+2）" if cur_off in (2, 3, None) else f"固定 {cur_off:+d}"
-                print(f"サーバー時間のずれ: {'測れず（休場中）' if cur_off is None else f'{cur_off:+d} 時間'} → UTC へは {how} で直す")
+                mf = os.path.join(a.out, srv, "tz_mode.txt")
+                saved = open(mf).read().strip() if os.path.exists(mf) else None
+                got = pick_mode(cur_off)
+                if got in ("nyclose", "eet"):
+                    mode = got
+                    os.makedirs(os.path.dirname(mf), exist_ok=True); open(mf, "w").write(mode)
+                elif got == "same":
+                    mode = saved or "nyclose"
+                else:
+                    mode = saved or ("nyclose" if cur_off is None else str(cur_off))
+                note = "" if got in ("nyclose", "eet") or saved else "（今の時期は判別できないので仮。3 月・10〜11 月に回すと確定する）"
+            else:
+                note = ""
+            how = {"nyclose": "米国の夏時間で +3/+2（NY 引け基準）", "eet": "EU の夏時間で +3/+2（EET）",
+                   "server": "直さない"}.get(mode, f"固定 {mode} 時間")
+            print(f"サーバー時間のずれ: {'測れず（休場中）' if cur_off is None else f'{cur_off:+d} 時間'} → UTC へは {how} で直す{note}")
         for tf in tfs:
             d = os.path.join(a.out, srv, tf); os.makedirs(d, exist_ok=True)
             fp = os.path.join(d, f"{name}.parquet")
@@ -180,10 +227,11 @@ def main():
                 continue
             if not new.empty:
                 new = new.rename(columns={"time": "time_server"})
-                new.insert(0, "time", to_utc(new["time_server"], a.tz, cur_off))
+                new.insert(0, "time", pd.NaT)
                 new.insert(2, "symbol", real)
             df = new if old is None else pd.concat([old, new]).drop_duplicates("time_server", keep="last")
             df = df.sort_values("time_server").reset_index(drop=True)
+            df["time"] = to_utc(df["time_server"], mode, cur_off)   # 毎回全体を直し直す（直し方を変えても揃う）
             df.to_parquet(fp, index=False)
             if a.csv:
                 df.to_csv(fp[:-8] + ".csv", index=False)
