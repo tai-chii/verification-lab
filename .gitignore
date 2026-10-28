@@ -55,3 +55,10 @@ financial-engineering/s20b-baa10y-riskoff-gate-composite-c1-q514/results/*daily_
 
 # Q557: 途中の部分実行の結果（チェーン別）。本番は results/cells_all.csv と副A のみ残す
 financial-engineering/*/results/_partial/
+
+# Q563: 日次 L−S の中間生成物と実行ログ（要約は result_q563.json）
+financial-engineering/jp-us-xs-momentum-q563/results/daily_*.csv
+financial-engineering/jp-us-xs-momentum-q563/results/*.log
+# Q564: 日次 L−S の中間生成物と実行ログ（要約は result_q564.json）
+financial-engineering/jp-us-residual-momentum-q564/results/daily_*.csv
+financial-engineering/jp-us-residual-momentum-q564/results/*.log
