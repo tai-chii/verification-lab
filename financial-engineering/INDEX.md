@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 240 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 241 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -57,6 +57,7 @@
 | [eia-release-followthrough](./eia-release-followthrough) | Q269 EIA 原油在庫発表（水曜 10:30 ET）直後 1 時間の向きは次の 2〜4 時間に続くか（WTI・UKOIL H1） | 要確認 |
 | [eia-release-pool-q280](./eia-release-pool-q280) | Q280 EIA 原油在庫発表の実発表日に揃えた WTI・UKOIL の継続性再検証（2 銘柄プール） | WTIで継続側・時代効果と銘柄間の揃いが条件を欠く |
 | [embargo-length-effect](./embargo-length-effect) | Q155 検証とテストの間のエンバーゴ日数で順張りの標本外成績はどれだけ変わるか | e=0 に楽観の方向はあるが、事前登録の第一指標が有意に届かなかった |
+| [equities-free-data-q562](./equities-free-data-q562) | Q562 日本株・米国株の無料データ層（基盤・2026-10-28） | 価格層は基盤として通過、需給層は未達（毎日蓄積中） |
 | [equity-curve-trading](./equity-curve-trading) | Q210 エクイティカーブ・トレーディング（戦略の直近損益で規模を変える）は 15 銘柄の順張りの標本外成績を上げるか | 棄却 |
 | [execution-delay-effect](./execution-delay-effect) | Q156 約定を1〜2営業日遅らせると順張りの成績はどう変わるか（Korzan 2026 表5 では遅れで改善した） | 遅れで改善するのは Korzan のユニバース（二周期の株式ローテーション）に固有の性質。FX／商品／指数／BTC の… |
 | [execution-hour-spread](./execution-hour-spread) | Q245 XAUUSD 順張りの約定時刻を、実測スプレッドの狭い時間に移すと純損益は上がるか | 棄却: 前後半のどちらかで t<2 または z<2 |
