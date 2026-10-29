@@ -1,0 +1,151 @@
+{
+ "qid": "Q568",
+ "smoke": false,
+ "generated": "20261029_150728",
+ "question": "VIX/VIX3M≥1 の逆転後 20 営業日は指数 10 本の平均リターンが高いか",
+ "settings": {
+  "thr": 1.0,
+  "win": 20,
+  "B": 1000,
+  "start": "2009-10-01",
+  "seal_end": "2024-07-01",
+  "split_year": 2017,
+  "hold_cost": 0.04,
+  "min_shift": 250
+ },
+ "data": {
+  "idx_days": 3764,
+  "n_syms_last": 10
+ },
+ "main": {
+  "diff_bp_all": 8.634,
+  "diff_bp_pre": 11.651,
+  "diff_bp_post": 5.823,
+  "year_t_all": 3.609,
+  "z": 2.723,
+  "null_mean_bp": 0.222,
+  "null_p2_5_bp": -5.912,
+  "null_p97_5_bp": 6.107,
+  "n_events": 280,
+  "in_share": 0.317,
+  "n_days": 3764,
+  "years_used": 12
+ },
+ "by_year_diff_bp": {
+  "2010": -0.17,
+  "2011": 2.41,
+  "2013": 29.81,
+  "2014": 31.09,
+  "2015": 23.23,
+  "2016": 1.79,
+  "2017": 21.17,
+  "2018": 3.63,
+  "2019": 14.83,
+  "2020": -3.97,
+  "2021": 8.48,
+  "2022": 26.8
+ },
+ "strategy": {
+  "B_window_only": {
+   "all": {
+    "sharpe": 0.496,
+    "mean_bp": 2.355,
+    "maxdd_add": -0.3707
+   },
+   "pre": {
+    "sharpe": 0.675,
+    "mean_bp": 3.037,
+    "maxdd_add": -0.2196
+   },
+   "post": {
+    "sharpe": 0.345,
+    "mean_bp": 1.718,
+    "maxdd_add": -0.3707
+   }
+  },
+  "always_long": {
+   "all": {
+    "sharpe": 0.251,
+    "mean_bp": 1.538,
+    "maxdd_add": -0.3707
+   },
+   "pre": {
+    "sharpe": 0.147,
+    "mean_bp": 0.878,
+    "maxdd_add": -0.3253
+   },
+   "post": {
+    "sharpe": 0.343,
+    "mean_bp": 2.155,
+    "maxdd_add": -0.3707
+   }
+  },
+  "B_exposure": 0.317
+ },
+ "sensitivity": {
+  "thr0.95_win20": {
+   "diff_bp": 5.8,
+   "year_t": 3.378,
+   "in_share": 0.534,
+   "n_events": 702
+  },
+  "thr1.05_win20": {
+   "diff_bp": 9.568,
+   "year_t": 3.637,
+   "in_share": 0.122,
+   "n_events": 101
+  },
+  "thr1.0_win10": {
+   "diff_bp": 10.238,
+   "year_t": 4.481,
+   "in_share": 0.212,
+   "n_events": 280
+  },
+  "thr1.0_win40": {
+   "diff_bp": 5.083,
+   "year_t": 4.635,
+   "in_share": 0.488,
+   "n_events": 280
+  }
+ },
+ "machine_verdict": "支持: 逆転の後は指数を持つと稼げる",
+ "multiple_comparisons": "判定は (a) の 1 本。感度 4 点・戦略 B・合成の追加関門は記述。",
+ "composite_gate": {
+  "name": "Q568 逆転後 20 日の指数 β",
+  "期間": [
+   "2017-08-17",
+   "2024-06-28"
+  ],
+  "n_days": 1792,
+  "単体Sharpe": {
+   "全": 0.31,
+   "前": 0.21,
+   "後": 0.56
+  },
+  "相関": {
+   "S17b 買い持ち": 0.788,
+   "S21 H1 ML": 0.135,
+   "S23 暗号の上昇時": 0.059
+  },
+  "合成Sharpe": {
+   "全": [
+    1.56,
+    1.27
+   ],
+   "前": [
+    1.93,
+    1.4
+   ],
+   "後": [
+    1.15,
+    1.14
+   ]
+  },
+  "関門": {
+   "相関≤0.15": false,
+   "単体Sharpe≥0.5": false,
+   "合成が前後半とも下がらない": false,
+   "通過": false
+  }
+ }
+}
