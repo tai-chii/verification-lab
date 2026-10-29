@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 246 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 248 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -32,6 +32,7 @@
 | [cross-market-leadlag-h1](./cross-market-leadlag-h1) | Q236 4 組（XAU→XAG・WTI→UKOIL・BTC→ETH・US500→USTECH）の H1 リード・ラグは、両方向のどちらが強いか | 棄却: 1 組以下 |
 | [cross-sectional-vs-ts-momentum](./cross-sectional-vs-ts-momentum) | Q218 横断モメンタム（15 銘柄の上位 5 買い・下位 5 売り）は時系列モメンタムとコスト後にどれだけ違うか（Moskowitz ほか 2012 の型） | ノイズ（前後半で揃った差はない） |
 | [cross-signal-tsmom](./cross-signal-tsmom) | Q256 クロス・シグナル（金→銀・WTI→UKOIL・US500→USTECH・BTC→ETH）の日足順張りは自身の合図より良いか | 棄却: 主はリードしない（4 組とも全期間 ／z／<2） |
+| [crypto-basis-gate-s23-q569](./crypto-basis-gate-s23-q569) | Q569 暗号資産の四半期先物の年率ベーシスが高い日に S23 を休むと、S23 の損益は上がるか | — |
 | [crypto-d1-tsmom](./crypto-d1-tsmom) | Q262 暗号資産11通貨の日足順張り（TSMOM 20/60/120）は 2022 年以降もコスト後に残るか | 最初から無い: 前半 t<2（別の確定） |
 | [crypto-h1-reversal-vol](./crypto-h1-reversal-vol) | Q183 暗号資産の1時間足の逆張りの見返りは直前のボラで予測できるか（Farag 2024-1・11通貨） | ボラは1時間逆張りの粗利を予測する（Farag 2024-1 の H1 版）。ただし後半で係数が3〜4倍小さくなり、保… |
 | [crypto-h1-rules-battery](./crypto-h1-rules-battery) | Q298 暗号資産 11 通貨 H1 の 3 ルール群（TSMOM24・SMA50・RSI14 の 50 水準順張り）はコスト後に全て前後半で正か（Neely2003-2 の暗号 H1 移植） | 棄却 |
@@ -224,6 +225,7 @@
 | [usdjpy-london-open-vs-naive-momentum](./usdjpy-london-open-vs-naive-momentum) | USDJPY の日中順張りは、ロンドン開始30分の時刻条件つきシグナルでのみ効くか | README の「主な検証」表を参照 |
 | [ustech-btc-leadlag](./ustech-btc-leadlag) | Q213 USTECH の直前 1 時間のリターンは BTC の次の 1 時間を予測するか（リード・ラグ・2020 年以降・H1） | 棄却 |
 | [variance-ratio-setting-dependence](./variance-ratio-setting-dependence) | Q148 弱い形の効率性の検定（分散比）の結論は、設定（q・期間）でどれだけ動くか（Alahmadi・Basingab 2026 §3.5） | 1年の日足では分散比検定そのものがほとんど棄却しない（名目 5% 以下）。「1つの q で非効率と出ても他の q では… |
+| [vix-term-inversion-index-q568](./vix-term-inversion-index-q568) | Q568 VIX の期間構造の逆転（VIX/VIX3M ≥ 1）の後 20 営業日は、株価指数 10 本の平均リターンが高いか | — |
 | [vol-asymmetry-by-group](./vol-asymmetry-by-group) | Q247 ボラの非対称性の向きは群で違うか（株価指数は負・金は正・FX は無し。HAR に符号項・15 銘柄） | 未確定 |
 | [vol-change-reversal](./vol-change-reversal) | Q174 ボラの変化は1日逆張りの翌日リターンを予測するか（DellaCorte 2015-3・15銘柄） | 棄却 |
 | [vol-forecast-loss-vs-model](./vol-forecast-loss-vs-model) | Q187 為替のボラ予測で損失関数の差はモデルの差の何倍に見えるか（Tokajuk 2026-1 の為替移植） | 棄却（H0 支持: 為替では損失関数の差はモデルの差より小さい・Tokajuk の構図は為替で再現しない） |
