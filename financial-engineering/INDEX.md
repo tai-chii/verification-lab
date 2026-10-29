@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 243 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 245 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -80,6 +80,7 @@
 | [instrument-selection-bias](./instrument-selection-bias) | Q150 15銘柄から成績の良い 8 銘柄を事後に選ぶと順張りの成績はどれだけ膨らむか（Korzan 2026 §6 の銘柄選択バイアス） | 支持（確定）。選んだ銘柄は後半でむしろ劣る（反転）。膨らみが帰無の95%点をわずかに超えるのはその反転の裏返し（帰無は… |
 | [intraday-momentum-first-last](./intraday-momentum-first-last) | Q176 最初の1時間→最後の1時間の日中モメンタムは為替・株価指数・金で公表後に残るか（GarciaArano 2026） | 最初の1時間 → 最後の1時間 の日中モメンタムは、FX8・金・US株価指数2 の H1 で公表後にコスト前・コスト後… |
 | [intraday-momentum-indices-decay](./intraday-momentum-indices-decay) | Q297 US500 / USTECH H1 の日中モメンタム（初動 1 時間 → 終盤 1 時間）は 2016 以降に減衰したか | ノイズ |
+| [jp-industry-reversal-q566](./jp-industry-reversal-q566) | Q566 業種内の短期反転（日本株・月次・上下 10%） | — |
 | [jp-low-vol-q545](./jp-low-vol-q545) | Q545 日本株の低ボラティリティ効果（月次・市場の動きを差し引いたアルファ） | — |
 | [jp-us-residual-momentum-q564](./jp-us-residual-momentum-q564) | Q564 残差モメンタム（市場 1 因子の残差・12-1 か月・残差 σ で割る・月次・上下 10%）：日本株・米国株 | 棄却 |
 | [jp-us-xs-momentum-q563](./jp-us-xs-momentum-q563) | Q563 日本株・米国株の横断モメンタム（12-1 か月・月次・上下 10%・等金額 L/S） | 棄却 |
@@ -191,6 +192,7 @@
 | [signal-confirmation-filter](./signal-confirmation-filter) | Q221 合図の確認フィルタ（k 日連続同符号で入る）は 15 銘柄の順張りのホイップソーを減らし純損益を上げるか | 未確定 |
 | [signal-direction-compression](./signal-direction-compression) | Q145 戦略の日次ポジションを平均の向きに圧縮したとき、向きが離れたペアは履歴の相関も低いか（Nunes 2026 を 12 戦略 × 15銘柄で） | 向きの選別は履歴の違いを保証しないが、基準率より改善する（Nunes と同じ） |
 | [signal-strength-terciles](./signal-strength-terciles) | Q249 順張りの合図強度（／ret_L／/σ）の3分位で翌日の純損益は単調に増えるか（15銘柄・sign と強度の対比） | 棄却 |
+| [sma-cross-grid-spec-pass-q567](./sma-cross-grid-spec-pass-q567) | Q567 2 本 SMA クロスの総当たり（190 組×15 銘柄×D1/H4）: スペック §1 の再現合格数は偶然の範囲か・前半 TOP5 の等ウェイトは後半で勝つか | — |
 | [split-year-sensitivity](./split-year-sensitivity) | Q278 前後半の分割年を 2014〜2020 で動かすと「前後半とも同符号 t≥2」の判定は何割割れるか（基盤・簡単な規則群） | 未確定寄りのトリビアル支持 |
 | [spread-change-vol-forecast](./spread-change-vol-forecast) | Q234 XAUUSD の実測スプレッドの変化は、HAR に足すと翌時間の実現ボラの QLIKE を下げるか | 棄却: 前後半のどちらかで t > −2 または z > −2 |
 | [streak-reversal](./streak-reversal) | Q240 k 日連続同符号（k=3・5）の翌日は反転するか（15 銘柄・年内並べ替え帰無） | 棄却 |
