@@ -1,0 +1,28 @@
+/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/jp-industry-reversal-q566/results/result_q566.json
+{
+ "per_market": {
+  "jp": {
+   "mean_bp": -0.36389782193076803,
+   "t_nw": -0.3019467414761966,
+   "n_days": 4780,
+   "h1_bp": 0.4879596456467308,
+   "h1_t": 0.25321018685417723,
+   "h2_bp": -1.1706467474369537,
+   "h2_t": -0.793623665162895,
+   "alpha_bp": -0.6052666088649068,
+   "beta": 0.08219107352631194,
+   "sharpe": -0.06974423103832192,
+   "turn_mean": 1.7239555126153066,
+   "n_months": 222,
+   "null": {
+    "B": 200,
+    "null_mean_bp": -1.0922006149967727,
+    "null_sd_bp": 0.9064336412896966,
+    "z": 0.8034816448667518,
+    "p": 0.175
+   }
+  }
+ },
+ "verdict": "棄却"
+}
+../../../../作業層/venv_equities/bin/python   254.28s user 5.19s system 98% cpu 4:22.19 total
