@@ -1,0 +1,170 @@
+{
+ "eval": "2021-01-08〜2024-06-30",
+ "smoke": false,
+ "S23": {
+  "sharpe": 0.762,
+  "max_dd": -0.523,
+  "cagr": 0.282,
+  "total": 1.444,
+  "n": 906
+ },
+ "S27c": {
+  "sharpe": 0.4,
+  "max_dd": -0.517,
+  "cagr": 0.082,
+  "total": 0.33,
+  "n": 906
+ },
+ "halves": {
+  "S23": {
+   "pre": {
+    "sharpe": 0.369,
+    "max_dd": -0.522,
+    "cagr": 0.053,
+    "total": 0.097,
+    "n": 451
+   },
+   "post": {
+    "sharpe": 1.316,
+    "max_dd": -0.238,
+    "cagr": 0.559,
+    "total": 1.228,
+    "n": 455
+   }
+  },
+  "S27c": {
+   "pre": {
+    "sharpe": 0.451,
+    "max_dd": -0.516,
+    "cagr": 0.103,
+    "total": 0.191,
+    "n": 451
+   },
+   "post": {
+    "sharpe": 0.399,
+    "max_dd": -0.176,
+    "cagr": 0.063,
+    "total": 0.116,
+    "n": 455
+   }
+  }
+ },
+ "by_coin_BTC": {
+  "S23": {
+   "sharpe": 0.855,
+   "max_dd": -0.469,
+   "cagr": 0.326,
+   "total": 1.761,
+   "n": 906
+  },
+  "S27c": {
+   "sharpe": 0.507,
+   "max_dd": -0.469,
+   "cagr": 0.125,
+   "total": 0.527,
+   "n": 906
+  }
+ },
+ "by_coin_ETH": {
+  "S23": {
+   "sharpe": 0.572,
+   "max_dd": -0.708,
+   "cagr": 0.174,
+   "total": 0.782,
+   "n": 906
+  },
+  "S27c": {
+   "sharpe": 0.253,
+   "max_dd": -0.74,
+   "cagr": -0.011,
+   "total": -0.039,
+   "n": 906
+  }
+ },
+ "off_days": {
+  "BTC": {
+   "off_days": 244,
+   "held_days": 531,
+   "off_share": 0.46,
+   "off_mean_bp": 29.17,
+   "held_not_off_mean_bp": 23.26,
+   "off_next5_mean_bp": 93.23
+  },
+  "ETH": {
+   "off_days": 203,
+   "held_days": 563,
+   "off_share": 0.361,
+   "off_mean_bp": 35.66,
+   "held_not_off_mean_bp": 14.55,
+   "off_next5_mean_bp": 144.71
+  }
+ },
+ "off_mean_bp_all": 32.12,
+ "null": {
+  "B": 500,
+  "sharpe_mean": 0.731,
+  "sd": 0.117,
+  "p2_5": 0.482,
+  "p97_5": 0.96,
+  "z": -2.84
+ },
+ "criteria": {
+  "sharpe_up": false,
+  "dd_not_worse": true,
+  "off_days_lose": false,
+  "null_z_ge_2": false
+ },
+ "verdict": "棄却",
+ "describe": {
+  "BTC": {
+   "spearman_basis_next30_maxdd": -0.2773,
+   "next30_maxdd_gate_on": -0.1497,
+   "next30_maxdd_gate_off": -0.1802,
+   "spearman_basis_vs_funding_f7": 0.7982
+  },
+  "ETH": {
+   "spearman_basis_next30_maxdd": -0.1373,
+   "next30_maxdd_gate_on": -0.1471,
+   "next30_maxdd_gate_off": -0.2248,
+   "spearman_basis_vs_funding_f7": 0.846
+  }
+ },
+ "composite_gate": {
+  "name": "Q569 S27 候補（S23＋ベーシスゲート）",
+  "期間": [
+   "2021-01-08",
+   "2024-06-28"
+  ],
+  "n_days": 906,
+  "単体Sharpe": {
+   "全": 0.4,
+   "前": NaN,
+   "後": 0.4
+  },
+  "相関": {
+   "S17b 買い持ち": 0.006,
+   "S21 H1 ML": -0.034,
+   "S23 暗号の上昇時": 0.861
+  },
+  "合成Sharpe": {
+   "全": [
+    1.09,
+    0.97
+   ],
+   "前": [
+    NaN,
+    NaN
+   ],
+   "後": [
+    1.09,
+    0.97
+   ]
+  },
+  "関門": {
+   "相関≤0.15": false,
+   "単体Sharpe≥0.5": false,
+   "合成が前後半とも下がらない": false,
+   "通過": false
+  }
+ }
+}
