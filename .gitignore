@@ -62,3 +62,7 @@ financial-engineering/jp-us-xs-momentum-q563/results/*.log
 # Q564: 日次 L−S の中間生成物と実行ログ（要約は result_q564.json）
 financial-engineering/jp-us-residual-momentum-q564/results/daily_*.csv
 financial-engineering/jp-us-residual-momentum-q564/results/*.log
+
+# Q565: 合成データの売買明細（種 20 本・計 16MB）と実行ログは残さない（stats_*.json・result_q565.json だけ管理）
+financial-engineering/s21-h1-ml-rr-weekcap-q515/results/q565/trades_*.csv.gz
+financial-engineering/s21-h1-ml-rr-weekcap-q515/run_q565.log
