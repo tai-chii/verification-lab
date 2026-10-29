@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 248 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 251 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -69,6 +69,7 @@
 | [fx8-h1-triple-indicator](./fx8-h1-triple-indicator) | Q291 FX8 H1 の 3 指標（TSMOM24・SMA50・RSI14 符号）が同符号のときだけ売買すると、束ねた t はコスト後に単独 TSMOM24 を上回るか（Loubaris2026-2 の H1 移植） | 棄却 |
 | [gate-candidates-c1-c2-pass-probability-q428](./gate-candidates-c1-c2-pass-probability-q428) | Q428 関門の候補 C1（σ 目標 0.25%／0.35%/日・最大下落 −6%）と C2（最大下落 ≥ −0.75×年率 σ）は年率シャープ S の戦略を何割通し、1 年以内の −6%／−10% 到達率はいくらか（Q416 の S07 ブロック・ブートストラップを規程の変種に当てる・★ C の判断材料） | ★ C の実質の選択肢は C1 の σ の値。σ0.25% なら関門が S≈1.4 で半数を通す（現行は S≈2.7）… |
 | [gate-pass-probability-vs-sharpe-q416](./gate-pass-probability-vs-sharpe-q416) | Q416 関門（σ0.5%/日・14 年の最大下落 −6% 以内＋前後半 t≥2）は年率シャープ S がいくら以上の戦略を何割通すか（S07 規程モード損益の 20 日ブロック・ブートストラップで S を 0〜3 に合わせて測る） | 棄却（関門が律速） |
+| [gold-asia-hours-q572](./gold-asia-hours-q572) | Q572 金（XAUUSD）はアジア時間（2〜7 時 UTC）の買い持ちだけでコスト後に正のドリフトがあるか | 棄却 |
 | [gotobi-cross-jpy](./gotobi-cross-jpy) | Q179 五十日の仲値前の円安はクロス円でも出て2021年以降に消えたか（Bessho 2023） | 対立を支持: ドル固有 |
 | [h4-tsmom-trend7](./h4-tsmom-trend7) | Q261 トレンド7 の H4 順張り（TSMOM 30/60/120 本）はコスト後に残るか（為替で消えた H4 の条件の穴） | 支持: trend7 全期間 純損益 t<2 または z<2（H4 には無い） |
 | [halloween-effect](./halloween-effect) | Q238 「5 月に売れ」（ハロウィン効果）は 2008〜2026 の指数・商品 6 銘柄で残るか（6 か月ブロックの循環シフト帰無） | 棄却: 全期間の z < 2（手元の 18 年では見えない） |
@@ -86,6 +87,7 @@
 | [jp-us-residual-momentum-q564](./jp-us-residual-momentum-q564) | Q564 残差モメンタム（市場 1 因子の残差・12-1 か月・残差 σ で割る・月次・上下 10%）：日本株・米国株 | 棄却 |
 | [jp-us-xs-momentum-q563](./jp-us-xs-momentum-q563) | Q563 日本株・米国株の横断モメンタム（12-1 か月・月次・上下 10%・等金額 L/S） | 棄却 |
 | [jp-weekly-reversal-q544](./jp-weekly-reversal-q544) | Q544 日本株の週次の短期反転（J-Quants・日本株の検証の 1 本目） | — |
+| [jpy-tokyo-cut-hour-q573](./jpy-tokyo-cut-hour-q573) | Q573 東京カット（15:00 JST＝6 時 UTC）前後の円ペアの順張りは 24 時刻の Holm 補正後にも残るか | — |
 | [jump-day-followthrough](./jump-day-followthrough) | Q273 ジャンプ日（／ret／>2.5σ）の翌日・翌5日は継続か反転か（15銘柄・年内並べ替え帰無） | 未確定・ただし 2017 を境に y1 が「継続→反転」へ、y5 が「中立→継続」へ振れている可能性 |
 | [kensho-anomaly-decay](./kensho-anomaly-decay) | 決算発表後のアノマリー減衰 | README の「主な検証」表を参照 |
 | [leaderboard-width-tsmom-q326](./leaderboard-width-tsmom-q326) | Q326 順張りの参照日数60本の順位表 L(j) は上位ほど悪いか・格子を広げるほど選択の翌年は悪くなるか（Wang 2026 BT-2 を手元へ・Q325-C1） | ノイズ（幅は選択を良くも悪くもしない、と区別できない） |
@@ -177,6 +179,7 @@
 | [s20-credit-riskoff-gate-composite-c1-q513](./s20-credit-riskoff-gate-composite-c1-q513) | Q513 S20 信用スプレッド（HY OAS）のリスクオフ・ゲート付き 4 族合成（C1） | 実行不能（データ源）・判定なし |
 | [s20b-baa10y-riskoff-gate-composite-c1-q514](./s20b-baa10y-riskoff-gate-composite-c1-q514) | Q514 S20 再登録: 信用スプレッド（BAA10Y）のリスクオフ・ゲート付き 4 族合成（C1） | 棄却 |
 | [s21-h1-ml-rr-weekcap-q515](./s21-h1-ml-rr-weekcap-q515) | Q515 S21：H1・15銘柄・ML が「入るか・方向・RR」を選ぶ bot（RR 1.0〜2.0・週10回/銘柄） | 未確定（仮判断不合格・最終 1 年は未開封） |
+| [s21-tokyo-window-q571](./s21-tokyo-window-q571) | Q571 S21 を東京時間のエントリーに限ると成績は上がるか（＋円クロス 4 本・深夜窓の Fintokei コスト） | 未確定（東京に絞る利点は示せない側） |
 | [s22-crypto-ml-fintokei-q528](./s22-crypto-ml-fintokei-q528) | （README なし） | — |
 | [s23-crypto-uptrend-long-q529](./s23-crypto-uptrend-long-q529) | （README なし） | — |
 | [s24-multiasset-value-reversal-q536](./s24-multiasset-value-reversal-q536) | Q536 S24: 多資産の長期反転（バリューの代理） | 棄却 |

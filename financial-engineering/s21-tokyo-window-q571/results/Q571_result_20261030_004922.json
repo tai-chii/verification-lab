@@ -1,0 +1,359 @@
+{
+ "qid": "Q571",
+ "smoke": false,
+ "generated": "20261030_004922",
+ "question": "S21 を東京時間のエントリーに限ると成績は上がるか（＋円クロス・深夜のコスト）",
+ "settings": {
+  "B": 1000,
+  "split": "2021-01-01",
+  "windows": "現地時刻 5 窓（README_session_20261030.md）"
+ },
+ "main": {
+  "tokyo_R": 0.0642,
+  "all_R": 0.0462,
+  "diff": 0.018,
+  "z": 1.95,
+  "null_mean": -0.0035,
+  "null_sd": 0.011,
+  "tokyo_R_pre": 0.0745,
+  "tokyo_R_post": 0.0532,
+  "tokyo_t_daily": 3.97,
+  "all_t_daily": 4.77
+ },
+ "H1b_jpy": {
+  "n": 11602,
+  "R_per_trade": 0.0677,
+  "t_daily_all": 4.27,
+  "t_daily_pre": 3.99,
+  "t_daily_post": 2.12,
+  "jpy4_tokyo_R": 0.0828
+ },
+ "H1c_late": {
+  "東京のみ": {
+   "n": 9459,
+   "R": 0.0642,
+   "c_mean": 0.0799,
+   "R_minus_c": -0.0156,
+   "R_minus_c_post": -0.0294
+  },
+  "ロンドンのみ": {
+   "n": 6501,
+   "R": 0.0478,
+   "c_mean": 0.0761,
+   "R_minus_c": -0.0283,
+   "R_minus_c_post": -0.0474
+  },
+  "重複": {
+   "n": 5683,
+   "R": 0.0285,
+   "c_mean": 0.0796,
+   "R_minus_c": -0.0511,
+   "R_minus_c_post": -0.0581
+  },
+  "NYのみ": {
+   "n": 3912,
+   "R": -0.0006,
+   "c_mean": 0.0846,
+   "R_minus_c": -0.0852,
+   "R_minus_c_post": -0.124
+  },
+  "深夜": {
+   "n": 3333,
+   "R": 0.077,
+   "c_mean": 0.0773,
+   "R_minus_c": -0.0002,
+   "R_minus_c_post": -0.1188
+  },
+  "verdict_desc": "深夜は後半で R≤0"
+ },
+ "tables": {
+  "wf15": {
+   "東京のみ": {
+    "n": 9459,
+    "R_per_trade": 0.0642,
+    "t_trade": 4.64,
+    "t_daily": 3.97,
+    "R_pre": 0.0745,
+    "t_daily_pre": 3.47,
+    "R_post": 0.0532,
+    "t_daily_post": 2.18
+   },
+   "ロンドンのみ": {
+    "n": 6501,
+    "R_per_trade": 0.0478,
+    "t_trade": 2.84,
+    "t_daily": 2.52,
+    "R_pre": 0.0623,
+    "t_daily_pre": 2.52,
+    "R_post": 0.0289,
+    "t_daily_post": 0.98
+   },
+   "重複": {
+    "n": 5683,
+    "R_per_trade": 0.0285,
+    "t_trade": 1.64,
+    "t_daily": 1.42,
+    "R_pre": 0.0311,
+    "t_daily_pre": 1.16,
+    "R_post": 0.0256,
+    "t_daily_post": 0.84
+   },
+   "NYのみ": {
+    "n": 3912,
+    "R_per_trade": -0.0006,
+    "t_trade": -0.03,
+    "t_daily": -0.03,
+    "R_pre": 0.022,
+    "t_daily_pre": 0.75,
+    "R_post": -0.0287,
+    "t_daily_post": -0.9
+   },
+   "深夜": {
+    "n": 3333,
+    "R_per_trade": 0.077,
+    "t_trade": 3.38,
+    "t_daily": 2.93,
+    "R_pre": 0.1375,
+    "t_daily_pre": 4.23,
+    "R_post": -0.0293,
+    "t_daily_post": -0.66
+   },
+   "全時間帯": {
+    "n": 28888,
+    "R_per_trade": 0.0462,
+    "t_trade": 5.95,
+    "t_daily": 4.77,
+    "R_pre": 0.0648,
+    "t_daily_pre": 5.02,
+    "R_post": 0.0236,
+    "t_daily_post": 1.61
+   }
+  },
+  "jpy4": {
+   "東京のみ": {
+    "n": 2143,
+    "R_per_trade": 0.0828,
+    "t_trade": 2.8,
+    "t_daily": 2.46,
+    "R_pre": 0.1167,
+    "t_daily_pre": 2.67,
+    "R_post": 0.0427,
+    "t_daily_post": 0.82
+   },
+   "ロンドンのみ": {
+    "n": 1016,
+    "R_per_trade": 0.0503,
+    "t_trade": 1.16,
+    "t_daily": 0.98,
+    "R_pre": 0.0033,
+    "t_daily_pre": 0.05,
+    "R_post": 0.1078,
+    "t_daily_post": 1.3
+   },
+   "重複": {
+    "n": 807,
+    "R_per_trade": -0.0302,
+    "t_trade": -0.64,
+    "t_daily": -0.57,
+    "R_pre": 0.0394,
+    "t_daily_pre": 0.57,
+    "R_post": -0.1142,
+    "t_daily_post": -1.42
+   },
+   "NYのみ": {
+    "n": 654,
+    "R_per_trade": 0.0583,
+    "t_trade": 1.09,
+    "t_daily": 1.03,
+    "R_pre": -0.0333,
+    "t_daily_pre": -0.49,
+    "R_post": 0.1815,
+    "t_daily_post": 1.91
+   },
+   "深夜": {
+    "n": 1055,
+    "R_per_trade": 0.0845,
+    "t_trade": 2.07,
+    "t_daily": 1.78,
+    "R_pre": 0.1287,
+    "t_daily_pre": 1.96,
+    "R_post": 0.0379,
+    "t_daily_post": 0.55
+   },
+   "全時間帯": {
+    "n": 5675,
+    "R_per_trade": 0.0584,
+    "t_trade": 3.24,
+    "t_daily": 2.73,
+    "R_pre": 0.0688,
+    "t_daily_pre": 2.52,
+    "R_post": 0.046,
+    "t_daily_post": 1.37
+   }
+  },
+  "final_year_ref": {
+   "東京のみ": {
+    "n": 1110,
+    "R_per_trade": 0.0835,
+    "t_trade": 2.05,
+    "t_daily": 1.71,
+    "R_pre": null,
+    "t_daily_pre": null,
+    "R_post": 0.0835,
+    "t_daily_post": 1.71
+   },
+   "ロンドンのみ": {
+    "n": 516,
+    "R_per_trade": 0.0798,
+    "t_trade": 1.33,
+    "t_daily": 1.13,
+    "R_pre": null,
+    "t_daily_pre": null,
+    "R_post": 0.0798,
+    "t_daily_post": 1.13
+   },
+   "重複": {
+    "n": 530,
+    "R_per_trade": -0.0414,
+    "t_trade": -0.69,
+    "t_daily": -0.54,
+    "R_pre": null,
+    "t_daily_pre": null,
+    "R_post": -0.0414,
+    "t_daily_post": -0.54
+   },
+   "NYのみ": {
+    "n": 364,
+    "R_per_trade": -0.0798,
+    "t_trade": -1.14,
+    "t_daily": -1.11,
+    "R_pre": null,
+    "t_daily_pre": null,
+    "R_post": -0.0798,
+    "t_daily_post": -1.11
+   },
+   "深夜": {
+    "n": 303,
+    "R_per_trade": 0.1094,
+    "t_trade": 1.38,
+    "t_daily": 1.05,
+    "R_pre": null,
+    "t_daily_pre": null,
+    "R_post": 0.1094,
+    "t_daily_post": 1.05
+   },
+   "全時間帯": {
+    "n": 2823,
+    "R_per_trade": 0.0411,
+    "t_trade": 1.6,
+    "t_daily": 1.22,
+    "R_pre": null,
+    "t_daily_pre": null,
+    "R_post": 0.0411,
+    "t_daily_post": 1.22
+   }
+  }
+ },
+ "by_year_wf15": {
+  "2014": {
+   "tokyo_R": 0.0586,
+   "all_R": 0.0716,
+   "n_tokyo": 191
+  },
+  "2015": {
+   "tokyo_R": 0.0152,
+   "all_R": 0.0123,
+   "n_tokyo": 655
+  },
+  "2016": {
+   "tokyo_R": 0.1144,
+   "all_R": 0.0711,
+   "n_tokyo": 786
+  },
+  "2017": {
+   "tokyo_R": 0.0426,
+   "all_R": 0.0723,
+   "n_tokyo": 654
+  },
+  "2018": {
+   "tokyo_R": 0.0887,
+   "all_R": 0.0469,
+   "n_tokyo": 854
+  },
+  "2019": {
+   "tokyo_R": 0.0772,
+   "all_R": 0.0674,
+   "n_tokyo": 775
+  },
+  "2020": {
+   "tokyo_R": 0.0919,
+   "all_R": 0.1101,
+   "n_tokyo": 989
+  },
+  "2021": {
+   "tokyo_R": 0.0928,
+   "all_R": 0.0593,
+   "n_tokyo": 984
+  },
+  "2022": {
+   "tokyo_R": 0.0126,
+   "all_R": 0.0118,
+   "n_tokyo": 927
+  },
+  "2023": {
+   "tokyo_R": 0.0925,
+   "all_R": 0.026,
+   "n_tokyo": 884
+  },
+  "2024": {
+   "tokyo_R": -0.0074,
+   "all_R": -0.0405,
+   "n_tokyo": 1031
+  },
+  "2025": {
+   "tokyo_R": 0.0894,
+   "all_R": 0.0719,
+   "n_tokyo": 729
+  }
+ },
+ "machine_verdict": "未確定",
+ "multiple_comparisons": "判定は H1a の 1 本（z・前後半）。H1b・H1c・5 窓の表・年別・最終 1 年は記述。",
+ "composite_gate": {
+  "name": "S21t 東京限定（15＋円クロス 4）",
+  "期間": [
+   "2017-08-17",
+   "2025-10-01"
+  ],
+  "n_days": 2120,
+  "単体Sharpe": {
+   "全": 1.32,
+   "前": 1.92,
+   "後": 0.95
+  },
+  "相関": {
+   "S17b 買い持ち": 0.067,
+   "S21 H1 ML": 0.6,
+   "S23 暗号の上昇時": 0.001
+  },
+  "合成Sharpe": {
+   "全": [
+    1.49,
+    1.7
+   ],
+   "前": [
+    1.93,
+    2.3
+   ],
+   "後": [
+    1.12,
+    1.24
+   ]
+  },
+  "関門": {
+   "相関≤0.15": false,
+   "単体Sharpe≥0.5": true,
+   "合成が前後半とも下がらない": true,
+   "通過": false
+  }
+ }
+}
