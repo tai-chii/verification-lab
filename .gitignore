@@ -75,3 +75,5 @@ financial-engineering/vix-term-inversion-index-q568/results/*_daily_*.csv
 financial-engineering/session-rule-family-sweep-q574/results/partial/
 financial-engineering/session-rule-family-sweep-q574/results/partial_smoke/
 financial-engineering/session-rule-family-sweep-q574/results/smoke_*
+financial-engineering/grid-map-q581/results/partial/
+financial-engineering/grid-map-q581/results/smoke_partial/
