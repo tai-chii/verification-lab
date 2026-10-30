@@ -68,3 +68,10 @@ financial-engineering/s21-h1-ml-rr-weekcap-q515/results/q565/trades_*.csv.gz
 financial-engineering/s21-h1-ml-rr-weekcap-q515/run_q565.log
 # Q567: cells CSV は 1MB 超（銘柄×足×組×期間の全指標・スクリプトで再生成できる）
 financial-engineering/sma-cross-grid-spec-pass-q567/results/*_cells_*.csv
+financial-engineering/sma-cross-grid-spec-pass-q567/results/*_cells_*.csv
+financial-engineering/sma-cross-grid-spec-pass-q567/results/Q567_pickbest_curves.csv
+financial-engineering/vix-term-inversion-index-q568/results/*_daily_*.csv
+# Q574: 銘柄別の途中結果（統合 JSON・cells CSV で足りる）と smoke 結果
+financial-engineering/session-rule-family-sweep-q574/results/partial/
+financial-engineering/session-rule-family-sweep-q574/results/partial_smoke/
+financial-engineering/session-rule-family-sweep-q574/results/smoke_*

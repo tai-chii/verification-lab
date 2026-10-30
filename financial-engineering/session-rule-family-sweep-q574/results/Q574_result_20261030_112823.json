@@ -1,0 +1,692 @@
+{
+ "qid": "Q574",
+ "smoke": false,
+ "generated": "20261030_112823",
+ "question": "5 窓×36 信号×26 銘柄の総当たりで、コスト後 Holm を抜け・前後半正・窓 z≥2 のセルはあるか",
+ "settings": {
+  "windows": [
+   "東京のみ",
+   "ロンドンのみ",
+   "重複",
+   "NYのみ",
+   "深夜"
+  ],
+  "n_signals": 36,
+  "split": 2017,
+  "seal": "2024-07-01",
+  "hours_budget": 8.0,
+  "workers": 7,
+  "cost_table": {
+   "EURUSD": 1.0,
+   "GBPUSD": 1.0,
+   "AUDUSD": 1.0,
+   "USDCAD": 1.0,
+   "USDCHF": 1.0,
+   "USDJPY": 1.8,
+   "EURJPY": 1.8,
+   "GBPJPY": 1.8,
+   "XAUUSD": 4.0,
+   "XAGUSD": 8.0,
+   "US500": 2.0,
+   "USTECH": 2.0,
+   "UKOIL": 5.0,
+   "WTI": 5.0,
+   "BTCUSD": 10.0,
+   "ETHUSD": 10.0,
+   "ADAUSD": 20.0,
+   "BCHUSD": 20.0,
+   "DOTUSD": 20.0,
+   "EOSUSD": 20.0,
+   "LNKUSD": 20.0,
+   "LTCUSD": 20.0,
+   "SOLUSD": 20.0,
+   "XLMUSD": 20.0,
+   "XRPUSD": 20.0
+  }
+ },
+ "main": {
+  "n_cells": 4128,
+  "n_syms": 23,
+  "B": 309426,
+  "n_a_holm": 3,
+  "n_ab": 2,
+  "n_abc": 2,
+  "min_p_holm": 0.0,
+  "max_t": 6.29,
+  "max_z": 5.46,
+  "share_t_pos_all": 0.042,
+  "allhours_share_t_pos": 0.141,
+  "allhours_max_t": 2.75,
+  "wall_sec": 37153.6
+ },
+ "by_window": {
+  "東京のみ": {
+   "cells": 828,
+   "share_t_pos": 0.054,
+   "mean_t": -3.76,
+   "mean_bp_day": -13.246,
+   "max_t": 2.52,
+   "n_a": 0
+  },
+  "ロンドンのみ": {
+   "cells": 828,
+   "share_t_pos": 0.022,
+   "mean_t": -3.77,
+   "mean_bp_day": -11.336,
+   "max_t": 2.21,
+   "n_a": 0
+  },
+  "重複": {
+   "cells": 826,
+   "share_t_pos": 0.03,
+   "mean_t": -3.01,
+   "mean_bp_day": -10.839,
+   "max_t": 2.35,
+   "n_a": 0
+  },
+  "NYのみ": {
+   "cells": 826,
+   "share_t_pos": 0.033,
+   "mean_t": -3.83,
+   "mean_bp_day": -11.329,
+   "max_t": 3.14,
+   "n_a": 0
+  },
+  "深夜": {
+   "cells": 820,
+   "share_t_pos": 0.07,
+   "mean_t": -6.71,
+   "mean_bp_day": -8.851,
+   "max_t": 6.29,
+   "n_a": 3
+  }
+ },
+ "survivors": [
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BO24逆",
+   "bp_day": 1.3211,
+   "t": 6.2858,
+   "t_pre": 6.8697,
+   "t_post": 0.7275,
+   "z": 3.108,
+   "p_holm": 0.0,
+   "sharpe": 3.01,
+   "n_days": 1099
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BO72逆",
+   "bp_day": 1.3478,
+   "t": 4.8351,
+   "t_pre": 5.3133,
+   "t_post": 0.6109,
+   "z": 2.1534,
+   "p_holm": 0.0039,
+   "sharpe": 3.1257,
+   "n_days": 603
+  }
+ ],
+ "holm_a_only": [
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BO24逆",
+   "bp_day": 1.3211,
+   "t": 6.2858,
+   "t_pre": 6.8697,
+   "t_post": 0.7275,
+   "z": 3.108,
+   "p_holm": 0.0,
+   "sharpe": 3.01,
+   "n_days": 1099
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BB50k2順",
+   "bp_day": 1.3925,
+   "t": 5.6305,
+   "t_pre": 6.7354,
+   "t_post": -0.077,
+   "z": 3.0754,
+   "p_holm": 0.0001,
+   "sharpe": 3.0585,
+   "n_days": 854
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BO72逆",
+   "bp_day": 1.3478,
+   "t": 4.8351,
+   "t_pre": 5.3133,
+   "t_post": 0.6109,
+   "z": 2.1534,
+   "p_holm": 0.0039,
+   "sharpe": 3.1257,
+   "n_days": 603
+  }
+ ],
+ "top20_by_t": [
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BO24逆",
+   "bp_day": 1.3211,
+   "t": 6.2858,
+   "t_pre": 6.8697,
+   "t_post": 0.7275,
+   "z": 3.108,
+   "p_holm": 0.0,
+   "sharpe": 3.01,
+   "n_days": 1099
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BB50k2順",
+   "bp_day": 1.3925,
+   "t": 5.6305,
+   "t_pre": 6.7354,
+   "t_post": -0.077,
+   "z": 3.0754,
+   "p_holm": 0.0001,
+   "sharpe": 3.0585,
+   "n_days": 854
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BO72逆",
+   "bp_day": 1.3478,
+   "t": 4.8351,
+   "t_pre": 5.3133,
+   "t_post": 0.6109,
+   "z": 2.1534,
+   "p_holm": 0.0039,
+   "sharpe": 3.1257,
+   "n_days": 603
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BB20k2順",
+   "bp_day": 1.5918,
+   "t": 3.9954,
+   "t_pre": 4.0663,
+   "t_post": 0.7663,
+   "z": 0.82,
+   "p_holm": 0.1638,
+   "sharpe": 3.2753,
+   "n_days": 375
+  },
+  {
+   "sym": "AUDUSD",
+   "window": "深夜",
+   "signal": "BB20k2順",
+   "bp_day": 3.7196,
+   "t": 3.8224,
+   "t_pre": 2.6907,
+   "t_post": 3.0746,
+   "z": 1.8042,
+   "p_holm": 0.3192,
+   "sharpe": 3.3152,
+   "n_days": 335
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BB20k1順",
+   "bp_day": 0.5239,
+   "t": 3.69,
+   "t_pre": 5.9821,
+   "t_post": -2.9019,
+   "z": 2.3311,
+   "p_holm": 0.5201,
+   "sharpe": 1.1236,
+   "n_days": 2718
+  },
+  {
+   "sym": "AUDUSD",
+   "window": "深夜",
+   "signal": "BO24逆",
+   "bp_day": 1.6427,
+   "t": 3.5416,
+   "t_pre": 3.4339,
+   "t_post": 1.2484,
+   "z": 2.117,
+   "p_holm": 0.8821,
+   "sharpe": 1.8782,
+   "n_days": 896
+  },
+  {
+   "sym": "AUDUSD",
+   "window": "深夜",
+   "signal": "BO72逆",
+   "bp_day": 2.3227,
+   "t": 3.5381,
+   "t_pre": 3.4991,
+   "t_post": 1.2316,
+   "z": 1.5786,
+   "p_holm": 0.8931,
+   "sharpe": 2.5583,
+   "n_days": 482
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BO168逆",
+   "bp_day": 1.2564,
+   "t": 3.479,
+   "t_pre": 3.7852,
+   "t_post": 0.2555,
+   "z": 1.2431,
+   "p_holm": 1.0,
+   "sharpe": 2.8406,
+   "n_days": 378
+  },
+  {
+   "sym": "AUDUSD",
+   "window": "深夜",
+   "signal": "BO168逆",
+   "bp_day": 2.8429,
+   "t": 3.3747,
+   "t_pre": 3.2565,
+   "t_post": 1.3395,
+   "z": 1.5658,
+   "p_holm": 1.0,
+   "sharpe": 2.9625,
+   "n_days": 327
+  },
+  {
+   "sym": "ADAUSD",
+   "window": "深夜",
+   "signal": "BB20k2順",
+   "bp_day": 32.7704,
+   "t": 3.2541,
+   "t_pre": NaN,
+   "t_post": 3.2541,
+   "z": 4.1803,
+   "p_holm": 1.0,
+   "sharpe": 3.5562,
+   "n_days": 211
+  },
+  {
+   "sym": "AUDUSD",
+   "window": "NYのみ",
+   "signal": "BO168逆",
+   "bp_day": 2.4398,
+   "t": 3.1395,
+   "t_pre": 3.1757,
+   "t_post": 0.8553,
+   "z": 3.3826,
+   "p_holm": 1.0,
+   "sharpe": 1.7216,
+   "n_days": 838
+  },
+  {
+   "sym": "USDCHF",
+   "window": "深夜",
+   "signal": "BO24逆",
+   "bp_day": 1.1582,
+   "t": 2.7223,
+   "t_pre": 1.7306,
+   "t_post": 3.9395,
+   "z": 2.0738,
+   "p_holm": 1.0,
+   "sharpe": 1.4754,
+   "n_days": 858
+  },
+  {
+   "sym": "XAGUSD",
+   "window": "深夜",
+   "signal": "BB50k2順",
+   "bp_day": 4.2901,
+   "t": 2.6122,
+   "t_pre": 4.5646,
+   "t_post": -1.0873,
+   "z": 2.8053,
+   "p_holm": 1.0,
+   "sharpe": 1.5082,
+   "n_days": 756
+  },
+  {
+   "sym": "ADAUSD",
+   "window": "深夜",
+   "signal": "MOM3逆",
+   "bp_day": 15.0895,
+   "t": 2.5973,
+   "t_pre": NaN,
+   "t_post": 2.5973,
+   "z": 5.0303,
+   "p_holm": 1.0,
+   "sharpe": 1.5409,
+   "n_days": 716
+  },
+  {
+   "sym": "USDCHF",
+   "window": "東京のみ",
+   "signal": "BB20k1順",
+   "bp_day": 0.7791,
+   "t": 2.5202,
+   "t_pre": 2.0186,
+   "t_post": 1.5901,
+   "z": 1.3499,
+   "p_holm": 1.0,
+   "sharpe": 0.6972,
+   "n_days": 3293
+  },
+  {
+   "sym": "USDCHF",
+   "window": "東京のみ",
+   "signal": "BB50k2順",
+   "bp_day": 1.7713,
+   "t": 2.4491,
+   "t_pre": 2.9593,
+   "t_post": -0.267,
+   "z": 1.7817,
+   "p_holm": 1.0,
+   "sharpe": 1.4998,
+   "n_days": 672
+  },
+  {
+   "sym": "USDCHF",
+   "window": "深夜",
+   "signal": "BB20k2順",
+   "bp_day": 2.0438,
+   "t": 2.3607,
+   "t_pre": 1.4632,
+   "t_post": 2.6543,
+   "z": 0.7595,
+   "p_holm": 1.0,
+   "sharpe": 2.5439,
+   "n_days": 217
+  },
+  {
+   "sym": "XLMUSD",
+   "window": "重複",
+   "signal": "BB50k2順",
+   "bp_day": 26.5092,
+   "t": 2.355,
+   "t_pre": NaN,
+   "t_post": 2.355,
+   "z": 3.3664,
+   "p_holm": 1.0,
+   "sharpe": 2.8672,
+   "n_days": 170
+  },
+  {
+   "sym": "USDCAD",
+   "window": "深夜",
+   "signal": "BB50k1順",
+   "bp_day": 0.332,
+   "t": 2.3199,
+   "t_pre": 4.3467,
+   "t_post": -2.6021,
+   "z": 2.5599,
+   "p_holm": 1.0,
+   "sharpe": 0.7106,
+   "n_days": 2686
+  }
+ ],
+ "per_sym": {
+  "EURUSD": {
+   "B": 309426,
+   "cost_bp_rt": 1.0,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 15180.0
+  },
+  "GBPUSD": {
+   "B": 309426,
+   "cost_bp_rt": 1.0,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 15163.6
+  },
+  "AUDUSD": {
+   "B": 309426,
+   "cost_bp_rt": 1.0,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 15270.8
+  },
+  "USDCAD": {
+   "B": 309426,
+   "cost_bp_rt": 1.0,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 15245.3
+  },
+  "USDCHF": {
+   "B": 309426,
+   "cost_bp_rt": 1.0,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 15302.2
+  },
+  "USDJPY": {
+   "B": 309426,
+   "cost_bp_rt": 1.8,
+   "n_bars": 102744,
+   "n_days": 4281,
+   "period": [
+    "2008-02-01",
+    "2024-06-28"
+   ],
+   "sec": 15143.5
+  },
+  "EURJPY": {
+   "B": 309426,
+   "cost_bp_rt": 1.8,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 15242.8
+  },
+  "GBPJPY": {
+   "B": 309426,
+   "cost_bp_rt": 1.8,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 17775.2
+  },
+  "XAUUSD": {
+   "B": 309426,
+   "cost_bp_rt": 4.0,
+   "n_bars": 101208,
+   "n_days": 4217,
+   "period": [
+    "2008-05-01",
+    "2024-06-28"
+   ],
+   "sec": 17564.8
+  },
+  "XAGUSD": {
+   "B": 309426,
+   "cost_bp_rt": 8.0,
+   "n_bars": 103296,
+   "n_days": 4304,
+   "period": [
+    "2008-01-01",
+    "2024-06-28"
+   ],
+   "sec": 17889.5
+  },
+  "US500": {
+   "B": 309426,
+   "cost_bp_rt": 2.0,
+   "n_bars": 80328,
+   "n_days": 3347,
+   "period": [
+    "2011-09-01",
+    "2024-06-28"
+   ],
+   "sec": 14364.4
+  },
+  "USTECH": {
+   "B": 309426,
+   "cost_bp_rt": 2.0,
+   "n_bars": 80328,
+   "n_days": 3347,
+   "period": [
+    "2011-09-01",
+    "2024-06-28"
+   ],
+   "sec": 13958.1
+  },
+  "UKOIL": {
+   "B": 309426,
+   "cost_bp_rt": 5.0,
+   "n_bars": 85032,
+   "n_days": 3543,
+   "period": [
+    "2010-12-01",
+    "2024-06-28"
+   ],
+   "sec": 14696.4
+  },
+  "WTI": {
+   "B": 309426,
+   "cost_bp_rt": 5.0,
+   "n_bars": 80328,
+   "n_days": 3347,
+   "period": [
+    "2011-09-01",
+    "2024-06-28"
+   ],
+   "sec": 14076.0
+  },
+  "BTCUSD": {
+   "B": 309426,
+   "cost_bp_rt": 10.0,
+   "n_bars": 44880,
+   "n_days": 1870,
+   "period": [
+    "2017-05-01",
+    "2024-06-28"
+   ],
+   "sec": 6949.3
+  },
+  "ETHUSD": {
+   "B": 309426,
+   "cost_bp_rt": 10.0,
+   "n_bars": 41184,
+   "n_days": 1716,
+   "period": [
+    "2017-12-01",
+    "2024-06-28"
+   ],
+   "sec": 6517.2
+  },
+  "ADAUSD": {
+   "B": 309426,
+   "cost_bp_rt": 20.0,
+   "n_bars": 17712,
+   "n_days": 738,
+   "period": [
+    "2021-09-01",
+    "2024-06-28"
+   ],
+   "sec": 2940.1
+  },
+  "BCHUSD": {
+   "B": 309426,
+   "cost_bp_rt": 20.0,
+   "n_bars": 38616,
+   "n_days": 1609,
+   "period": [
+    "2018-05-01",
+    "2024-06-28"
+   ],
+   "sec": 6202.3
+  },
+  "EOSUSD": {
+   "B": 309426,
+   "cost_bp_rt": 20.0,
+   "n_bars": 38616,
+   "n_days": 1609,
+   "period": [
+    "2018-05-01",
+    "2024-06-28"
+   ],
+   "sec": 4325.0
+  },
+  "LNKUSD": {
+   "B": 309426,
+   "cost_bp_rt": 20.0,
+   "n_bars": 17712,
+   "n_days": 738,
+   "period": [
+    "2021-09-01",
+    "2024-06-28"
+   ],
+   "sec": 2861.3
+  },
+  "LTCUSD": {
+   "B": 309426,
+   "cost_bp_rt": 20.0,
+   "n_bars": 36480,
+   "n_days": 1520,
+   "period": [
+    "2018-09-03",
+    "2024-06-28"
+   ],
+   "sec": 3934.4
+  },
+  "XLMUSD": {
+   "B": 309426,
+   "cost_bp_rt": 20.0,
+   "n_bars": 19800,
+   "n_days": 825,
+   "period": [
+    "2021-05-03",
+    "2024-06-28"
+   ],
+   "sec": 2799.2
+  },
+  "XRPUSD": {
+   "B": 309426,
+   "cost_bp_rt": 20.0,
+   "n_bars": 38616,
+   "n_days": 1609,
+   "period": [
+    "2018-05-01",
+    "2024-06-28"
+   ],
+   "sec": 1563.4
+  }
+ },
+ "machine_verdict": "支持: (a)(b)(c) を満たすセル 2",
+ "multiple_comparisons": "(a) は全セル Holm。(c) の z は (a) を抜けたセルにだけ適用。全時間帯の行は Holm の族に入れない（記述）。"
+}
