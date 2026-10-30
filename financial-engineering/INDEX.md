@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 255 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 257 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -71,6 +71,7 @@
 | [gate-pass-probability-vs-sharpe-q416](./gate-pass-probability-vs-sharpe-q416) | Q416 関門（σ0.5%/日・14 年の最大下落 −6% 以内＋前後半 t≥2）は年率シャープ S がいくら以上の戦略を何割通すか（S07 規程モード損益の 20 日ブロック・ブートストラップで S を 0〜3 に合わせて測る） | 棄却（関門が律速） |
 | [gold-asia-hours-q572](./gold-asia-hours-q572) | Q572 金（XAUUSD）はアジア時間（2〜7 時 UTC）の買い持ちだけでコスト後に正のドリフトがあるか | 棄却 |
 | [gotobi-cross-jpy](./gotobi-cross-jpy) | Q179 五十日の仲値前の円安はクロス円でも出て2021年以降に消えたか（Bessho 2023） | 対立を支持: ドル固有 |
+| [grid-traprepeat-q580](./grid-traprepeat-q580) | Q580 トラリピ型の半々グリッドは FX8 の H1 で含み損込み・コスト後に年単位で正か、年内並べ替えのランダムウォークより良いか（Q579 の次段階） | 棄却 |
 | [h4-tsmom-trend7](./h4-tsmom-trend7) | Q261 トレンド7 の H4 順張り（TSMOM 30/60/120 本）はコスト後に残るか（為替で消えた H4 の条件の穴） | 支持: trend7 全期間 純損益 t<2 または z<2（H4 には無い） |
 | [halloween-effect](./halloween-effect) | Q238 「5 月に売れ」（ハロウィン効果）は 2008〜2026 の指数・商品 6 銘柄で残るか（6 か月ブロックの循環シフト帰無） | 棄却: 全期間の z < 2（手元の 18 年では見えない） |
 | [har-horizon-advantage](./har-horizon-advantage) | Q275 HAR の持続基準に対する優位は予測期間（1・5・22 日）で広がるか縮むか（15銘柄・QLIKE） | 逆向きで確定: 前後半とも t≤−2（短いほど効く） |
@@ -100,6 +101,7 @@
 | [lookback-ensemble-tsmom](./lookback-ensemble-tsmom) | Q223 参照日数の集合（20・60・120・250 の合図平均）は最良単一の参照日数より標本外で良いか（Baltas・Kosowski の型） | ノイズ: 合図平均と最良単一の差は前後半で揃わず事前固定の t≥2 または t≤−2 のどちらも通らない |
 | [ltr-lambdamart-vs-jt-wide48-monthly-q448](./ltr-lambdamart-vs-jt-wide48-monthly-q448) | Q448 ランキング学習（LambdaMART）対 過去リターン並べ（JT）：wide48 月次・上下10・コスト後 | 棄却 |
 | [m15-autocorr-by-hour](./m15-autocorr-by-hour) | Q153 15分足の1次自己相関は時刻で符号が変わるか（USDJPY・EURUSD 2021〜・Holm 補正） | 確定（棄却） |
+| [ma-alignment-regime-vr-q579](./ma-alignment-regime-vr-q579) | Q579 MA 整列の局面では翌 24 本の分散比が 1 を超え、整列していない局面では 1 を下回るか（トレンド bot × トラリピ切替の前提） | 棄却 |
 | [ma-cross-eurusd](./ma-cross-eurusd) | MAクロス 全パターン検証（EURUSD 4時間足） | — |
 | [ma200-timing-vs-exposure](./ma200-timing-vs-exposure) | 200日移動平均線ルールの下落防御は、タイミングの効果か市場露出が減るだけか（約100年・米株） | README の「主な検証」表を参照 |
 | [ml-core-eurusd-h1](./ml-core-eurusd-h1) | Q191 ML 自動売買の「核」（Model 0）は EURUSD の1時間足からコスト後に 0 と区別できる信号を取り出せるか | 棄却（段階1: 粗利でも t<2・コスト以前に信号なし） |
