@@ -58,6 +58,11 @@ H0: どのセルも帰無と区別できない（格子は符号の依存から�
 【委託の確かめ方】設計・コードは Opus（2026-10-30）。計算は Mac の夜間コマンド（run_night_20261030c.sh）、判定と記録は翌朝の /lab（担当 opus）。
 /lab の実行者は計算をやり直さない: results/Q581_result_*.json が無ければ `python3 kensho_grid_map_q581.py --analyze` だけを走らせる。
 
+【事前登録からの変更点（2026-10-31・/lab Q581・Opus）】
+- 封印（time < 2024-07-01）の切り忘れ。計算は 2026 年まで走ったので、--seal で 2024 年以降の年を分析から外す（年ごとに独立の 1 回なので
+  切ってから走らせ直すのと同じ。判定規則・帰無・セルは変えない）。判定は --seal の結果で行う。修正前は results/kensho_grid_map_q581_before_seal_20261031.py。
+- 銘柄数は FX8＋TREND7＋暗号資産 10（BTC 重複を除く）＝ 25 本・1,125 セル（設計文の 26・1,170 は数え間違い。Holm の m は 1,125）。
+
 【実装】自己完結（共通の土台を埋め込み）。格子は水準×時刻の 2 次元配列でヒステリシスをベクトル化。spawn の Pool で銘柄ごとに並列。
 途中結果は results/partial/ に銘柄×パスごとに保存し、同じコマンドで続きから。
 実行: python3 kensho_grid_map_q581.py --hours 7（計算＋最後に分析）／--analyze（分析だけ）／--smoke（合成データ・経路確認）
@@ -392,6 +397,7 @@ CONFIGS = [(k, n, ty) for k in KS for n in NS for ty in TYPES]
 PASS_B = int(os.environ.get("Q581_PASS_B", "50"))  # 本番は 50（環境変数は試走用）
 B_MAX = 2000
 B_MIN_JUDGE = 200
+SEAL_YEAR = 2024  # 封印 time < 2024-07-01 → 2024 年の 1 回は封印後を含むので外す
 LAM = 0.97
 ATR_N = 20
 CRYPTO_SPLIT = 2022
@@ -565,6 +571,12 @@ def analyze(args, syms):
             continue
         P = [np.load(os.path.join(PART, f"{s}_p{p:03d}.npz")) for p in ps]
         perm = np.concatenate([x["perm"] for x in P], axis=2); vol = np.concatenate([x["vol"] for x in P], axis=2)
+        if args.seal:  # 封印（2026-10-31 追加）: 2024-07-01 をまたぐ年以降を外す。年ごとに独立なので切って走らせ直すのと同じ
+            keep = years < SEAL_YEAR
+            if not keep.any():  # DOTUSD・SOLUSD は 2025 年〜しか無い
+                continue
+            ob = {k: ob[k][:, keep] for k in ("net", "gross", "trips", "end_mtm", "mdd")}
+            years = years[keep]; perm = perm[:, keep, :]; vol = vol[:, keep, :]
         B_by[s] = perm.shape[2]
         sy = split_year(s)
         for ci, (k, n, ty) in enumerate(CONFIGS):
@@ -604,7 +616,7 @@ def analyze(args, syms):
     res = {
         "config": {"syms": syms, "missing": [s for s in ALL_SYMS if s not in syms], "configs": len(CONFIGS), "n_cells": int(len(cells)),
                    "pass_B": PASS_B, "B_min": B_min, "B_by_sym": B_by, "B_min_judge": B_MIN_JUDGE, "lambda": LAM, "split_year": SPLIT_YEAR,
-                   "crypto_split": CRYPTO_SPLIT, "seed": SEED},
+                   "crypto_split": CRYPTO_SPLIT, "seed": SEED, "seal": bool(args.seal), "years_max": (SEAL_YEAR - 1) if args.seal else None},
         "machine_verdict": verdict,
         "parts": {"n_holm_pass": n_holm, "n_holm_and_halves": n_both, "B_min": B_min, "m_holm": int(len(cells))},
         "top20_by_z_vol": top.to_dict("records"),
@@ -624,6 +636,7 @@ def main():
         ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 1))
         ap.add_argument("--analyze", action="store_true", help="計算せず partial から分析だけ")
         ap.add_argument("--syms", default="", help="カンマ区切りで銘柄を絞る（試走用）")
+        ap.add_argument("--seal", action="store_true", help="封印: 2023 年までの年だけで分析（判定はこちら）")
     args = parse_args(default_B=0, extra=extra)
     global PART
     if args.smoke:

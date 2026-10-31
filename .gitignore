@@ -77,3 +77,6 @@ financial-engineering/session-rule-family-sweep-q574/results/partial_smoke/
 financial-engineering/session-rule-family-sweep-q574/results/smoke_*
 financial-engineering/grid-map-q581/results/partial/
 financial-engineering/grid-map-q581/results/smoke_partial/
+# Q581: 銘柄×パスの帰無の途中結果（127MB・result JSON と cells CSV で足りる）
+financial-engineering/grid-map-q581/results/partial/
+financial-engineering/grid-map-q581/results/smoke_*
