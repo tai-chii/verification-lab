@@ -67,6 +67,9 @@ def rate_from_spec(r, nights):
     """S21_SymbolSpecs.mq5 の 1 行 → 年率の保有コスト（買い・正＝払う）。"""
     mode, val = r["swap_mode_name"], float(r["swap_long"])
     px = (float(r["bid"]) + float(r["ask"])) / 2 or float(r["ask"]) or float(r["bid"])
+    if px <= 0 and r.get("_want"):        # 2026-11-01: 気配値に載っていない銘柄は bid=0。換算の価格だけ手元の D1 の最後の終値を使う
+        from fe_core import load_d1
+        px = float(load_d1(r["_want"], end=None)["close"].iloc[-1])  # 封印を開ける: スワップの年率換算の価格だけ・判定に使わない
     cs, pt = float(r["contract_size"]), float(r["point"])
     tv, ts = float(r["tick_value"]), float(r["tick_size"])
     if mode == "DISABLED":
@@ -76,6 +79,9 @@ def rate_from_spec(r, nights):
     if mode.startswith("INTEREST"):
         return -val / 100.0
     if mode in ("CURRENCY_SYMBOL", "CURRENCY_MARGIN"):          # 基軸通貨で 1 ロットあたり
+        # 2026-11-01 修正: XM の指数は証拠金通貨＝決済通貨（US500Cash は USD）。基軸として割らないと年率が数万 % になる
+        if r.get("currency_margin") == r.get("currency_profit"):
+            return -(val / (cs * px)) * nights
         return -(val / cs) * nights
     if mode == "CURRENCY_PROFIT":                                # 決済通貨で 1 ロットあたり
         return -(val / (cs * px)) * nights
@@ -87,7 +93,7 @@ def rate_from_spec(r, nights):
 def from_specs(path, nights):
     import csv
     rows = list(csv.DictReader(open(path, encoding="utf-8-sig", errors="replace")))
-    names = [r["name"] for r in rows]; by = {r["name"]: r for r in rows}
+    names = [r["name"] for r in rows if r["swap_mode_name"] != "DISABLED"]; by = {r["name"]: r for r in rows}   # 2026-11-01: 先物の限月（US500-DEC26・DISABLED）を拾わない
     rates, table = {}, []
     for want in ALIASES:
         n = resolve(names, want)
@@ -95,7 +101,7 @@ def from_specs(path, nights):
             table.append((want, "（見つからない）", "", "", "")); continue
         r = by[n]
         try:
-            rates[want] = rate_from_spec(r, nights)
+            rates[want] = rate_from_spec({**r, "_want": want}, nights)
             table.append((want, n, r["swap_mode_name"], r["swap_long"], f"{rates[want]*100:+.2f}%/年"))
         except SystemExit as e:
             table.append((want, n, r["swap_mode_name"], r["swap_long"], str(e)))
@@ -130,7 +136,7 @@ def s17b(rates_by_sym, default):
     DEV = (pd.Timestamp("2012-02-01"), pd.Timestamp("2024-07-01")); HO = (pd.Timestamp("2024-07-01"), pd.Timestamp("2026-07-01"))
     P = {}
     for s in syms:
-        d = load_d1(s); d = d[(d["time"] >= DEV[0]) & (d["time"] < HO[1])]
+        d = load_d1(s, end=None); d = d[(d["time"] >= DEV[0]) & (d["time"] < HO[1])]  # 封印を開ける: ホールドアウト 2024-07〜2026-06 を 1 回だけ見る事前登録（期間は下の DEV/HO で切る）
         P[s] = pd.Series(d["ret"].to_numpy(), index=pd.DatetimeIndex(d["time"]).normalize())
     P = pd.DataFrame(P).sort_index()
     used = {s: rates_by_sym.get(s, default) for s in syms}

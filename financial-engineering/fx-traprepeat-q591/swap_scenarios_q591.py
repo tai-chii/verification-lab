@@ -11,16 +11,23 @@ CFD_CCY = {"XAUUSD": "USD", "US500": "USD", "USTECH": "USD", "GER40": "EUR", "JP
 ALIAS = {"US500": ["US500Cash", "US500", "SP500", "SPX500", "USA500", "S&P500", "SPX"], "USTECH": ["US100Cash", "USTECH", "NAS100", "USTEC", "US100", "NDX100", "NASDAQ100", "USTECHCash"], "GER40": ["GER40Cash", "GER40", "DE40", "DAX40", "DE40Cash", "GER30", "DE30", "DAX"], "JPN225": ["JP225Cash", "JPN225", "JP225", "Japan225", "NIKKEI225", "N225", "JPN225Cash"], "XAUUSD": ["GOLD", "XAUUSD"]}   # mt5_fetch.py と同じ候補
 
 
-def annual(mode, v, r, usdjpy_deposit):
-    """MT5 のスワップ値 → 名目に対する年率。3 倍デーで週 7 晩ぶんを払うので 1 晩平均 ×365"""
-    price = (float(r["bid"]) + float(r["ask"])) / 2; pt = float(r["point"]); cs = float(r["contract_size"])
-    if mode == "POINTS": return v * pt / price * 365
-    if mode.startswith("INTEREST") or mode.startswith("REOPEN"): return v / 100
-    if mode in ("CURRENCY_SYMBOL", "CURRENCY_MARGIN", "CURRENCY_PROFIT"): return v / (cs * price) * 365
-    if mode == "CURRENCY_DEPOSIT":
-        tv, ts = float(r["tick_value"]), float(r["tick_size"]); notional_dep = cs * price * tv / (ts * cs) if tv and ts else np.nan   # 1 ロットの名目（口座通貨）
-        return v / notional_dep * 365
-    return 0.0
+def price_of(T, s, r):
+    """今の価格。クロスは気配値に載っていないと bid=0 なので組の価格から計算する（LEGS と同じ式）"""
+    px = (float(r["bid"]) + float(r["ask"])) / 2
+    if px > 0: return px
+    a, b, e = Q.LEGS[s]; mid = lambda n: (float(T[n]["bid"]) + float(T[n]["ask"])) / 2
+    return mid(a) * mid(b) ** e
+
+
+def annual(v, r, px):
+    """MT5 のスワップ値 → 名目に対する年率。3 倍デーで週 7 晩ぶんを払うので 1 晩平均 ×365。CURRENCY_MARGIN は XM では決済通貨と同じ通貨の 1 ロットあたりの金額"""
+    mode = r["swap_mode_name"]; pt = float(r["point"]); cs = float(r["contract_size"])
+    if mode == "POINTS": return v * pt / px * 365
+    if mode.startswith("INTEREST"): return v / 100
+    if mode in ("CURRENCY_SYMBOL", "CURRENCY_MARGIN", "CURRENCY_PROFIT"):
+        if r["currency_margin"] != r["currency_profit"]: raise SystemExit(f"{r['name']}: 証拠金通貨と決済通貨が違う")
+        return v / (cs * px) * 365
+    raise SystemExit(f"{r['name']}: 換算できない型 {mode}")
 
 
 def load_specs(path):
@@ -42,7 +49,7 @@ def real_markups(T, R):
     for s in sorted(set(sum(Q.FAM.values(), []))):
         r = find(T, s)
         if r is None: out[s] = None; continue
-        al, ash = annual(r["swap_mode_name"], float(r["swap_long"]), r, None), annual(r["swap_mode_name"], float(r["swap_short"]), r, None)
+        px = price_of(T, s, r); al, ash = annual(float(r["swap_long"]), r, px), annual(float(r["swap_short"]), r, px)
         if s in CFD_CCY: b = float(Q.rate_at(R, CFD_CCY[s], now)[0]); out[s] = dict(name=r["name"], mode=r["swap_mode_name"], long=al, short=ash, rate_now=b)
         else:
             d = float(Q.rate_at(R, s[:3], now)[0] - Q.rate_at(R, s[3:6], now)[0]); out[s] = dict(name=r["name"], mode=r["swap_mode_name"], long=al, short=ash, diff_now=d, m_long=d - al, m_short=-d - ash)
