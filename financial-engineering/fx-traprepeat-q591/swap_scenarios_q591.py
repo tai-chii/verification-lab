@@ -8,7 +8,7 @@ import numpy as np, pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 sp = importlib.util.spec_from_file_location("q591", os.path.join(HERE, "kensho_traprepeat_q591.py")); Q = importlib.util.module_from_spec(sp); sp.loader.exec_module(Q)
 CFD_CCY = {"XAUUSD": "USD", "US500": "USD", "USTECH": "USD", "GER40": "EUR", "JPN225": "JPY"}
-ALIAS = {"US500": ["US500Cash", "US500"], "USTECH": ["US100Cash", "USTECH", "NAS100"], "GER40": ["GER40Cash", "GER40", "DE40Cash"], "JPN225": ["JP225Cash", "JPN225", "JP225"], "XAUUSD": ["GOLD", "XAUUSD"]}
+ALIAS = {"US500": ["US500Cash", "US500", "SP500", "SPX500", "USA500", "S&P500", "SPX"], "USTECH": ["US100Cash", "USTECH", "NAS100", "USTEC", "US100", "NDX100", "NASDAQ100", "USTECHCash"], "GER40": ["GER40Cash", "GER40", "DE40", "DAX40", "DE40Cash", "GER30", "DE30", "DAX"], "JPN225": ["JP225Cash", "JPN225", "JP225", "Japan225", "NIKKEI225", "N225", "JPN225Cash"], "XAUUSD": ["GOLD", "XAUUSD"]}   # mt5_fetch.py と同じ候補
 
 
 def annual(mode, v, r, usdjpy_deposit):
@@ -31,7 +31,7 @@ def load_specs(path):
 
 def find(T, s):
     for n in ALIAS.get(s, [s]):
-        for k in (n, n + "#", n + ".", n + "."):
+        for k in (n, n + "#", n + "."):
             if k in T: return T[k]
     c = [k for k in T if k.upper().startswith(s)]
     return T[c[0]] if c else None
@@ -85,7 +85,7 @@ def one(fam, data, R, ct, pay, rng, B):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--specs"); ap.add_argument("--B", type=int, default=200); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--specs"); ap.add_argument("--B", type=int, default=200); ap.add_argument("--out", default=None); a = ap.parse_args()
     ct = Q.cost_table(); R = Q.rate_series(); data = {}
     for s in sorted(set(sum(Q.FAM.values(), []))):
         x = Q.add_sig(Q.load_sym(s)); data[s] = (x, Q.prep(x))
@@ -101,7 +101,7 @@ def main():
         for fam in Q.FAM:
             r = one(fam, data, R, ct, pay, rng, a.B); res[name][fam] = r
             print(f"{name:14} {fam} 平均 {r['mean_bp']:+.3f} t {r['t_nw']:+.2f} PF {r['pf']:.3f} 前後 {r['h1_bp']:+.2f}/{r['h2_bp']:+.2f} z {r['z']:+.2f} 帰無 {r['null_mean_bp']:+.3f}±{r['null_sd_bp']:.3f} composite {r['composite']} → {r['verdict']}", flush=True)
-    json.dump(res, open(os.path.join(HERE, "results", "swap_real_q591.json" if a.specs else "swap_scenarios_q591.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=float)
+    json.dump(res, open(a.out or os.path.join(HERE, "results", "swap_real_q591.json" if a.specs else "swap_scenarios_q591.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=float)
 
 
 if __name__ == "__main__":
