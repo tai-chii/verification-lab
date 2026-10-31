@@ -135,9 +135,14 @@ def load_csv(name, smoke=False, rng=None, freq="h", n=20000, start="2015-01-01")
     return _read(os.path.join(DATA_DIR, f"data_{name}.csv"))
 
 
+SEAL_END = "2024-07-01"  # 封印 time<2024-07-01（2026-10-31 事後の判断で追加）
+
+
 def load_h1(sym, smoke=False, rng=None, n=60000, start="2015-01-01"):
     """UTC 1時間足（H1_dukascopy）。値動きのない足は除く。列: time, open, high, low, close, volume, ret, year, hour, dow"""
     df = load_csv(f"{sym}_H1_dukascopy", smoke, rng, freq="h", n=n, start=start)
+    if not smoke:
+        df = df[df["time"] < pd.Timestamp(SEAL_END)]
     df = df[df["high"] != df["low"]].reset_index(drop=True)
     df["ret"] = df["close"].pct_change()
     df["year"] = df["time"].dt.year
@@ -572,7 +577,7 @@ def run(args, rng):
     trend_side = half_stats(tr, "trend_bp", syms) if len(tr) else {}
 
     res = {
-        "config": {"syms": syms, "missing": missing, "B": args.B, "q_main": Q_MAIN, "q_desc": Q_DESC, "ma": MA3,
+        "config": {"seal_end": SEAL_END, "syms": syms, "missing": missing, "B": args.B, "q_main": Q_MAIN, "q_desc": Q_DESC, "ma": MA3,
                    "min_start": MIN_START, "min_shift": MIN_SHIFT, "split_year": SPLIT_YEAR, "seed": args.seed},
         "main_all15_q24": {"D": D, "U": U, "A": A, "obs_D_full": f(obsD), "z_D": f(zD), "p_null_below_D": f(pD),
                            "obs_U_full": f(obsU), "z_U_desc": f(zU)},

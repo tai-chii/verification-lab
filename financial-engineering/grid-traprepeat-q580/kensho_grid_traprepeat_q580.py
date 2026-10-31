@@ -132,9 +132,14 @@ def load_csv(name, smoke=False, rng=None, freq="h", n=20000, start="2015-01-01")
     return _read(os.path.join(DATA_DIR, f"data_{name}.csv"))
 
 
+SEAL_END = "2024-01-01"  # 封印 time<2024-07-01。年ごとに独立の 1 回なので 2024 年の半端な 1 回は Q581 と同じく外す（2026-10-31 事後の判断で追加）
+
+
 def load_h1(sym, smoke=False, rng=None, n=60000, start="2015-01-01"):
     """UTC 1時間足（H1_dukascopy）。値動きのない足は除く。列: time, open, high, low, close, volume, ret, year, hour, dow"""
     df = load_csv(f"{sym}_H1_dukascopy", smoke, rng, freq="h", n=n, start=start)
+    if not smoke:
+        df = df[df["time"] < pd.Timestamp(SEAL_END)]
     df = df[df["high"] != df["low"]].reset_index(drop=True)
     df["ret"] = df["close"].pct_change()
     df["year"] = df["time"].dt.year
@@ -530,7 +535,7 @@ def run(args, rng):
                                "trips_mean": f(ct["trips"].mean(), 1), "worst_mdd": f(ct["mdd"].min())}
 
     res = {
-        "config": {"syms_fx8": fx_syms, "syms_trend7": list(tr), "missing": missing, "B": args.B, "k_main": K_MAIN, "k_desc": K_DESC,
+        "config": {"seal_end": SEAL_END, "syms_fx8": fx_syms, "syms_trend7": list(tr), "missing": missing, "B": args.B, "k_main": K_MAIN, "k_desc": K_DESC,
                    "n_levels_per_side": N_LEV, "atr_n": ATR_N, "split_year": SPLIT_YEAR, "seed": args.seed,
                    "unit": "グリッド全体の名目に対する bp（1 水準 1 単位の bp 合計 ÷ 2N）"},
         "main_fx8_k0.5": {"net": H, "excess_over_null_desc": half_stats(cells, "excess", fx_syms), "gross": half_stats(cells, "gross", fx_syms), "end_mtm": half_stats(cells, "end_mtm", fx_syms),
