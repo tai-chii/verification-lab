@@ -84,3 +84,11 @@ financial-engineering/grid-map-q581/results/smoke_*
 # Q609: 取引明細と日次系列は手元だけ（結果の要約 JSON と README を残す）
 financial-engineering/s40-fx-macro-drift-q609/results/trades_q609.csv
 financial-engineering/s40-fx-macro-drift-q609/results/daily_q609.csv
+
+# Q610〜Q612: 取引明細と日次系列は手元だけ（結果の要約 JSON と README を残す）
+financial-engineering/s41-fx-h1-xmcost-q610/results/trades_q610.csv
+financial-engineering/s41-fx-h1-xmcost-q610/results/daily_q610.csv
+financial-engineering/s41-fx-h1-xmcost-q610/run_q610.log
+financial-engineering/s42-fx-pairs-q611/results/trades_q611.csv
+financial-engineering/s42-fx-pairs-q611/results/daily_q611.csv
+financial-engineering/s43-fx-xsec-ml-q612/results/daily_q612.csv
