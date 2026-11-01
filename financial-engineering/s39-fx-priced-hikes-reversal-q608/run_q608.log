@@ -1,0 +1,23 @@
+EURUSD 3779 z 有効 3380
+GBPUSD 3779 z 有効 3380
+AUDUSD 3779 z 有効 2424
+USDJPY 3779 z 有効 3379
+USDCHF 3779 z 有効 3380
+USDCAD 3779 z 有効 3380
+EURJPY 3779 z 有効 3379
+GBPJPY 3779 z 有効 3379
+EURGBP 3779 z 有効 3380
+AUDJPY 3779 z 有効 2423
+CADJPY 3779 z 有効 3379
+CHFJPY 3779 z 有効 3379
+EURAUD 3779 z 有効 2424
+EURCAD 3779 z 有効 3380
+EURCHF 3779 z 有効 3380
+GBPAUD 3779 z 有効 2424
+GBPCAD 3779 z 有効 3380
+GBPCHF 3779 z 有効 3380
+AUDCAD 3779 z 有効 2424
+/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/s39-fx-priced-hikes-reversal-q608/kensho_s39_fx_priced_hikes_q608.py:28: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  return pd.concat(out, axis=1).fillna(0.0).sum(1) / len(P)
+{'件数': 456, '年件数': 35.354277223519425, '月件数': 2.9461897686266187, '平均保有': 42.75, 'コスト前_bp': -15.341685123180948, 'スワップ_bp': -23.89087690922647, 'スプレッド_bp': 2.2843385009158785, 'mean_bp': -41.5169005333233, 'PF': 0.7177608032657468, 'NW_t': -1.4766662277616016, 'NW_t_lag20': -1.4398766080411094, '値動きNW_t': -0.6449323316009052, '前半_bp': -137.62640796226464, '後半_bp': -6.802720238093731, '後半2021_bp': -33.97317707877296, '前半コスト前_bp': -83.82437752189402, '後半コスト前_bp': 9.393854519339293, '年単位t_前': -1.9029673670595078, '年単位t_後': -0.18964010423866326, 'Sharpe': -0.38073530095699226, '同時保有最大': 16}
+{'z': -0.8815095263646685, '平均_bp': -28.277797195395276, 'sd_bp': 15.01867301709816} {'日次相関': 0.03907615075480996, '対照Sharpe': -0.015959655079736228, '同じ向きの割合': 0.4583333333333333} {'A': False, 'B': False, 'C': False, 'D': False, 'E': False, 'F': False} 棄却
