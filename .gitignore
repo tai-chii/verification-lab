@@ -80,3 +80,7 @@ financial-engineering/grid-map-q581/results/smoke_partial/
 # Q581: 銘柄×パスの帰無の途中結果（127MB・result JSON と cells CSV で足りる）
 financial-engineering/grid-map-q581/results/partial/
 financial-engineering/grid-map-q581/results/smoke_*
+
+# Q609: 取引明細と日次系列は手元だけ（結果の要約 JSON と README を残す）
+financial-engineering/s40-fx-macro-drift-q609/results/trades_q609.csv
+financial-engineering/s40-fx-macro-drift-q609/results/daily_q609.csv

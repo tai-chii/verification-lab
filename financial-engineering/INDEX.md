@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 279 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 280 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -212,6 +212,7 @@
 | [s37-index-pairs-q605](./s37-index-pairs-q605) | Q605 S37 株価指数 CFD のペアの平均回帰 | 棄却 |
 | [s38-fx-rate-gap-reversal-q607](./s38-fx-rate-gap-reversal-q607) | Q607 S38 FX の 2 年金利差で説明できない 20 日の値動きは平均回帰するか | 棄却 |
 | [s39-fx-priced-hikes-reversal-q608](./s39-fx-priced-hikes-reversal-q608) | Q608 S39 利上げ織り込みの行き過ぎ（2 年金利 − 政策金利の通貨間差）で織り込まれた通貨を売ると戻るか | 棄却 |
+| [s40-fx-macro-drift-q609](./s40-fx-macro-drift-q609) | Q609 米国の指標発表の反応のドル方向に 5 営業日持つ（S40 候補） | 棄却 |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |
