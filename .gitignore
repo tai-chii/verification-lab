@@ -92,3 +92,43 @@ financial-engineering/s41-fx-h1-xmcost-q610/run_q610.log
 financial-engineering/s42-fx-pairs-q611/results/trades_q611.csv
 financial-engineering/s42-fx-pairs-q611/results/daily_q611.csv
 financial-engineering/s43-fx-xsec-ml-q612/results/daily_q612.csv
+
+# Q613〜Q618: 手元のみ（方針B・迷ったら出さない）
+financial-engineering/s44-fx-h1-refine-q613/
+financial-engineering/s44-fx-seed-stability-q627/
+financial-engineering/s46-index-gold-refine-q617/
+financial-engineering/s47-us-sec-q618/
+financial-engineering/s53-weakpoints-q648/
+financial-engineering/s54-fx-cost-lines-q630/
+financial-engineering/s21-lot-floor-q651/
+financial-engineering/s30-borrow-q652/
+financial-engineering/xm-demo-candidates-q653/
+financial-engineering/xm-swing-candidates-q665/
+financial-engineering/fx-weak-q673/
+financial-engineering/s53-window-q678/
+financial-engineering/s53-feed-q679/
+financial-engineering/s53-weekend-q680/
+financial-engineering/s21-weekend-q681/
+financial-engineering/s21-reopen-q682/
+financial-engineering/s53-age-q683/
+financial-engineering/s53-atrwin-q684/
+financial-engineering/jp-margin-supply-free/
+financial-engineering/s21-gapclose-fix/
+financial-engineering/s21-sprref-align/
+financial-engineering/s21-exec-robust/
+financial-engineering/s21-sprref-xm-q688/
+financial-engineering/s21-demo-lot/
+financial-engineering/forward-integrity/
+financial-engineering/s21-file-watch/
+financial-engineering/s21-deploy-kit/
+financial-engineering/s21-broker-swap/
+financial-engineering/s21-recv-watch/
+financial-engineering/s21-broker-profile/
+# Q692〜Q694（2026-11-07）: 短い足の ML 3 本。手元のみ（方針B・Q644 と同じ扱い）
+financial-engineering/short-ml-common/
+financial-engineering/s64-m5-ml-q692/
+financial-engineering/s65-m1-leadlag-q693/
+financial-engineering/s66-tick-ofi-q694/
+
+# 2026-11-09 Q695: 取引明細（3.7MB×2）は置かない。結果は result_q695.json
+financial-engineering/s21-nycut-q695/results/trades_*.csv

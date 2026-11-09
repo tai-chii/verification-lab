@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 283 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 325 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -64,6 +64,7 @@
 | [equity-curve-trading](./equity-curve-trading) | Q210 エクイティカーブ・トレーディング（戦略の直近損益で規模を変える）は 15 銘柄の順張りの標本外成績を上げるか | 棄却 |
 | [execution-delay-effect](./execution-delay-effect) | Q156 約定を1〜2営業日遅らせると順張りの成績はどう変わるか（Korzan 2026 表5 では遅れで改善した） | 遅れで改善するのは Korzan のユニバース（二周期の株式ローテーション）に固有の性質。FX／商品／指数／BTC の… |
 | [execution-hour-spread](./execution-hour-spread) | Q245 XAUUSD 順張りの約定時刻を、実測スプレッドの狭い時間に移すと純損益は上がるか | 棄却: 前後半のどちらかで t<2 または z<2 |
+| [forward-integrity](./forward-integrity) | フォワード記録の改ざん・ずれを毎日見張る（提案・2026-11-05 夜間 P5・監査D の 3 と 9・未導入） | — |
 | [friday-last-hour-reversal](./friday-last-hour-reversal) | Q267 金曜の最終1時間（NY 16時前）のリターンは週の向きと逆か（週末前の手仕舞い・FX8＋トレンド7 H1） | 未確定 |
 | [fundagent](./fundagent) | fundagent：ニュースから売買仮説を出し、その的中率を実測するシステム | — |
 | [fx-level-pullback-q587](./fx-level-pullback-q587) | Q587 taichi の裁量の型を規則にした bot（H1 ZigZag の押し安値・戻り高値の近くで順方向に指値・RR 1.5） | 棄却 |
@@ -71,6 +72,7 @@
 | [fx-roundnumber-bounce](./fx-roundnumber-bounce) | 為替のキリ番は「跳ね返る場所」ではなく「抜けやすい場所」 | 支持 |
 | [fx-shortterm-meanreversion](./fx-shortterm-meanreversion) | 為替の超短期平均回帰は2015年以降の1時間足では消えたか | 消えた（支持） |
 | [fx-traprepeat-q591](./fx-traprepeat-q591) | Q591 MT5 の銘柄のトラリピ 3 型（レンジ通貨ペアの半々・スワップの片側・トレンド方向の片側） | トラリピの線は閉じる（上の「次」のとおり） |
+| [fx-weak-q673](./fx-weak-q673) | Q673〜Q677 FX bot の弱点 2 本と新しい案 3 本 | — |
 | [fx8-h1-triple-indicator](./fx8-h1-triple-indicator) | Q291 FX8 H1 の 3 指標（TSMOM24・SMA50・RSI14 符号）が同符号のときだけ売買すると、束ねた t はコスト後に単独 TSMOM24 を上回るか（Loubaris2026-2 の H1 移植） | 棄却 |
 | [gate-candidates-c1-c2-pass-probability-q428](./gate-candidates-c1-c2-pass-probability-q428) | Q428 関門の候補 C1（σ 目標 0.25%／0.35%/日・最大下落 −6%）と C2（最大下落 ≥ −0.75×年率 σ）は年率シャープ S の戦略を何割通し、1 年以内の −6%／−10% 到達率はいくらか（Q416 の S07 ブロック・ブートストラップを規程の変種に当てる・★ C の判断材料） | ★ C の実質の選択肢は C1 の σ の値。σ0.25% なら関門が S≈1.4 で半数を通す（現行は S≈2.7）… |
 | [gate-pass-probability-vs-sharpe-q416](./gate-pass-probability-vs-sharpe-q416) | Q416 関門（σ0.5%/日・14 年の最大下落 −6% 以内＋前後半 t≥2）は年率シャープ S がいくら以上の戦略を何割通すか（S07 規程モード損益の 20 日ブロック・ブートストラップで S を 0〜3 に合わせて測る） | 棄却（関門が律速） |
@@ -85,12 +87,14 @@
 | [har-vol-targeting](./har-vol-targeting) | Q259 HAR 予測の分散でのボラ・ターゲティングは σ60 版よりシャープが高いか（Q222×Q205 の連鎖） | 棄却: 差は見えない |
 | [hysteresis-band-tsmom](./hysteresis-band-tsmom) | Q250 ヒステリシス帯（±θσ の不感帯）は順張りの合図反転を減らし純損益を上げるか（15銘柄） | 棄却: 差は見えない |
 | [ic-vs-decision-loss](./ic-vs-decision-loss) | Q138 予測の当たりやすさ（IC）と決定の損失（コスト後の純損益）はどれだけ食い違うか | 未確定 |
+| [index-calendar-q625](./index-calendar-q625) | Q625 S51・Q626 S52 論文の暦の効果を CFD で測る | Q625 棄却・Q626 棄却 |
 | [indicator-confirmation](./indicator-confirmation) | Q182 複数の順張り指標が一致したときだけ売買すると的中率と純損益は上がるか（Loubaris 2026-2） | 棄却（Loubaris と同じ非有意） |
 | [instrument-selection-bias](./instrument-selection-bias) | Q150 15銘柄から成績の良い 8 銘柄を事後に選ぶと順張りの成績はどれだけ膨らむか（Korzan 2026 §6 の銘柄選択バイアス） | 支持（確定）。選んだ銘柄は後半でむしろ劣る（反転）。膨らみが帰無の95%点をわずかに超えるのはその反転の裏返し（帰無は… |
 | [intraday-momentum-first-last](./intraday-momentum-first-last) | Q176 最初の1時間→最後の1時間の日中モメンタムは為替・株価指数・金で公表後に残るか（GarciaArano 2026） | 最初の1時間 → 最後の1時間 の日中モメンタムは、FX8・金・US株価指数2 の H1 で公表後にコスト前・コスト後… |
 | [intraday-momentum-indices-decay](./intraday-momentum-indices-decay) | Q297 US500 / USTECH H1 の日中モメンタム（初動 1 時間 → 終盤 1 時間）は 2016 以降に減衰したか | ノイズ |
 | [jp-industry-reversal-q566](./jp-industry-reversal-q566) | Q566 業種内の短期反転（日本株・月次・上下 10%） | 棄却 |
 | [jp-low-vol-q545](./jp-low-vol-q545) | Q545 日本株の低ボラティリティ効果（月次・市場の動きを差し引いたアルファ） | — |
+| [jp-margin-supply-free](./jp-margin-supply-free) | 日本株 × 需給（信用残）：無料データ層の検証（2026-11-03） | — |
 | [jp-ml-xsec-holdout-q583](./jp-ml-xsec-holdout-q583) | Q583 Q582（日本株の横断 ML）を封印期間 2024-07〜2026-06 で 1 回だけ判定 | 合格 |
 | [jp-pead-q594](./jp-pead-q594) | Q594 日本株の決算後ドリフトと業績予想の上方修正（買い側 − 市場） | E1 棄却・E2 未確定 |
 | [jp-us-high-volume-premium-q578](./jp-us-high-volume-premium-q578) | Q578 日本株・米国株の高出来高プレミアム（月末直近 5 日の出来高ショック上位 10% 買い・下位 10% 売り・1 か月保有） | 未確定（前半だけの効果。2015 年以降は日本でも負で、bot の材料にはならない） |
@@ -99,6 +103,8 @@
 | [jp-us-ml-xsec-q582](./jp-us-ml-xsec-q582) | Q582 日本株・米国株の横断 ML（LightGBM・月次 L/S） | 未確定 |
 | [jp-us-pairs-distance-q577](./jp-us-pairs-distance-q577) | Q577 日本株・米国株の距離法ペア取引（12 か月形成・6 か月取引・上位 20 ペア・2σ・1 日待ち） | 棄却 |
 | [jp-us-residual-momentum-q564](./jp-us-residual-momentum-q564) | Q564 残差モメンタム（市場 1 因子の残差・12-1 か月・残差 σ で割る・月次・上下 10%）：日本株・米国株 | 棄却 |
+| [jp-us-reversal-long-q620](./jp-us-reversal-long-q620) | Q620 S48 日本株・米国株の 1 か月反転の買い（過去の β でヘッジ） | 日米とも棄却 |
+| [jp-us-sector-coint-q623](./jp-us-sector-coint-q623) | Q623 S49 業種内の共和分ペアの平均回帰（日本株・米国株） | 日米とも棄却 |
 | [jp-us-xs-momentum-q563](./jp-us-xs-momentum-q563) | Q563 日本株・米国株の横断モメンタム（12-1 か月・月次・上下 10%・等金額 L/S） | 棄却 |
 | [jp-weekly-reversal-q544](./jp-weekly-reversal-q544) | Q544 日本株の週次の短期反転（J-Quants・日本株の検証の 1 本目） | — |
 | [jpy-tokyo-cut-hour-q573](./jpy-tokyo-cut-hour-q573) | Q573 東京カット（15:00 JST＝6 時 UTC）前後の円ペアの順張りは 24 時刻の Holm 補正後にも残るか | 棄却 |
@@ -193,11 +199,26 @@
 | [s19-vix-riskoff-gate-index-beta-c1-q473](./s19-vix-riskoff-gate-index-beta-c1-q473) | Q473 S19 VIX リスクオフ・ゲート: 株価指数 10 の買い持ち β を VIX（t−1）が直近 250 観測の 80 分位以下の日だけ持つと、常時買い持ち（Q468 params 1）より規程 C1 で t_all・max_dd が良くなり、C1 関門（前後半 t≥2・max_dd −6%）を通るか | VIX の水準ゲートは株価指数の買い持ちを改善しない。むしろ高 VIX 日を外すことで平均リターンの高い日を捨て、t … |
 | [s20-credit-riskoff-gate-composite-c1-q513](./s20-credit-riskoff-gate-composite-c1-q513) | Q513 S20 信用スプレッド（HY OAS）のリスクオフ・ゲート付き 4 族合成（C1） | 実行不能（データ源）・判定なし |
 | [s20b-baa10y-riskoff-gate-composite-c1-q514](./s20b-baa10y-riskoff-gate-composite-c1-q514) | Q514 S20 再登録: 信用スプレッド（BAA10Y）のリスクオフ・ゲート付き 4 族合成（C1） | 棄却 |
+| [s21-broker-profile](./s21-broker-profile) | 業者ごとの違いを 1 枚のプロファイルに寄せる（提案・2026-11-06 昼の自走 P4・**2026-11-09 B で導入: `トレード/執行/` に `brokers/`・`broker_profile.py`・`test_profile.py` を写した（試験 15/15）。配備の道具は替えていない**・試行に数えない） | — |
+| [s21-broker-swap](./s21-broker-swap) | S21 bot を別の業者に替えても同じ判断・同じリスクで張れるか（2026-11-05・外出中に Mac だけで・提案・未配備） | — |
+| [s21-demo-lot](./s21-demo-lot) | S21 デモの最小ロットのゆがみの対処案（2026-11-05 夜間 P2・分析だけ・bot は変えていない） | — |
+| [s21-deploy-kit](./s21-deploy-kit) | S21 bot の配備を使い回せる形にする（2026-11-05 夜間 P6・提案・未使用） | — |
 | [s21-edge-location-q584](./s21-edge-location-q584) | Q584 S21 のエッジの場所（ZigZag 水準までの距離・時間帯・順方向） | 一様 |
+| [s21-exec-robust](./s21-exec-robust) | S21 bot が「判断できない」ときに止まらないようにする（2026-11-05・監査B の 5・未配備） | — |
+| [s21-file-watch](./s21-file-watch) | winnote の bot のファイルが正本と同じかを毎時見張る（提案・2026-11-05 夜間 P6・監査B の 6・未導入） | — |
 | [s21-fx-venue-q606](./s21-fx-venue-q606) | Q606 S21 の FX はどこまでスプレッドが狭ければ残るか | Dukascopy 並みの場所なら FX は残る |
+| [s21-gapclose-fix](./s21-gapclose-fix) | Q686 S21 bot の週末前決済の時刻の直し（執行層） | 採用（提案する） |
 | [s21-h1-ml-rr-weekcap-q515](./s21-h1-ml-rr-weekcap-q515) | Q515 S21：H1・15銘柄・ML が「入るか・方向・RR」を選ぶ bot（RR 1.0〜2.0・週10回/銘柄） | 未確定（仮判断不合格・最終 1 年は未開封） |
+| [s21-lot-floor-q651](./s21-lot-floor-q651) | Q651 S21 の最小ロットの切り上げと円の成績 | — |
+| [s21-nycut-q695](./s21-nycut-q695) | Q695 S21 の D1/H4 の区切りを 22:00 UTC 固定から NY 17:00（夏時間追従）に変えると WF の成績は良くなるか（参考・R 単位） | 棄却 |
 | [s21-real-swap-q592](./s21-real-swap-q592) | Q592 S21 の学習外 28,888 件を XM の実スワップ・実スプレッドで計算し直す | 実スワップに耐える |
+| [s21-recv-watch](./s21-recv-watch) | winnote の見張りが「Mac が受け取れていない」を「winnote が止まった」と読み違えないようにする（提案・2026-11-06 昼の自走 P1・未導入） | — |
+| [s21-reopen-q682](./s21-reopen-q682) | Q682 S21 の取引のうち、再開の足で bot が入れないものを抜いたら | 弱点でない |
+| [s21-signal-compare](./s21-signal-compare) | S21: 記録と bot の「生の合図」の突き合わせ（2026-11-06 23:40・Opus・読むだけ） | — |
+| [s21-sprref-align](./s21-sprref-align) | S21 bot の判断のスプレッドを記録（Dukascopy）に揃える（2026-11-05・taichi「A: 記録に揃える」） | — |
+| [s21-sprref-xm-q688](./s21-sprref-xm-q688) | Q688 S21 の spr 揃え版を XM の値段とコストで売買したら（2026-11-05 夜間 P1・試行に数えない） | — |
 | [s21-tokyo-window-q571](./s21-tokyo-window-q571) | Q571 S21 を東京時間のエントリーに限ると成績は上がるか（＋円クロス 4 本・深夜窓の Fintokei コスト） | 未確定（東京に絞る利点は示せない側） |
+| [s21-weekend-q681](./s21-weekend-q681) | Q681 S21 の週末前決済を bot の時刻の決め方で閉じたら | 弱点でない |
 | [s22-crypto-ml-fintokei-q528](./s22-crypto-ml-fintokei-q528) | （README なし） | — |
 | [s23-crypto-uptrend-long-q529](./s23-crypto-uptrend-long-q529) | （README なし） | — |
 | [s24-multiasset-value-reversal-q536](./s24-multiasset-value-reversal-q536) | Q536 S24: 多資産の長期反転（バリューの代理） | 棄却 |
@@ -205,6 +226,7 @@
 | [s26-crypto-funding-gate-q551](./s26-crypto-funding-gate-q551) | Q551 S26：資金調達率で「買いが混みすぎた日」の S23 を休む | — |
 | [s27-realyield-gold-q552](./s27-realyield-gold-q552) | Q552 S27：米国の実質金利の変化で金（XAUUSD）の向きを決める | — |
 | [s28-onchain-liquidation-observe-q557](./s28-onchain-liquidation-observe-q557) | Q557 S28：マイナーチェーンの旧版レンディングに、清算できるのに放置された貸付けはあるか（読み取りのみの観測） | 棄却（S28 の「静的に放置された貸付けを拾う」形は閉じる。RealT の件だけ、許可型の担保の清算の決まりを文書で確… |
+| [s30-borrow-q652](./s30-borrow-q652) | Q652 S30 の売り側の貸株料 | 弱点でない |
 | [s30-composite-gate-q586](./s30-composite-gate-q586) | Q586 S30 の composite 関門（生き残り 3 本との相関・等リスク合成）と仮想フォワード記録スクリプト | 通過 |
 | [s35-fx-h4-ml-q602](./s35-fx-h4-ml-q602) | Q602 S35 FX 10 本・H4・ML（XM の実コストで学習・評価） | 棄却 |
 | [s36-beta-check-q604](./s36-beta-check-q604) | Q604 S36 の稼ぎは指数の上昇（β）の言い換えではないか | β の言い換えではない |
@@ -216,6 +238,22 @@
 | [s41-fx-h1-xmcost-q610](./s41-fx-h1-xmcost-q610) | Q610 S41 S21 の H1 を XM の実コストで学習し直す（FX 10 本） | 棄却 |
 | [s42-fx-pairs-q611](./s42-fx-pairs-q611) | Q611 S42 FX の 21 ペアの共和分の平均回帰 | 棄却 |
 | [s43-fx-xsec-ml-q612](./s43-fx-xsec-ml-q612) | Q612 S43 8 通貨の週次の横断 ML | 棄却 |
+| [s44-fx-h1-refine-q613](./s44-fx-h1-refine-q613) | Q613〜Q616 S41 の次の段階（手元のみ・方針B） | Q613 S44 **S21 の FX の置き換え候補**・Q614 S45 **棄却**・Q615 足切りは規則の上… |
+| [s44-fx-seed-stability-q627](./s44-fx-seed-stability-q627) | Q627 S44 の弱点：シードを変えても成績は保たれるか（手元のみ・方針B） | 頑健 |
+| [s46-index-gold-refine-q617](./s46-index-gold-refine-q617) | Q617 S46 指数 4 本＋金を XM の実コストで学習し、予測の上位 3% だけ入る | 棄却 |
+| [s47-us-sec-q618](./s47-us-sec-q618) | Q618 S47 SEC の財務で米国株の収益性の買いと決算後ドリフト | 2 腕とも棄却 |
+| [s50-fx-economic-momentum-q624](./s50-fx-economic-momentum-q624) | Q624 S50 8 通貨の経済モメンタム（月次の横断） | 棄却 |
+| [s53-age-q683](./s53-age-q683) | Q683 S53 のモデルの古さ | 弱点でない |
+| [s53-atrwin-q684](./s53-atrwin-q684) | Q684 S53 の ATR の窓の面 | 尖っている |
+| [s53-feed-q679](./s53-feed-q679) | Q679 S53 が XM の足で判断したら何が変わるか | 弱点でない |
+| [s53-weakpoints-q648](./s53-weakpoints-q648) | S21・S53 の弱点の洗い出し（Q648〜Q650） | 尖っている |
+| [s53-weekend-q680](./s53-weekend-q680) | Q680 S53 の週末前決済を実際の時刻で閉じたら | 弱点でない |
+| [s53-window-q678](./s53-window-q678) | Q678 S53 の閾値の窓の面 | 尖っていない |
+| [s54-fx-cost-lines-q630](./s54-fx-cost-lines-q630) | S54〜S58: S53 の腕をコストの上に出す 5 本（Q630〜Q634） | — |
+| [s63-m1-all-q644](./s63-m1-all-q644) | S63: M1 × 手元の 19 銘柄 × 3 か月ごとの再学習（Q644） | — |
+| [s64-m5-ml-q692](./s64-m5-ml-q692) | Q692 S64: M5 の ML（19 銘柄・XM の実コスト） | 棄却 |
+| [s65-m1-leadlag-q693](./s65-m1-leadlag-q693) | Q693 S65: M1 の ML に他銘柄の先行を足す（19 銘柄・XM の実コスト） | 棄却 |
+| [s66-tick-ofi-q694](./s66-tick-ofi-q694) | Q694 S66: ティックの気配の偏り（OFI）で作る ML（4 銘柄・XM の実コスト） | — |
 | [safe-haven-beta-stability](./safe-haven-beta-stability) | Q277 リスクオフ日（US500 下位 5%）の金・円・フラン・豪ドルのベータは前後半で安定か（安全資産の役割） | 棄却: 符号が逆または Holm 後 ／z／≥2 の銘柄あり（USDJPY: pre=0.6641 post=0.09… |
 | [same-day-label-leak](./same-day-label-leak) | Q307 同じ特徴量の分類器で、ラベルを同日にすると上げ下げの精度は跳ね、翌日では基準率に落ちるか（HSAT の精度 0.69 はリークで再現できるか・Q306-C1） | 翌日の予測力なし（確定）・論文の0.69の由来は未確定 |
 | [santa-rally](./santa-rally) | Q266 年末年始効果（12月最終5営業日＋1月最初2営業日）は SPX・NDX（2008〜2026）で残るか（年内ブロック並べ替え） | 棄却: 全期間 z<1（SPX・NDX とも） |
@@ -223,6 +261,7 @@
 | [selection-optimism-vs-J](./selection-optimism-vs-J) | Q139 候補数 J を増やすと選択の楽観はどれだけ増え、Alonso の下側限界はそれを覆うか | 単調性「支持」・限界「使える」 |
 | [selection-window-length](./selection-window-length) | Q244 参照日数の選択窓の長さ（1・2・3・5・8 年）で、順張りの標本外純損益は変わるか（15 銘柄） | 棄却: 窓の長さでは変わらない（Q177・Q188 と同じ） |
 | [session-rule-family-sweep-q574](./session-rule-family-sweep-q574) | Q574 時間帯 × 単純ルール族の総当たり（5 窓 × 36 信号 × 26 銘柄） | 未確定（ロールオーバーの BID の見かけの疑い） |
+| [short-ml-common](./short-ml-common) | 短い足の ML の共通エンジン（Q692 M5・Q693 M1 先行・Q694 ティック） | — |
 | [signal-confirmation-filter](./signal-confirmation-filter) | Q221 合図の確認フィルタ（k 日連続同符号で入る）は 15 銘柄の順張りのホイップソーを減らし純損益を上げるか | 未確定 |
 | [signal-direction-compression](./signal-direction-compression) | Q145 戦略の日次ポジションを平均の向きに圧縮したとき、向きが離れたペアは履歴の相関も低いか（Nunes 2026 を 12 戦略 × 15銘柄で） | 向きの選別は履歴の違いを保証しないが、基準率より改善する（Nunes と同じ） |
 | [signal-strength-terciles](./signal-strength-terciles) | Q249 順張りの合図強度（／ret_L／/σ）の3分位で翌日の純損益は単調に増えるか（15銘柄・sign と強度の対比） | 棄却 |
@@ -231,6 +270,7 @@
 | [spread-change-vol-forecast](./spread-change-vol-forecast) | Q234 XAUUSD の実測スプレッドの変化は、HAR に足すと翌時間の実現ボラの QLIKE を下げるか | 棄却: 前後半のどちらかで t > −2 または z > −2 |
 | [streak-reversal](./streak-reversal) | Q240 k 日連続同符号（k=3・5）の翌日は反転するか（15 銘柄・年内並べ替え帰無） | 棄却 |
 | [survivors-correlation-composite](./survivors-correlation-composite) | 生き残り 3 本（S17b・S21 候補形・S23）の相関と合成（記述・2026-10-29） | — |
+| [survivors-exposure-stress](./survivors-exposure-stress) | survivors-exposure-stress：生き残りの「リスクを取るタイミング」の独立性（Q691・記述・2026-11-05） | — |
 | [time-stop-tsmom](./time-stop-tsmom) | Q251 時間ストップ（N 日で強制手仕舞い・再合図まで待つ）は順張りの純損益と最大下落を改善するか（15銘柄） | 支持: 時間ストップは最大下落を浅くするが純損益は上げない（Q204 と同じ型） |
 | [trade-profit-concentration](./trade-profit-concentration) | Q314 順張りの利益は少数の取引に集中するか: 最良 1 取引の総利益比を、同じ取引数・保有期間で入る時期だけランダムにした帰無と比べる（Q313-C1・ブログの 91% は普通か異常か） | 未確定 |
 | [trend-age-pnl](./trend-age-pnl) | Q253 トレンドの年齢（合図反転からの経過日数）が短いほど翌日の順張り損益は高いか（15銘柄） | 未確定 |
@@ -287,5 +327,7 @@
 | [wrc-spa-monthly-size](./wrc-spa-monthly-size) | Q310 月次（約 220 か月）に束ねた 15 銘柄の順張りルール群で、並べ替え帰無の下の WRC・SPA の棄却率は名目 5% を超えるか（Q154 の月次版・Q309-C1） | 支持 |
 | [xauusd-london-fix-vshape](./xauusd-london-fix-vshape) | Q289 XAUUSD の WM/Reuters ロンドン fix（16:00 UTC）の前後に V 字はあるか | 未確定 |
 | [xauusd-vol-regime-single](./xauusd-vol-regime-single) | Q161 XAUUSD 単銘柄・直前20〜60日の実現ボラが高い日に翌日の順張り損益が下がるか（ドリフト除去・前後半） | 未確定（6/6 で向き一致・／z／≥2 達成は 3/6 で窓40・60日に偏る・ドリフト除去は結論を変えない） |
+| [xm-demo-candidates-q653](./xm-demo-candidates-q653) | Q653〜Q664 XM の MT5 デモで動かせる候補を 12 案で探す | 開発の合格 0 本 |
+| [xm-swing-candidates-q665](./xm-swing-candidates-q665) | Q665〜Q672 XM で数日〜数週間持つ候補を 8 案で探す | 開発の合格 0 本 |
 | [year-concentration-top2-q455](./year-concentration-top2-q455) | Q455 日足戦略の封印前の純損益は特定の年に集中しているか（年別寄与の上位 1・2 年を除いた年単位 t） | 規則の上では 9 本すべて「集中あり」だが、9 本中 8 本は元の年単位 t が 2 未満で「除くと t<2」の枝が自… |
 | [yen-vs-dollar-tsmom-d1](./yen-vs-dollar-tsmom-d1) | Q303 FX8 日足の TSMOM60 で円の組 3 本の純損益はドルの組 5 本を上回るか（円の組の 4 時間足の知見の日足版・組ラベルの全 56 通り帰無） | 未確定 |
