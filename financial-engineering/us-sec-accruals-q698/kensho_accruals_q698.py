@@ -45,7 +45,8 @@ def make_signal(f, mes, C):
     ni, nie = P.pit_value(f, P.TAG_NI, mes, annual=True, with_end=True)
     oc, oce = P.pit_value(f, P.TAG_OCF, mes, annual=True, with_end=True)
     a = P.pit_value(f, P.TAG_ASSETS, mes, annual=False)
-    same = ((nie - oce).abs() <= pd.Timedelta(days=10))          # 同じ会計年度（NaT は False）
+    nie, oce = nie.align(oce, join="outer")                      # 片方にしか無い銘柄の列は NaN（float）になるので、揃えてから日付型に戻す（2026-11-10 本番で型の衝突 → 実行者が直した・定義は同じ）
+    same = ((nie.apply(pd.to_datetime) - oce.apply(pd.to_datetime)).abs() <= pd.Timedelta(days=10))   # 同じ会計年度（NaT は False）
     acc = ((ni - oc).where(same) / a.where(a > 0)).replace([np.inf, -np.inf], np.nan)
     return dict(main=P.frame_sig(-acc), subs={}, diag=dict(n_tickers=int(f["ticker"].nunique())))
 

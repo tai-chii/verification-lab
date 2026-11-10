@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/kensho_accruals_q698.py", line 63, in <module>
+    if __name__ == "__main__": main()
+                               ^^^^^^
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/kensho_accruals_q698.py", line 60, in main
+    res, csvs = run(args, rng); B.write_result(QID, res, csvs, args)
+                ^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/kensho_accruals_q698.py", line 55, in run
+    return P.run_us(B, args, rng, QID, make_signal, verdict_us, note="Q698 アクルーアル（負号）。")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/../us-sec-value-q696/sec_pit.py", line 188, in run_us
+    sig = make_signal(f, mes, C)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/kensho_accruals_q698.py", line 48, in make_signal
+    same = ((nie - oce).abs() <= pd.Timedelta(days=10))          # 同じ会計年度（NaT は False）
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/ops/common.py", line 85, in new_method
+    return method(self, other)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/arraylike.py", line 54, in __le__
+    return self._cmp_method(other, operator.le)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/frame.py", line 9140, in _cmp_method
+    new_data = self._dispatch_frame_op(other, op, axis=axis)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/frame.py", line 9185, in _dispatch_frame_op
+    bm = self._mgr.apply(array_op, right=right)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/internals/managers.py", line 443, in apply
+    applied = b.apply(f, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/internals/blocks.py", line 347, in apply
+    result = func(self.values, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/ops/array_ops.py", line 341, in comparison_op
+    res_values = op(lvalues, rvalues)
+                 ^^^^^^^^^^^^^^^^^^^^
+TypeError: '<=' not supported between instances of 'numpy.ndarray' and 'Timedelta'
