@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 325 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 337 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -97,14 +97,22 @@
 | [jp-margin-supply-free](./jp-margin-supply-free) | 日本株 × 需給（信用残）：無料データ層の検証（2026-11-03） | — |
 | [jp-ml-xsec-holdout-q583](./jp-ml-xsec-holdout-q583) | Q583 Q582（日本株の横断 ML）を封印期間 2024-07〜2026-06 で 1 回だけ判定 | 合格 |
 | [jp-pead-q594](./jp-pead-q594) | Q594 日本株の決算後ドリフトと業績予想の上方修正（買い側 − 市場） | E1 棄却・E2 未確定 |
+| [jp-us-52wh-q700](./jp-us-52wh-q700) | Q700 日本株・米国株の 52 週高値への近さ（終値÷52 週高値）の上位 10% 買い・下位 10% 売り | — |
+| [jp-us-amihud-q703](./jp-us-amihud-q703) | Q703 日本株・米国株の Amihud 非流動性プレミアム（／r／÷売買代金の 12 か月平均・ボラ 3 分位内）の高い方を買い低い方を売る | — |
 | [jp-us-high-volume-premium-q578](./jp-us-high-volume-premium-q578) | Q578 日本株・米国株の高出来高プレミアム（月末直近 5 日の出来高ショック上位 10% 買い・下位 10% 売り・1 か月保有） | 未確定（前半だけの効果。2015 年以降は日本でも負で、bot の材料にはならない） |
+| [jp-us-industry-mom-q704](./jp-us-industry-mom-q704) | Q704 日本株・米国株の業種モメンタム（上位 3 業種買い・下位 3 業種売り） | — |
 | [jp-us-long-reversal-q576](./jp-us-long-reversal-q576) | Q576 日本株・米国株の長期反転（13〜48 か月の負け組買い・勝ち組売り・月次 L/S） | 棄却 |
 | [jp-us-lowvol-long-q596](./jp-us-lowvol-long-q596) | Q596 日本株・米国株の低ボラ買い（過去だけの β で市場ヘッジ） | 日本 未確定・米国 棄却 |
+| [jp-us-max-q701](./jp-us-max-q701) | Q701 日本株・米国株の MAX 効果（直近 1 か月の最大日次リターン）の低い方を買い高い方を売る | — |
 | [jp-us-ml-xsec-q582](./jp-us-ml-xsec-q582) | Q582 日本株・米国株の横断 ML（LightGBM・月次 L/S） | 未確定 |
+| [jp-us-mom-12-7-q706](./jp-us-mom-12-7-q706) | Q706 日本株・米国株の中間モメンタム（12-7 か月リターン・上下 10%） | — |
+| [jp-us-overnight-mom-q707](./jp-us-overnight-mom-q707) | Q707 日本株・米国株の夜間リターンの持続（過去 12-1 か月の夜間リターンの和・上下 10%） | — |
 | [jp-us-pairs-distance-q577](./jp-us-pairs-distance-q577) | Q577 日本株・米国株の距離法ペア取引（12 か月形成・6 か月取引・上位 20 ペア・2σ・1 日待ち） | 棄却 |
 | [jp-us-residual-momentum-q564](./jp-us-residual-momentum-q564) | Q564 残差モメンタム（市場 1 因子の残差・12-1 か月・残差 σ で割る・月次・上下 10%）：日本株・米国株 | 棄却 |
 | [jp-us-reversal-long-q620](./jp-us-reversal-long-q620) | Q620 S48 日本株・米国株の 1 か月反転の買い（過去の β でヘッジ） | 日米とも棄却 |
+| [jp-us-seasonality-q702](./jp-us-seasonality-q702) | Q702 日本株・米国株の同月季節性（過去 1〜5 年の同じ暦月のリターン平均）の高い方を買い低い方を売る | — |
 | [jp-us-sector-coint-q623](./jp-us-sector-coint-q623) | Q623 S49 業種内の共和分ペアの平均回帰（日本株・米国株） | 日米とも棄却 |
+| [jp-us-stock-tsmom-q705](./jp-us-stock-tsmom-q705) | Q705 日本株・米国株の個別株の時系列モメンタム（12-1 か月リターンの符号で全買い／全売り） | — |
 | [jp-us-xs-momentum-q563](./jp-us-xs-momentum-q563) | Q563 日本株・米国株の横断モメンタム（12-1 か月・月次・上下 10%・等金額 L/S） | 棄却 |
 | [jp-weekly-reversal-q544](./jp-weekly-reversal-q544) | Q544 日本株の週次の短期反転（J-Quants・日本株の検証の 1 本目） | — |
 | [jpy-tokyo-cut-hour-q573](./jpy-tokyo-cut-hour-q573) | Q573 東京カット（15:00 JST＝6 時 UTC）前後の円ペアの順張りは 24 時刻の Holm 補正後にも残るか | 棄却 |
@@ -296,6 +304,10 @@
 | [two-month-live-vs-random](./two-month-live-vs-random) | Q144 2か月の成績はランダム売買の分布のどこに入るか、順位は次の2か月で入れ替わるか（15銘柄・TSMOM20） | 支持（2か月では実力と運を分けられず順位も入れ替わる） |
 | [us-ml-long-beta-hedged-q590](./us-ml-long-beta-hedged-q590) | Q590 Q589 の買い側を過去だけの β で市場ヘッジする（再試行 1 回・打ち止め） | 未確定 |
 | [us-ml-long-hedged-q589](./us-ml-long-hedged-q589) | Q589 米国株 横断 ML の「上位 10% 買い − 適格平均」はフォワードに入れる関門を通るか | 未確定 |
+| [us-sec-accruals-q698](./us-sec-accruals-q698) | Q698 米国株のアクルーアル（(純利益 − 営業 CF)÷総資産）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | — |
+| [us-sec-asset-growth-q697](./us-sec-asset-growth-q697) | Q697 米国株の資産成長（総資産の前年比）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | — |
+| [us-sec-net-issuance-q699](./us-sec-net-issuance-q699) | Q699 米国株の純発行（分割補正後の発行株数の前年比）は買い戻し側を買い増資側を売ると 2010-07〜2024-06 のコスト後に残るか | — |
+| [us-sec-value-q696](./us-sec-value-q696) | Q696 米国株のバリュー合成（B/P・E/P・S/P・CF/P の順位平均）は 2010-07〜2024-06 のコスト後に残るか | — |
 | [usdjpy-donchian-side-window-stability](./usdjpy-donchian-side-window-stability) | USDJPY 日足ドンチャンの「優位な売買方向」は5年窓をずらしても符号が保たれるか（Q353） | ノイズ（確定） |
 | [usdjpy-london-open-vs-naive-momentum](./usdjpy-london-open-vs-naive-momentum) | USDJPY の日中順張りは、ロンドン開始30分の時刻条件つきシグナルでのみ効くか | README の「主な検証」表を参照 |
 | [ustech-btc-leadlag](./ustech-btc-leadlag) | Q213 USTECH の直前 1 時間のリターンは BTC の次の 1 時間を予測するか（リード・ラグ・2020 年以降・H1） | 棄却 |
