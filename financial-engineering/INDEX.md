@@ -105,8 +105,8 @@
 | [jp-us-lowvol-long-q596](./jp-us-lowvol-long-q596) | Q596 日本株・米国株の低ボラ買い（過去だけの β で市場ヘッジ） | 日本 未確定・米国 棄却 |
 | [jp-us-max-q701](./jp-us-max-q701) | Q701 日本株・米国株の MAX 効果（直近 1 か月の最大日次リターン）の低い方を買い高い方を売る | 棄却 |
 | [jp-us-ml-xsec-q582](./jp-us-ml-xsec-q582) | Q582 日本株・米国株の横断 ML（LightGBM・月次 L/S） | 未確定 |
-| [jp-us-mom-12-7-q706](./jp-us-mom-12-7-q706) | Q706 日本株・米国株の中間モメンタム（12-7 か月リターン・上下 10%） | — |
-| [jp-us-overnight-mom-q707](./jp-us-overnight-mom-q707) | Q707 日本株・米国株の夜間リターンの持続（過去 12-1 か月の夜間リターンの和・上下 10%） | — |
+| [jp-us-mom-12-7-q706](./jp-us-mom-12-7-q706) | Q706 日本株・米国株の中間モメンタム（12-7 か月リターン・上下 10%） | 未確定 |
+| [jp-us-overnight-mom-q707](./jp-us-overnight-mom-q707) | Q707 日本株・米国株の夜間リターンの持続（過去 12-1 か月の夜間リターンの和・上下 10%） | 棄却 |
 | [jp-us-pairs-distance-q577](./jp-us-pairs-distance-q577) | Q577 日本株・米国株の距離法ペア取引（12 か月形成・6 か月取引・上位 20 ペア・2σ・1 日待ち） | 棄却 |
 | [jp-us-residual-momentum-q564](./jp-us-residual-momentum-q564) | Q564 残差モメンタム（市場 1 因子の残差・12-1 か月・残差 σ で割る・月次・上下 10%）：日本株・米国株 | 棄却 |
 | [jp-us-reversal-long-q620](./jp-us-reversal-long-q620) | Q620 S48 日本株・米国株の 1 か月反転の買い（過去の β でヘッジ） | 日米とも棄却 |
