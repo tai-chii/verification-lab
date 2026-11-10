@@ -305,7 +305,7 @@
 | [us-ml-long-beta-hedged-q590](./us-ml-long-beta-hedged-q590) | Q590 Q589 の買い側を過去だけの β で市場ヘッジする（再試行 1 回・打ち止め） | 未確定 |
 | [us-ml-long-hedged-q589](./us-ml-long-hedged-q589) | Q589 米国株 横断 ML の「上位 10% 買い − 適格平均」はフォワードに入れる関門を通るか | 未確定 |
 | [us-sec-accruals-q698](./us-sec-accruals-q698) | Q698 米国株のアクルーアル（(純利益 − 営業 CF)÷総資産）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | — |
-| [us-sec-asset-growth-q697](./us-sec-asset-growth-q697) | Q697 米国株の資産成長（総資産の前年比）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | — |
+| [us-sec-asset-growth-q697](./us-sec-asset-growth-q697) | Q697 米国株の資産成長（総資産の前年比）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [us-sec-net-issuance-q699](./us-sec-net-issuance-q699) | Q699 米国株の純発行（分割補正後の発行株数の前年比）は買い戻し側を買い増資側を売ると 2010-07〜2024-06 のコスト後に残るか | — |
 | [us-sec-value-q696](./us-sec-value-q696) | Q696 米国株のバリュー合成（B/P・E/P・S/P・CF/P の順位平均）は 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [usdjpy-donchian-side-window-stability](./usdjpy-donchian-side-window-stability) | USDJPY 日足ドンチャンの「優位な売買方向」は5年窓をずらしても符号が保たれるか（Q353） | ノイズ（確定） |
