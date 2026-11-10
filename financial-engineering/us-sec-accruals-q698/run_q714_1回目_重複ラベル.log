@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/kensho_accruals_holdout_q714.py", line 104, in <module>
+    if __name__ == "__main__": main()
+                               ^^^^^^
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/kensho_accruals_holdout_q714.py", line 101, in main
+    res, csvs = run(args, rng); B.write_result(QID, res, csvs, args)
+                ^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/us-sec-accruals-q698/kensho_accruals_holdout_q714.py", line 85, in run
+    bh = beta.reindex(d.index); h = (d["ls"] - bh * d["mkt"]).dropna()
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/series.py", line 5525, in reindex
+    return super().reindex(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/generic.py", line 5464, in reindex
+    return self._reindex_axes(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/generic.py", line 5486, in _reindex_axes
+    new_index, indexer = ax.reindex(
+                         ^^^^^^^^^^^
+  File "/Users/goyataichi/ワークスペース/作業層/venv_equities/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 4253, in reindex
+    raise ValueError("cannot reindex on an axis with duplicate labels")
+ValueError: cannot reindex on an axis with duplicate labels
