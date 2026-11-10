@@ -98,7 +98,7 @@
 | [jp-ml-xsec-holdout-q583](./jp-ml-xsec-holdout-q583) | Q583 Q582（日本株の横断 ML）を封印期間 2024-07〜2026-06 で 1 回だけ判定 | 合格 |
 | [jp-pead-q594](./jp-pead-q594) | Q594 日本株の決算後ドリフトと業績予想の上方修正（買い側 − 市場） | E1 棄却・E2 未確定 |
 | [jp-us-52wh-q700](./jp-us-52wh-q700) | Q700 日本株・米国株の 52 週高値への近さ（終値÷52 週高値）の上位 10% 買い・下位 10% 売り | 棄却 |
-| [jp-us-amihud-q703](./jp-us-amihud-q703) | Q703 日本株・米国株の Amihud 非流動性プレミアム（／r／÷売買代金の 12 か月平均・ボラ 3 分位内）の高い方を買い低い方を売る | — |
+| [jp-us-amihud-q703](./jp-us-amihud-q703) | Q703 日本株・米国株の Amihud 非流動性プレミアム（／r／÷売買代金の 12 か月平均・ボラ 3 分位内）の高い方を買い低い方を売る | 未確定 |
 | [jp-us-high-volume-premium-q578](./jp-us-high-volume-premium-q578) | Q578 日本株・米国株の高出来高プレミアム（月末直近 5 日の出来高ショック上位 10% 買い・下位 10% 売り・1 か月保有） | 未確定（前半だけの効果。2015 年以降は日本でも負で、bot の材料にはならない） |
 | [jp-us-industry-mom-q704](./jp-us-industry-mom-q704) | Q704 日本株・米国株の業種モメンタム（上位 3 業種買い・下位 3 業種売り） | — |
 | [jp-us-long-reversal-q576](./jp-us-long-reversal-q576) | Q576 日本株・米国株の長期反転（13〜48 か月の負け組買い・勝ち組売り・月次 L/S） | 棄却 |
@@ -110,7 +110,7 @@
 | [jp-us-pairs-distance-q577](./jp-us-pairs-distance-q577) | Q577 日本株・米国株の距離法ペア取引（12 か月形成・6 か月取引・上位 20 ペア・2σ・1 日待ち） | 棄却 |
 | [jp-us-residual-momentum-q564](./jp-us-residual-momentum-q564) | Q564 残差モメンタム（市場 1 因子の残差・12-1 か月・残差 σ で割る・月次・上下 10%）：日本株・米国株 | 棄却 |
 | [jp-us-reversal-long-q620](./jp-us-reversal-long-q620) | Q620 S48 日本株・米国株の 1 か月反転の買い（過去の β でヘッジ） | 日米とも棄却 |
-| [jp-us-seasonality-q702](./jp-us-seasonality-q702) | Q702 日本株・米国株の同月季節性（過去 1〜5 年の同じ暦月のリターン平均）の高い方を買い低い方を売る | — |
+| [jp-us-seasonality-q702](./jp-us-seasonality-q702) | Q702 日本株・米国株の同月季節性（過去 1〜5 年の同じ暦月のリターン平均）の高い方を買い低い方を売る | 棄却 |
 | [jp-us-sector-coint-q623](./jp-us-sector-coint-q623) | Q623 S49 業種内の共和分ペアの平均回帰（日本株・米国株） | 日米とも棄却 |
 | [jp-us-stock-tsmom-q705](./jp-us-stock-tsmom-q705) | Q705 日本株・米国株の個別株の時系列モメンタム（12-1 か月リターンの符号で全買い／全売り） | — |
 | [jp-us-xs-momentum-q563](./jp-us-xs-momentum-q563) | Q563 日本株・米国株の横断モメンタム（12-1 か月・月次・上下 10%・等金額 L/S） | 棄却 |
