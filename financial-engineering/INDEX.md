@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 337 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 339 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -160,6 +160,8 @@
 | [ratio-pairs-mean-reversion](./ratio-pairs-mean-reversion) | Q233 金銀比・Brent−WTI の z スコア逆張り（ペアトレード）は 2015 年以降コスト後に残るか | 棄却: どの組も残らない |
 | [realized-skew-next-month](./realized-skew-next-month) | Q231 H1 から作る月次の実現歪度は翌月リターンを負に予測するか（Amaya ほか 2015 の型・15 銘柄） | 棄却 |
 | [rebalance-frequency](./rebalance-frequency) | リバランス頻度とリスク尺度のどちらが成績差を支配するか（米国セクター ETF） | README の「主な検証」表を参照 |
+| [regime-label-main-driver](./regime-label-main-driver) | Q722 局面判定ラベル（世界共通の 1 本）は、既知の転換点を拾えるか（検証 1） | 確定（この定義のラベルは使えない） |
+| [regime-label-states](./regime-label-states) | Q723 局面判定ラベル（状態の印）の点検と、S21 の学習外の取引への最初の結合 | ノイズ（差は 0 と区別できない） |
 | [report-scoring](./report-scoring) | 検証ログの採点基準の事後検証 | README の「主な検証」表を参照 |
 | [reselection-frequency](./reselection-frequency) | Q177 順張りの参照日数を選び直す頻度（月・四半期・半年・年）で標本外成績は変わるか（Zarrabi 2017） | ノイズ |
 | [residual-momentum-fx](./residual-momentum-fx) | Q255 ドル因子を除いた残差の順張りは生の順張りより強いか（FX6・Blitz 2011 の残差モメンタムの移植） | 棄却: 差は見えない |

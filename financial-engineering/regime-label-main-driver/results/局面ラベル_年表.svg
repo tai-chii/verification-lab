@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" font-family="sans-serif" font-size="11">
+<rect width="900" height="450" fill="white"/>
+<text x="60" y="20" font-size="14">局面判定ラベル L（確定した主役）— 1 年 1 行・▼ は検証 1 の出来事（番号）と 2026 年の 2 件（T1・T2）</text>
+<rect x="60" y="28" width="12" height="12" fill="#4c78a8"/><text x="76" y="38">EQ 株</text>
+<rect x="170" y="28" width="12" height="12" fill="#e45756"/><text x="186" y="38">SEMI 半導体</text>
+<rect x="280" y="28" width="12" height="12" fill="#f2a541"/><text x="296" y="38">RATE 米金利</text>
+<rect x="390" y="28" width="12" height="12" fill="#59a14f"/><text x="406" y="38">USD ドル</text>
+<rect x="500" y="28" width="12" height="12" fill="#9c6ade"/><text x="516" y="38">JPY 円</text>
+<rect x="610" y="28" width="12" height="12" fill="#6b6b6b"/><text x="626" y="38">OIL 原油</text>
+<text x="10" y="64">2012</text>
+<rect x="176.5" y="53" width="298.9" height="15" fill="#e45756"/>
+<rect x="474.5" y="53" width="50.2" height="15" fill="#f2a541"/>
+<rect x="523.8" y="53" width="90.5" height="15" fill="#9c6ade"/>
+<rect x="613.4" y="53" width="36.8" height="15" fill="#6b6b6b"/>
+<rect x="649.2" y="53" width="21.1" height="15" fill="#9c6ade"/>
+<rect x="673.9" y="53" width="34.5" height="15" fill="#59a14f"/>
+<rect x="707.5" y="53" width="65.9" height="15" fill="#e45756"/>
+<rect x="772.5" y="53" width="79.3" height="15" fill="#f2a541"/>
+<rect x="850.9" y="53" width="30.0" height="15" fill="#e45756"/>
+<text x="10" y="86">2013</text>
+<rect x="60.0" y="75" width="50.2" height="15" fill="#e45756"/>
+<rect x="109.3" y="75" width="16.6" height="15" fill="#9c6ade"/>
+<rect x="125.0" y="75" width="753.7" height="15" fill="#e45756"/>
+<text x="10" y="108">2014</text>
+<rect x="60.0" y="97" width="61.4" height="15" fill="#e45756"/>
+<rect x="120.5" y="97" width="83.8" height="15" fill="#4c78a8"/>
+<rect x="203.4" y="97" width="27.8" height="15" fill="#f2a541"/>
+<rect x="230.3" y="97" width="104.0" height="15" fill="#e45756"/>
+<rect x="337.8" y="97" width="115.2" height="15" fill="#f2a541"/>
+<rect x="452.1" y="97" width="426.6" height="15" fill="#e45756"/>
+<text x="10" y="130">2015</text>
+<rect x="60.0" y="119" width="63.6" height="15" fill="#e45756"/>
+<rect x="122.7" y="119" width="92.8" height="15" fill="#f2a541"/>
+<rect x="214.6" y="119" width="16.6" height="15" fill="#4c78a8"/>
+<rect x="230.3" y="119" width="289.9" height="15" fill="#e45756"/>
+<rect x="523.8" y="119" width="41.2" height="15" fill="#59a14f"/>
+<rect x="564.1" y="119" width="50.2" height="15" fill="#e45756"/>
+<rect x="617.9" y="119" width="166.7" height="15" fill="#4c78a8"/>
+<rect x="783.7" y="119" width="95.0" height="15" fill="#e45756"/>
+<text x="10" y="152">2016</text>
+<rect x="66.7" y="141" width="133.1" height="15" fill="#e45756"/>
+<rect x="198.9" y="141" width="79.3" height="15" fill="#4c78a8"/>
+<rect x="277.3" y="141" width="377.3" height="15" fill="#9c6ade"/>
+<rect x="653.7" y="141" width="30.0" height="15" fill="#e45756"/>
+<rect x="682.8" y="141" width="39.0" height="15" fill="#59a14f"/>
+<rect x="725.4" y="141" width="12.1" height="15" fill="#e45756"/>
+<rect x="741.1" y="141" width="36.8" height="15" fill="#59a14f"/>
+<rect x="776.9" y="141" width="101.7" height="15" fill="#e45756"/>
+<text x="10" y="174">2017</text>
+<rect x="62.2" y="163" width="164.5" height="15" fill="#e45756"/>
+<rect x="225.8" y="163" width="233.9" height="15" fill="#f2a541"/>
+<rect x="458.8" y="163" width="193.6" height="15" fill="#e45756"/>
+<rect x="651.5" y="163" width="135.3" height="15" fill="#f2a541"/>
+<rect x="785.9" y="163" width="88.3" height="15" fill="#e45756"/>
+<text x="10" y="196">2018</text>
+<rect x="60.0" y="185" width="97.3" height="15" fill="#e45756"/>
+<rect x="156.3" y="185" width="99.5" height="15" fill="#6b6b6b"/>
+<rect x="254.9" y="185" width="21.1" height="15" fill="#59a14f"/>
+<rect x="279.6" y="185" width="34.5" height="15" fill="#6b6b6b"/>
+<rect x="313.2" y="185" width="162.2" height="15" fill="#e45756"/>
+<rect x="474.5" y="185" width="95.0" height="15" fill="#59a14f"/>
+<rect x="568.6" y="185" width="21.1" height="15" fill="#9c6ade"/>
+<rect x="593.2" y="185" width="97.3" height="15" fill="#59a14f"/>
+<rect x="689.6" y="185" width="36.8" height="15" fill="#e45756"/>
+<rect x="725.4" y="185" width="153.3" height="15" fill="#9c6ade"/>
+<text x="10" y="218">2019</text>
+<rect x="60.0" y="207" width="173.4" height="15" fill="#9c6ade"/>
+<rect x="232.5" y="207" width="34.5" height="15" fill="#e45756"/>
+<rect x="266.1" y="207" width="209.3" height="15" fill="#f2a541"/>
+<rect x="474.5" y="207" width="30.0" height="15" fill="#e45756"/>
+<rect x="503.6" y="207" width="52.4" height="15" fill="#59a14f"/>
+<rect x="559.6" y="207" width="146.5" height="15" fill="#e45756"/>
+<rect x="705.2" y="207" width="173.4" height="15" fill="#f2a541"/>
+<text x="10" y="240">2020</text>
+<rect x="60.0" y="229" width="36.8" height="15" fill="#f2a541"/>
+<rect x="95.8" y="229" width="79.3" height="15" fill="#4c78a8"/>
+<rect x="174.3" y="229" width="65.9" height="15" fill="#f2a541"/>
+<rect x="243.7" y="229" width="193.6" height="15" fill="#e45756"/>
+<rect x="436.4" y="229" width="148.8" height="15" fill="#59a14f"/>
+<rect x="588.7" y="229" width="72.6" height="15" fill="#6b6b6b"/>
+<rect x="660.4" y="229" width="112.9" height="15" fill="#59a14f"/>
+<rect x="776.9" y="229" width="104.0" height="15" fill="#e45756"/>
+<text x="10" y="262">2021</text>
+<rect x="66.7" y="251" width="86.1" height="15" fill="#e45756"/>
+<rect x="151.9" y="251" width="552.1" height="15" fill="#59a14f"/>
+<rect x="703.0" y="251" width="25.6" height="15" fill="#e45756"/>
+<rect x="727.7" y="251" width="83.8" height="15" fill="#59a14f"/>
+<rect x="810.5" y="251" width="68.1" height="15" fill="#6b6b6b"/>
+<text x="10" y="284">2022</text>
+<rect x="64.5" y="273" width="9.9" height="15" fill="#6b6b6b"/>
+<rect x="73.4" y="273" width="59.2" height="15" fill="#e45756"/>
+<rect x="131.7" y="273" width="65.9" height="15" fill="#6b6b6b"/>
+<rect x="196.7" y="273" width="59.2" height="15" fill="#59a14f"/>
+<rect x="254.9" y="273" width="18.8" height="15" fill="#6b6b6b"/>
+<rect x="272.8" y="273" width="63.6" height="15" fill="#4c78a8"/>
+<rect x="335.6" y="273" width="16.6" height="15" fill="#e45756"/>
+<rect x="351.3" y="273" width="173.4" height="15" fill="#4c78a8"/>
+<rect x="523.8" y="273" width="18.8" height="15" fill="#59a14f"/>
+<rect x="541.7" y="273" width="16.6" height="15" fill="#e45756"/>
+<rect x="557.4" y="273" width="65.9" height="15" fill="#59a14f"/>
+<rect x="622.3" y="273" width="16.6" height="15" fill="#e45756"/>
+<rect x="638.0" y="273" width="238.4" height="15" fill="#59a14f"/>
+<text x="10" y="306">2023</text>
+<rect x="62.2" y="295" width="191.4" height="15" fill="#59a14f"/>
+<rect x="252.7" y="295" width="21.1" height="15" fill="#e45756"/>
+<rect x="272.8" y="295" width="144.3" height="15" fill="#f2a541"/>
+<rect x="416.2" y="295" width="119.7" height="15" fill="#6b6b6b"/>
+<rect x="535.0" y="295" width="339.2" height="15" fill="#59a14f"/>
+<text x="10" y="328">2024</text>
+<rect x="60.0" y="317" width="285.4" height="15" fill="#59a14f"/>
+<rect x="344.5" y="317" width="251.8" height="15" fill="#e45756"/>
+<rect x="595.5" y="317" width="151.0" height="15" fill="#9c6ade"/>
+<rect x="750.1" y="317" width="59.2" height="15" fill="#f2a541"/>
+<rect x="812.8" y="317" width="68.1" height="15" fill="#e45756"/>
+<text x="10" y="350">2025</text>
+<rect x="60.0" y="339" width="222.7" height="15" fill="#e45756"/>
+<rect x="281.8" y="339" width="175.7" height="15" fill="#6b6b6b"/>
+<rect x="456.6" y="339" width="18.8" height="15" fill="#4c78a8"/>
+<rect x="479.0" y="339" width="119.7" height="15" fill="#59a14f"/>
+<rect x="597.7" y="339" width="139.8" height="15" fill="#f2a541"/>
+<rect x="736.6" y="339" width="142.1" height="15" fill="#e45756"/>
+<text x="10" y="372">2026</text>
+<rect x="60.0" y="361" width="92.8" height="15" fill="#e45756"/>
+<rect x="151.9" y="361" width="399.7" height="15" fill="#59a14f"/>
+<rect x="555.1" y="361" width="213.8" height="15" fill="#e45756"/>
+<path d="M371.9,71 L379.9,71 L375.9,78 Z" fill="black"/><text x="381.9" y="76" font-size="9">1</text>
+<path d="M795.3,93 L803.3,93 L799.3,100 Z" fill="black"/><text x="805.3" y="98" font-size="9">2</text>
+<path d="M62.7,137 L70.7,137 L66.7,144 Z" fill="black"/><text x="72.7" y="142" font-size="9">3</text>
+<path d="M177.0,225 L185.0,225 L181.0,232 Z" fill="black"/><text x="187.0" y="230" font-size="9">4</text>
+<path d="M179.2,247 L187.2,247 L183.2,254 Z" fill="black"/><text x="189.2" y="252" font-size="9">5</text>
+<path d="M65.0,269 L73.0,269 L69.0,276 Z" fill="black"/><text x="75.0" y="274" font-size="9">6</text>
+<path d="M378.6,291 L386.6,291 L382.6,298 Z" fill="black"/><text x="388.6" y="296" font-size="9">7</text>
+<path d="M531.0,313 L539.0,313 L535.0,320 Z" fill="black"/><text x="541.0" y="318" font-size="9">8</text>
+<path d="M441.4,357 L449.4,357 L445.4,364 Z" fill="black"/><text x="451.4" y="362" font-size="9">T1</text>
+<path d="M746.1,357 L754.1,357 L750.1,364 Z" fill="black"/><text x="756.1" y="362" font-size="9">T2</text>
+</svg>
