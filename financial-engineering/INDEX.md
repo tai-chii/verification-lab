@@ -385,12 +385,12 @@
 | [us-sec-earnings-change-q790](./us-sec-earnings-change-q790) | Q790 米国株の利益の増加（年次純利益の前年差÷総資産）の高い方買い低い方売り | 未実行 |
 | [us-sec-earnings-volatility-q795](./us-sec-earnings-volatility-q795) | Q795 米国株の ROA の 5 年標準偏差（利益のぶれ）の低い方買い高い方売り | 未実行 |
 | [us-sec-filing-month-q713](./us-sec-filing-month-q713) | Q713 米国株の決算提出月プレミアム（2026-11-14 実行・Sonnet） | 記述（判定の行なし） |
-| [us-sec-gross-profit-q787](./us-sec-gross-profit-q787) | Q787 米国株の粗利益÷総資産（Novy-Marx の粗利益率）の高い方買い低い方売り | 未実行 |
+| [us-sec-gross-profit-q787](./us-sec-gross-profit-q787) | Q787 米国株の粗利益÷総資産（Novy-Marx の粗利益率）の高い方買い低い方売り | 棄却 |
 | [us-sec-leverage-change-q794](./us-sec-leverage-change-q794) | Q794 米国株の負債比率（負債÷総資産）の前年差の低い方買い高い方売り | 未実行 |
 | [us-sec-margin-change-q793](./us-sec-margin-change-q793) | Q793 米国株の営業利益率（営業利益÷売上）の前年差の高い方買い低い方売り | 未実行 |
 | [us-sec-net-issuance-q699](./us-sec-net-issuance-q699) | Q699 米国株の純発行（分割補正後の発行株数の前年比）は買い戻し側を買い増資側を売ると 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [us-sec-noa-q711](./us-sec-noa-q711) | Q711 純営業資産 NOA÷総資産（米国・SEC）：データ源不足で停止 | データ源不足 |
-| [us-sec-operating-profit-q788](./us-sec-operating-profit-q788) | Q788 米国株の営業利益÷総資産の高い方買い低い方売り | 未実行 |
+| [us-sec-operating-profit-q788](./us-sec-operating-profit-q788) | Q788 米国株の営業利益÷総資産の高い方買い低い方売り | 棄却 |
 | [us-sec-quality-composite-q796](./us-sec-quality-composite-q796) | Q796 米国株のアクルーアルを除いた会計の質の合成（6 比率の順位平均）の高い方買い低い方売り | 未実行 |
 | [us-sec-roe-q789](./us-sec-roe-q789) | Q789 米国株の ROE（年次純利益÷株主資本）の高い方買い低い方売り | 未実行 |
 | [us-sec-sales-growth-q791](./us-sec-sales-growth-q791) | Q791 米国株の売上成長（年次売上の前年比）の低い方買い高い方売り | 未実行 |
