@@ -58,7 +58,7 @@
 | [crypto-variance-ratio-trend](./crypto-variance-ratio-trend) | Q264 暗号資産11通貨の H1 の分散比は 2022 年以降に 1 へ近づいたか（適応的市場仮説の移植） | 棄却 |
 | [crypto-vrp-dvol-q763](./crypto-vrp-dvol-q763) | Q763 暗号資産のボラのリスクプレミアム（Deribit DVOL で 30 日の分散スワップを売る近似）：BTC 支持（開発）・ETH 棄却 | 記述（判定の行なし） |
 | [crypto-weekend-effect](./crypto-weekend-effect) | Q212 暗号資産の週末（土日）はリターン・ボラ・順張りの損益が平日と違うか（11 通貨 H1） | 棄却 |
-| [crypto-xs-amihud-q808](./crypto-xs-amihud-q808) | Q808 暗号資産の永久先物で Amihud 非流動性（／日次リターン／÷売買代金の 28 日平均）の高い側買い・低い側売りは、コスト・資金調達後に残るか | 記述（判定の行なし） |
+| [crypto-xs-amihud-q808](./crypto-xs-amihud-q808) | Q808 暗号資産の永久先物で Amihud 非流動性（／日次リターン／÷売買代金の 28 日平均）の高い側買い・低い側売りは、コスト・資金調達後に残るか | 未確定のまま採らない |
 | [crypto-xs-coskewness-q815](./crypto-xs-coskewness-q815) | Q815 暗号資産の永久先物で共歪度（BTC の 2 乗リターンとの共変動・60 日）の低い側買い・高い側売りは、コスト・資金調達後に残るか | 記述（判定の行なし） |
 | [crypto-xs-downside-beta-q814](./crypto-xs-downside-beta-q814) | Q814 暗号資産の永久先物で相対下方ベータ（BTC が下げた日のベータ−全体のベータ・60 日）の高い側買い・低い側売りは、コスト・資金調達後に残るか | 記述（判定の行なし） |
 | [crypto-xs-frog-in-pan-q816](./crypto-xs-frog-in-pan-q816) | Q816 暗号資産の永久先物で、値動きが小刻みな銘柄（28 日の上げ下げ日数で作る離散度が母集団の中央値以下）に限ったモメンタムは、コスト・資金調達後に残るか | 記述（判定の行なし） |

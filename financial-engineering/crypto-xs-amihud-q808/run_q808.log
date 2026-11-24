@@ -1,0 +1,3 @@
+/Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/crypto-xs-amihud-q808/kensho_crypto_xs_amihud_q808.py:99: RuntimeWarning: invalid value encountered in divide
+  x = np.abs(CC[t - 28:t][:, U]) / DV[t - 28:t][:, U]; x[~np.isfinite(x)] = np.nan
+{"qid": "Q808", "smoke": false, "n_weeks": 225, "machine_verdict": "未確定"} → /Users/goyataichi/ワークスペース/検証/verification-lab/financial-engineering/crypto-xs-amihud-q808/results
