@@ -2,7 +2,7 @@
 
 > このファイルは `python3 tools/gen_fe_index.py` で自動生成しています。手で編集しないでください。
 
-全 408 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
+全 428 件。判定の「—」は未実行または README に判定の記載がないもの。詳細は各ディレクトリの README を参照。
 
 | ディレクトリ | 問い | 判定 |
 | :--- | :--- | :--- |
@@ -127,10 +127,19 @@
 | [jp-us-52wh-q700](./jp-us-52wh-q700) | Q700 日本株・米国株の 52 週高値への近さ（終値÷52 週高値）の上位 10% 買い・下位 10% 売り | 棄却 |
 | [jp-us-amihud-q703](./jp-us-amihud-q703) | Q703 日本株・米国株の Amihud 非流動性プレミアム（／r／÷売買代金の 12 か月平均・ボラ 3 分位内）の高い方を買い低い方を売る | 未確定 |
 | [jp-us-bab-q708](./jp-us-bab-q708) | Q708 日本株・米国株の BAB（低 β 買い・高 β 売り・両脚を事前 β=1 に揃える） | 未確定 |
+| [jp-us-bac-correlation-q804](./jp-us-bac-correlation-q804) | Q804 日本株・米国株の市場との相関（252 日）の低い方買い高い方売り（ボラ 5 分位の中で順位・betting against correlation） | 未実行 |
+| [jp-us-coskewness-q803](./jp-us-coskewness-q803) | Q803 日本株・米国株の共歪度（市場の 2 乗との共変動・252 日）の低い方買い高い方売り | 未実行 |
+| [jp-us-dollar-volume-cv-q801](./jp-us-dollar-volume-cv-q801) | Q801 日本株・米国株の売買代金の変動係数（252 日の日次売買代金の標準偏差÷平均）の低い方買い高い方売り | 未実行 |
+| [jp-us-downside-beta-q802](./jp-us-downside-beta-q802) | Q802 日本株・米国株の相対下方ベータ（市場が平均より下の日のベータ − 通常のベータ・252 日）の高い方買い低い方売り | 未実行 |
+| [jp-us-fip-momentum-q798](./jp-us-fip-momentum-q798) | Q798 日本株・米国株で情報が小刻みに届いた銘柄だけのモメンタム（frog-in-the-pan・12-1 か月の上げ下げ日数の偏りが小さい半分） | 未実行 |
 | [jp-us-high-volume-premium-q578](./jp-us-high-volume-premium-q578) | Q578 日本株・米国株の高出来高プレミアム（月末直近 5 日の出来高ショック上位 10% 買い・下位 10% 売り・1 か月保有） | 未確定（前半だけの効果。2015 年以降は日本でも負で、bot の材料にはならない） |
+| [jp-us-industry-mom-1m-q797](./jp-us-industry-mom-1m-q797) | Q797 日本株・米国株の業種の 1 か月モメンタム（東証 33 業種／SIC 2 桁の直近 1 か月リターン・上位 3 業種買い下位 3 業種売り） | 未実行 |
 | [jp-us-industry-mom-q704](./jp-us-industry-mom-q704) | Q704 日本株・米国株の業種モメンタム（上位 3 業種買い・下位 3 業種売り） | 未確定 |
+| [jp-us-jump-drift-q805](./jp-us-jump-drift-q805) | Q805 日本株・米国株で直近 1 か月の大きな値動き（3σ 超の日次リターンの和）の向きに乗る L/S | 未実行 |
+| [jp-us-liquidity-shock-q806](./jp-us-liquidity-shock-q806) | Q806 日本株・米国株の流動性ショック（当月の Amihud 非流動性の過去 12 か月平均からの標準化した低下）の大きい方買い小さい方売り | 未実行 |
 | [jp-us-long-reversal-q576](./jp-us-long-reversal-q576) | Q576 日本株・米国株の長期反転（13〜48 か月の負け組買い・勝ち組売り・月次 L/S） | 棄却 |
 | [jp-us-lowvol-long-q596](./jp-us-lowvol-long-q596) | Q596 日本株・米国株の低ボラ買い（過去だけの β で市場ヘッジ） | 日本 未確定・米国 棄却 |
+| [jp-us-market-state-momentum-q800](./jp-us-market-state-momentum-q800) | Q800 日本株・米国株の横断モメンタム（Q563 の日次 L−S）を市場の過去 24 か月リターンが負の月に休むと | 未実行 |
 | [jp-us-max-q701](./jp-us-max-q701) | Q701 日本株・米国株の MAX 効果（直近 1 か月の最大日次リターン）の低い方を買い高い方を売る | 棄却 |
 | [jp-us-ml-xsec-q582](./jp-us-ml-xsec-q582) | Q582 日本株・米国株の横断 ML（LightGBM・月次 L/S） | 未確定 |
 | [jp-us-mom-12-7-q706](./jp-us-mom-12-7-q706) | Q706 日本株・米国株の中間モメンタム（12-7 か月リターン・上下 10%） | 未確定 |
@@ -143,6 +152,7 @@
 | [jp-us-stock-tsmom-q705](./jp-us-stock-tsmom-q705) | Q705 日本株・米国株の個別株の時系列モメンタム（12-1 か月リターンの符号で全買い／全売り） | 棄却 |
 | [jp-us-ts-momentum-q749](./jp-us-ts-momentum-q749) | Q749 日本株・米国株の個別株の時系列モメンタム（12-1 か月の符号・月次 L/S） | — |
 | [jp-us-volchange-q712](./jp-us-volchange-q712) | Q712 日本株・米国株のボラの変化（σ20÷σ252・σ252 の 5 分位内で順位）の低い方買い・高い方売り | 棄却 |
+| [jp-us-volmanaged-momentum-q799](./jp-us-volmanaged-momentum-q799) | Q799 日本株・米国株の横断モメンタム（Q563 の日次 L−S）を直近 126 日の実現ボラの逆数で規模調整すると | 未実行 |
 | [jp-us-xs-momentum-q563](./jp-us-xs-momentum-q563) | Q563 日本株・米国株の横断モメンタム（12-1 か月・月次・上下 10%・等金額 L/S） | 棄却 |
 | [jp-weekly-reversal-q544](./jp-weekly-reversal-q544) | Q544 日本株の週次の短期反転（J-Quants・日本株の検証の 1 本目） | 棄却 |
 | [jpy-tokyo-cut-hour-q573](./jpy-tokyo-cut-hour-q573) | Q573 東京カット（15:00 JST＝6 時 UTC）前後の円ペアの順張りは 24 時刻の Holm 補正後にも残るか | 棄却 |
@@ -370,10 +380,20 @@
 | [us-ml-long-hedged-q589](./us-ml-long-hedged-q589) | Q589 米国株 横断 ML の「上位 10% 買い − 適格平均」はフォワードに入れる関門を通るか | 未確定 |
 | [us-sec-accruals-q698](./us-sec-accruals-q698) | Q698 米国株のアクルーアル（(純利益 − 営業 CF)÷総資産）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | 未確定 |
 | [us-sec-asset-growth-q697](./us-sec-asset-growth-q697) | Q697 米国株の資産成長（総資産の前年比）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | 棄却 |
+| [us-sec-asset-turnover-change-q792](./us-sec-asset-turnover-change-q792) | Q792 米国株の資産回転率（売上÷総資産）の前年差の高い方買い低い方売り | 未実行 |
 | [us-sec-cfoa-q710](./us-sec-cfoa-q710) | Q710 米国株の現金収益性（年次営業 CF÷総資産）の L/S は 2010-07〜2024-06 のコスト後に残るか | 記述（判定の行なし） |
+| [us-sec-earnings-change-q790](./us-sec-earnings-change-q790) | Q790 米国株の利益の増加（年次純利益の前年差÷総資産）の高い方買い低い方売り | 未実行 |
+| [us-sec-earnings-volatility-q795](./us-sec-earnings-volatility-q795) | Q795 米国株の ROA の 5 年標準偏差（利益のぶれ）の低い方買い高い方売り | 未実行 |
 | [us-sec-filing-month-q713](./us-sec-filing-month-q713) | Q713 米国株の決算提出月プレミアム（2026-11-14 実行・Sonnet） | 記述（判定の行なし） |
+| [us-sec-gross-profit-q787](./us-sec-gross-profit-q787) | Q787 米国株の粗利益÷総資産（Novy-Marx の粗利益率）の高い方買い低い方売り | 未実行 |
+| [us-sec-leverage-change-q794](./us-sec-leverage-change-q794) | Q794 米国株の負債比率（負債÷総資産）の前年差の低い方買い高い方売り | 未実行 |
+| [us-sec-margin-change-q793](./us-sec-margin-change-q793) | Q793 米国株の営業利益率（営業利益÷売上）の前年差の高い方買い低い方売り | 未実行 |
 | [us-sec-net-issuance-q699](./us-sec-net-issuance-q699) | Q699 米国株の純発行（分割補正後の発行株数の前年比）は買い戻し側を買い増資側を売ると 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [us-sec-noa-q711](./us-sec-noa-q711) | Q711 純営業資産 NOA÷総資産（米国・SEC）：データ源不足で停止 | データ源不足 |
+| [us-sec-operating-profit-q788](./us-sec-operating-profit-q788) | Q788 米国株の営業利益÷総資産の高い方買い低い方売り | 未実行 |
+| [us-sec-quality-composite-q796](./us-sec-quality-composite-q796) | Q796 米国株のアクルーアルを除いた会計の質の合成（6 比率の順位平均）の高い方買い低い方売り | 未実行 |
+| [us-sec-roe-q789](./us-sec-roe-q789) | Q789 米国株の ROE（年次純利益÷株主資本）の高い方買い低い方売り | 未実行 |
+| [us-sec-sales-growth-q791](./us-sec-sales-growth-q791) | Q791 米国株の売上成長（年次売上の前年比）の低い方買い高い方売り | 未実行 |
 | [us-sec-value-q696](./us-sec-value-q696) | Q696 米国株のバリュー合成（B/P・E/P・S/P・CF/P の順位平均）は 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [us-value-sec-q750](./us-value-sec-q750) | Q750 S76 米国株のバリュー（B/M 主・E/P 副）：結果 | 棄却（主の B/M：コスト後 NW t = -0.81 < 1）。副の E/P は逆向きに有意（t = -2.60）だ… |
 | [usdjpy-donchian-side-window-stability](./usdjpy-donchian-side-window-stability) | USDJPY 日足ドンチャンの「優位な売買方向」は5年窓をずらしても符号が保たれるか（Q353） | ノイズ（確定） |
