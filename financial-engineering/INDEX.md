@@ -383,7 +383,7 @@
 | [us-sec-asset-turnover-change-q792](./us-sec-asset-turnover-change-q792) | Q792 米国株の資産回転率（売上÷総資産）の前年差の高い方買い低い方売り | 棄却 |
 | [us-sec-cfoa-q710](./us-sec-cfoa-q710) | Q710 米国株の現金収益性（年次営業 CF÷総資産）の L/S は 2010-07〜2024-06 のコスト後に残るか | 記述（判定の行なし） |
 | [us-sec-earnings-change-q790](./us-sec-earnings-change-q790) | Q790 米国株の利益の増加（年次純利益の前年差÷総資産）の高い方買い低い方売り | 棄却 |
-| [us-sec-earnings-volatility-q795](./us-sec-earnings-volatility-q795) | Q795 米国株の ROA の 5 年標準偏差（利益のぶれ）の低い方買い高い方売り | 未実行 |
+| [us-sec-earnings-volatility-q795](./us-sec-earnings-volatility-q795) | Q795 米国株の ROA の 5 年標準偏差（利益のぶれ）の低い方買い高い方売り | 棄却 |
 | [us-sec-filing-month-q713](./us-sec-filing-month-q713) | Q713 米国株の決算提出月プレミアム（2026-11-14 実行・Sonnet） | 記述（判定の行なし） |
 | [us-sec-gross-profit-q787](./us-sec-gross-profit-q787) | Q787 米国株の粗利益÷総資産（Novy-Marx の粗利益率）の高い方買い低い方売り | 棄却 |
 | [us-sec-leverage-change-q794](./us-sec-leverage-change-q794) | Q794 米国株の負債比率（負債÷総資産）の前年差の低い方買い高い方売り | 棄却 |
