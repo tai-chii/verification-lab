@@ -128,14 +128,14 @@
 | [jp-us-amihud-q703](./jp-us-amihud-q703) | Q703 日本株・米国株の Amihud 非流動性プレミアム（／r／÷売買代金の 12 か月平均・ボラ 3 分位内）の高い方を買い低い方を売る | 未確定 |
 | [jp-us-bab-q708](./jp-us-bab-q708) | Q708 日本株・米国株の BAB（低 β 買い・高 β 売り・両脚を事前 β=1 に揃える） | 未確定 |
 | [jp-us-bac-correlation-q804](./jp-us-bac-correlation-q804) | Q804 日本株・米国株の市場との相関（252 日）の低い方買い高い方売り（ボラ 5 分位の中で順位・betting against correlation） | 未実行 |
-| [jp-us-coskewness-q803](./jp-us-coskewness-q803) | Q803 日本株・米国株の共歪度（市場の 2 乗との共変動・252 日）の低い方買い高い方売り | 未実行 |
+| [jp-us-coskewness-q803](./jp-us-coskewness-q803) | Q803 日本株・米国株の共歪度（市場の 2 乗との共変動・252 日）の低い方買い高い方売り | 棄却 |
 | [jp-us-dollar-volume-cv-q801](./jp-us-dollar-volume-cv-q801) | Q801 日本株・米国株の売買代金の変動係数（252 日の日次売買代金の標準偏差÷平均）の低い方買い高い方売り | 未確定のまま、どちらの国でも採らない |
 | [jp-us-downside-beta-q802](./jp-us-downside-beta-q802) | Q802 日本株・米国株の相対下方ベータ（市場が平均より下の日のベータ − 通常のベータ・252 日）の高い方買い低い方売り | 未実行 |
 | [jp-us-fip-momentum-q798](./jp-us-fip-momentum-q798) | Q798 日本株・米国株で情報が小刻みに届いた銘柄だけのモメンタム（frog-in-the-pan・12-1 か月の上げ下げ日数の偏りが小さい半分） | 未実行 |
 | [jp-us-high-volume-premium-q578](./jp-us-high-volume-premium-q578) | Q578 日本株・米国株の高出来高プレミアム（月末直近 5 日の出来高ショック上位 10% 買い・下位 10% 売り・1 か月保有） | 未確定（前半だけの効果。2015 年以降は日本でも負で、bot の材料にはならない） |
 | [jp-us-industry-mom-1m-q797](./jp-us-industry-mom-1m-q797) | Q797 日本株・米国株の業種の 1 か月モメンタム（東証 33 業種／SIC 2 桁の直近 1 か月リターン・上位 3 業種買い下位 3 業種売り） | 未実行 |
 | [jp-us-industry-mom-q704](./jp-us-industry-mom-q704) | Q704 日本株・米国株の業種モメンタム（上位 3 業種買い・下位 3 業種売り） | 未確定 |
-| [jp-us-jump-drift-q805](./jp-us-jump-drift-q805) | Q805 日本株・米国株で直近 1 か月の大きな値動き（3σ 超の日次リターンの和）の向きに乗る L/S | 未実行 |
+| [jp-us-jump-drift-q805](./jp-us-jump-drift-q805) | Q805 日本株・米国株で直近 1 か月の大きな値動き（3σ 超の日次リターンの和）の向きに乗る L/S | 棄却 |
 | [jp-us-liquidity-shock-q806](./jp-us-liquidity-shock-q806) | Q806 日本株・米国株の流動性ショック（当月の Amihud 非流動性の過去 12 か月平均からの標準化した低下）の大きい方買い小さい方売り | 未実行 |
 | [jp-us-long-reversal-q576](./jp-us-long-reversal-q576) | Q576 日本株・米国株の長期反転（13〜48 か月の負け組買い・勝ち組売り・月次 L/S） | 棄却 |
 | [jp-us-lowvol-long-q596](./jp-us-lowvol-long-q596) | Q596 日本株・米国株の低ボラ買い（過去だけの β で市場ヘッジ） | 日本 未確定・米国 棄却 |
