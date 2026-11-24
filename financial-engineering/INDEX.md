@@ -382,7 +382,7 @@
 | [us-sec-asset-growth-q697](./us-sec-asset-growth-q697) | Q697 米国株の資産成長（総資産の前年比）の低い方を買い高い方を売ると 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [us-sec-asset-turnover-change-q792](./us-sec-asset-turnover-change-q792) | Q792 米国株の資産回転率（売上÷総資産）の前年差の高い方買い低い方売り | 未実行 |
 | [us-sec-cfoa-q710](./us-sec-cfoa-q710) | Q710 米国株の現金収益性（年次営業 CF÷総資産）の L/S は 2010-07〜2024-06 のコスト後に残るか | 記述（判定の行なし） |
-| [us-sec-earnings-change-q790](./us-sec-earnings-change-q790) | Q790 米国株の利益の増加（年次純利益の前年差÷総資産）の高い方買い低い方売り | 未実行 |
+| [us-sec-earnings-change-q790](./us-sec-earnings-change-q790) | Q790 米国株の利益の増加（年次純利益の前年差÷総資産）の高い方買い低い方売り | 棄却 |
 | [us-sec-earnings-volatility-q795](./us-sec-earnings-volatility-q795) | Q795 米国株の ROA の 5 年標準偏差（利益のぶれ）の低い方買い高い方売り | 未実行 |
 | [us-sec-filing-month-q713](./us-sec-filing-month-q713) | Q713 米国株の決算提出月プレミアム（2026-11-14 実行・Sonnet） | 記述（判定の行なし） |
 | [us-sec-gross-profit-q787](./us-sec-gross-profit-q787) | Q787 米国株の粗利益÷総資産（Novy-Marx の粗利益率）の高い方買い低い方売り | 棄却 |
@@ -392,7 +392,7 @@
 | [us-sec-noa-q711](./us-sec-noa-q711) | Q711 純営業資産 NOA÷総資産（米国・SEC）：データ源不足で停止 | データ源不足 |
 | [us-sec-operating-profit-q788](./us-sec-operating-profit-q788) | Q788 米国株の営業利益÷総資産の高い方買い低い方売り | 棄却 |
 | [us-sec-quality-composite-q796](./us-sec-quality-composite-q796) | Q796 米国株のアクルーアルを除いた会計の質の合成（6 比率の順位平均）の高い方買い低い方売り | 未実行 |
-| [us-sec-roe-q789](./us-sec-roe-q789) | Q789 米国株の ROE（年次純利益÷株主資本）の高い方買い低い方売り | 未実行 |
+| [us-sec-roe-q789](./us-sec-roe-q789) | Q789 米国株の ROE（年次純利益÷株主資本）の高い方買い低い方売り | 棄却 |
 | [us-sec-sales-growth-q791](./us-sec-sales-growth-q791) | Q791 米国株の売上成長（年次売上の前年比）の低い方買い高い方売り | 未実行 |
 | [us-sec-value-q696](./us-sec-value-q696) | Q696 米国株のバリュー合成（B/P・E/P・S/P・CF/P の順位平均）は 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [us-value-sec-q750](./us-value-sec-q750) | Q750 S76 米国株のバリュー（B/M 主・E/P 副）：結果 | 棄却（主の B/M：コスト後 NW t = -0.81 < 1）。副の E/P は逆向きに有意（t = -2.60）だ… |
