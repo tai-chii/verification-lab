@@ -129,7 +129,7 @@
 | [jp-us-bab-q708](./jp-us-bab-q708) | Q708 日本株・米国株の BAB（低 β 買い・高 β 売り・両脚を事前 β=1 に揃える） | 未確定 |
 | [jp-us-bac-correlation-q804](./jp-us-bac-correlation-q804) | Q804 日本株・米国株の市場との相関（252 日）の低い方買い高い方売り（ボラ 5 分位の中で順位・betting against correlation） | 未実行 |
 | [jp-us-coskewness-q803](./jp-us-coskewness-q803) | Q803 日本株・米国株の共歪度（市場の 2 乗との共変動・252 日）の低い方買い高い方売り | 未実行 |
-| [jp-us-dollar-volume-cv-q801](./jp-us-dollar-volume-cv-q801) | Q801 日本株・米国株の売買代金の変動係数（252 日の日次売買代金の標準偏差÷平均）の低い方買い高い方売り | 未実行 |
+| [jp-us-dollar-volume-cv-q801](./jp-us-dollar-volume-cv-q801) | Q801 日本株・米国株の売買代金の変動係数（252 日の日次売買代金の標準偏差÷平均）の低い方買い高い方売り | 未確定のまま、どちらの国でも採らない |
 | [jp-us-downside-beta-q802](./jp-us-downside-beta-q802) | Q802 日本株・米国株の相対下方ベータ（市場が平均より下の日のベータ − 通常のベータ・252 日）の高い方買い低い方売り | 未実行 |
 | [jp-us-fip-momentum-q798](./jp-us-fip-momentum-q798) | Q798 日本株・米国株で情報が小刻みに届いた銘柄だけのモメンタム（frog-in-the-pan・12-1 か月の上げ下げ日数の偏りが小さい半分） | 未実行 |
 | [jp-us-high-volume-premium-q578](./jp-us-high-volume-premium-q578) | Q578 日本株・米国株の高出来高プレミアム（月末直近 5 日の出来高ショック上位 10% 買い・下位 10% 売り・1 か月保有） | 未確定（前半だけの効果。2015 年以降は日本でも負で、bot の材料にはならない） |
@@ -391,7 +391,7 @@
 | [us-sec-net-issuance-q699](./us-sec-net-issuance-q699) | Q699 米国株の純発行（分割補正後の発行株数の前年比）は買い戻し側を買い増資側を売ると 2010-07〜2024-06 のコスト後に残るか | 棄却 |
 | [us-sec-noa-q711](./us-sec-noa-q711) | Q711 純営業資産 NOA÷総資産（米国・SEC）：データ源不足で停止 | データ源不足 |
 | [us-sec-operating-profit-q788](./us-sec-operating-profit-q788) | Q788 米国株の営業利益÷総資産の高い方買い低い方売り | 棄却 |
-| [us-sec-quality-composite-q796](./us-sec-quality-composite-q796) | Q796 米国株のアクルーアルを除いた会計の質の合成（6 比率の順位平均）の高い方買い低い方売り | 未実行 |
+| [us-sec-quality-composite-q796](./us-sec-quality-composite-q796) | Q796 米国株のアクルーアルを除いた会計の質の合成（6 比率の順位平均）の高い方買い低い方売り | 棄却 |
 | [us-sec-roe-q789](./us-sec-roe-q789) | Q789 米国株の ROE（年次純利益÷株主資本）の高い方買い低い方売り | 棄却 |
 | [us-sec-sales-growth-q791](./us-sec-sales-growth-q791) | Q791 米国株の売上成長（年次売上の前年比）の低い方買い高い方売り | 棄却 |
 | [us-sec-value-q696](./us-sec-value-q696) | Q696 米国株のバリュー合成（B/P・E/P・S/P・CF/P の順位平均）は 2010-07〜2024-06 のコスト後に残るか | 棄却 |
