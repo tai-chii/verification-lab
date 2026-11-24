@@ -136,7 +136,7 @@
 | [jp-us-industry-mom-1m-q797](./jp-us-industry-mom-1m-q797) | Q797 日本株・米国株の業種の 1 か月モメンタム（東証 33 業種／SIC 2 桁の直近 1 か月リターン・上位 3 業種買い下位 3 業種売り） | 未実行 |
 | [jp-us-industry-mom-q704](./jp-us-industry-mom-q704) | Q704 日本株・米国株の業種モメンタム（上位 3 業種買い・下位 3 業種売り） | 未確定 |
 | [jp-us-jump-drift-q805](./jp-us-jump-drift-q805) | Q805 日本株・米国株で直近 1 か月の大きな値動き（3σ 超の日次リターンの和）の向きに乗る L/S | 棄却 |
-| [jp-us-liquidity-shock-q806](./jp-us-liquidity-shock-q806) | Q806 日本株・米国株の流動性ショック（当月の Amihud 非流動性の過去 12 か月平均からの標準化した低下）の大きい方買い小さい方売り | 未実行 |
+| [jp-us-liquidity-shock-q806](./jp-us-liquidity-shock-q806) | Q806 日本株・米国株の流動性ショック（当月の Amihud 非流動性の過去 12 か月平均からの標準化した低下）の大きい方買い小さい方売り | 棄却 |
 | [jp-us-long-reversal-q576](./jp-us-long-reversal-q576) | Q576 日本株・米国株の長期反転（13〜48 か月の負け組買い・勝ち組売り・月次 L/S） | 棄却 |
 | [jp-us-lowvol-long-q596](./jp-us-lowvol-long-q596) | Q596 日本株・米国株の低ボラ買い（過去だけの β で市場ヘッジ） | 日本 未確定・米国 棄却 |
 | [jp-us-market-state-momentum-q800](./jp-us-market-state-momentum-q800) | Q800 日本株・米国株の横断モメンタム（Q563 の日次 L−S）を市場の過去 24 か月リターンが負の月に休むと | 未実行 |
