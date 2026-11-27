@@ -12,6 +12,8 @@ spec = importlib.util.spec_from_file_location("q563", os.path.join(HERE, "..", "
 q = importlib.util.module_from_spec(spec); spec.loader.exec_module(q)
 
 INV = os.path.join(WS, "作業層", "大容量", "jpx_investor_type", "weekly_val_2016_202406.csv")
+INV_SEAL = os.path.join(WS, "作業層", "大容量", "jpx_investor_type", "weekly_val_2016_202609.csv")
+SEAL_END = pd.Timestamp("2026-07-01"); SEAL_T0, SEAL_T1 = pd.Timestamp("2024-06-28"), pd.Timestamp("2026-05-29")
 SEAL = pd.Timestamp("2024-07-01"); SPLIT = pd.Timestamp("2020-10-01")
 COST, LOOKBACK, SKIP, REV = 0.0010, 252, 21, 21
 NW_LAG, B, SEED, MIN_SHIFT = 21, 1000, 870, 6
@@ -71,26 +73,32 @@ def smoke_inv(rng):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--smoke", action="store_true"); ap.add_argument("--B", type=int, default=B)
+    ap.add_argument("--seal", action="store_true", help="Q871: 逆向き・封印期間 2024-07〜2026-06 で 1 回だけ（事前登録_封印_q871.md）")
     a = ap.parse_args(); rng = np.random.default_rng(SEED)
+    global SPLIT
+    if a.seal:
+        q.SEAL = SEAL_END; SPLIT = pd.Timestamp("2025-07-01")
     C, V = q.load_px("jp", a.smoke, rng); R = C.pct_change(fill_method=None); R = R.where(R.abs() < 0.5)
-    inv = smoke_inv(rng) if a.smoke else pd.read_csv(INV)
+    inv = smoke_inv(rng) if a.smoke else pd.read_csv(INV_SEAL if a.seal else INV)
     months = q.build_months(C, V, q.CFG["jp"], LOOKBACK); pos = {t: i for i, t in enumerate(C.index)}
     def sig_mom(t, el): i = pos[t]; return (C.iloc[i - SKIP] / C.iloc[i - LOOKBACK] - 1).reindex(el)
     def sig_rev(t, el): i = pos[t]; return (-(C.iloc[i] / C.iloc[i - REV] - 1)).reindex(el)
     Md = run_ls_tagged(R, sig_mom, months, COST); Rd = run_ls_tagged(R, sig_rev, months, COST)
 
     zs = {k: share_z(inv, cols) for k, cols in dict(ind=["ind"], for_=["for"], tb=["tb"]).items()}
-    ts = sorted(set(Md.t) & set(Rd.t)); ts = [t for t in ts if t < SEAL]
+    ts = sorted(set(Md.t) & set(Rd.t))
+    ts = [t for t in ts if SEAL_T0 <= t <= SEAL_T1] if a.seal else [t for t in ts if t < SEAL]
     zi = {t: regime_at(zs["ind"], t) for t in ts}; ts = [t for t in ts if not np.isnan(zi[t])]
-    st = {t: (1 if zi[t] > 0 else -1) for t in ts}
-    D = build_D(Rd, Md, st); D = D[D.index < SEAL]
+    st = {t: ((-1 if zi[t] > 0 else 1) if a.seal else (1 if zi[t] > 0 else -1)) for t in ts}   # +1＝反転・−1＝モメンタム
+    D = build_D(Rd, Md, st)
+    D = D[(D.index >= SEAL) & (D.index < SEAL_END)] if a.seal else D[D.index < SEAL]
     mon = D.groupby("t")["D"].sum(); pf = mon[mon > 0].sum() / -mon[mon < 0].sum() if (mon < 0).any() else np.inf
     st_arr = np.array([st[t] for t in ts]); n = len(ts); null = []
     for _ in range(a.B):
         k = int(rng.integers(MIN_SHIFT, n - MIN_SHIFT)); sh = np.roll(st_arr, k)
         null.append(build_D(Rd, Md, dict(zip(ts, sh)))["D"].mean())
     null = np.array(null); z = (D["D"].mean() - null.mean()) / null.std()
-    res = dict(qid="Q870", n_months=n, frac_high_ind=float((st_arr > 0).mean()), n_switch=int((np.diff(st_arr) != 0).sum()),
+    res = dict(qid="Q871" if a.seal else "Q870", direction="個人が多い→モメンタム" if a.seal else "個人が多い→反転", n_months=n, frac_high_ind=float((st_arr > 0).mean()), n_switch=int((np.diff(st_arr) != 0).sum()),
                first_month=str(ts[0].date()), last_month=str(ts[-1].date()),
                D=summ(D["D"]), S=summ(D["S"]), E=summ(D["E"]), R=summ(D["R"]), M=summ(D["M"]), PF_monthly=float(pf),
                null=dict(B=a.B, mean_bp=1e4 * null.mean(), sd_bp=1e4 * null.std(), z=float(z)))
@@ -105,11 +113,12 @@ def main():
     res["desc_resid_mkt"] = summ(build_D(Rd, Md, {t: (1 if resid[t] > 0 else -1) for t in resid.index})["D"])
     res["desc_nocost_D"] = summ(build_D(Rd, Md, st, add_cost=False)["D"])
     d = res["D"]
-    if d["t_nw"] >= 1.5 and d["h1_bp"] > 0 and d["h2_bp"] > 0 and z >= 1.5 and res["S"]["mean_bp"] > 0: v = "支持"
+    thr = 2.0 if a.seal else 1.5
+    if d["t_nw"] >= thr and d["h1_bp"] > 0 and d["h2_bp"] > 0 and (a.seal or z >= 1.5) and res["S"]["mean_bp"] > 0: v = "支持"
     elif d["t_nw"] < 1.0 or d["mean_bp"] <= 0: v = "棄却"
     else: v = "未確定"
     res["verdict"] = v; res["generated"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M"); res["smoke"] = a.smoke
-    out = os.path.join(HERE, "results"); os.makedirs(out, exist_ok=True); tag = "smoke_" if a.smoke else ""
+    out = os.path.join(HERE, "results"); os.makedirs(out, exist_ok=True); tag = ("smoke_" if a.smoke else "") + ("seal_" if a.seal else "")
     json.dump(res, open(os.path.join(out, f"{tag}result_q870.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=float)
     D.to_csv(os.path.join(out, f"{tag}daily_q870.csv"))
     print(json.dumps(res, ensure_ascii=False, indent=1, default=float))
